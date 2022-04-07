@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Statusofcour extends Model
 {
     use HasFactory;
-    // protected $table ='statusofcours';
+     protected $table ='statusofcours';
 
     protected  $guarded = [];
     protected $hidden = [

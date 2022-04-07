@@ -26,7 +26,7 @@ class CoursController extends Controller
         $grade = Grade::select()->get();
         $level = level::select()->get();
         $status_od_cours = Statusofcour::select()->get();
-        return view('admin.cours.create', compact('grade', 'level', 'status_od_cours','teacher'));
+        return view('admin.cours.create', compact('grade', 'level', 'status_od_cours', 'teacher'));
     }
 
     public function store(InsertCoursRequest $request)
@@ -34,19 +34,35 @@ class CoursController extends Controller
         return $request;
 
 
-        Cours::create([
-                // grade: "English",
-                // level: "Elementary level 1",
-                // start_date: "2022-04-06",
-                // end_date: "2022-04-06",
-                // start_time: null,
-                // end_time: null,
-                // ac_start_date: "2022-04-07",
-                // ac_end_date: "2022-04-07",
-                // max_std_number: null,
-                // status: "اختر الدورة من فضلك",
-                // teacher_name: "Hassan Kamar 1",
-                // teacher_fee: "465"
+
+        //  : "English",
+        // : "Elementary level 1",
+        // : "2022-04-06",
+        // : "2022-04-06",
+        // : null,
+        // : null,
+        // ac_start_date: "2022-04-07",
+        // : "2022-04-07",
+        // : null,
+        // : "اختر الدورة من فضلك",
+        // : "Hassan Kamar 1",
+        // : "465"
+              Cours::create([
+            'startDate' =>$request->start_date,
+            'endDate' =>$request->end_date,
+            'maxStd' =>$request->max_std_number,
+
+            'status' =>$request->status,
+            'teachername' =>$request->teacher_name,
+            'teacherFee' =>$request->teacher_fee,
+            'startTime' =>$request->start_time,
+            'endTime' =>$request->end_time,
+            // 'days' =>$request->,
+            'act_StartDa' =>$request->ac_start_date,
+            'act_EndDa' =>$request->ac_end_date,
+            'year' =>current_school_year(),
+            'grade' =>$request->grade,
+            'level' =>$request->level,
         ]);
 
 

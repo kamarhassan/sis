@@ -34,6 +34,7 @@ class InsertCoursRequest extends FormRequest
             'status' => 'required|exists:statusofcours,name',
             'teacher_name' => 'required',
             'teacher_fee' => 'required|numeric',
+            'days' =>'required|array|min:1'
         ];
     }
 
@@ -42,9 +43,8 @@ class InsertCoursRequest extends FormRequest
     {
         return [
             '*.required' => __('site.its_require'),
-
-            'grade.exists' => __('site.its_exists'),
             'level.exists' => __('site.its_exists'),
+            'grade.exists' => __('site.its_exists'),
             'status.exists' => __('site.its_exists'),
             '*.date' => __('site.cours date must be date'),
             'ac_start_date.after_or_equal' => __('site.after or equal start date'),

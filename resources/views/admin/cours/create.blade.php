@@ -47,7 +47,7 @@
                                     @csrf
                                     <div class="form-body">
                                         {{-- <h4 class="form-section"><i class="ft-home"></i> بيانات اللغة </h4> --}}
-{{-- value="{{ old('username') }}" --}}
+                                        {{-- value="{{ old('username') }}" --}}
                                         <div class="row">
                                             @isset($grade)
                                                 <div class="col-md-6">
@@ -62,7 +62,8 @@
                                                                     <option selected="selected" value="{{ old('grade') }}">
                                                                         {{ old('grade') }}</option>
                                                                 @else
-                                                                    <option selected="selected" value=" @lang('site.chosse the cours')">
+                                                                    <option selected="selected"
+                                                                        value=" @lang('site.chosse the cours')">
                                                                         @lang('site.chosse the cours')</option>
                                                                 @endif
                                                                 @foreach ($grade as $grades)
@@ -86,14 +87,16 @@
                                                             <select name="level" class="form-control select2"
                                                                 style="width: 100%;">
                                                                 @if (old('level') != '')
-                                                                <option selected="selected" value="{{ old('level') }}">
-                                                                    {{ old('level') }}</option>
-                                                            @else
-                                                                <option selected="selected" value=" @lang('site.chosse the cours')">
-                                                                    @lang('site.chosse the cours')</option>
-                                                            @endif
+                                                                    <option selected="selected" value="{{ old('level') }}">
+                                                                        {{ old('level') }}</option>
+                                                                @else
+                                                                    <option selected="selected"
+                                                                        value=" @lang('site.chosse the cours')">
+                                                                        @lang('site.chosse the cours')</option>
+                                                                @endif
                                                                 @foreach ($level as $levels)
-                                                                    <option value="{{ $levels->name }}">{{ $levels->name }}
+                                                                    <option value="{{ $levels->name }}">
+                                                                        {{ $levels->name }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -111,7 +114,7 @@
                                                 <div class="form-group">
                                                     <label>@lang('site.start date') </label>
                                                     <input name="start_date" class="form-control" type="date"
-                                                    value="{{ old('start_date') }}" id="example-date-input">
+                                                        value="{{ old('start_date') }}" id="example-date-input">
                                                     @error('start_date')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -121,7 +124,7 @@
                                                 <div class="form-group">
                                                     <label>@lang('site.end date') </label>
                                                     <input name="end_date" class="form-control" type="date"
-                                                    value="{{ old('end_date') }}" id="example-date-input">
+                                                        value="{{ old('end_date') }}" id="example-date-input">
                                                     @error('end_date')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -135,7 +138,7 @@
                                                 <div class="form-group">
                                                     <label>@lang('site.start time') </label>
                                                     <input name="start_time" class="form-control" type="time"
-                                                    value="{{ old('start_time') }}"     id="example-date-input">
+                                                        value="{{ old('start_time') }}" id="example-date-input">
                                                     @error('start_time')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -144,8 +147,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>@lang('site.end time') </label>
-                                                    <input name="end_time" class="form-control" type="time"  value="{{ old('end_time') }}"
-                                                        id="example-date-input">
+                                                    <input name="end_time" class="form-control" type="time"
+                                                        value="{{ old('end_time') }}" id="example-date-input">
                                                     @error('end_time')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -158,7 +161,7 @@
                                                 <div class="form-group">
                                                     <label>@lang('site.actually start date') </label>
                                                     <input name="ac_start_date" class="form-control" type="date"
-                                                    value="{{ old('ac_start_date') }}"id="example-date-input">
+                                                        value="{{ old('ac_start_date') }}" id="example-date-input">
                                                     @error('ac_start_date')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -168,7 +171,7 @@
                                                 <div class="form-group">
                                                     <label>@lang('site.actually end date') </label>
                                                     <input name="ac_end_date" class="form-control" type="date"
-                                                     value="{{ old('ac_end_date') }}"id="example-date-input">
+                                                        value="{{ old('ac_end_date') }}" id="example-date-input">
                                                     @error('ac_end_date')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -180,7 +183,7 @@
                                                 <div class="form-group">
                                                     <label>@lang('site.max number of students') </label>
                                                     <input name="max_std_number" class="form-control" type="number"
-                                                    value="{{ old('max_std_number') }}"  id="example-date-input">
+                                                        value="{{ old('max_std_number') }}" id="example-date-input">
                                                     @error('max_std_number')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -193,12 +196,13 @@
                                                         <label>@lang('site.status of cours') </label>
                                                         <select name="status" class="form-control" style="width: 100%;">
                                                             @if (old('status') != '')
-                                                            <option selected="selected" value="{{ old('status') }}">
-                                                                {{ old('status') }}</option>
-                                                        @else
-                                                            <option selected="selected" value=" @lang('site.chosse the cours')">
-                                                                @lang('site.chosse the cours')</option>
-                                                        @endif
+                                                                <option selected="selected" value="{{ old('status') }}">
+                                                                    {{ old('status') }}</option>
+                                                            @else
+                                                                <option selected="selected"
+                                                                    value=" @lang('site.chosse the cours')">
+                                                                    @lang('site.chosse the cours')</option>
+                                                            @endif
                                                             @foreach ($status_od_cours as $status_od_cour)
                                                                 <option value="{{ $status_od_cour->name }}">
                                                                     {{ $status_od_cour->name }}
@@ -239,7 +243,7 @@
                                                 <div class="form-group">
                                                     <label>@lang('site.teacher fee') </label>
                                                     <input name="teacher_fee" class="form-control" type="number"
-                                                     value="{{ old('teacher_fee') }}" id="example-date-input">
+                                                        value="{{ old('teacher_fee') }}" id="example-date-input">
                                                     @error('teacher_fee')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -247,8 +251,44 @@
                                                 </div>
                                             </div>
                                         </div>{{-- end of row teacher name and fee --}}
+                                        <div class="row">
+                                            <div class="box-body">
+                                                <div class="demo-checkbox border border-warning">
+                                                    <input  name="days[]"type="checkbox" id="md_checkbox_" class="chk-col-primary" value="1"/>
+                                                    <label for="md_checkbox_">@lang('site.monday')</label>
+
+                                                    <input name="days[]" type="checkbox" id="md_checkbox_2" class="chk-col-primary"  value="2"/>
+                                                    <label for="md_checkbox_2">@lang('site.tuesday')</label>
+
+                                                    <input  name="days[]"type="checkbox" id="md_checkbox_3" class="chk-col-primary"  value="3"/>
+                                                    <label for="md_checkbox_3">@lang('site.wednesday')</label>
+
+                                                    <input  name="days[]"type="checkbox" id="md_checkbox_4" class="chk-col-primary"  value="4"/>
+                                                    <label for="md_checkbox_4">@lang('site.thirsday')</label>
+
+                                                    <input  name="days[]"type="checkbox" id="md_checkbox_5" class="chk-col-primary"  value="5"/>
+                                                    <label for="md_checkbox_5">@lang('site.friday')</label>
+
+                                                    <input  name="days[]"type="checkbox" id="md_checkbox_6" class="chk-col-primary"  value="6"/>
+                                                    <label for="md_checkbox_6">@lang('site.saturday')</label>
+
+                                                </div>
+                                                @error('days')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+
+                                            </div>
+
+
+                                        </div>{{-- end of row teacher name and fee --}}
+
+
+
+
 
                                     </div>
+
+
 
                                     <div class="form-actions">
                                         <button class="btn btn-close btn-danger btn-round fa fa-times"
@@ -279,4 +319,8 @@
     <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
     </script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js') }}">
+    </script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
 @endsection

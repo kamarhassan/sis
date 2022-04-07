@@ -15,22 +15,22 @@ class CreateCoursTable extends Migration
     {
         Schema::create('courss', function (Blueprint $table) {
             $table->id();
+            $table->string('grade');
+            $table->string('level');
             $table->date('startDate');
             $table->date('endDate');
             $table->string('maxStd');
-            $table->text('note');
+            $table->string('days');
             $table->integer('status')->enum('status', [1, 2, 3, 4, 5])->comment("1=>closed  2=>open  3=>postOpen  4=>canceled  5=>closed");
             $table->string('teachername');
             $table->double('teacherFee');
             $table->time('startTime')->nullable();
             $table->time('endTime')->nullable();
-            $table->string('days');
             $table->string('act_StartDa');
             $table->string('act_EndDa');
             $table->string('year');
-            $table->string('deleted')->enum('deleted', [0, 1])->comment("0=>delete  1=>is active");
-            $table->string('grade_id');
-            $table->string('level_id');
+            $table->string('deleted')->enum('deleted', [0, 1])->default(1)->comment("0=>delete  1=>is active");
+
 
 
             $table->timestamps();
