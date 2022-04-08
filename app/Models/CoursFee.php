@@ -10,7 +10,7 @@ class CoursFee extends Model
     use HasFactory;
 
 
-    protected $table ='coursfees';
+    protected $table ='cours_fees';
 
     protected  $guarded = [];
     protected $hidden = [
