@@ -21,7 +21,7 @@ class CreateCoursTable extends Migration
             $table->date('endDate');
             $table->string('maxStd');
             $table->string('days');
-            $table->integer('status')->enum('status', [1, 2, 3, 4, 5])->comment("1=>closed  2=>open  3=>postOpen  4=>canceled  5=>closed");
+            $table->string('status',50);
             $table->string('teachername');
             $table->double('teacherFee');
             $table->time('startTime')->nullable();

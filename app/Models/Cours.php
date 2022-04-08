@@ -9,7 +9,7 @@ class Cours extends Model
 {
     use HasFactory;
 
-    use HasFactory;
+
     protected $table ='courss';
 
     protected  $guarded = [];
@@ -20,4 +20,12 @@ class Cours extends Model
     public function scopeSelection($query){
         return $query->where('year', current_school_year())->get(); //  select('name')->where('year');
     }
+    // $array = array('This','is','a','string');
+	// $string = implode(" ",$array);
+	// echo $string;
+    public function save_day_of_week($array){
+        $string = implode(";",$array);
+        return $string; //  select('name')->where('year');
+    }
+
 }

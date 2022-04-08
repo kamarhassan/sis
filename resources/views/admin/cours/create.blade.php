@@ -273,9 +273,7 @@
                                                     <label for="md_checkbox_6">@lang('site.saturday')</label>
 
                                                 </div>
-                                                @error('days')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+
 
                                             </div>
 

@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(NationalitieSeeder::class);
         $this->call(UserSeeder::class);
         // $this->call(coursSeeder::class);
-        // $this->call(CourSeeder::class);
-        $this->call(Status_of_coursSeed::class);
+        $this->call(\CoursSedeer::class);
+        $this->call(\Status_of_coursSeed::class);
+        $this->call(\CoursFeeSeeder::class);
 
     }
 }

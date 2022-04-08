@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GradesRequest;
 use App\Models\Grade;
 
-use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 

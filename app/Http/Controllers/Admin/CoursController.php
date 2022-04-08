@@ -10,7 +10,8 @@ use App\Models\Grade;
 use App\Models\level;
 use Illuminate\Http\Request;
 use App\Models\Statusofcour;
-
+use Illuminate\Database\Events\TransactionRolledBack;
+use Illuminate\Support\Facades\DB;
 class CoursController extends Controller
 {
     public function index()
@@ -31,41 +32,35 @@ class CoursController extends Controller
 
     public function store(InsertCoursRequest $request)
     {
-        return $request;
+
+        try {
+            DB::beginTransaction();
+            $courssaved  =Cours::create([
+                'startDate' =>$request->start_date,
+                'endDate' =>$request->end_date,
+                'maxStd' =>$request->max_std_number,
+                'status' =>$request->status,
+                'teachername' =>$request->teacher_name,
+                'teacherFee' =>$request->teacher_fee,
+                'startTime' =>$request->start_time,
+                'endTime' =>$request->end_time,
+                'days' =>Cours::save_day_of_week($request->days),
+                'act_StartDa' =>$request->ac_start_date,
+                'act_EndDa' =>$request->ac_end_date,
+                'year' =>current_school_year(),
+                'grade' =>$request->grade,
+                'level' =>$request->level,
+            ]);
+            DB::commit();
+        } catch (\Throwable $th) {
+            //throw $th;
+
+
+            DB::rollback();
+        }
 
 
 
-        //  : "English",
-        // : "Elementary level 1",
-        // : "2022-04-06",
-        // : "2022-04-06",
-        // : null,
-        // : null,
-        // ac_start_date: "2022-04-07",
-        // : "2022-04-07",
-        // : null,
-        // : "اختر الدورة من فضلك",
-        // : "Hassan Kamar 1",
-        // : "465"
-              Cours::create([
-            'startDate' =>$request->start_date,
-            'endDate' =>$request->end_date,
-            'maxStd' =>$request->max_std_number,
 
-            'status' =>$request->status,
-            'teachername' =>$request->teacher_name,
-            'teacherFee' =>$request->teacher_fee,
-            'startTime' =>$request->start_time,
-            'endTime' =>$request->end_time,
-            // 'days' =>$request->,
-            'act_StartDa' =>$request->ac_start_date,
-            'act_EndDa' =>$request->ac_end_date,
-            'year' =>current_school_year(),
-            'grade' =>$request->grade,
-            'level' =>$request->level,
-        ]);
-
-
-        //return view('admin.cours.index');
     }
 }
