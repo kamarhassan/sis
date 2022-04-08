@@ -97,17 +97,17 @@ $routes = Route::current()->getName();
                 <ul class="treeview-menu">
                     @can('create_edit grades')
                         <li><a href="{{ route('admin.grades.add') }}">
-                                <i class="ti-more">@lang('site.add new grade')</i></a></li>
+                                <i class="ti-more"></i>@lang('site.add new grade')</a></li>
                     @endcan
 
                     @can('create_edit levels')
                         <li><a href="{{ route('admin.level.add') }}">
-                                <i class="ti-more">@lang('site.add new level')</i></a></li>
+                                <i class="ti-more"></i>@lang('site.add new level')</a></li>
                     @endcan
 
                     @can('activate currency')
                         <li><a href="{{ route('admin.Currency.get') }}">
-                                <i class="ti-more">@lang('site.add new Currency')</i></a></li>
+                                <i class="ti-more"></i>@lang('site.add new Currency')</a></li>
                     @endcan
                 </ul>
             </li>
@@ -116,16 +116,22 @@ $routes = Route::current()->getName();
 
             <li class="treeview   {{ $prefix == getprefix('Cours') ? 'active' : '' }}     ">
                 <a href="#">
-                    <i class="ti-settings"></i>
+                    <i class="fa fa-book "></i>
                     <span>@lang('site.cours')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
+
                 <ul class="treeview-menu">
                     {{-- @can('create_edit grades') --}}
-                        <li><a href="{{ route('admin.cours.add') }}">
-                                <i class="ti-more">@lang('site.add new cours')</i></a></li>
+                        <li
+                        ><a href="{{ route('admin.cours.add') }}">
+                                <i class="ti-more">
+                                </i>
+                                @lang('site.add new cours')
+                            </a>
+                        </li>
                     {{-- @endcan --}}
 
 

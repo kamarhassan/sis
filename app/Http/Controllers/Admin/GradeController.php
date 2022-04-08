@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GradesRequest;
 use App\Models\Grade;
 
-    use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 
@@ -43,7 +43,7 @@ class GradeController extends Controller
             //  $grade;
 
             $inserted = Grade::insert($grade);
-
+            DB::commit();
             if ($inserted) {
 
                 toastr()->success(__('site.Post created successfully!'));
@@ -57,7 +57,7 @@ class GradeController extends Controller
             }
 
             // print_r( $grade_to_insert[]);
-            DB::commit();
+
         } catch (\Exeption $ex) {
             toastr()->error(__('site.you have error'));
             // return $ex;
@@ -102,14 +102,14 @@ class GradeController extends Controller
                 ];
                 if ($grade_updated)
                     return  response()->json($notification);
-                    else{
-                        $notification = [
-                            'message' => __('site.grade faild to update'),
-                            'status' => 'error',
+                else {
+                    $notification = [
+                        'message' => __('site.grade faild to update'),
+                        'status' => 'error',
 
-                        ];
-                        return  response()->json($notification);
-                    }
+                    ];
+                    return  response()->json($notification);
+                }
             }
         } catch (\Exception $th) {
 
@@ -119,7 +119,7 @@ class GradeController extends Controller
 
             ];
             return  response()->json($notification);
-        //   toastr()->error(__('site.you have error'));
+            //   toastr()->error(__('site.you have error'));
         }
     }
 }

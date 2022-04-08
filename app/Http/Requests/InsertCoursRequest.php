@@ -34,7 +34,8 @@ class InsertCoursRequest extends FormRequest
             'status' => 'required|exists:statusofcours,name',
             'teacher_name' => 'required',
             'teacher_fee' => 'required|numeric',
-            'days' =>'required|array|min:1'
+            'days' =>'required|array|min:1',
+            'days.*' =>'numeric',
         ];
     }
 
@@ -50,6 +51,7 @@ class InsertCoursRequest extends FormRequest
             'ac_start_date.after_or_equal' => __('site.after or equal start date'),
             'ac_end_date.after_or_equal' =>   __('site.after or equal end date'),
             'teacher_fee.numeric' => __('site.teacher fee must be number'),
+            'days.*.numeric' =>__('site.its_exists'),
         ];
     }
 }

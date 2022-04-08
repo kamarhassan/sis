@@ -252,30 +252,36 @@
                                             </div>
                                         </div>{{-- end of row teacher name and fee --}}
                                         <div class="row">
-                                            <div class="box-body">
-                                                <div class="demo-checkbox border border-warning">
-                                                    <input  name="days[]"type="checkbox" id="md_checkbox_" class="chk-col-primary" value="1"/>
-                                                    <label for="md_checkbox_">@lang('site.monday')</label>
+                                            {{-- <div class="box-body">
+                                                <div class="demo-checkbox border border-warning"> --}}
 
-                                                    <input name="days[]" type="checkbox" id="md_checkbox_2" class="chk-col-primary"  value="2"/>
-                                                    <label for="md_checkbox_2">@lang('site.tuesday')</label>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
 
-                                                    <input  name="days[]"type="checkbox" id="md_checkbox_3" class="chk-col-primary"  value="3"/>
-                                                    <label for="md_checkbox_3">@lang('site.wednesday')</label>
+                                                            <div class="form-group">
+                                                                <label>@lang('site.level') </label>
+                                                                <select name="days[]" multiple class="form-control select2"
+                                                                    style="width: 100%;">
 
-                                                    <input  name="days[]"type="checkbox" id="md_checkbox_4" class="chk-col-primary"  value="4"/>
-                                                    <label for="md_checkbox_4">@lang('site.thirsday')</label>
+                                                                    @foreach (days_of_week() as $key => $days)
+                                                                    <option  selected value={{ $key }}>
+                                                                        {{ $days }}
+                                                                    </option>
+                                                                @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        @error('days[]')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
 
-                                                    <input  name="days[]"type="checkbox" id="md_checkbox_5" class="chk-col-primary"  value="5"/>
-                                                    <label for="md_checkbox_5">@lang('site.friday')</label>
-
-                                                    <input  name="days[]"type="checkbox" id="md_checkbox_6" class="chk-col-primary"  value="6"/>
-                                                    <label for="md_checkbox_6">@lang('site.saturday')</label>
-
-                                                </div>
 
 
-                                            </div>
+                                                {{-- </div>
+
+
+                                            </div> --}}
 
 
                                         </div>{{-- end of row teacher name and fee --}}

@@ -5,12 +5,25 @@ use Illuminate\Support\Facades\Config;
 
 
 
-function pagination_count(){
+function pagination_count()
+{
     return 15;
 }
 
+function days_of_week()
+{
+    return [
+        1 => __('site.monday'),
+        2 => __('site.tuesday'),
+        3 => __('site.wednesday'),
+        4 => __('site.thirsday'),
+        5 => __('site.friday'),
+        6 => __('site.saturday'),
+    ];
+}
 
-function current_school_year(){
+function current_school_year()
+{
     return 2022;
 }
 
@@ -50,15 +63,16 @@ function getprefix($prefix)
 }
 
 
-function  swal_fire_msg(){
+function  swal_fire_msg()
+{
 
     return [
-         __('site.title_of_delet_swal_fire'),
-         __('site.text_of_delet_swal_fire'),
-         __('site.confirmButtonTextof_delet_swal_fire'),
-          __('site.cancelButtonTextof_delet_swal_fire'),
-         __('site.deleted_msg_swal_fire'),
-         __('site.succes_msj_swal_fire'),
+        __('site.title_of_delet_swal_fire'),
+        __('site.text_of_delet_swal_fire'),
+        __('site.confirmButtonTextof_delet_swal_fire'),
+        __('site.cancelButtonTextof_delet_swal_fire'),
+        __('site.deleted_msg_swal_fire'),
+        __('site.succes_msj_swal_fire'),
 
     ];
 }

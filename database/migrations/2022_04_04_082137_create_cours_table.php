@@ -19,7 +19,7 @@ class CreateCoursTable extends Migration
             $table->string('level');
             $table->date('startDate');
             $table->date('endDate');
-            $table->string('maxStd');
+            $table->integer('maxStd')->nullable();
             $table->string('days');
             $table->string('status',50);
             $table->string('teachername');
