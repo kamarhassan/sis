@@ -12,11 +12,6 @@ class CoursFeeSeeder extends Seeder
      */
     public function run()
     {
-
-        CoursFee::create(['name' => 'Registration Fee','order' => 1 ]);
-        CoursFee::create(['name' => 'Course Fees','order' => 1 ]);
-        CoursFee::create(['name' => 'Book','order' => 1 ]);
-        CoursFee::create(['name' => 'Exam','order' => 1 ]);
-
+      
     }
 }

@@ -175,7 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         /* for toastr   */
-        Yoeunes\Toastr\ToastrServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class,   /* for toastr   */
+        App\Providers\RepositoryProvider::class,
 
     ],
 

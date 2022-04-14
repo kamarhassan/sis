@@ -22,10 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencySeeder::class);
         $this->call(NationalitieSeeder::class);
         $this->call(UserSeeder::class);
-        // $this->call(coursSeeder::class);
+       
         $this->call(\CoursSedeer::class);
         $this->call(\Status_of_coursSeed::class);
-        $this->call(\CoursFeeSeeder::class);
+        $this->call(\FeeTypeSeeder::class);
+        // $this->call(\CoursFeeSeeder::class);
 
     }
 }

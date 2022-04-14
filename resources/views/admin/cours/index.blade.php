@@ -11,42 +11,55 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="table-responsive">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-hover  ">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>@lang('site.lang name') </th>
-                            <th>@lang('site.abbreviation') </th>
-                            <th>@lang('site.direction') </th>
-                            <th>@lang('site.status ') </th>
-                            <th>@lang('site.options') </th>
-
-                        </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>@lang('site.cours') </th>
+                        <th>@lang('site.status') </th>
+                        <th>@lang('site.teacher name') </th>
+                        <th>@lang('site.actually start date') </th>
+                        <th>@lang('site.start time') </th>
+                        <th>@lang('site.actually end date') </th>
+                        <th>@lang('site.end time') </th>
+                        <th>@lang('site.std count') </th>
+                        <th>@lang('site.options') </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @isset($lang)
-                            @foreach ($lang as $key => $language)
-                                <tr class="Row{{ $language->id }} ">
-                                    <td> {{ $key + 1 }} </td>
-                                    <td> {{ $language->name }} </td>
-                                    <td> {{ $language->code }} </td>
-                                    <td> {{ $language->direction }} </td>
-                                    <td> {{ $language->getActive() }} </td>
+                    @isset($cours)
+                        @foreach ($cours as $key => $cour)
+                            <tr id="Row{{ $cour->id }} " class="hover-success">
+                                <td> {{ $key + 1 }} </td>
+                                <td>{{ $cour->grade }}, {{ $cour->level }} </td>
+                                <td> {{ $cour->status }} </td>
+                                <td> {{ $cour->teachername }} </td>
+                                <td> {{ $cour->act_StartDa }} </td>
+                                <td> {{ $cour->startTime }} </td>
+                                <td> {{ $cour->act_EndDa}} </td>
+                                <td> {{ $cour->endTime }} </td>
+                                <td>add students count</td>
+                                {{--<td> {{ $cour->getActive() }} </td>--}}
+                                <td>
+                                    <a token="{{ csrf_token() }}"
+                                       onclick=""
+                                       class="btn fa fa-edit" title="@lang('site.edit')"
+{{--                                       id="btn_editable_{{ $grades->id }}"--}}
+                                    >
+                                        {{-- @lang('site.edit') --}}
+                                    </a>
 
-                                    <td>
-                                        <a href="{{ route('admin.language.edit', $language->id) }}"
-                                            class="btn  btn-warning btn-round fa fa-edit" title="@lang('site.edit')">
-                                            {{-- @lang('site.edit') --}}
-                                        </a>
-                                        {{-- <a token="{{ csrf_token() }}" lang_id="{{ $language->id }}"
-                                            class="delete_btn btn btn-close btn-danger btn-round fa fa-times" title="@lang('site.delete')"> --}}
-                                            {{-- @lang('site.delete') --}}
-                                        {{-- </a> --}}
+                                    <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
+                                       title="@lang('site.delete')"
+                                       onclick="">
 
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endisset
+
+                                    </a>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endisset
 
 
                     </tbody>
@@ -106,13 +119,13 @@
 </script> --}}
 {{-- @endsection --}}
 @section('script')
-<script>
-    $(document).ready(function() {
-    $('#example1').DataTable( {
-        // "order": [ 0, 'asc' ]
-        "order": [ '4', 'desc' ] // nb four is column status
-    } );
-} );
+    <script>
+        $(document).ready(function () {
+            $('#example1').DataTable({
+                // "order": [ 0, 'asc' ]
+                "order": ['4', 'desc'] // nb four is column status
+            });
+        });
     </script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>

@@ -15,11 +15,11 @@ class GradeSeeder extends Seeder
     public function run()
     {
         //  DB::table('grades')->delete();
-        Grade::create(['Notes' => '','Name' => 'photoshop']);
-        Grade::create(['Notes' => '','Name' => 'English']);
-        Grade::create(['Notes' => '','Name' => 'German']);
-        Grade::create(['Notes' => '','Name' => 'Spanish']);
-        Grade::create(['Notes' => '','Name' => 'Franshe']);
+        Grade::create(['Notes' => '','grade' => 'photoshop']);
+        Grade::create(['Notes' => '','grade' => 'English']);
+        Grade::create(['Notes' => '','grade' => 'German']);
+        Grade::create(['Notes' => '','grade' => 'Spanish']);
+        Grade::create(['Notes' => '','grade' => 'Franshe']);
 
 
     }

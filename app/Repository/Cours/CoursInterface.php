@@ -1,0 +1,16 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Hassan
+ * Date: 4/10/2022
+ * Time: 1:25 PM
+ */
+
+namespace App\Repository\Cours;
+
+
+interface CoursInterface
+{
+    public function all_cours();
+    public function store_cours($REQUEST);
+}

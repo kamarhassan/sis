@@ -25,12 +25,12 @@ return [
     'options'          => 'الاجراءات',
 
 
-    'monday'=>'الاثنين',
-    'tuesday'=>'الثلاثاء',
-    'wednesday'=>'الاربعاء',
-    'thirsday'=>'الخميس',
-    'friday'=>'الجمعة',
-    'saturday'=>'السبت',
+    'monday' => 'الاثنين',
+    'tuesday' => 'الثلاثاء',
+    'wednesday' => 'الاربعاء',
+    'thirsday' => 'الخميس',
+    'friday' => 'الجمعة',
+    'saturday' => 'السبت',
 
 
     #######################end of genera;l ####################################
@@ -147,25 +147,28 @@ return [
 
 
     #################################### begin   cours  translator ###################################
-    'cours' =>'  الدورات  ',
-    'teacher name' =>'  اسم المدرس  ',
-    'teacher fee' =>'  اجرة المدرس  ',
-    'teacher name if not entry' =>' يمكن كتابة  اسم المدرس اذا لم يكن موجود مسبقا ',
-    'add new cours' =>'اضف دورة جديدة',
-    'chosse the cours' =>'اختر الدورة من فضلك',
-    'chosse the level' =>'اختر المستوى من فضلك',
+    'cours' => 'الدورات',
+    'cours info' => 'معلومات الدورة',
+    'cours fees' => 'تكاليف الدورة',
+    'all cours' => ' جميع الدورات',
+    'teacher name' => '  اسم المدرس',
+    'teacher fee' => '  اجرة المدرس',
+    'chosse the teacher name' =>'اختر اسم المدرس',
+    'add new cours' => 'اضف دورة جديدة',
+    'chosse the cours' => 'اختر الدورة من فضلك',
+    'chosse the level' => 'اختر المستوى من فضلك',
 
-    'start date'=>'تاريخ البدء',
-    'end date'=>'تاريخ الانتهاء',
+    'start date' => 'تاريخ البدء',
+    'end date' => 'تاريخ الانتهاء',
 
-    'start time'=>'وقت البدء',
-    'end time'=>'وقت الانتهاء',
+    'start time' => 'وقت البدء',
+    'end time' => 'وقت الانتهاء',
 
-    'actually start date'=>'تاريخ البدء الفعلي',
-    'actually end date'=>'تاريخ الانتهاء الفعلي',
-    'max number of students'=>'العدد الاقصى للطلاب',
-    'status of cours'=>'حالة الدورة',
-    'its_exists'=>'يجب ان يكون من ضمن الائحة فقط',
+    'actually start date' => 'تاريخ البدء الفعلي',
+    'actually end date' => 'تاريخ الانتهاء الفعلي',
+    'max number of students' => 'العدد الاقصى للطلاب',
+    'status of cours' => 'حالة الدورة',
+    'its_exists' => 'يجب ان يكون من ضمن الائحة فقط',
 
     'actually start date' => 'تاريخ البدء الفعلي',
     'actually end date' => 'تاريخ الانتهاء الفعلي',
@@ -176,6 +179,27 @@ return [
     'after or equal start date' => 'يجب ان يكون التاريخ بعد او نفس تاريخ البدء',
     'after or equal end date' => 'يجب ان يكون تاريخ  بعد او نفس تاريخ الانتهاء',
     'teacher fee must be number' => 'يجب ان يكون رقم',
+    'teacher fee must be number' => 'يجب ان يكون رقم',
+    'std count' => 'عدد الطلاب المسجلين',
+
+    'select fee' => 'اختر الرسوم المحتسبة',
+    'fee type' => 'نوع الرسوم',
+    'fee value' => 'قيمة الرسوم',
+    'cours currency' => 'العملة',
+    'total_coust' => 'قيمة رسوم الدورة',
+    'total_coust_fee' => '',
+    'only select' => 'حدد ما تريداحتسابه فقط',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+
+
+
+
     #################################### end of cours translator ###################################
 
 

@@ -125,8 +125,15 @@ $routes = Route::current()->getName();
 
                 <ul class="treeview-menu">
                     {{-- @can('create_edit grades') --}}
-                        <li
-                        ><a href="{{ route('admin.cours.add') }}">
+                        <li><a href="{{ route('admin.cours.all') }}">
+                                <i class="ti-more">
+                                </i>
+                                @lang('site.all cours')
+                            </a>
+                        </li>
+                    {{-- @endcan --}}
+                    {{-- @can('create_edit grades') --}}
+                        <li><a href="{{ route('admin.cours.add') }}">
                                 <i class="ti-more">
                                 </i>
                                 @lang('site.add new cours')

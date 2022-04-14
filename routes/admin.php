@@ -94,6 +94,7 @@ Route::group([
     Route::group(['prefix' => 'Cours'], function () {
 
 
+        Route::get('/', [CoursController::class, 'index'])->name('admin.cours.all');
         Route::get('create', [CoursController::class, 'create'])->name('admin.cours.add');
         Route::post('store', [CoursController::class, 'store'])->name('admin.cours.store');
         // Route::post('grade_delete', [LevelController::class, 'delete'])->name('admin.grades.delete');

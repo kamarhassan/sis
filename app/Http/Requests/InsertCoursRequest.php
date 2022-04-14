@@ -16,6 +16,15 @@ class InsertCoursRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+
+        if($this->get('fee')!=null)
+        $this->merge([
+            'fee_id' => array_keys($this->get('fee'))
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,18 +33,19 @@ class InsertCoursRequest extends FormRequest
     public function rules()
     {
         return [
-            'grade'  => 'required|exists:grades,name',
-            'level' => 'required|exists:levels,name',
+            'grade'  => 'required|exists:grades,grade',
+            'level' => 'required|exists:levels,level',
             'start_date' => 'required|date',
             'end_date'    => 'required|date',
-
             'ac_start_date' => 'required|date|after_or_equal:start_date',
             'ac_end_date' =>   'required|date|after_or_equal:end_date',
             'status' => 'required|exists:statusofcours,name',
-            'teacher_name' => 'required',
+            'teacher_id' => 'required|numeric|exists:Admins,id',
             'teacher_fee' => 'required|numeric',
             'days' =>'required|array|min:1',
             'days.*' =>'numeric',
+            'cours_currency'=>'required|exists:currencies,id',
+            'fee_id' =>'array|exists:fee_types,id',
         ];
     }
 
@@ -44,6 +54,7 @@ class InsertCoursRequest extends FormRequest
     {
         return [
             '*.required' => __('site.its_require'),
+            '*.exists' => __('site.its_exists'),
             'level.exists' => __('site.its_exists'),
             'grade.exists' => __('site.its_exists'),
             'status.exists' => __('site.its_exists'),
@@ -52,6 +63,7 @@ class InsertCoursRequest extends FormRequest
             'ac_end_date.after_or_equal' =>   __('site.after or equal end date'),
             'teacher_fee.numeric' => __('site.teacher fee must be number'),
             'days.*.numeric' =>__('site.its_exists'),
+             'fee_id' =>__('site.only select'),
         ];
     }
 }

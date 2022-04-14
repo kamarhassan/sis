@@ -15,11 +15,11 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+   $faker = \Faker\Factory::create();
 
+       
 
-        // DB::table('admins')->delete();
-
-       Admin::create([
+        Admin::create([
             'name' => 'Hassan Kamar',
             'email' => 'hassankamar795@gmail.com',
             'status' => '1',
@@ -27,16 +27,14 @@ class AdminSeeder extends Seeder
             'password' => bcrypt('123456789')
         ])->assignRole('super admin');
 
-
-
-
         Admin::create([
-            'name' => 'Hassan Kamar 1',
-            'email' => 'hassankamar7951@gmail.com',
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
             'status' => '1',
             //'roles_name' => ['super-admin'],
-            'password' => bcrypt('123456789')
-        ])->assignRole('teacher');
+            'password' => bcrypt('admin')
+        ])->assignRole('super admin');
+
 
         Admin::create([
             'name' => 'Hassan Kamar 2',
@@ -46,5 +44,19 @@ class AdminSeeder extends Seeder
             'password' => bcrypt('123456789')
         ])->assignRole('edit_currency');
 
+
+
+
+
+        for ($i = 0; $i < 15; $i++) {
+
+            Admin::create([
+                'name' => $faker->name(),
+                'email' => $faker->email(),
+                'status' => '1',
+                //'roles_name' => ['super-admin'],
+                'password' => bcrypt('123456789')
+            ])->assignRole('teacher');
+        }
     }
 }

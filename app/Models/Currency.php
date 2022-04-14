@@ -24,6 +24,9 @@ class Currency extends Model
         return $query->orderBy('active','DESC');
 }
 
+public function scopeActive($query){
+    return $query->where('active',1);
+}
     public function getActive(){
         return $this->active == 1 ? __('site.language is active'):__('site.language is not active');
     }

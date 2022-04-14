@@ -15,21 +15,21 @@ class levelseeder extends Seeder
     public function run()
     {
         // DB::table('levels')->delete();
-        level::create(['name' => 'Elementary level 1']);
-        level::create(['name' => 'Elementary level 1']);
-        level::create(['name' => 'Elementary level 2']);
-        level::create(['name' => 'Elementary level 3']);
-        level::create(['name' => 'Elementary level 4']);
-        level::create(['name' => 'Elementary level 5']);
-        level::create(['name' => 'Elementary level 6']);
-        level::create(['name' => 'Elementary level 7']);
-        level::create(['name' => 'Elementary level 8']);
-        level::create(['name' => 'Elementary level 9']);
-        level::create(['name' => 'Elementary level 10']);
-        level::create(['name' => 'Elementary level 11']);
-        level::create(['name' => 'Elementary level 12']);
-        level::create(['name' => 'Elementary level 13']);
-        level::create(['name' => 'Elementary level 14']);
-        level::create(['name' => 'Elementary level 15']);
+        level::create(['level' => 'Elementary level 1']);
+        level::create(['level' => 'Elementary level 1']);
+        level::create(['level' => 'Elementary level 2']);
+        level::create(['level' => 'Elementary level 3']);
+        level::create(['level' => 'Elementary level 4']);
+        level::create(['level' => 'Elementary level 5']);
+        level::create(['level' => 'Elementary level 6']);
+        level::create(['level' => 'Elementary level 7']);
+        level::create(['level' => 'Elementary level 8']);
+        level::create(['level' => 'Elementary level 9']);
+        level::create(['level' => 'Elementary level 10']);
+        level::create(['level' => 'Elementary level 11']);
+        level::create(['level' => 'Elementary level 12']);
+        level::create(['level' => 'Elementary level 13']);
+        level::create(['level' => 'Elementary level 14']);
+        level::create(['level' => 'Elementary level 15']);
     }
 }
