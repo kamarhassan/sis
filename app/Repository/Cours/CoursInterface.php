@@ -12,5 +12,5 @@ namespace App\Repository\Cours;
 interface CoursInterface
 {
     public function all_cours();
-    public function store_cours($REQUEST);
+    public function store_cours($REQUEST,$teacher_id);
 }

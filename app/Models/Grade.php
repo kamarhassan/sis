@@ -33,7 +33,10 @@ class Grade extends Model
     }
 
 
-
+    public function scopeGetIdByName($query, $name)
+    {
+        return $query->where('grade', $name)->first()->id;
+    }
 
 
 }

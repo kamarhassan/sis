@@ -15,7 +15,7 @@ class CreateCoursFeesTable extends Migration
     {
         Schema::create('cours_fees', function (Blueprint $table) {
             $table->id();
-            $table->decimal('value');
+            $table->double('value');
             // $table->integer('currencies_id');
             // $table->integer('primary_price')->nullable();
             // $table->integer('sponsored')->enum('sponsored', [0, 1])->default(1)->comment("0 =>  not entry in fees cours  , 1 =>  is entry in fees cours   ");

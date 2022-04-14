@@ -8,7 +8,8 @@
  */
 
 namespace App\Repository\Cours;
-
+use App\Models\Grade;
+use App\Models\level;
 
 use App\Models\Cours;
 
@@ -20,7 +21,7 @@ class CoursRepository implements CoursInterface
         // TODO: Implement all_cours() method.
         return Cours::Selection_with_grad_and_level();
     }
-    public function store_cours($request)
+    public function store_cours($request, $teacher_id)
     {
 
         // TODO: Implement all_cours() method.
@@ -29,7 +30,7 @@ class CoursRepository implements CoursInterface
             'endDate' => $request->end_date,
             'maxStd' => $request->max_std_number,
             'status' => $request->status,
-            'teacher_id' => $request->teacher_id,
+            'teacher_id' => $teacher_id,
             'teacherFee' => $request->teacher_fee,
             'startTime' => $request->start_time,
             'endTime' => $request->end_time,
@@ -37,11 +38,11 @@ class CoursRepository implements CoursInterface
             'act_StartDa' => $request->ac_start_date,
             'act_EndDa' => $request->ac_end_date,
             'year' => current_school_year(),
-            'grade_id' => $request->grade,
-            'level_id' => $request->level,
+            'grade_id' => Grade::GetIdByName($request->grade),
+            'level_id' => Level::GetIdByName($request->level),
 
         ]);
         // dd($saved->id);
-       return $saved->id;
+        return $saved->id;
     }
 }

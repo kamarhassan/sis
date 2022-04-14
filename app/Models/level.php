@@ -19,6 +19,9 @@ class level extends Model
     public function scopeSelection($query){
         return $query->select('level');
     }
-
+    public function scopeGetIdByName($query, $name)
+    {
+        return $query->where('level', $name)->first()->id;
+    }
 }
 

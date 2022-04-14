@@ -5,33 +5,35 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InsertCoursRequest;
 use App\Models\Admin;
-use App\Models\Cours;
 use App\Models\Currency;
-use App\Models\fee_type;
 use App\Models\Grade;
 use App\Models\level;
-use App\Repository\Cours\CoursInterface;
-use App\Repository\Fee_Type\Fee_TypeInterface;
 use Illuminate\Http\Request;
 use App\Models\Statusofcour;
-use Illuminate\Database\Events\TransactionRolledBack;
 use Illuminate\Support\Facades\DB;
-use App\Repository\Cours\CoursRepositoryInterface;
+use App\Repository\Cours_fee\CoursfeeInterface;
+use App\Repository\Cours\CoursInterface;
+use App\Repository\Fee_Type\Fee_TypeInterface;
 
 class CoursController extends Controller
 {
 
     protected $cours;
     protected $feetype;
+    protected $coursfee;
 
     /**
      * CoursController constructor.
      * @param $cours
      */
-    public function __construct(CoursInterface $cours, Fee_TypeInterface $feetype)
-    {
+    public function __construct(
+        CoursInterface $cours,
+        Fee_TypeInterface $feetype,
+        CoursFeeInterface $coursfee
+    ) {
         $this->cours = $cours;
         $this->feetype = $feetype;
+        $this->coursfee = $coursfee;
     }
 
 
@@ -43,27 +45,28 @@ class CoursController extends Controller
 
     public function create()
     {
+        $fee_type = $this->feetype->get_all();
         $teacher = Admin::role('teacher')->get();
         $grade = Grade::select()->get();
         $level = level::select()->get();
-        $fee_type = $this->feetype->get_all();
         $status_od_cours = Statusofcour::select()->get();
         $cours_currency = Currency::active()->get();
-        return view('admin.cours.create', compact('grade', 'level', 'status_od_cours', 'teacher', 'fee_type','cours_currency'));
+
+        return view('admin.cours.create', compact('grade', 'level', 'status_od_cours', 'teacher', 'fee_type', 'cours_currency'));
     }
 
     public function store(InsertCoursRequest $request)
     {
-        return $request;
+        // return $request ;
         try {
             DB::beginTransaction();
-
-            $id_cours = $this->cours->store_cours($request);
-
+            // return $id = getId(Admin::class, 'name',$request->teacher_name);
+            $teacher_id = Admin::GetIdByName($request->teacher_name);
+            $id_cours = $this->cours->store_cours($request, $teacher_id);
+            $cours_fee = $this->coursfee->create($request->fee, $id_cours, $request->cours_currency);
             DB::commit();
 
-
-            if (!$id_cours) {
+            if (!$id_cours || !$cours_fee) {
                 toastr()->error(__('site.please add data in the field'));
                 return redirect()->route('admin.cours.add');
             } else {
@@ -75,8 +78,6 @@ class CoursController extends Controller
             DB::rollback();
             // throw $th;
             return $th;
-
-
         }
     }
 }

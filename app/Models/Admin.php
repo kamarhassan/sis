@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use phpDocumentor\Reflection\Types\This;
 use Spatie\Permission\Traits\HasRoles;
 class Admin extends Authenticatable
 {
@@ -16,6 +17,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected  $guarded = [];
+    protected  $table = 'admins';
 
 
 
@@ -31,4 +33,11 @@ class Admin extends Authenticatable
     protected $casts =[
         'roles_name' =>'array'
     ];
+
+
+
+    public function scopeGetIdByName($query, $name)
+    {
+        return $query->where('name', $name)->first()->id;
+    }
 }

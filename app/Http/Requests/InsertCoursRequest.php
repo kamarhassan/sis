@@ -19,10 +19,10 @@ class InsertCoursRequest extends FormRequest
     protected function prepareForValidation()
     {
 
-        if($this->get('fee')!=null)
-        $this->merge([
-            'fee_id' => array_keys($this->get('fee'))
-        ]);
+        if ($this->get('fee') != null)
+            $this->merge([
+                'fee_id' => array_keys($this->get('fee'))
+            ]);
     }
 
     /**
@@ -40,12 +40,15 @@ class InsertCoursRequest extends FormRequest
             'ac_start_date' => 'required|date|after_or_equal:start_date',
             'ac_end_date' =>   'required|date|after_or_equal:end_date',
             'status' => 'required|exists:statusofcours,name',
-            'teacher_id' => 'required|numeric|exists:Admins,id',
+            'teacher_name' => 'required|exists:Admins,name',
             'teacher_fee' => 'required|numeric',
-            'days' =>'required|array|min:1',
-            'days.*' =>'numeric',
-            'cours_currency'=>'required|exists:currencies,id',
-            'fee_id' =>'array|exists:fee_types,id',
+            'days' => 'required|array|min:1',
+            'days.*' => 'numeric',
+            'cours_currency' => 'required|exists:currencies,id',
+
+            'fee' => 'array',
+            'fee.*' => 'numeric',
+            'fee_id.*' => 'integer|exists:fee_types,id',
         ];
     }
 
@@ -62,8 +65,9 @@ class InsertCoursRequest extends FormRequest
             'ac_start_date.after_or_equal' => __('site.after or equal start date'),
             'ac_end_date.after_or_equal' =>   __('site.after or equal end date'),
             'teacher_fee.numeric' => __('site.teacher fee must be number'),
-            'days.*.numeric' =>__('site.its_exists'),
-             'fee_id' =>__('site.only select'),
+            'days.*.numeric' => __('site.its_exists'),
+            'fee_id' => __('site.only select'),
+            'fee_id.*' => __('site.its_exists'),
         ];
     }
 }

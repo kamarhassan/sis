@@ -240,12 +240,12 @@
                                                                 <div class="form-group">
                                                                     <div class="form-group">
                                                                         <label>@lang('site.teacher name') </label>
-                                                                        <select name="teacher_id" class="form-control select2"
+                                                                        <select name="teacher_name" class="form-control select2"
                                                                             style="width: 100%;">
 
                                                                             @if (old('teacher_name') != '')
                                                                                 <option selected="selected"
-                                                                                    value="{{ old('teacher_id') }}">
+                                                                                    value="{{ old('teacher_name') }}">
                                                                                     {{ old('teacher_name') }}</option>
                                                                             @else
                                                                                 <option selected="selected"
@@ -253,7 +253,7 @@
                                                                                     @lang('site.chosse the cours')</option>
                                                                             @endif
                                                                             @foreach ($teacher as $teachers)
-                                                                                <option value="{{ $teachers->id }}">
+                                                                                <option value="{{ $teachers->name }}">
                                                                                     {{ $teachers->name }}
                                                                                 </option>
                                                                             @endforeach
@@ -369,24 +369,31 @@
                                                                 @endif
                                                                 onclick="total_coust({{ $feeType->count() }});" />
                                                                 <label for="md_checkbox_{{ $key }}">{{ $feeType->fee }}</label>
-
-
-                                                            </div>
-                                                        </td>
+                                                                {{-- @if ($feeType->sponsored == 1) --}}
+                                                                @error('fee.*')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                            {{-- @error('fee[]')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror --}}
+                                                            {{-- @endif --}}
+                                                        </div>
+                                                    </td>
+                                                    {{-- @error('fee_id.*')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror --}}
                                                         <td>
 
                                                             <input
-                                                                class="form-control fee" type="number" step="any"
-                                                                value="{{ old('fee_value') }}"
+                                                            class="form-control fee" type="number" step="any"
+
                                                                 id="fee_value[{{ $key }}]"
                                                                 onchange="total_coust({{ $feeType->count() }})">
 
                                                         </td>
                                                     </tr>
                                                 @endforeach
-                                                @error('fee[]"')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+
                                                 {{-- class="box-inverse box-warning" --}}
                                                 <tr>
                                                     <td>
