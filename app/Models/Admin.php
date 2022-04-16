@@ -20,7 +20,6 @@ class Admin extends Authenticatable
     protected  $table = 'admins';
 
 
-
     /**
      * The attributes that should be hidden for arrays.
      *

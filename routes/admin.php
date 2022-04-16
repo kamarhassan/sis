@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Livewire\Admin\Grade\AddGrade;
+use App\Http\Livewire\count;
 // use App\Http\Livewire\P;
 
 // Route::get('add', [SuperviserController::class, 'create'])->name('admin.supervisor.add');
@@ -71,7 +71,7 @@ Route::group([
     Route::group(['prefix' => 'Setting'], function () {
         // Setting/add_grades
         // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
-        // Route::view('/add_grades', 'livewire/Admin/Grade/Addgrade'/*AddGrade::class*/)->name('admin.grades.add');
+        // Route::get('/a', Count::class)->name('admin.grades.add');
 
         ###########################  for grades setting
         Route::get('add_grades', [GradeController::class, 'create'])->name('admin.grades.add');
@@ -97,6 +97,7 @@ Route::group([
         Route::get('/', [CoursController::class, 'index'])->name('admin.cours.all');
         Route::get('create', [CoursController::class, 'create'])->name('admin.cours.add');
         Route::post('store', [CoursController::class, 'store'])->name('admin.cours.store');
+        Route::get('edit/{id}', [CoursController::class, 'edit'])->name('admin.cours.edit');
         // Route::post('grade_delete', [LevelController::class, 'delete'])->name('admin.grades.delete');
 
     });

@@ -8,6 +8,8 @@ use App\Models\Admin;
 use App\Models\Currency;
 use App\Models\Grade;
 use App\Models\level;
+use App\Models\CoursFee;
+use App\Models\cours;
 use Illuminate\Http\Request;
 use App\Models\Statusofcour;
 use Illuminate\Support\Facades\DB;
@@ -51,7 +53,6 @@ class CoursController extends Controller
         $level = level::select()->get();
         $status_od_cours = Statusofcour::select()->get();
         $cours_currency = Currency::active()->get();
-
         return view('admin.cours.create', compact('grade', 'level', 'status_od_cours', 'teacher', 'fee_type', 'cours_currency'));
     }
 
@@ -65,7 +66,6 @@ class CoursController extends Controller
             $id_cours = $this->cours->store_cours($request, $teacher_id);
             $cours_fee = $this->coursfee->create($request->fee, $id_cours, $request->cours_currency);
             DB::commit();
-
             if (!$id_cours || !$cours_fee) {
                 toastr()->error(__('site.please add data in the field'));
                 return redirect()->route('admin.cours.add');
@@ -79,5 +79,35 @@ class CoursController extends Controller
             // throw $th;
             return $th;
         }
+    }
+
+
+    public function edit(Request $request,$id)
+    {
+return Cours::find($id);
+
+        try {
+            //  Cours::select_wht()->get();//->where('id','=',$id)->get();
+        return   $cours =  $this->cours->is_defined($id);
+        //  return  $cours = $this->cours->all_cours();
+        //    $teacher = Admin::find($cours->id);
+        //    $level = level::find($cours->id);
+           $fee_defined =$this->coursfee->is_fee_defined($id);
+
+
+           //   return    $cours = CoursFee::where('cours_id','=', $cours->id)->get();
+            if (!$cours) {
+                toastr()->error(__('site.cours note defined'));
+                return redirect()->route('admin.cours.all');
+            } else {
+                // return view('admin.cours.edit',compact()) ;
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th;
+        }
+
+
+        // if($this->cours->edit_cours($id))
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Cours;
 use Illuminate\Database\Eloquent\Model;
 
 class Grade extends Model
@@ -38,5 +38,9 @@ class Grade extends Model
         return $query->where('grade', $name)->first()->id;
     }
 
+
+    public  function cours(){
+        return $this->hasMany(Cours::class,'grade_id','id');
+    }
 
 }

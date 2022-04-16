@@ -30,10 +30,10 @@
                     @isset($cours)
                         @foreach ($cours as $key => $cour)
                             <tr id="Row{{ $cour->id }} " class="hover-success">
-                                <td> {{ $key + 1 }} </td>
+                                <td> {{$key }}</td>
                                 <td>{{ $cour->grade }}, {{ $cour->level }} </td>
                                 <td> {{ $cour->status }} </td>
-                                <td> {{ $cour->teachername }} </td>
+                                <td> {{ $cour->name}} </td>
                                 <td> {{ $cour->act_StartDa }} </td>
                                 <td> {{ $cour->startTime }} </td>
                                 <td> {{ $cour->act_EndDa}} </td>
@@ -41,15 +41,15 @@
                                 <td>add students count</td>
                                 {{--<td> {{ $cour->getActive() }} </td>--}}
                                 <td>
-                                    <a token="{{ csrf_token() }}"
-                                       onclick=""
+                                    <a href=" {{route('admin.cours.edit',   $cour->id  ) }}"
+                                       {{-- onclick="" --}}
                                        class="btn fa fa-edit" title="@lang('site.edit')"
 {{--                                       id="btn_editable_{{ $grades->id }}"--}}
                                     >
                                         {{-- @lang('site.edit') --}}
                                     </a>
 
-                                    <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
+                                    <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash hover-danger"
                                        title="@lang('site.delete')"
                                        onclick="">
 
@@ -119,14 +119,14 @@
 </script> --}}
 {{-- @endsection --}}
 @section('script')
-    <script>
+    {{-- <script>
         $(document).ready(function () {
             $('#example1').DataTable({
                 // "order": [ 0, 'asc' ]
                 "order": ['4', 'desc'] // nb four is column status
             });
         });
-    </script>
+    </script> --}}
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
 @endsection

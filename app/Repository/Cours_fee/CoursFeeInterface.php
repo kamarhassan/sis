@@ -11,5 +11,6 @@ namespace App\Repository\Cours_fee;
 
 interface CoursfeeInterface
 {
-public function create($request,$cours_id,$currency);
+    public function is_fee_defined($id);
+    public function create($request, $cours_id, $currency);
 }
