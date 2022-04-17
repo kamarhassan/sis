@@ -71,24 +71,30 @@ class CoursController extends Controller
 
     public function store(InsertCoursRequest $request)
     {
-        // return $request ;
+        // return $request;
         try {
             DB::beginTransaction();
             // $teacher_id = Admin::GetIdByName($request->teacher_name);
             $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
+
             $id_cours = $this->cours->store_cours($request, $teacher_id);
-            $cours_fee = $this->coursfee->create($request->fee, $id_cours, $request->cours_currency);
+
+            if ($request->has('fee')) {
+                $cours_fee = $this->coursfee->create($request->fee, $id_cours, $request->cours_currency);
+            }
+
             DB::commit();
-            if (!$id_cours || !$cours_fee) {
+            if (!$id_cours) {
                 toastr()->error(__('site.please add data in the field'));
                 return redirect()->route('admin.cours.add');
             } else {
 
                 toastr()->success(__('site.Post created successfully!'));
-                return redirect()->route('admin.cours.add');
+                return redirect()->route('admin.cours.all');
             }
         } catch (\Throwable $th) {
             DB::rollback();
+            return $th;
             toastr()->error(__('site.you have error'));
             return redirect()->back();
         }
@@ -147,9 +153,9 @@ class CoursController extends Controller
             //code...
             $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
             $this->cours->update_cours($request, $teacher_id, $id);
-          $cours_fee = $this->coursfee->update_fee_cours($request->fee, $id, $request->cours_currency);
+            $cours_fee = $this->coursfee->update_fee_cours($request->fee, $id, $request->cours_currency);
             toastr()->success(__('site.Post created successfully!'));
-                return redirect()->route('admin.cours.all');
+            return redirect()->route('admin.cours.all');
         } catch (\Throwable $th) {
             throw $th;
         }

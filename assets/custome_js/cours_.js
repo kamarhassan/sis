@@ -1,6 +1,6 @@
 
 function total_coust(fee_types_id) {
-
+console.table(fee_types_id)
     var sum = 0;
     $.each(fee_types_id, function (key, value) {
         if ($('#md_checkbox_' + fee_types_id[key].id).is(":checked")) {

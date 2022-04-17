@@ -63,9 +63,6 @@
                                                                         <select name="grade" class="form-control select2"
                                                                             style="width: 100%;">
 
-
-
-
                                                                             @foreach ($grade as $grades)
                                                                                 <option
                                                                                     @if ($grade_cours->grade == $grades->grade) selected="selected" @endif
@@ -264,15 +261,15 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.level') </label>
-                                                                <select name="days[]" id="choose_day_of_cours" multiple class="form-control select2"
-                                                                    style="width: 100%;">
+                                                                <select name="days[]" id="choose_day_of_cours" multiple
+                                                                    class="form-control select2" style="width: 100%;">
                                                                     {{-- @foreach (day_of_week_for_cours($cours->days) as $key => $days)
                                                                         <option selected value={{ $key }}>
                                                                             {{ $days }}
                                                                         </option>
                                                                         @endforeach --}}
-                                                                        @foreach (days_of_week() as $key => $days)
-                                                                        <option  value={{ $key }}>
+                                                                    @foreach (days_of_week() as $key => $days)
+                                                                        <option value={{ $key }}>
                                                                             {{ $days }}
                                                                         </option>
                                                                     @endforeach
@@ -311,7 +308,7 @@
                                 <div class="box-body">
                                     <div class="row">
 
-                                        @isset($grade)
+                                        @isset($cours_currency)
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="form-group">
@@ -319,8 +316,13 @@
                                                         <select name="cours_currency" class="form-control select2"
                                                             style="width: 100%;">
                                                             @foreach ($cours_currency as $cours_currencys)
+
                                                                 <option value="{{ $cours_currencys->id }}"
-                                                                    @if ($cours_currencys->id == $coursfee[0]->currencies_id) selected="selected" @endif>
+                                                                    @empty($coursfee)
+                                                                    @if ($cours_currencys->id == $coursfee[0]->currencies_id)
+                                                                        selected="selected"
+                                                                    @endempty
+                                                                @endisset>
                                                                     {{ $cours_currencys->symbol }} <-
                                                                         {{ $cours_currencys->currency }} </option>
                                                             @endforeach
@@ -350,8 +352,8 @@
                                                             <div class="demo-checkbox">
                                                                 <input type="checkbox" name="fee[{{ $feeType->id }}]"
                                                                     id="md_checkbox_{{ $feeType->id }}"
-                                                                    class="chk-col-primary fee_{{ $feeType->id }}"
-                                                                    onchange='total_coust(@json($fee_type_id) );' />
+                                                                    onchange='total_coust(@json($fee_type_id) );'
+                                                                    class="chk-col-primary fee_{{ $feeType->id }}" />
                                                                 <label
                                                                     for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
 
@@ -365,7 +367,7 @@
 
                                                             <input class="form-control fee_value_{{ $feeType->id }}"
                                                                 type="number" step="any" id="fee_value_{{ $feeType->id }}"
-                                                                onchange='total_coust(@json($fee_type_id) );'>
+                                                                onchange='total_coust(@json($fee_type_id) );' />
 
                                                         </td>
                                                     </tr>
@@ -420,9 +422,11 @@
 @section('script')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            change_fee_cours(@json($coursfee))
-            select_day_of_cours(@json(day_of_week_for_cours($cours->days)))
-        });
+                    change_fee_cours(@json($coursfee))
+                    select_day_of_cours(@json(day_of_week_for_cours($cours->days)))
+                    // console.table(@json($coursfee));
+                    // console.table(@json(day_of_week_for_cours($cours->days));
+                    });
     </script>
     <script src="{{ URL::asset('assets/custome_js/cours_.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>

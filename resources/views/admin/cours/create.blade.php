@@ -364,7 +364,7 @@
                                                                 @if ($feeType->sponsored == 1)
                                                                 checked
                                                                 @endif
-                                                                onclick='total_coust(@json($fee_type_id) );' >
+                                                                onchange ='total_coust(@json($fee_type_id));' />
                                                                 <label for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
                                                                 {{-- @if ($feeType->sponsored == 1) --}}
                                                                 @error('fee.*')
@@ -385,7 +385,7 @@
                                                             class="form-control fee" type="number" step="any"
 
                                                                 id="fee_value_{{$feeType->id }}"
-                                                                onchange='total_coust(@json($fee_type_id) );'>
+                                                                onchange='total_coust(@json($fee_type_id));' />
 
                                                         </td>
                                                     </tr>
@@ -440,7 +440,7 @@
 @section('script')
     <script>
     </script>
-    <script src="{{ URL::asset('assets/custome_js/calculate_sum_coust_of_cours.js') }}"></script>
+    <script src="{{ URL::asset('assets/custome_js/cours_.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
     </script>
