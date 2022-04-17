@@ -17,7 +17,11 @@ class Fee_typeRepository implements Fee_TypeInterface
     public function get_all()
     {
         // TODO: Implement get_all() method.
-
         return Fee_type::select()->get();
+    }
+
+
+    public function fee_type_id(){
+        return Fee_type::select('id')->get();
     }
 }

@@ -66,8 +66,11 @@ class InsertCoursRequest extends FormRequest
             'ac_end_date.after_or_equal' =>   __('site.after or equal end date'),
             'teacher_fee.numeric' => __('site.teacher fee must be number'),
             'days.*.numeric' => __('site.its_exists'),
+            'fee.*.numeric' => __('site.must be a number'),
+
             'fee_id' => __('site.only select'),
             'fee_id.*' => __('site.its_exists'),
+
         ];
     }
 }

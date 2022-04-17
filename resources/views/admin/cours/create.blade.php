@@ -1,16 +1,13 @@
 @extends('admin.layouts.master')
-
-
-
 @section('content')
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashborad') }}">@lang('site.primary') </a>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashborad') }}">@lang('site.Dashboard') </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.language') }}"> @lang('site.cours') </a>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.cours.all') }}"> @lang('site.cours') </a>
                         </li>
                         <li class="breadcrumb-item active">
                         </li>
@@ -362,13 +359,13 @@
                                                     <tr>
                                                         <td>
                                                             <div class="demo-checkbox">
-                                                                <input type="checkbox" name="fee[{{  $feeType->id }}]" id="md_checkbox_{{ $key }}"
+                                                                <input type="checkbox" name="fee[{{  $feeType->id }}]" id="md_checkbox_{{ $feeType->id }}"
                                                                 class="chk-col-primary"
                                                                 @if ($feeType->sponsored == 1)
                                                                 checked
                                                                 @endif
-                                                                onclick="total_coust({{ $feeType->count() }});" />
-                                                                <label for="md_checkbox_{{ $key }}">{{ $feeType->fee }}</label>
+                                                                onclick='total_coust(@json($fee_type_id) );' >
+                                                                <label for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
                                                                 {{-- @if ($feeType->sponsored == 1) --}}
                                                                 @error('fee.*')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -387,8 +384,8 @@
                                                             <input
                                                             class="form-control fee" type="number" step="any"
 
-                                                                id="fee_value[{{ $key }}]"
-                                                                onchange="total_coust({{ $feeType->count() }})">
+                                                                id="fee_value_{{$feeType->id }}"
+                                                                onchange='total_coust(@json($fee_type_id) );'>
 
                                                         </td>
                                                     </tr>
@@ -442,8 +439,6 @@
 @endsection
 @section('script')
     <script>
-
-
     </script>
     <script src="{{ URL::asset('assets/custome_js/calculate_sum_coust_of_cours.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>

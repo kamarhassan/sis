@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Hassan
@@ -14,5 +15,6 @@ interface CoursInterface
 
     public function is_defined($id);
     public function all_cours();
-    public function store_cours($REQUEST,$teacher_id);
+    public function store_cours($REQUEST, $teacher_id);
+    public function update_cours($request, $teacher_id,$cours_id);
 }

@@ -16,4 +16,26 @@ class CoursFee extends Model
     protected $hidden = [
         'created_at','updated_at'
     ];
+
+
+
+    public function scopeGetOrFail ($query)
+    {
+        if (empty($query->count())) {
+         return false;
+        } else {
+            return $query->get();
+        }
+    }
+
+    public function scopedelet ($query)
+    {
+        if (empty($query->count())) {
+         return false;
+        } else {
+            return $query->get();
+        }
+    }
+
+
 }

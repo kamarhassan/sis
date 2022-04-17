@@ -8,9 +8,9 @@
             <div class="row breadcrumbs-top">
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashborad') }}">@lang('site.primary') </a>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashborad') }}">@lang('site.Dashboard') </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.language') }}"> @lang('site.cours') </a>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.cours.all') }}"> @lang('site.cours') </a>
                         </li>
                         <li class="breadcrumb-item active">
                         </li>
@@ -35,8 +35,8 @@
                         {{-- @include('admin.alerts.toaster') --}}
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.cours.store') }}" class="form"
-                                    enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('admin.cours.update', $cours->id) }}"
+                                    class="form" enctype="multipart/form-data">
                                     @csrf
                                     <div class=" col-12">
                                         <div class="box bl-3.border-primary">
@@ -63,17 +63,13 @@
                                                                         <select name="grade" class="form-control select2"
                                                                             style="width: 100%;">
 
-                                                                            @if (old('grade') != '')
-                                                                                <option selected="selected"
-                                                                                    value="{{ old('grade') }}">
-                                                                                    {{ old('grade') }}</option>
-                                                                            @else
-                                                                                <option selected="selected"
-                                                                                    value=" @lang('site.chosse the cours')">
-                                                                                    @lang('site.chosse the cours')</option>
-                                                                            @endif
+
+
+
                                                                             @foreach ($grade as $grades)
-                                                                                <option value="{{ $grades->grade }}">
+                                                                                <option
+                                                                                    @if ($grade_cours->grade == $grades->grade) selected="selected" @endif
+                                                                                    value="{{ $grades->grade }}">
                                                                                     {{ $grades->grade }}
                                                                                 </option>
                                                                             @endforeach
@@ -93,17 +89,11 @@
                                                                         <label>@lang('site.level') </label>
                                                                         <select name="level" class="form-control select2"
                                                                             style="width: 100%;">
-                                                                            @if (old('level') != '')
-                                                                                <option selected="selected"
-                                                                                    value="{{ old('level') }}">
-                                                                                    {{ old('level') }}</option>
-                                                                            @else
-                                                                                <option selected="selected"
-                                                                                    value=" @lang('site.chosse the cours')">
-                                                                                    @lang('site.chosse the cours')</option>
-                                                                            @endif
+
                                                                             @foreach ($level as $levels)
-                                                                                <option value="{{ $levels->level }}">
+                                                                                <option
+                                                                                    @if ($level_cours->level == $levels->level) selected="selected" @endif
+                                                                                    value="{{ $levels->level }}">
                                                                                     {{ $levels->level }}
                                                                                 </option>
                                                                             @endforeach
@@ -122,7 +112,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.start date') </label>
                                                                 <input name="start_date" class="form-control" type="date"
-                                                                    value="{{ old('start_date') }}"
+                                                                    value="{{ $cours->startDate }}"
                                                                     id="example-date-input">
                                                                 @error('start_date')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -133,7 +123,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.end date') </label>
                                                                 <input name="end_date" class="form-control" type="date"
-                                                                    value="{{ old('end_date') }}"
+                                                                    value="{{ $cours->endDate }}"
                                                                     id="example-date-input">
                                                                 @error('end_date')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -148,7 +138,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.start time') </label>
                                                                 <input name="start_time" class="form-control" type="time"
-                                                                    value="{{ old('start_time') }}"
+                                                                    value="{{ $cours->startTime }}"
                                                                     id="example-date-input">
                                                                 @error('start_time')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -159,7 +149,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.end time') </label>
                                                                 <input name="end_time" class="form-control" type="time"
-                                                                    value="{{ old('end_time') }}"
+                                                                    value="{{ $cours->endTime }}"
                                                                     id="example-date-input">
                                                                 @error('end_time')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -173,7 +163,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.actually start date') </label>
                                                                 <input name="ac_start_date" class="form-control"
-                                                                    type="date" value="{{ old('ac_start_date') }}"
+                                                                    type="date" value="{{ $cours->act_StartDa }}"
                                                                     id="example-date-input">
                                                                 @error('ac_start_date')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -184,7 +174,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.actually end date') </label>
                                                                 <input name="ac_end_date" class="form-control" type="date"
-                                                                    value="{{ old('ac_end_date') }}"
+                                                                    value="{{ $cours->act_EndDa }}"
                                                                     id="example-date-input">
                                                                 @error('ac_end_date')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -197,7 +187,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.max number of students') </label>
                                                                 <input name="max_std_number" class="form-control"
-                                                                    type="number" value="{{ old('max_std_number') }}"
+                                                                    type="number" value="{{ $cours->maxStd }}"
                                                                     id="example-date-input">
                                                                 @error('max_std_number')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -211,15 +201,11 @@
                                                                     <label>@lang('site.status of cours') </label>
                                                                     <select name="status" class="form-control"
                                                                         style="width: 100%;">
-                                                                        @if (old('status') != '')
-                                                                            <option selected="selected"
-                                                                                value="{{ old('status') }}">
-                                                                                {{ old('status') }}</option>
-                                                                        @else
-                                                                            <option selected="selected"
-                                                                                value=" @lang('site.chosse the cours')">
-                                                                                @lang('site.chosse the cours')</option>
-                                                                        @endif
+
+                                                                        <option selected="selected"
+                                                                            value="{{ $cours->status }}">
+                                                                            {{ $cours->status }}</option>
+
                                                                         @foreach ($status_od_cours as $status_od_cour)
                                                                             <option value="{{ $status_od_cour->name }}">
                                                                                 {{ $status_od_cour->name }}
@@ -232,7 +218,9 @@
                                                                 @endisset
                                                             </div>
                                                         </div>
-                                                    </div>{{-- end of row max std number and status of cours --}}
+                                                    </div>
+
+                                                    {{-- end of row max std number and status of cours --}}
 
                                                     <div class="row">
                                                         @isset($teacher)
@@ -242,18 +230,9 @@
                                                                         <label>@lang('site.teacher name') </label>
                                                                         <select name="teacher_name" class="form-control select2"
                                                                             style="width: 100%;">
-
-                                                                            @if (old('teacher_name') != '')
-                                                                                <option selected="selected"
-                                                                                    value="{{ old('teacher_name') }}">
-                                                                                    {{ old('teacher_name') }}</option>
-                                                                            @else
-                                                                                <option selected="selected"
-                                                                                    value=" @lang('site.chosse the teacher name')">
-                                                                                    @lang('site.chosse the cours')</option>
-                                                                            @endif
                                                                             @foreach ($teacher as $teachers)
-                                                                                <option value="{{ $teachers->name }}">
+                                                                                <option value="{{ $teachers->name }}"
+                                                                                    @if ($teachers->id == $cours->teacher_id) selected="selected" @endif>
                                                                                     {{ $teachers->name }}
                                                                                 </option>
                                                                             @endforeach
@@ -270,7 +249,7 @@
                                                                 <label>@lang('site.teacher fee') </label>
                                                                 <input name="teacher_fee" class="form-control"
                                                                     type="number" step="any"
-                                                                    value="{{ old('teacher_fee') }}"
+                                                                    value="{{ $cours->teacherFee }}"
                                                                     id="example-date-input">
                                                                 @error('teacher_fee')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -285,14 +264,19 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.level') </label>
-                                                                <select name="days[]" multiple class="form-control select2"
+                                                                <select name="days[]" id="choose_day_of_cours" multiple class="form-control select2"
                                                                     style="width: 100%;">
-
-                                                                    @foreach (days_of_week() as $key => $days)
+                                                                    {{-- @foreach (day_of_week_for_cours($cours->days) as $key => $days)
                                                                         <option selected value={{ $key }}>
                                                                             {{ $days }}
                                                                         </option>
+                                                                        @endforeach --}}
+                                                                        @foreach (days_of_week() as $key => $days)
+                                                                        <option  value={{ $key }}>
+                                                                            {{ $days }}
+                                                                        </option>
                                                                     @endforeach
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -309,7 +293,7 @@
 
 
 
-
+                        {{-- this is better{{$coursfee->value}} --}}
 
                         {{-- begin start blade to cours fee --}}
                         <div class=" col-12">
@@ -330,14 +314,15 @@
                                         @isset($grade)
                                             <div class="col-md-6">
                                                 <div class="form-group">
-
                                                     <div class="form-group">
                                                         <label>@lang('site.cours currency') </label>
-                                                        <select name="cours_currency" class="form-control select2" style="width: 100%;">
+                                                        <select name="cours_currency" class="form-control select2"
+                                                            style="width: 100%;">
                                                             @foreach ($cours_currency as $cours_currencys)
-                                                                <option value="{{ $cours_currencys->id }}">
-                                                                 {{ $cours_currencys->symbol }}   <-  {{ $cours_currencys->currency }}
-                                                                </option>
+                                                                <option value="{{ $cours_currencys->id }}"
+                                                                    @if ($cours_currencys->id == $coursfee[0]->currencies_id) selected="selected" @endif>
+                                                                    {{ $cours_currencys->symbol }} <-
+                                                                        {{ $cours_currencys->currency }} </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -350,7 +335,6 @@
 
 
                                     </div>
-
                                     @isset($fee_type)
                                         <div class="table-responsive">
                                             <table class="table table-hover ">
@@ -358,37 +342,30 @@
                                                     <th>@lang('site.select fee')</th>
                                                     <th>@lang('site.fee value')</th>
                                                 </tr>
+
                                                 @foreach ($fee_type as $key => $feeType)
                                                     <tr>
                                                         <td>
+
                                                             <div class="demo-checkbox">
-                                                                <input type="checkbox" name="fee[{{  $feeType->id }}]" id="md_checkbox_{{ $key }}"
-                                                                class="chk-col-primary"
-                                                                @if ($feeType->sponsored == 1)
-                                                                checked
-                                                                @endif
-                                                                onclick="total_coust({{ $feeType->count() }});" />
-                                                                <label for="md_checkbox_{{ $key }}">{{ $feeType->fee }}</label>
-                                                                {{-- @if ($feeType->sponsored == 1) --}}
+                                                                <input type="checkbox" name="fee[{{ $feeType->id }}]"
+                                                                    id="md_checkbox_{{ $feeType->id }}"
+                                                                    class="chk-col-primary fee_{{ $feeType->id }}"
+                                                                    onchange='total_coust(@json($fee_type_id) );' />
+                                                                <label
+                                                                    for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
+
                                                                 @error('fee.*')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                            {{-- @error('fee[]')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                            @enderror --}}
-                                                            {{-- @endif --}}
-                                                        </div>
-                                                    </td>
-                                                    {{-- @error('fee_id.*')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror --}}
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+
+                                                            </div>
+                                                        </td>
                                                         <td>
 
-                                                            <input
-                                                            class="form-control fee" type="number" step="any"
-
-                                                                id="fee_value[{{ $key }}]"
-                                                                onchange="total_coust({{ $feeType->count() }})">
+                                                            <input class="form-control fee_value_{{ $feeType->id }}"
+                                                                type="number" step="any" id="fee_value_{{ $feeType->id }}"
+                                                                onchange='total_coust(@json($fee_type_id) );'>
 
                                                         </td>
                                                     </tr>
@@ -442,10 +419,12 @@
 @endsection
 @section('script')
     <script>
-
-
+        document.addEventListener("DOMContentLoaded", function() {
+            change_fee_cours(@json($coursfee))
+            select_day_of_cours(@json(day_of_week_for_cours($cours->days)))
+        });
     </script>
-    <script src="{{ URL::asset('assets/custome_js/calculate_sum_coust_of_cours.js') }}"></script>
+    <script src="{{ URL::asset('assets/custome_js/cours_.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
     </script>

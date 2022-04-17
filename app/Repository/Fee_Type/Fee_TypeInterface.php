@@ -12,5 +12,6 @@ namespace App\Repository\Fee_Type;
 interface Fee_TypeInterface
 {
     public function get_all();
+    public function fee_type_id();
 
 }

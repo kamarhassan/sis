@@ -41,11 +41,19 @@ class Cours extends Model
         // get(['admins.name as teacher' , 'courss.*','grades.*','levels.*']);
     }
 
+
     public function save_day_of_week($array)
     {
         $string = implode(";", $array);
-        return $string; //  select('name')->where('year');
+        return $string;
     }
+
+    public function select_day_of_week()
+    {
+     return Cours::select('days')->get();
+        return explode(";",$array);
+    }
+
 
 
 
@@ -59,5 +67,10 @@ class Cours extends Model
     {
 
         return $this->belongsTo('App\Models\Grade', 'grade_id', 'id');
+    }
+    public function level()
+    {
+
+        return $this->belongsTo('App\Models\Level', 'level_id', 'id');
     }
 }

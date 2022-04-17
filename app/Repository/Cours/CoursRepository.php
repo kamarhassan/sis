@@ -35,12 +35,11 @@ class CoursRepository implements CoursInterface
             'grades.grade'
         ];
         return  Cours::join('grades', 'grade_id', '=', 'grades.id')
-        ->join('levels', 'level_id', '=', 'levels.id')
-        ->JOIN('admins', 'teacher_id', '=', 'admins.id')
-        ->where('year', current_school_year())
-        ->orderBy('courss.id', 'asc')
-        ->get( $array_of_data);
-       
+            ->join('levels', 'level_id', '=', 'levels.id')
+            ->JOIN('admins', 'teacher_id', '=', 'admins.id')
+            ->where('year', current_school_year())
+            ->orderBy('courss.id', 'asc')
+            ->get($array_of_data);
     }
     public function store_cours($request, $teacher_id)
     {
@@ -71,10 +70,13 @@ class CoursRepository implements CoursInterface
 
 
 
-    public function edit_cours($request)
+    public  function  update_cours($request, $teacher_id, $cours_id)
     {
-
-        $saved = $cours->update([
+        // return $request;
+        $cours = Cours::find($cours_id);
+        if (!$cours)
+            return false;
+        $cours_updated = $cours->update([
             'startDate' => $request->start_date,
             'endDate' => $request->end_date,
             'maxStd' => $request->max_std_number,
@@ -91,16 +93,14 @@ class CoursRepository implements CoursInterface
             'level_id' => Level::GetIdByName($request->level),
 
         ]);
-        return $saved->id;
+        return $cours_updated;
     }
 
     public function is_defined($id)
     {
-        $cours = Cours::join('grades', 'grade_id', '=', 'grades.id')
-            ->join('levels', 'level_id', '=', 'levels.id')
-            ->JOIN('admins', 'teacher_id', '=', 'admins.id')
-            ->where(['year' => current_school_year()])->orderby('admins.id')->get();
-        if (!$cours)  return false;
+        $cours = Cours::find($id);
+        if (!$cours)
+            return false;
         return $cours;
     }
 }// end of class

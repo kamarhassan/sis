@@ -1,7 +1,7 @@
 
 function delete_by_id(route_, id_, token_, array_of_msg,) {
     var msg = JSON.parse(array_of_msg);
-    console.table(msg);
+    // console.table(msg);
     Swal.fire({
 
 

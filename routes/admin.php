@@ -98,7 +98,8 @@ Route::group([
         Route::get('create', [CoursController::class, 'create'])->name('admin.cours.add');
         Route::post('store', [CoursController::class, 'store'])->name('admin.cours.store');
         Route::get('edit/{id}', [CoursController::class, 'edit'])->name('admin.cours.edit');
-        // Route::post('grade_delete', [LevelController::class, 'delete'])->name('admin.grades.delete');
+        Route::post('update/{id}', [CoursController::class, 'update'])->name('admin.cours.update');
+
 
     });
 

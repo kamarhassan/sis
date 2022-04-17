@@ -2,7 +2,7 @@
 
 use App\Models\Language;
 use Illuminate\Support\Facades\Config;
-
+use App\Models\Cours;
 
 
 function pagination_count()
@@ -21,6 +21,12 @@ function days_of_week()
         6 => __('site.saturday'),
     ];
 }
+
+  function day_of_week_for_cours($array)
+    {
+    //  return Cours::select('days')->get();
+        return explode(";",$array);
+    }
 
 function current_school_year()
 {
