@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('acount_id')->random_int();
+            // $table->bigInteger('acount_id')->random_int();
             $table->string('name');
             $table->string('midName');
             $table->string('LastName');
@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('photo');
             $table->string('work_type')->comment('type of job for worker');
             $table->string('work_address_id')->comment('address of job for worker');
-            $table->string('status')->enum('0','1')->comment('1=>active 0 => inactive');
+            $table->tinyInteger('user_status',4)->enum('0','1','2')->comment('1=>active 0 => inactive  2 =>pending');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

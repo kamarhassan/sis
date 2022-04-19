@@ -1,0 +1,4 @@
+<div>
+{{dd($cours)}}
+
+</div>

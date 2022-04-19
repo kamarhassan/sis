@@ -8,7 +8,9 @@ use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Livewire\count;
+use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
+use App\Http\Controllers\Admin\StudentsController;
+
 // use App\Http\Livewire\P;
 
 // Route::get('add', [SuperviserController::class, 'create'])->name('admin.supervisor.add');
@@ -92,20 +94,24 @@ Route::group([
 
     ################################### Begin Cours Routes #################################################
     Route::group(['prefix' => 'Cours'], function () {
-
-
         Route::get('/', [CoursController::class, 'index'])->name('admin.cours.all');
         Route::get('create', [CoursController::class, 'create'])->name('admin.cours.add');
         Route::post('store', [CoursController::class, 'store'])->name('admin.cours.store');
         Route::get('edit/{id}', [CoursController::class, 'edit'])->name('admin.cours.edit');
         Route::post('update/{id}', [CoursController::class, 'update'])->name('admin.cours.update');
-
+        Route::get('/livewire-test', [ShowPosts::class, 'render']);
 
     });
 
     ################################### End Cours Routes ###################################################
 
 
+    ################################### Begin Students Routes #################################################
+    Route::group(['prefix' => 'students'], function () {
+        Route::get('/p', [StudentsController::class, 'students'])->name('admin.cours.students');
+
+    });
+    ################################### End Students Routes ###################################################
 
 
 

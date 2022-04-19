@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Livewire\Count;
-use App\Http\Livewire\Counter;
+use App\Http\Livewire\ShowPosts;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +27,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/post', [ShowPosts::class,'render']);

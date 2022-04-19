@@ -73,4 +73,11 @@ class Cours extends Model
 
         return $this->belongsTo('App\Models\Level', 'level_id', 'id');
     }
+
+
+    public function students(){
+        return $this->belongsToMany(User::class,'studentsregistrations','cours_id','user_id','id','id');
+    }
+
+
 }

@@ -2,7 +2,7 @@
 
 use App\Models\Nationalitie;
 use Illuminate\Database\Seeder;
-use App\User;
+use App\Models\User;
 class UserSeeder extends Seeder
 {
     /**
@@ -14,14 +14,11 @@ class UserSeeder extends Seeder
         {
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $gender = $faker->randomElement(['male', 'female']);
             $salut = $faker->randomElement(["Mrs","Mr","Ms"]);
-
-
-
             User::create([
-                'acount_id' =>random_int(1,500),
+                // 'acount_id' =>random_int(1,500),
                 'name' =>    $faker->name(),
                 'midName' =>   $faker->name(),
                 'LastName' =>    $faker->name(),

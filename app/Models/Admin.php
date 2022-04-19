@@ -39,4 +39,5 @@ class Admin extends Authenticatable
     {
         return $query->where('name', $name)->first()->id;
     }
+    
 }

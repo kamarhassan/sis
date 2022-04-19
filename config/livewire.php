@@ -14,8 +14,8 @@ return [
     | After changing this item, run: `php artisan livewire:discover`.
     |
     */
-
-    'class_namespace' => 'App\\Http\\Livewire',
+    // C:\xampp\htdocs\sis\app\Http\Controllers\Admin
+    'class_namespace' => 'App\\Http\\Controllers\\Admin\\Livewire',
 
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ return [
     |
     */
 
-    'view_path' => resource_path('views/livewire'),
+    'view_path' => resource_path('views/admin/livewire'),
 
     /*
     |--------------------------------------------------------------------------

@@ -119,14 +119,14 @@
 </script> --}}
 {{-- @endsection --}}
 @section('script')
-    {{-- <script>
+    <script>
         $(document).ready(function () {
             $('#example1').DataTable({
                 // "order": [ 0, 'asc' ]
-                "order": ['4', 'desc'] // nb four is column status
+                "order": ['0', 'desc'] // nb four is column status
             });
         });
-    </script> --}}
+    </script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
 @endsection

@@ -10,32 +10,30 @@ class CoursFee extends Model
     use HasFactory;
 
 
-    protected $table ='cours_fees';
+    protected $table = 'cours_fees';
 
     protected  $guarded = [];
     protected $hidden = [
-        'created_at','updated_at'
+        'created_at', 'updated_at'
     ];
 
 
 
-    public function scopeGetOrFail ($query)
+    public function scopeGetOrFail($query)
     {
         if (empty($query->count())) {
-         return false;
-        } else {
-            return $query->get();
-        }
-    }
-
-    public function scopedelet ($query)
-    {
-        if (empty($query->count())) {
-         return false;
+            return false;
         } else {
             return $query->get();
         }
     }
 
 
+
+
+   
+
+    /***
+     * end of class
+     */
 }
