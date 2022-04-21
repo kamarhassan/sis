@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}">
     @yield('css')
-    
+
 
 
     @toastr_css()
@@ -37,8 +37,8 @@
 {{-- <body class="hold-transition dark-skin sidebar-mini theme-primary fixed rtl"> --}}
 
 <div class="wrapper">
-    @include('admin.layouts.header')
-    @include('admin.layouts.navbar_container')
+    {{-- @include('admin.layouts.header') --}}
+    {{-- @include('admin.layouts.navbar_container') --}}
     <div class="content-wrapper">
         <div class="container-full">
             <section class="content">
@@ -47,7 +47,7 @@
         </div>
 
     </div>
-    @include('admin.layouts.asside')
+    {{-- @include('admin.layouts.asside') --}}
 </div>
 
 <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
 use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\Livewire\Students\Registration;
 
 // use App\Http\Livewire\P;
 
@@ -107,8 +108,9 @@ Route::group([
 
 
     ################################### Begin Students Routes #################################################
-    Route::group(['prefix' => 'students'], function () {
-        Route::get('/p', [StudentsController::class, 'students'])->name('admin.cours.students');
+    Route::group(['prefix' => 'Students'], function () {
+        Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
+        Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
 
     });
     ################################### End Students Routes ###################################################

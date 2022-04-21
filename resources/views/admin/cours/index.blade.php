@@ -30,7 +30,7 @@
                     @isset($cours)
                         @foreach ($cours as $key => $cour)
                             <tr id="Row{{ $cour->id }} " class="hover-success">
-                                <td> {{$key }}</td>
+                                <td onclick='test();'> {{$key }}</td>
                                 <td>{{ $cour->grade }}, {{ $cour->level }} </td>
                                 <td> {{ $cour->status }} </td>
                                 <td> {{ $cour->name}} </td>
@@ -41,7 +41,7 @@
                                 <td>add students count</td>
                                 {{--<td> {{ $cour->getActive() }} </td>--}}
                                 <td>
-                                    <a href=" {{route('admin.cours.edit',   $cour->id  ) }}"
+                                    <a href="{{route('admin.cours.edit',$cour->id )}}"
                                        {{-- onclick="" --}}
                                        class="btn fa fa-edit" title="@lang('site.edit')"
 {{--                                       id="btn_editable_{{ $grades->id }}"--}}
@@ -127,6 +127,7 @@
             });
         });
     </script>
+     <script src="{{ URL::asset('assets/custome_js/cours_.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
 @endsection

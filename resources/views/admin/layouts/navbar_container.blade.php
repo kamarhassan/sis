@@ -144,6 +144,38 @@ $routes = Route::current()->getName();
 
                 </ul>
             </li>
+
+
+            <li class="treeview   {{ $prefix == getprefix('Students') ? 'active' : '' }}     ">
+                <a href="#">
+                    <i class="fa fa-user-circle"></i>
+                    <span>@lang('site.students')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu">
+                    {{-- @can('create_edit grades') --}}
+                        <li><a href="{{ route('admin.students.all') }}">
+                                <i class="ti-more">
+                                </i>
+                                @lang('site.all students')
+                            </a>
+                        </li>
+                    {{-- @endcan --}}
+                    {{-- @can('create_edit grades') --}}
+                        <li><a href="#" onclick='open_link("{{route("admin.students.register")}}");'>
+                                <i class="ti-more">
+                                </i>
+                                @lang('site.register Student in Course')
+                            </a>
+                        </li>
+                    {{-- @endcan --}}
+
+
+                </ul>
+            </li>
         </ul>
     </section>
 

@@ -43,3 +43,7 @@ function select_day_of_cours(day_of_cours) {
     });
 }
 
+function test( ) {
+ alert();
+}
+

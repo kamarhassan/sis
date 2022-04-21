@@ -29,6 +29,11 @@ class StudentsController extends Controller
 
     public function students()
     {
-       return $this->students->get_std_cours(22,['users.id','users.name','users.created_at']);
+        return $this->students->get_std_cours(22, ['users.id', 'users.name', 'users.created_at']);
+    }
+
+    public function Registration()
+    {
+        // return view('admin.students.std_registration.registeration');
     }
 }
