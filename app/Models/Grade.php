@@ -43,4 +43,9 @@ class Grade extends Model
         return $this->hasMany(Cours::class,'grade_id','id');
     }
 
+    public function  fee_cours()
+    {
+        return $this->belongsTo(CoursFee::class,'cours_id','id');
+    }
+
 }

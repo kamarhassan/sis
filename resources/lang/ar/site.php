@@ -195,8 +195,11 @@ return [
     '' => '',
     '' => '',
     '' => '',
-
-
+    
+    
+    'fee of this cours is' => 'رسوم هذه الدورة تحتسب ب',
+    'cours fee total' => 'مجموع قيمة رسوم هذه الدورة',
+    'fee of this cours note defined' =>'رسوم هذه الدورة غير متوفرة يرجى تعديل الدورة ووضع رسوم لها',
 
 
     #################################### end of cours translator ###################################
@@ -206,8 +209,10 @@ return [
 
     #################################### begin of students translator ###################################
     'students' => 'الطلاب',
+    'add students' => 'اضف طالب',
     'all students' => 'جميع الطلاب',
     'register Student in Course' => 'تسجيل الطالب في الدورة',
+    'first step register Student in Course' => 'المرحلة الاولى تسجيل الطالب في الدورة',
 
     #################################### end of students translator ###################################
 
