@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repository\Students\StudentsInterface;
 use Illuminate\Http\Request;
+use App\Models\Cours;
+use App\Models\CoursFee;
 
 class StudentsController extends Controller
 {
@@ -32,8 +34,15 @@ class StudentsController extends Controller
         return $this->students->get_std_cours(22, ['users.id', 'users.name', 'users.created_at']);
     }
 
-    public function Registration()
+
+
+    
+    public function test()
     {
-        // return view('admin.students.std_registration.registeration');
+
+
+        return CoursFee::Where(['cours_id'=>22])->get();
+        
+        return Cours::with(['fee'])->select($fee)->find(22);
     }
 }

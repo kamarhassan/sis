@@ -14,4 +14,6 @@ interface CoursfeeInterface
     public function is_fee_defined($id);
     public function create($request, $cours_id, $currency);
     public function update_fee_cours($request, $cours_id, $currency);
+    public function get_fee_cours($cours_id);
+
 }

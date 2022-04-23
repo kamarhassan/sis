@@ -8,9 +8,6 @@ use App\Models\Admin;
 use App\Models\Currency;
 use App\Models\Grade;
 use App\Models\level;
-use App\Models\CoursFee;
-use App\Models\cours;
-use Illuminate\Http\Request;
 use App\Models\Statusofcour;
 use App\Repository\Admin\AdminInterface;
 use Illuminate\Support\Facades\DB;
@@ -162,6 +159,11 @@ class CoursController extends Controller
 
         // return $request;
     }
+
+
+
+
+
 
     /****
      * end of Class

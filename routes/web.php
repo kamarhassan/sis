@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Livewire\Count;
-use App\Http\Livewire\ShowPosts;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 // Route::get('/p', Count::class);
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/w', 'Livewire\Counter')->name('home');
-// C:\xampp\htdocs\sis\app\Http\Livewire\Counter.php
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/post', [ShowPosts::class,'render']);
+
