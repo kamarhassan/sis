@@ -43,4 +43,6 @@ class Grade extends Model
         return $this->hasMany(Cours::class,'grade_id','id');
     }
 
+  
+
 }

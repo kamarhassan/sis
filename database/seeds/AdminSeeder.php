@@ -4,7 +4,7 @@ use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\User;
+use App\Models\User;
 // use Spatie\Permission\Models\Permission
 class AdminSeeder extends Seeder
 {
@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
     {
    $faker = \Faker\Factory::create();
 
-       
+
 
         Admin::create([
             'name' => 'Hassan Kamar',

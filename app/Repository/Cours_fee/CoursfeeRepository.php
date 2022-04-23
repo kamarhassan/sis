@@ -50,12 +50,18 @@ class CoursfeeRepository implements CoursfeeInterface
             return $saved;
         } else {
             //
-            foreach($cours_fee as $key=>$cours_fees)
-            {
+            foreach ($cours_fee as $key => $cours_fees) {
                 $cours_fee[$key]->delete();
             }
             $saved = $this->create($request, $cours_id, $currency);
             return $saved;
         }
+    }
+
+    public function get_fee_cours($cours_id)
+    {
+        $cours_fee =  CoursFee::Where('cours_id', $cours_id)->getOrFail();
+        if(!$cours_fee) return false ;
+        return $cours_fee;
     }
 }

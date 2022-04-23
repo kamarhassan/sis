@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('css')
-    @livewireStyles()
+   
 @endsection
 @section('content')
     {{-- <div class="wrapper"></div>z --}}

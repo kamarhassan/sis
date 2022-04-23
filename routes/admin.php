@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\CoursController;
-use App\Http\Controllers\Admin\CurrencyController;
-use App\Http\Controllers\Admin\GradeController;
-use App\Http\Controllers\Admin\loginController;
-use App\Http\Controllers\Admin\SuperviserController;
-use App\Http\Controllers\Admin\LanguageController;
-use App\Http\Controllers\Admin\LevelController;
+use App\Http\Controllers\Admin\Livewire\Test;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
+use App\Http\Controllers\Admin\CoursController;
+use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Admin\LevelController;
+use App\Http\Controllers\Admin\loginController;
+use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\SuperviserController;
+use App\Http\Controllers\Admin\Livewire\Std\ClickEvent;
+use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
 use App\Http\Controllers\Admin\Livewire\Students\Registration;
 
 // use App\Http\Livewire\P;
@@ -100,8 +102,9 @@ Route::group([
         Route::post('store', [CoursController::class, 'store'])->name('admin.cours.store');
         Route::get('edit/{id}', [CoursController::class, 'edit'])->name('admin.cours.edit');
         Route::post('update/{id}', [CoursController::class, 'update'])->name('admin.cours.update');
-        Route::get('/livewire-test', [ShowPosts::class, 'render']);
+        Route::get('ppp', [ShowPosts::class, 'render']);
 
+        Route::get('fee/{id}', [CoursController::class, 'edit'])->name('admin.cours.get.fee');
     });
 
     ################################### End Cours Routes ###################################################
@@ -110,8 +113,12 @@ Route::group([
     ################################### Begin Students Routes #################################################
     Route::group(['prefix' => 'Students'], function () {
         Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
+        //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
         Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
-
+         Route::get('test',[StudentsController::class, 'test']);
+        // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
+        // Route::liverwire('p', 'admin.livewire.test');
+        Route::get('pp', [Test::class,'render']);
     });
     ################################### End Students Routes ###################################################
 

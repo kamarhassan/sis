@@ -36,19 +36,19 @@
 @endif
 {{-- <body class="hold-transition dark-skin sidebar-mini theme-primary fixed rtl"> --}}
 
-<div class="wrapper">
+{{-- <div class="wrapper"> --}}
     {{-- @include('admin.layouts.header') --}}
     {{-- @include('admin.layouts.navbar_container') --}}
-    <div class="content-wrapper">
-        <div class="container-full">
+    {{-- <div class="content-wrapper"> --}}
+        {{-- <div class="container-full"> --}}
             <section class="content">
                 @yield('content') {{-- @include('admin.layouts.footer'); --}}
             </section>
-        </div>
+        {{-- </div> --}}
 
-    </div>
+    {{-- </div> --}}
     {{-- @include('admin.layouts.asside') --}}
-</div>
+{{-- </div> --}}
 
 <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>
 <script src="{{ URL::asset('assets/assets/icons/feather-icons/feather.min.js') }}"></script>
