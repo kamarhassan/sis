@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Livewire\Students;
 use App\Models\Cours;
 use Livewire\Component;
 use App\Models\CoursFee;
+use App\Models\StudentsRegistration;
+use App\Models\User;
 use App\Repository\Cours\CoursInterface;
 
 use function PHPUnit\Framework\isEmpty;
@@ -16,9 +18,11 @@ class Registration extends Component
     public $cours_ = "";
     public $cours_fee = [];
     public $select_cours;
-    public $std_name = "";
+    public $std_name;
+    public $std_selected;
     public $cours_fee_count;
     public $cours_fee_sum;
+    public $all_std_as_std_name;
 
 
     protected $coursI;
@@ -28,7 +32,70 @@ class Registration extends Component
     {
         $this->select_cours = null;
         $this->cours_fee_count = -1;
+        $this->std_name = "";
+        $this->std_selected = "";
+        $this->all_std_as_std_name = [];
     }
+
+
+    // protected $rules = [
+    //     'std_name' => 'required|exists:Admins,name',
+    //     'select_cours' => 'required|exists:courss,is',
+
+    // ];
+
+    // protected $messages = [
+    //     'std_name.required' => __('site.its_require')
+    //     // 'email.email' => 'The Email Address format is not valid.',
+    // ];
+
+    // public function updated($propertyName)
+    // {
+    //     $this->validateOnly($propertyName,[
+    //         'std_name' => 'required|exists:Admins,name',
+    //     ]);
+    // }
+
+    public function save_std_register()
+    {
+
+        $validatedData =   $this->validate([
+            'std_name' => 'required|exists:Users,name',
+            'cours_id' => 'required',
+        ]);
+        // GetIdByName( $this->std_name);
+
+
+      $succes_std_regi =  StudentsRegistration::create([
+            'user_id' => User::GetIdByName( $this->std_name),
+            'cours_id' =>$this->cours_id
+        ]);
+        // toastr()->success('egege');
+        // $validatedData = $this->validate();
+
+        // StudentsRegistration::Create();
+        if( $succes_std_regi)
+        $this->current_step = 2;
+    }
+
+
+
+    public function reset_()
+    {
+
+        $this->std_selected = "";
+        $this->all_std_as_std_name = [];
+    }
+
+    public function updateQuery($std_name)
+    {
+        $td = $this->all_std_as_std_name = User::where('name', 'like', '%' . $std_name . '%')
+            // ->select()
+            ->get(['id', 'name'])
+            ->toArray();
+        // dd($td);
+    }
+
 
     public function render()
     {
@@ -39,13 +106,15 @@ class Registration extends Component
             'cours' => $cours_
         ]);
     }
+
     public function callFunction()
     {
         $this->current_step++;
     }
+
     public function  get_cours_fee($cours_id)
     {
-        dd($cours_id);
+        // dd($cours_id);
 
         $this->cours_fee_count = 0;
         // return CoursFee::Where(['cours_id'=>22])->get();
@@ -64,7 +133,6 @@ class Registration extends Component
 
             // dd($this->cours_fee_count);
         }
-
         // dd($this->cours_fee[0]->currency['currency']);
         // $cours_ = Cours::find($value);
         // $cours_ = $this->coursI->is_defined($value);
@@ -76,5 +144,13 @@ class Registration extends Component
         // dd($cours_);
 
         // $this->cours_id = Cours::all();
+    }
+
+
+
+
+    public function get_std($name)
+    {
+        dd($name);
     }
 }

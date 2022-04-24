@@ -3,6 +3,10 @@
     @lang('site.register Student in Course')
 @endsection
 @section('css')
+    <style>
+
+      
+    </style>
 @endsection
 
 @section('content')

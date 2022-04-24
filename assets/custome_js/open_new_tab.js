@@ -4,7 +4,7 @@ function open_link(route) {
     // var w = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
     // var h = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
     var t = "";
-    PopupCenter(route, t, 900, 900)
+    PopupCenter(route, t, 1200, 600)
 
 
 }

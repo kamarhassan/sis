@@ -45,8 +45,9 @@ use HasRoles;
     }
 
 
-    public function scopeSelecte()
+    public function scopeGetIdByName($query, $name)
     {
-
+        return $query->where('name', $name)->first()->id;
     }
+    
 }

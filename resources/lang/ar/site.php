@@ -195,8 +195,8 @@ return [
     '' => '',
     '' => '',
     '' => '',
-    
-    
+
+
     'fee of this cours is' => 'رسوم هذه الدورة تحتسب ب',
     'cours fee total' => 'مجموع قيمة رسوم هذه الدورة',
     'fee of this cours note defined' =>'رسوم هذه الدورة غير متوفرة يرجى تعديل الدورة ووضع رسوم لها',
@@ -213,7 +213,8 @@ return [
     'all students' => 'جميع الطلاب',
     'register Student in Course' => 'تسجيل الطالب في الدورة',
     'first step register Student in Course' => 'المرحلة الاولى تسجيل الطالب في الدورة',
-
+    'No results!' => 'لا يوجد نتائج ',
+    'searche std' => 'ابحث عن اسم الطالب',
     #################################### end of students translator ###################################
 
 
