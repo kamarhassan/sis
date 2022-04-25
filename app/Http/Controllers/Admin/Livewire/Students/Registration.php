@@ -56,26 +56,42 @@ class Registration extends Component
     //     ]);
     // }
 
+
+
+
+
     public function save_std_register()
     {
 
-        $validatedData =   $this->validate([
+        $rules = [
             'std_name' => 'required|exists:Users,name',
             'cours_id' => 'required',
-        ]);
-        // GetIdByName( $this->std_name);
+        ];
+
+        $messages = [
+            'std_name.required' => __('site.its_require'),
+            'std_name.exists' => __('site.its_exists_in_user'),
+            // 'email.email' => 'The :attribute format is not valid.',
+        ];
+
+        $validatedData =   $this->validate($rules, $messages);
 
 
-      $succes_std_regi =  StudentsRegistration::create([
-            'user_id' => User::GetIdByName( $this->std_name),
-            'cours_id' =>$this->cours_id
+
+        $succes_std_regi =  StudentsRegistration::create([
+            'user_id' => User::GetIdByName($this->std_name),
+            'cours_id' => $this->cours_id
         ]);
         // toastr()->success('egege');
         // $validatedData = $this->validate();
 
         // StudentsRegistration::Create();
-        if( $succes_std_regi)
-        $this->current_step = 2;
+        if ($succes_std_regi) {
+            $this->current_step = 2;
+            $this->dispatchBrowserEvent('alert',
+            ['type' => 'success',  'message' => __('site.students created successfully!')]
+            );
+        }
     }
 
 

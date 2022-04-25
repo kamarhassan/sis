@@ -153,7 +153,7 @@ return [
     'all cours' => ' جميع الدورات',
     'teacher name' => '  اسم المدرس',
     'teacher fee' => '  اجرة المدرس',
-    'chosse the teacher name' =>'اختر اسم المدرس',
+    'chosse the teacher name' => 'اختر اسم المدرس',
     'add new cours' => 'اضف دورة جديدة',
     'chosse the cours' => 'اختر الدورة من فضلك',
     'chosse the level' => 'اختر المستوى من فضلك',
@@ -169,12 +169,13 @@ return [
     'max number of students' => 'العدد الاقصى للطلاب',
     'status of cours' => 'حالة الدورة',
     'its_exists' => 'يجب ان يكون من ضمن الائحة فقط',
+    'its_exists_in_user' => 'يجب ان يكون من ضمن الائحةالاسماء التي تبحث عنها للمساعدة اكتب حرفا من الاسم او الاسم كاملا',
 
     'actually start date' => 'تاريخ البدء الفعلي',
     'actually end date' => 'تاريخ الانتهاء الفعلي',
     'max number of students' => 'العدد الاقصى للطلاب',
     'status of cours' => 'حالة الدورة',
-    'its_exists' => 'يجب ان يكون من ضمن الائحة فقط',
+    // 'its_exists' => 'يجب ان يكون من ضمن الائحة فقط',
     'cours date must be date' => 'يجب ان يكون تاريخ صحيح',
     'after or equal start date' => 'يجب ان يكون التاريخ بعد او نفس تاريخ البدء',
     'after or equal end date' => 'يجب ان يكون تاريخ  بعد او نفس تاريخ الانتهاء',
@@ -199,7 +200,7 @@ return [
 
     'fee of this cours is' => 'رسوم هذه الدورة تحتسب ب',
     'cours fee total' => 'مجموع قيمة رسوم هذه الدورة',
-    'fee of this cours note defined' =>'رسوم هذه الدورة غير متوفرة يرجى تعديل الدورة ووضع رسوم لها',
+    'fee of this cours note defined' => 'رسوم هذه الدورة غير متوفرة يرجى تعديل الدورة ووضع رسوم لها',
 
 
     #################################### end of cours translator ###################################
@@ -215,6 +216,7 @@ return [
     'first step register Student in Course' => 'المرحلة الاولى تسجيل الطالب في الدورة',
     'No results!' => 'لا يوجد نتائج ',
     'searche std' => 'ابحث عن اسم الطالب',
+    'students created successfully!' => 'تم تسجيل الطالب بنجاح',
     #################################### end of students translator ###################################
 
 

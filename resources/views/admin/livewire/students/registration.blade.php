@@ -19,9 +19,7 @@
 
                     @if (!empty($std_name))
 
-                        <div wire:loading>
-                            Processing Payment...
-                        </div>
+                       
                         <div class="fixed  top-0 bottom-0 left-0 right-0" wire:click="reset_"></div>
                         <div class="absolute z-10 w-full bg-white rounded-t-none shadow-lg list-group">
                             @if (!empty($all_std_as_std_name))

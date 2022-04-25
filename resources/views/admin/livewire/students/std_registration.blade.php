@@ -5,7 +5,7 @@
 @section('css')
     <style>
 
-      
+
     </style>
 @endsection
 
@@ -16,7 +16,15 @@
 
 @section('script')
     @livewireScripts
-
+<script>
+window.addEventListener('alert', event => {
+             toastr[event.detail.type](event.detail.message,
+             event.detail.title ?? ''), toastr.options = {
+                    "closeButton": true,
+                    "progressBar": true,
+                }
+            });
+</script>
     <script src="{{ URL::asset('assets/custome_js/std_register.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/steps.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-steps-master/build/jquery.steps.js') }}"></script>
