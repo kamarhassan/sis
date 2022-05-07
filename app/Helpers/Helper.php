@@ -22,11 +22,11 @@ function days_of_week()
     ];
 }
 
-  function day_of_week_for_cours($array)
-    {
+function day_of_week_for_cours($array)
+{
     //  return Cours::select('days')->get();
-        return explode(";",$array);
-    }
+    return explode(";", $array);
+}
 
 function current_school_year()
 {
@@ -81,4 +81,25 @@ function  swal_fire_msg()
         __('site.succes_msj_swal_fire'),
 
     ];
+}
+function  photos_dir($photoUrl)
+{
+    if ($photoUrl != "")
+        return  URL::asset($photoUrl);
+    else   return URL::asset('assets\images\avatar\avatar-1.png');
+
+
+    // assets\images\avatar\avatar-1.png
+}
+
+function array_to_string($array)
+{
+    $string = implode(";", $array);
+    return $string;
+}
+
+function string_to_array($string)
+{
+
+    return explode(";", $string);
 }

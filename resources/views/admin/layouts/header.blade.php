@@ -35,7 +35,8 @@
                     </a>
                 </li>
                 <li class="btn-group nav-item d-none d-xl-inline-block">
-                    <a href="" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="current years {{current_school_year()}}"> 
+                    <a href="" class="waves-effect waves-light nav-link rounded svg-bt-icon"
+                        title="current years {{ current_school_year() }}">
                         <i class="ti-calendar"></i>
                     </a>
                 </li>
@@ -78,6 +79,7 @@
         <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">
                 <!-- full Screen -->
+
                 <li class="search-bar">
                     <div class="lookup lookup-circle lookup-right">
                         <input type="text" name="s">
@@ -171,10 +173,12 @@
                             <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
                                 Settings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('get.admin.logout') }}"><i class="ti-lock text-muted mr-2"></i> Logout</a>
+                            <a class="dropdown-item" href="{{ route('get.admin.logout') }}"><i
+                                    class="ti-lock text-muted mr-2"></i> Logout</a>
                         </li>
                     </ul>
                 </li>
+
                 <li>
                     <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light">
                         <i class="ti-settings"></i>

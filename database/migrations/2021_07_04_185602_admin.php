@@ -21,7 +21,7 @@ class Admin extends Migration
             $table->string('password');
          //   $table->string('roles_name');
             // $table->tinyInteger('active')->enum('0','1','2')->comment('0 => disable   1=>active  2=> pending ' );
-            $table->tinyInteger('admin_status',4)->enum('0','1','2')->comment('1=>active 0 => inactive  2 =>pending');
+            $table->Integer('admin_status')->enum('0','1','2')->comment('1=>active 0 => inactive  2 =>pending');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

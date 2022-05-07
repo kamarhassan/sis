@@ -12,14 +12,15 @@
 
     <title>@yield('title')</title>
 
-    <!-- Vendors Style-->
+
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}">
 
-    <!-- Style-->
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
+
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}">
+
     @yield('css')
-    
+
 
 
     @toastr_css()
@@ -34,7 +35,8 @@
 
         <body class="hold-transition dark-skin sidebar-mini theme-primary fixed ">
 @endif
-{{-- <body class="hold-transition dark-skin sidebar-mini theme-primary fixed rtl"> --}}
+
+
 
 <div class="wrapper">
     @include('admin.layouts.header')

@@ -2,6 +2,12 @@
     {{-- <button type="button" wire:click="callFunction" class="btn btn-danger">Click Me</button> --}}
     {{-- <button type="button" wire:click="callFunctionArg({{$user_id}})" class="btn btn-danger">Click Me!</button> --}}
     @if ($current_step == 1)
+
+
+        <div class="text-center text-capitalize ">
+            <h1 class="text-warning"><label>@lang('site.registration std step 1') </label></h1>
+        </div>
+
         <form wire:submit.prevent="save_std_register">
             <div class="col-md-12">
                 <div class="form-gourp">
@@ -19,10 +25,16 @@
 
                     @if (!empty($std_name))
 
-                       
+
                         <div class="fixed  top-0 bottom-0 left-0 right-0" wire:click="reset_"></div>
                         <div class="absolute z-10 w-full bg-white rounded-t-none shadow-lg list-group">
                             @if (!empty($all_std_as_std_name))
+
+
+
+
+
+
                                 <datalist id="std_list" class="col-md-12">
                                     @foreach ($all_std_as_std_name as $i => $student)
                                         <option class="form-control" value="{{ $student['name'] }}">
@@ -47,8 +59,8 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label>@lang('site.cours') </label>
-                        <select wire:model="cours_id" wire:change="get_cours_fee($event.target.value)"
-                            name="get_cours_fee" class="form-control " style="width: 100%;">
+                        <select wire:model="cours_id" wire:change="get_cours_fee($event.target.value)" name="cours_id"
+                            class="form-control " style="width: 100%;">
                             @isset($cours)
                                 <option value="">@lang("site.chosse the cours")</option>
                                 @foreach ($cours as $cours_)
@@ -57,9 +69,9 @@
                                 @endforeach
                             @endisset
                         </select>
-                        @error('get_cours_fee')
-                        <span class="text-danger">{{ $message }} </span>
-                    @enderror
+                        @error('cours_id')
+                            <span class="text-danger">{{ $message }} </span>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -106,13 +118,25 @@
             @else
             @endif
             <div>
-                <button class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')" type="submit">
-                </button>
+
+                @if ($cours_fee_count == 0)
+                    <a class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')">
+                    </a>
+                @elseif ($cours_fee_count < 0)
+                    <a class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')">
+                    </a>
+                @else
+                    <button class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')" type="submit">
+                    </button>
+                @endif
+
             </div>
         </form>
     @elseif ($current_step == 2)
         @include('admin.livewire.students.fee')
     @elseif ($current_step == 3)
+        @include('admin.livewire.students.payment')
+    @elseif ($current_step == 4)
         @include('admin.livewire.students.report')
     @endif
 

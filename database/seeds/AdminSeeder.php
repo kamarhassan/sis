@@ -17,12 +17,12 @@ class AdminSeeder extends Seeder
     {
    $faker = \Faker\Factory::create();
 
-       
+
 
         Admin::create([
             'name' => 'Hassan Kamar',
             'email' => 'hassankamar795@gmail.com',
-            'status' => '1',
+            'admin_status' => '1',
             //'roles_name' => ['super-admin'],
             'password' => bcrypt('123456789')
         ])->assignRole('super admin');
@@ -30,7 +30,7 @@ class AdminSeeder extends Seeder
         Admin::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'status' => '1',
+            'admin_status' => '1',
             //'roles_name' => ['super-admin'],
             'password' => bcrypt('admin')
         ])->assignRole('super admin');
@@ -39,7 +39,7 @@ class AdminSeeder extends Seeder
         Admin::create([
             'name' => 'Hassan Kamar 2',
             'email' => 'hassankamar7952@gmail.com',
-            'status' => '1',
+            'admin_status' => '1',
             //'roles_name' => ['super-admin'],
             'password' => bcrypt('123456789')
         ])->assignRole('edit_currency');
@@ -53,7 +53,7 @@ class AdminSeeder extends Seeder
             Admin::create([
                 'name' => $faker->name(),
                 'email' => $faker->email(),
-                'status' => '1',
+                'admin_status' => '1',
                 //'roles_name' => ['super-admin'],
                 'password' => bcrypt('123456789')
             ])->assignRole('teacher');

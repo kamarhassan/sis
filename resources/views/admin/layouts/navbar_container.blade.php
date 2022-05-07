@@ -165,7 +165,9 @@ $routes = Route::current()->getName();
                         </li>
                     {{-- @endcan --}}
                     {{-- @can('create_edit grades') --}}
-                        <li><a href="#" onclick='open_link("{{route("admin.students.register")}}");'>
+                        <li><a href="{{route("admin.students.register")}}"
+                            {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}
+                            >
                                 <i class="ti-more">
                                 </i>
                                 @lang('site.register Student in Course')

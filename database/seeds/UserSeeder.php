@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
         {
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 2000; $i++) {
             $gender = $faker->randomElement(['male', 'female']);
             $salut = $faker->randomElement(["Mrs","Mr","Ms"]);
             User::create([
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
                 'photo' => Str::random(5),
                 'work_type' => Str::random(5),
                 'work_address_id' =>  random_int(1, 50),
-                'status' => 1,
+                'user_status' => 1,
             ]);
         }
     }

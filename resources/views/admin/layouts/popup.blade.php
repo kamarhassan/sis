@@ -39,14 +39,14 @@
 <div class="wrapper">
     {{-- @include('admin.layouts.header') --}}
     {{-- @include('admin.layouts.navbar_container') --}}
-    <div class="content-wrapper">
-        <div class="container-full">
+    {{-- <div class="content-wrapper">
+        <div class="container-full"> --}}
             <section class="content">
                 @yield('content') {{-- @include('admin.layouts.footer'); --}}
             </section>
-        </div>
+        {{-- </div>
 
-    </div>
+    </div> --}}
     {{-- @include('admin.layouts.asside') --}}
 </div>
 

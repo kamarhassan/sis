@@ -33,7 +33,7 @@ return [
     'saturday' => 'السبت',
 
 
-    #######################end of genera;l ####################################
+    #######################end of general ####################################
 
     'its_require' => 'هذا الحقل مطلوب',
     'personal information' => 'المعلومات الشخصية للمستخدم',
@@ -192,7 +192,7 @@ return [
     'only select' => 'حدد ما تريداحتسابه فقط وادخل القيمة',
     'cours note defined' => 'هذه الدورة غير موجودة',
     'must be a number' => 'يجب ان تكون ارقام',
-    '' => '',
+    'its_exists_in_cours_list' => 'يجب ان يكون ضمن لائحة الدورات',
     '' => '',
     '' => '',
     '' => '',
@@ -217,6 +217,24 @@ return [
     'No results!' => 'لا يوجد نتائج ',
     'searche std' => 'ابحث عن اسم الطالب',
     'students created successfully!' => 'تم تسجيل الطالب بنجاح',
+    'registration std step 1' => ' المرحلة الاولى تسجيل الطالب في الدورة  ' ,
+    'registration std step 2' => ' المرحلة الثانية من التسجيل  ' ,
+
+    'students id'=>'رقم الطالب',
+    'student name'=>'اسم الطالب',
+    'students email'=>'البريد الاكتروني',
+    'students photo'=>'الصورة',
+    'students birthday'=>'تاريخ الميلاد',
+    'registration date'=>'تاريخ التسجيل',
+    'cours info'=>'معلومات الدورة',
+    'note write'=>'ملاحظات',
+    'fee no discount'=>'بدون حسم',
+    'sponsor/ discount'=>'الراعي / الخصم',
+    'result'=>'النتيجة',
+    'fee required'=>'الرسوم الالزامية',
+    'covered by sponsor'=>'تم تغطية الرسوم',
+
+
     #################################### end of students translator ###################################
 
 

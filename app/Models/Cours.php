@@ -88,6 +88,10 @@ class Cours extends Model
         return $this->belongsTo('App\Models\Level', 'level_id', 'id');
     }
 
+    public function teacher()
+    {
+        return $this->hasOne(Admin::class, 'id', 'teacher_id');
+    }
 
     public function students()
     {
@@ -98,5 +102,6 @@ class Cours extends Model
     public function  fee()
     {
         return $this->hasMany(CoursFee::class,'cours_id','id');
+
     }
 }

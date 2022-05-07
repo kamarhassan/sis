@@ -55,6 +55,7 @@ return [
     */
 
     'asset_url' => 'http://localhost/sis/public' ,
+    // 'app_url' => 'http://localhost/sis',
 
     /*
     |--------------------------------------------------------------------------
@@ -70,6 +71,8 @@ return [
 
     'app_url' => 'http://localhost/sis',
 
+    // 'asset_url' => 'http://192.168.0.107/sis/public' ,
+    // 'app_url' => 'http://192.168.0.107/sis',
     /*
     |--------------------------------------------------------------------------
     | Livewire Endpoint Middleware Group
