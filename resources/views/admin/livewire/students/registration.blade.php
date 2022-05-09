@@ -8,7 +8,7 @@
             <h1 class="text-warning"><label>@lang('site.registration std step 1') </label></h1>
         </div>
 
-        <form wire:submit.prevent="save_std_register">
+        <form wire:submit.prevent="validate_std_register">
             <div class="col-md-12">
                 <div class="form-gourp">
                     <label>
@@ -29,12 +29,6 @@
                         <div class="fixed  top-0 bottom-0 left-0 right-0" wire:click="reset_"></div>
                         <div class="absolute z-10 w-full bg-white rounded-t-none shadow-lg list-group">
                             @if (!empty($all_std_as_std_name))
-
-
-
-
-
-
                                 <datalist id="std_list" class="col-md-12">
                                     @foreach ($all_std_as_std_name as $i => $student)
                                         <option class="form-control" value="{{ $student['name'] }}">
@@ -64,8 +58,9 @@
                             @isset($cours)
                                 <option value="">@lang("site.chosse the cours")</option>
                                 @foreach ($cours as $cours_)
-                                    <option value="{{ $cours_->id }}">{{ $cours_->id }} - {{ $cours_->grade }} -
-                                        {{ $cours_->level }} - {{ $cours_->name }} </option>
+                                    <option value="{{ $cours_->id }}">{{ $cours_->id }} -
+                                        {{ $cours_->grade['grade'] }} -
+                                        {{ $cours_->level['level'] }} - {{ $cours_->teacher['name'] }} </option>
                                 @endforeach
                             @endisset
                         </select>
@@ -122,7 +117,7 @@
                 @if ($cours_fee_count == 0)
                     <a class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')">
                     </a>
-                @elseif ($cours_fee_count < 0)
+                @elseif($cours_fee_count < 0)
                     <a class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')">
                     </a>
                 @else

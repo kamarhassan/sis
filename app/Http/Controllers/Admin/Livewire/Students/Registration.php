@@ -7,6 +7,7 @@ use App\Models\Cours;
 use App\Models\Sponsor;
 use Livewire\Component;
 use App\Models\CoursFee;
+use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use App\Models\StudentsRegistration;
 
@@ -32,6 +33,12 @@ class Registration extends Component
     public $feerequired = [];
     public $coveredfee = [];
     public $validatedData_std = [];
+    public $validatedData_payment = [];
+    public $amount_to_paid;
+    public $receipt_description;
+    public $ini_fee_required;
+    public $payment_type;
+    public $registration_students;
 
 
     public function mount()
@@ -39,7 +46,7 @@ class Registration extends Component
         $this->init_model();
     }
 
-    public function save_std_register()
+    public function validate_std_register()
     {
 
         $rules = [
@@ -55,12 +62,8 @@ class Registration extends Component
         ];
 
         $this->validatedData_std =  $this->validate($rules, $messages);
-
-
-
-
         // $coursinfo = Cours::with(['grade', 'level'])->find($this->cours_id);
-        $this->coursinfo =        Cours::with(['grade', 'level', 'teacher'])->find($this->cours_id);
+        $this->coursinfo =  Cours::with(['grade', 'level', 'teacher'])->find($this->cours_id);
         $this->sponsor = $this->get_sponsor();
 
         $this->current_step = 2;
@@ -85,16 +88,13 @@ class Registration extends Component
 
     public function render()
     {
-        $cours_ = Cours::Selection_with_grade_level();
+        $cours_ = Cours::where(['year' => current_school_year(), 'status' => 'open'])->with('grade', 'level', 'teacher')->get();
+        // dd($cours_);
         return view('admin.livewire.students.registration', [
             'cours' => $cours_
         ]);
     }
 
-    public function callFunction()
-    {
-        $this->current_step++;
-    }
 
     public function  get_cours_fee($cours_id)
     {
@@ -120,32 +120,38 @@ class Registration extends Component
     }
 
 
-    public function save_and_print_report()
+    public function save_and_go_to_payment()
     {
         try {
             DB::beginTransaction();
-            $rgistre_id =   $this->save_std_regitration();
+            $this->registration_students =    $this->save_std_regitration();
             // save payment
+
             DB::commit();
-            if ($rgistre_id > 0) {
+            if ($this->registration_students->id > 0) {
                 $this->dispatchBrowserEvent(
                     'alert',
                     ['type' => 'success',  'message' => __('site.students created successfully!')]
                 );
+
+
+                //return redirect()->route('admin.students.Registration-2/{id}', $this->registration_students->id);
+                $this->current_step = 3;
             }
         } catch (\Throwable $th) {
             DB::rollback();
             //throw $th;
         }
-
-        $this->current_step = 3;
     }
 
 
 
     public function save_std_regitration()
     {
+
+        // dd($this->feerequired);
         try {
+            asort($this->feerequired);
             $succes_std_regi =  StudentsRegistration::create([
                 'user_id' => User::GetIdByName($this->std_name),
                 'cours_id' => $this->cours_id,
@@ -154,16 +160,78 @@ class Registration extends Component
             ]);
 
             if ($succes_std_regi) {
-                return  $succes_std_regi->id;
+                return  $succes_std_regi;
             } else return -1;
         } catch (\Throwable $th) {
         }
     }
 
 
+    public function switch_payment_type($paym_methode)
+    {
+
+        switch ($paym_methode) {
+            case 'pay_check_':
+                $this->payment_type = 'pay_check_';
+                break;
+
+            case 'pay_cache_':
+                $this->payment_type = 'pay_cache_';
+                break;
+            default:
+                $this->payment_type = "no payment methode";
+        }
+    }
+
+    public function save_payment()
+    {
+
+        $rules = [
+            'amount_to_paid' => 'required|numeric|min:1',
+
+        ];
+
+        $messages = [
+            '*.required' => __('site.its_require'),
+            'amount_to_paid.numeric' => __('site.must be a number'),
+            'cours_id.min' => __('site.must be a number positive'),
+            // 'email.email' => 'The :attribute format is not valid.',
+        ];
+
+        $this->validatedData_payment =  $this->validate($rules, $messages);
+
+
+        $fee_requied = string_to_array($this->registration_students->feesRequired);
+
+        //  dd($this->cours_fee);
+        $select_fee_required = [];
+        foreach ($fee_requied as $key => $fee) {
+
+            $select_fee_required[] = CoursFee::where('id', $fee)->get(['id', 'value']);
+        }
+
+        foreach ($select_fee_required as $key => $fee) {
+            if ($this->amount_to_paid <= $fee[$key]->value) {
+
+                Payment::create([
+                    'studentsRegistration_id' => $this->registration_students->id,
+                    'amount' => $fee[$key]->value, // initial amount
+                    'paid_amount' => $this->amount_to_paid, //amount paided from students
+                    'cours_fee_id' => $fee[$key]->id, //
+                ]);
+                break;
+            }
+        }
+
+
+        // dd($select_fee_required);
+
+        $this->current_step=4;
 
 
 
+
+    }
 
 
 
@@ -177,6 +245,7 @@ class Registration extends Component
 
     public function init_model()
     {
+        $this->registration_students = null;
         $this->coursinfo = "";
         $this->select_cours = null;
         $this->cours_fee_count = -1;
@@ -185,7 +254,11 @@ class Registration extends Component
         $this->all_std_as_std_name = [];
         $this->fee_note = "";
         $this->sponsor_id = 0;
-        $this->selectedfee = [];
+        $this->feerequired = [];
         $this->coveredfee = [];
+        $this->amount_to_paid = 0;
+        $this->ini_fee_required = 1;
+        $this->payment_type = "pay_cache_";
+        // $this->receipt_description = "payment from ".$this->std_name + "for ".$this->select_cours;
     }
 }

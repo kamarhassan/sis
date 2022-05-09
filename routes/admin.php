@@ -114,17 +114,34 @@ Route::group([
     Route::group(['prefix' => 'Students'], function () {
         Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
         //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
-        Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
+        Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.Registration-1');
+        Route::view('Registration/step-2', 'admin.livewire.pay-fee-cours.payment_processing')->name('admin.students.Registration-2');
         //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
         // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
         // Route::liverwire('p', 'admin.livewire.test');
-        Route::get('pp', [Test::class,'render']);
-
-
-
-
+        Route::get('pp', [Test::class, 'render']);
     });
+
     ################################### Begin Language Routes #################################################
+    ################################### Begin Payment Routes #################################################
+    Route::group(['prefix' => 'Payment'], function () {
+       // Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
+        //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
+        Route::view('PaymentCoursFee', 'admin.livewire.pay-fee-cours.payment')->name('admin.payment.feeCours');
+        //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
+        // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
+        // Route::liverwire('p', 'admin.livewire.test');
+        Route::get('pp', [Test::class, 'render']);
+    });
+
+    ################################### Begin Payment Routes #################################################
+
+
+
+
+
+
+
     Route::group(['prefix' => 'Users'], function () {
 
         Route::get('/', [UserController::class, 'index'])->name('admin.users.all');

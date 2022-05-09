@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    @livewire('students.registration')
+    @livewire('pay-fee-cours.payment')
 @endsection
 
 
@@ -18,7 +18,7 @@
     @section('script')
     @livewireScripts
     <script>
-       
+
         document.addEventListener('livewire:load', function() {
             console.table(4);
             // console.table(document.getElementById('payment_table'))

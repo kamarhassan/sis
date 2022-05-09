@@ -153,20 +153,20 @@
                         <tr>
                             <td scope="row">
 
-                                <div class="demo-checkbox">
-                                    <input type="checkbox" wire:model="feerequired" checked class="chk-col-primary"
-                                        id="md_checkbox_{{ $cours_fe->fee_types_id }}"
-                                        value="{{ $cours_fe->fee_types_id }}" />
-                                    <label checked
-                                        for="md_checkbox_{{ $cours_fe->fee_types_id }}">{{ $cours_fe->fee_type['fee'] }}</label>
-                                </div>
+                                {{-- <div class="demo-checkbox"> --}}
+                                    <input type="checkbox" @if($ini_fee_required == 1) checked @endif wire:model="feerequired"    class="chk-col-primary"
+                                        id="md_checkbox_{{ $cours_fe->id }}"
+                                        value="{{ $cours_fe->id }}" name="{{$ini_fee_required}}" checked />
+                                    <label
+                                        for="md_checkbox_{{ $cours_fe->id }}">{{ $cours_fe->fee_type['fee'] }}</label>
+                                {{-- </div> --}}
                             </td>
 
 
                             <td scope="row">{{ $cours_fe->value }}</td>
                             {{-- <td scope="row">
                                 <div class="demo-checkbox"> <input  wire:model="coveredfee" type="checkbox" class="chk-col-danger"
-                                        id="covered_checkbox_{{ $cours_fe->fee_types_id }}" />
+                                        id="covered_checkbox_{{ $cours_fe->id }}" />
                                     <label for="covered_checkbox_{{ $cours_fe->fee_types_id }}"></label>
                                 </div>
                             </td> --}}
@@ -195,7 +195,9 @@
             </div>
         @else
         @endif
-        <button class="btn btn-success glyphicon glyphicon-ok" wire:click="save_and_print_report()" title="@lang('site.save')" type="submit">
+        <button class="btn btn-success glyphicon glyphicon-ok" wire:click="save_and_go_to_payment()" title="@lang('site.save')" type="submit">
         </button>
     </div>
 </div>
+
+

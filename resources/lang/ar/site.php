@@ -193,9 +193,6 @@ return [
     'cours note defined' => 'هذه الدورة غير موجودة',
     'must be a number' => 'يجب ان تكون ارقام',
     'its_exists_in_cours_list' => 'يجب ان يكون ضمن لائحة الدورات',
-    '' => '',
-    '' => '',
-    '' => '',
 
 
     'fee of this cours is' => 'رسوم هذه الدورة تحتسب ب',
@@ -234,6 +231,17 @@ return [
     'fee required'=>'الرسوم الالزامية',
     'covered by sponsor'=>'تم تغطية الرسوم',
 
+
+    'Receipt Info'=>'معلومات الوصل و الدفع',
+    'amount'=>'قيمة الرسم المدفوع',
+
+
+    'receipt info'=>'الوصل',
+    'receipt description'=>'الوصف',
+    'payment'=>'الدفعة',
+    'must be a number positive'=>'يجب ات تكون القيمة اكبر من 0',
+    'paid fee here'=>'ادخل الرسم المدفوع هنا',
+    'description'=>'ادخل الوصف هنا',
 
     #################################### end of students translator ###################################
 
