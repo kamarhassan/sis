@@ -17,7 +17,6 @@
             <div class="col-md-6">
                 <span>
                     @lang('site.cours info') : <span class="bb-1 border-success">
-
                         @if ($coursinfo->grade['grade'] != '' && $coursinfo->level['level'] != '' && $coursinfo->teacher['name'] != '')
                             {{ $coursinfo->grade['grade'] }} -{{ $coursinfo->level['level'] }} -
                             {{ $coursinfo->teacher['name'] }}
@@ -25,16 +24,13 @@
                     </span>
                 </span>
             </div>
-
         </div> <!-- End of row show-grid cours info and std name -->
-
     </div>
-
-
     <div class="box">
         @if ($cours_fee_count > 0)
             <div class="col-md-4">
-                <h4 class=" bb-1  bb-double border-danger box-title text-capitalize  text-uppercase"
+                <input type="hidden"
+                <h4 class=" bb-1  border-danger box-title text-capitalize  text-uppercase"
                     style="color:rgb(255, 153, 0)"> @lang('site.fee of this cours is')
                     {{ $cours_fee[0]->currency['currency'] }}- {{ $cours_fee[0]->currency['abbr'] }}-
                     {{ $cours_fee[0]->currency['symbol'] }}
@@ -49,26 +45,25 @@
             </div>
             <div class="col-md-6">
                 <input type="number" step="any" wire:model="amount_to_paid" class='form-control'
-                    placeholder="@lang('site.paid fee here')" name="amount_to_paid">
-                    @error('amount_to_paid')
-                        <span class="text-danger">{{ $message }} </span>
-                    @enderror
+                    placeholder="@lang('site.paid fee here')" name="amount_to_paid"
+                   value="0">
+                @error('amount_to_paid')
+                    <span class="text-danger">{{ $message }} </span>
+                @enderror
             </div>
 
         </div>
     </div>
     <div class="box ">
         <div class="row show-grid">
-
             <div class="col-md-3">
                 <span>
                     @lang('site.receipt description') :
                 </span>
             </div>
             <div class="col-md-6">
-
                 <input type="text" wire:model="receipt_description" class='form-control'
-                    placeholder="@lang('site.description')" name="receipt_description">
+                    placeholder="@lang('site.description')" name="receipt_description" >
                 <span class="bb-1 border-success">
             </div>
         </div>
@@ -88,7 +83,6 @@
                     </span>
                 </span>
             </div> --}}
-
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="radio">
@@ -105,7 +99,6 @@
                     </div>
                 </div>
             </div>
-
             @switch($payment_type)
                 @case('pay_cache_')
                     {{-- {{ $payment_type }} --}}
@@ -149,16 +142,20 @@
                         <th scope="col">@lang('site.fee type')</th>
                         <th scope="col">@lang('site.fee value')</th>
                         <th scope="col">@lang('site.registration date')</th>
-                        <th scope="col">@lang('site.paid')</th>
+                        {{-- <th scope="col">@lang('site.paid')</th>
                         <th scope="col">@lang('site.paid date')</th>
                         <th scope="col">@lang('site.remaining')</th>
-                        <th scope="col">@lang('site.desription')</th>
+                        <th scope="col">@lang('site.desription')</th> --}}
                     </tr>
-
-                    @foreach ($cours_fee as $cours_fe)
+                    {{-- {{dd($select_fee_required)}} --}}
+                    @foreach ($select_fee_required as $key => $cours_fe)
+                        {{-- {{dd( $cours_fe['id'])}} --}}
                         <tr>
-                            <td scope="row">{{ $cours_fe->fee_type['fee'] }}</td>
-                            <td scope="row">{{ $cours_fe->value }}</td>
+                            {{-- <td scope="row">{{ $cours_fe['id']}}</td> --}}
+                            <td scope="row">{{ $cours_fe['fee_type_value'] }}</td>
+                            <td scope="row">{{ $cours_fe['fee_value'] }}</td>
+                            <td scope="row">{{ $cours_fe['regitration_date'] }}</td>
+                            {{-- <td scope="row">{{ $cours_fe->value }}</td> --}}
 
 
                         </tr>
@@ -166,7 +163,7 @@
 
                     <tr scope="col" class="text-warning text-uppercase">
                         <td scope="row">@lang('site.cours fee total') </td>
-                        <td scope="row"> {{ $cours_fee_sum }}</td>
+                        <td scope="row"> {{ $cours_fee_required_sum }}</td>
                     </tr>
                 </table>
             </div>
@@ -191,9 +188,21 @@
                 <a class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')">
                 </a>
             @else
-                <button class="btn btn-success glyphicon glyphicon-ok" wire:click="save_payment()"
-                    title="@lang('site.save')" type="submit">
-                </button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn  glyphicon glyphicon-arrow-left hover-success "
+                            wire:click="save_payment()" title="@lang('site.save')" type="submit">
+                            <span class=""> @lang('site.next step')</span>
+                        </button>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn glyphicon glyphicon-arrow-right hover-danger"
+                            wire:click="back_()" title="@lang('site.back')" type="submit">
+                            <span>@lang('site.previous step')</span>
+                        </button>
+                    </div>
+                </div>
             @endif
 
             {{-- <button class="btn btn-success glyphicon glyphicon-ok" wire:click="save_payment()"

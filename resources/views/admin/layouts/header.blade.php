@@ -42,6 +42,12 @@
                 </li>
             </ul>
         </div>
+
+        <div class="nav">
+
+<button id="change_theme" class="btn btn-success" onclick="changetheme();">t</button>
+
+        </div>
         <div class="nav">
             <li class="dropdown dropdown-language nav-item">
                 <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"

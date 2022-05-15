@@ -3,19 +3,22 @@
 namespace App\Http\Controllers\Admin\Livewire\Students;
 
 use App\Models\User;
+
 use App\Models\Cours;
+use App\Models\Payment;
 use App\Models\Sponsor;
 use Livewire\Component;
 use App\Models\CoursFee;
-use App\Models\Payment;
+use App\Models\Payment_receipt;
+use App\Models\Receipt;
 use Illuminate\Support\Facades\DB;
 use App\Models\StudentsRegistration;
-
-use function PHPUnit\Framework\isEmpty;
-use App\Repository\Cours\CoursInterface;
+use App\Traits\Nb_to_Word;
 
 class Registration extends Component
 {
+    use Nb_to_Word;
+
     public $current_step = 1;
     public $cours_id;
     public $cours_ = "";
@@ -25,6 +28,7 @@ class Registration extends Component
     public $std_selected;
     public $cours_fee_count;
     public $cours_fee_sum;
+    public $cours_fee_required_sum;
     public $all_std_as_std_name;
     public $fee_note;
     public $coursinfo;
@@ -39,6 +43,12 @@ class Registration extends Component
     public $ini_fee_required;
     public $payment_type;
     public $registration_students;
+    public $select_fee_required;
+    public $init_amount_to_paid;
+    public $receipt_information;
+    public $receipt_information_id;
+    public $payment_information;
+
 
 
     public function mount()
@@ -120,39 +130,59 @@ class Registration extends Component
     }
 
 
-    public function save_and_go_to_payment()
+
+
+
+    /***
+     * this method gets the fee required after the registration of students
+     * the fee is selected from admin to this  student only
+     * it might differ between the students
+     */
+    public function get_fee_required_cours($id_fee_required)
     {
+        $this->cours_fee_required_sum = 0;
+        $fee_requied = string_to_array($id_fee_required);
+
+        $select_fee_required_cours = [];
+        $t = [];
         try {
-            DB::beginTransaction();
-            $this->registration_students =    $this->save_std_regitration();
-            // save payment
+            // dd($this->registration_students);
+            $select_fee_required_cours = [];
+            for ($i = 0; $i < count($fee_requied); $i++) {
 
-            DB::commit();
-            if ($this->registration_students->id > 0) {
-                $this->dispatchBrowserEvent(
-                    'alert',
-                    ['type' => 'success',  'message' => __('site.students created successfully!')]
-                );
+                $temp = CoursFee::where(['id' => $fee_requied[$i]])->with('fee_type')->get();
 
-
-                //return redirect()->route('admin.students.Registration-2/{id}', $this->registration_students->id);
-                $this->current_step = 3;
+                $select_fee_required_cours[] = [
+                    'id' => $temp[0]->id,
+                    'fee_value' => $temp[0]->value,
+                    'fee_type_id' => $temp[0]->fee_type['id'],
+                    'fee_type_value' => $temp[0]->fee_type['fee'],
+                    'regitration_date' => $this->registration_students->created_at
+                ];
+                $this->cours_fee_required_sum += $temp[0]->value;
             }
+            // dd($select_fee_required_cours);
+            return  $select_fee_required_cours;
         } catch (\Throwable $th) {
-            DB::rollback();
-            //throw $th;
+            throw $th;
         }
     }
 
-
-
+    /**
+     * save only the registration of students into tale registrationstudents
+     *
+     */
     public function save_std_regitration()
     {
-
-        // dd($this->feerequired);
+        //    dd($this->feerequired);
         try {
+
+            $succes_std_regi = null;
             asort($this->feerequired);
-            $succes_std_regi =  StudentsRegistration::create([
+            $succes_std_regi = StudentsRegistration::updateOrCreate([
+                'user_id' => User::GetIdByName($this->std_name),
+                'cours_id' => $this->cours_id,
+            ], [
                 'user_id' => User::GetIdByName($this->std_name),
                 'cours_id' => $this->cours_id,
                 'notes' => $this->fee_note,
@@ -165,6 +195,36 @@ class Registration extends Component
         } catch (\Throwable $th) {
         }
     }
+
+    // save regstartion students and get the fee required of this regustration
+    public function save_and_go_to_payment()
+    {
+        DB::beginTransaction();
+        try {
+            // dd($this->registration_students);
+            $this->registration_students = $this->save_std_regitration();
+            // save payment
+            // dd( $this->registration_students);
+            if ($this->registration_students->id > 0) {
+                $this->dispatchBrowserEvent(
+                    'alert',
+                    ['type' => 'success',  'message' => __('site.students created successfully!')]
+                );
+
+                $this->select_fee_required =  $this->get_fee_required_cours($this->registration_students->feesRequired);
+
+                //return redirect()->route('admin.students.Registration-2/{id}', $this->registration_students->id);
+                $this->current_step = 3;
+                DB::commit();
+            }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            //throw $th;
+        }
+    }
+
+
+
 
 
     public function switch_payment_type($paym_methode)
@@ -182,70 +242,153 @@ class Registration extends Component
                 $this->payment_type = "no payment methode";
         }
     }
+    public function max_amount_to_paid()
+    {
+        return array_sum(array_column($this->select_fee_required, 'fee_value'));
+    }
+
+    public function save_receipt($receipt_id)
+    {
+        $receipt_information = null;
+        if ($receipt_id == null) {
+            $receipt_information =  Receipt::Create([
+                'currencies_id' => $this->cours_fee[0]->currency['id'],
+                'amount' => $this->amount_to_paid,
+                'description' => $this->receipt_description,
+                'payType' => $this->payment_type,
+                'user_id' => $this->registration_students->user_id,
+                'amount_total' => $this->amount_to_paid,
+            ]);
+
+            $this->receipt_information_id = $receipt_information->id;
+        } else {
+            $receipt_information =  Receipt::find($receipt_id);
+            $receipt_information->update([
+                'currencies_id' => $this->cours_fee[0]->currency['id'],
+                'amount' => $this->amount_to_paid,
+                'description' => $this->receipt_description,
+                'payType' => $this->payment_type,
+                'user_id' => $this->registration_students->user_id,
+                'amount_total' => $this->amount_to_paid,
+            ]);
+            $this->receipt_information_id = $receipt_id;
+        }
+
+
+        return $receipt_information;
+    }
+
+
 
     public function save_payment()
     {
-
         $rules = [
-            'amount_to_paid' => 'required|numeric|min:1',
-
+            'amount_to_paid' => 'required|numeric|min:1|max:' . $this->max_amount_to_paid(),
         ];
 
         $messages = [
             '*.required' => __('site.its_require'),
             'amount_to_paid.numeric' => __('site.must be a number'),
+            'amount_to_paid.max' => __('site.amount to paid must be under fees'),
             'cours_id.min' => __('site.must be a number positive'),
-            // 'email.email' => 'The :attribute format is not valid.',
+
         ];
-
         $this->validatedData_payment =  $this->validate($rules, $messages);
+        $this->init_amount_to_paid = $this->amount_to_paid;
+        $payment = null;
+        try {
+            $this->receipt_information = $this->save_receipt($this->receipt_information_id);
 
 
-        $fee_requied = string_to_array($this->registration_students->feesRequired);
+            foreach ($this->select_fee_required as $key => $fee) {
 
-        //  dd($this->cours_fee);
-        $select_fee_required = [];
-        foreach ($fee_requied as $key => $fee) {
+                if ($this->amount_to_paid <= $fee['fee_value']) {
+                    $payment[] =   Payment::updateOrCreate(
+                        [
+                            'studentsRegistration_id' => $this->registration_students->id,
+                            'cours_fee_id' => $fee['id']
+                        ],
+                        [
+                            'studentsRegistration_id' => $this->registration_students->id,
+                            'amount' => $fee['fee_value'], // initial amount
+                            'paid_amount' => $this->amount_to_paid, //amount paided from students
+                            'cours_fee_id' => $fee['id'], //
+                            'remaining' => $fee['fee_value'] - $this->amount_to_paid, //
+                            'receipt_id' => $this->receipt_information->id, //
+                        ]
+                    );
+                    /****
+                     * change to $this->select_fee_required
+                     * to set  type and fe and remainnig into one array
+                     */
+                    $this->payment_information[] = [
+                        'fee_type' => $this->select_fee_required[$key]['fee_type_value'],
+                        'studentsRegistration_id' => $this->registration_students->id,
+                        'amount' => $fee['fee_value'], // initial amount
+                        'paid_amount' => $this->amount_to_paid, //amount paided from students
+                        'cours_fee_id' => $fee['id'], //
+                        'remaining' => $fee['fee_value'] - $this->amount_to_paid, //
+                        'receipt_id' => $this->receipt_information->id,
+                    ];
 
-            $select_fee_required[] = CoursFee::where('id', $fee)->get(['id', 'value']);
-        }
 
-        foreach ($select_fee_required as $key => $fee) {
-            if ($this->amount_to_paid <= $fee[$key]->value) {
-
-                Payment::create([
-                    'studentsRegistration_id' => $this->registration_students->id,
-                    'amount' => $fee[$key]->value, // initial amount
-                    'paid_amount' => $this->amount_to_paid, //amount paided from students
-                    'cours_fee_id' => $fee[$key]->id, //
-                ]);
-                break;
+                    break;
+                } else {
+                    $payment[] =   Payment::updateOrCreate(
+                        [
+                            'studentsRegistration_id' => $this->registration_students->id,
+                            'cours_fee_id' => $fee['id']
+                        ],
+                        [
+                            'studentsRegistration_id' => $this->registration_students->id,
+                            'amount' => $fee['fee_value'], // initial amount
+                            'paid_amount' => $fee['fee_value'], //amount paided from students
+                            'cours_fee_id' => $fee['id'], //
+                            'remaining' => $fee['fee_value'] - $fee['fee_value'], //
+                            'receipt_id' => $this->receipt_information->id, //
+                        ]
+                    );
+/****
+                     * change to $this->select_fee_required
+                     * to set  type and fe and remainnig into one array
+                     */
+                    $this->payment_information[] = [
+                        'fee_type' => $this->select_fee_required[$key]['fee_type_value'],
+                        'studentsRegistration_id' => $this->registration_students->id,
+                        'amount' => $fee['fee_value'], // initial amount
+                        'paid_amount' => $fee['fee_value'], //amount paided from students
+                        'cours_fee_id' => $fee['id'], //
+                        'remaining' => $fee['fee_value'] - $fee['fee_value'], //
+                        'receipt_id' => $this->receipt_information->id,
+                    ];
+                    $this->amount_to_paid = $this->amount_to_paid - $fee['fee_value'];
+                }
             }
+            // dd($this->receipt_information);
+        } catch (\Throwable $th) {
+            throw $th;
         }
 
+        // $this->payment_information =  $payment;
+        // dd($this->payment_information);
+        // dd(array_diff($this->select_fee_required,$payment));
 
-        // dd($select_fee_required);
-
-        $this->current_step=4;
-
-
-
-
+        $this->current_step = 4;
     }
 
 
-
-
-
-
-
+    public function back_()
+    {
+        if ($this->current_step != 1)
+            $this->current_step--;
+    }
 
 
 
 
     public function init_model()
     {
-        $this->registration_students = null;
+        $this->registration_students = 0;
         $this->coursinfo = "";
         $this->select_cours = null;
         $this->cours_fee_count = -1;
@@ -259,6 +402,20 @@ class Registration extends Component
         $this->amount_to_paid = 0;
         $this->ini_fee_required = 1;
         $this->payment_type = "pay_cache_";
-        // $this->receipt_description = "payment from ".$this->std_name + "for ".$this->select_cours;
+        $this->select_fee_required = [];
+        $this->cours_fee_required_sum = 0;
+        $this->init_amount_to_paid = 0;
+        $this->receipt_information = null;
+        $this->receipt_information_id = null;
+        $this->payment_information  = null;
+
+        // $this->receipt_description = "payment from " . $this->std_name + "for " . $this->$coursinfo->grade['grade'] + " - " + $this->$coursinfo->grade['level'];
+    }
+
+
+    public function back_and_reset_fee_()
+    {
+        $this->back_();
+        $this->feerequired = [];
     }
 }

@@ -154,11 +154,12 @@
                             <td scope="row">
 
                                 {{-- <div class="demo-checkbox"> --}}
-                                    <input type="checkbox" @if($ini_fee_required == 1) checked @endif wire:model="feerequired"    class="chk-col-primary"
-                                        id="md_checkbox_{{ $cours_fe->id }}"
-                                        value="{{ $cours_fe->id }}" name="{{$ini_fee_required}}" checked />
-                                    <label
-                                        for="md_checkbox_{{ $cours_fe->id }}">{{ $cours_fe->fee_type['fee'] }}</label>
+                                <input type="checkbox" @if ($ini_fee_required == 1) checked @endif
+                                    wire:model="feerequired" class="chk-col-primary"
+                                    id="md_checkbox_{{ $cours_fe->id }}" value="{{ $cours_fe->id }}"
+                                    name="{{ $ini_fee_required }}" checked />
+                                <label
+                                    for="md_checkbox_{{ $cours_fe->id }}">{{ $cours_fe->fee_type['fee'] }}</label>
                                 {{-- </div> --}}
                             </td>
 
@@ -173,7 +174,7 @@
                         </tr>
                     @endforeach
                     @if (!empty($selectedfee))
-                        {{ print_r($selectedfee) }}
+                        {{-- {{ print_r($selectedfee) }} --}}
                     @endif
 
 
@@ -195,9 +196,20 @@
             </div>
         @else
         @endif
-        <button class="btn btn-success glyphicon glyphicon-ok" wire:click="save_and_go_to_payment()" title="@lang('site.save')" type="submit">
-        </button>
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn  glyphicon glyphicon-arrow-left hover-success" wire:click="save_and_go_to_payment()"
+                    title="@lang('site.save')" type="submit">
+                    <span> @lang('site.next step')</span>
+                </button>
+
+            </div>
+            <div class="col-md-3">
+                <button class="btn glyphicon glyphicon-arrow-right hover-danger " wire:click="back_and_reset_fee_()"
+                    title="@lang('site.back')" >
+                    <span >@lang('site.previous step')</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
-
-

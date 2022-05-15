@@ -17,8 +17,10 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->float('amount')->comment('Amount of each fee');
             $table->float('paid_amount')->comment('Amount paid from each fee');
+            $table->float('remaining')->comment('amount - paid amount');
             $table->foreignId('studentsRegistration_id')->constrained('studentsRegistrations')->onDelete('cascade')->onUpdate('cascade')->comment('from students registration table is it ***id***');
             $table->foreignId('cours_fee_id')->constrained('cours_fees')->onDelete('cascade')->onUpdate('cascade')->comment('from cours fees ***id***');
+            $table->foreignId('receipt_id')->constrained('receipts')->onDelete('cascade')->onUpdate('cascade')->comment('from from receipt ***id***');
             $table->timestamps();
         });
     }

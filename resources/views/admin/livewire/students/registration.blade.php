@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="form-gourp">
                     <label>
-                        @lang('site.students')
+                        @lang('site.students')  <span class="text text-danger">*</span>
                     </label>
                     <input wire:model='std_name' wire:keypress.debounce.500ms="updateQuery($event.target.value)"
                         class='form-control' type="text" placeholder="@lang('site.searche std')" list="std_list"
@@ -52,7 +52,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <div class="form-group">
-                        <label>@lang('site.cours') </label>
+                        <label>@lang('site.cours') <span class="text text-danger">*</span> </label>
                         <select wire:model="cours_id" wire:change="get_cours_fee($event.target.value)" name="cours_id"
                             class="form-control " style="width: 100%;">
                             @isset($cours)
@@ -115,18 +115,20 @@
             <div>
 
                 @if ($cours_fee_count == 0)
-                    <a class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')">
-                    </a>
+                    <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light" disabled title="@lang('site.save')">
+                    </a><span class="text text-danger"> @lang('site.next step')</span>
                 @elseif($cours_fee_count < 0)
-                    <a class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')">
-                    </a>
+                    <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light" disabled title="@lang('site.save')">
+                    </a><span class="text text-danger"> @lang('site.next step')</span>
                 @else
-                    <button class="btn btn-success glyphicon glyphicon-ok" title="@lang('site.save')" type="submit">
+                    <button class="btn  glyphicon glyphicon-arrow-left hover-success text-warning-light"
+                    title="@lang('site.save')" type="submit"> <span> @lang('site.next step')</span>
                     </button>
                 @endif
 
             </div>
-        </form>
+
+</form>
     @elseif ($current_step == 2)
         @include('admin.livewire.students.fee')
     @elseif ($current_step == 3)

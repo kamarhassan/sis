@@ -15,16 +15,10 @@
 
 
 
-    @section('script')
+@section('script')
     @livewireScripts
     <script>
        
-        document.addEventListener('livewire:load', function() {
-            console.table(4);
-            // console.table(document.getElementById('payment_table'))
-
-            // alert('das');
-        })
         // $(document).ready(function() {
         //     var table = $('#payment_table').DataTable({
         //         scrollY: "300px",
@@ -52,10 +46,14 @@
         });
     </script>
 
-    {{-- <script src="{{ URL::asset('assets/custome_js/std_register.js') }}"></script> --}}
+
+    <script src="{{ URL::asset('assets/custome_js/print.js') }}"></script>
     {{-- <script src="{{ URL::asset('assets/app-assets/js/pages/steps.js') }}"></script> --}}
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-steps-master/build/jquery.steps.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/JqueryPrintArea/demo/jquery.PrintArea.js') }}"></script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/invoice.js') }}"></script>
+    {{-- js/pages/invoice.js --}}
     {{-- <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
     </script> --}}

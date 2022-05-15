@@ -41,7 +41,7 @@ class CoursFee extends Model
     {
         return $this->belongsTo(currency::class, 'currencies_id', 'id');
     }
-    
+
     public function  fee_type()
     {
         return $this->belongsTo(fee_type::class, 'fee_types_id', 'id');
