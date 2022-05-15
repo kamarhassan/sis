@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\Livewire\Std\ClickEvent;
 use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
@@ -49,6 +50,7 @@ Route::group([
 
     // Route::resource('products','ProductController');
     Route::get('/', 'DashboardController@index')->name('admin.dashborad');
+    Route::get('changemode', [DashboardController::class,'change_mode'])->name('admin.dashborad.changemode');
     ################################### Begin Language Routes #################################################
     Route::group(['prefix' => 'language'], function () {
         Route::get('/', [LanguageController::class, 'index'])->name('admin.language');
@@ -89,6 +91,7 @@ Route::group([
         Route::post('store_level', [LevelController::class, 'store'])->name('admin.level.store');
         // Route::post('grade_delete', [LevelController::class, 'delete'])->name('admin.grades.delete');
         Route::post('level_update', [LevelController::class, 'update'])->name('admin.level.update');
+        Route::post('delet', [LevelController::class, 'delete'])->name('admin.level.delet');
         ###########################  for Currency setting
         Route::get('Currency', [CurrencyController::class, 'index'])->middleware(['permission:activate currency'])->name('admin.Currency.get');
         Route::post('Currency_store', [CurrencyController::class, 'edit'])->name('admin.Currency.active');

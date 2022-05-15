@@ -30,7 +30,7 @@ class LevelController extends Controller
                 for ($i = 0; $i < $nb_level; $i++) {
                     if ($request->level[$i] != '') {
                         $level = new level();
-                        $level->name = $request->level[$i];
+                        $level->level = $request->level[$i];
                         $level->save();
                     }
                 }
@@ -50,20 +50,26 @@ class LevelController extends Controller
     public function delete(Request $request)
     {
 
-        return $request;
+        // return $request;
 
-        // try {
-        //     $level = level::find($request->id);
-        //     if (!$level) {
-        //         toastr()->error(__('site.level note defined'));
-        //         return redirect()->route('admin.level.add');
-        //     } else {
-        //         $level->delete();
-        //     }
-        // } catch (\Exception $th) {
-        //     toastr()->error(__('site.you have error'));
-        // }
+        try {
+            $level = Level::find($request->id);
+            if (!$level) {
+                toastr()->error(__('site.level note defined'));
+                return redirect()->route('admin.level.add');
+            } else {
+                $level->delete();
+            }
+        } catch (\Exception $th) {
+            toastr()->error(__('site.you have error'));
+        }
+
+
+
     }
+
+
+
     public function update(LevelRequest $request)
     {
         // return $request;
@@ -74,7 +80,7 @@ class LevelController extends Controller
                 return redirect()->route('admin.level.add');
             } else {
                 // return $level;
-                $level_updated = $level->update(['name' => $request->level]);
+                $level_updated = $level->update(['level' => $request->level]);
                 $notification = [
                     'message' => __('site.level succefuly update'),
                     'status' => 'success',

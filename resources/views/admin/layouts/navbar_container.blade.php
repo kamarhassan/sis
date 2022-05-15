@@ -31,19 +31,28 @@ $routes = Route::current()->getName();
 
 
 
-            <li class="treeview  {{ $prefix == getprefix('language') ? 'active' : '' }}    ">
+            <li class="treeview   {{ $prefix == getprefix('language') ? 'active' : '' }}">
                 <a href="#">
-                    {{-- <i data-feather="message-circle"></i> --}}
-                    <span> @lang('site.website language') </span>
-                    {{-- <span class="badge-danger badge-pill  mr-2">{{ App\Models\Language::count() }}</span> --}}
+                    <i class="ti-settings"></i>
+                    <span>@lang('site.website language')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.language') }}"><i class="ti-more">
-                                @lang('site.show all')</i></a></li>
-                    {{-- <li><a href="{{ route('admin.language.create') }}"><i class="ti-more">اضافة لغات</i></a></li> --}}
+                    {{-- @can('create_edit grades') --}}
+
+                    {{-- @endcan --}}
+                    {{-- @can('create_edit grades') --}}
+                    <li><a href="{{ route('admin.language') }}">
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.show all')
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+
+
                 </ul>
             </li>
 
@@ -125,20 +134,20 @@ $routes = Route::current()->getName();
 
                 <ul class="treeview-menu">
                     {{-- @can('create_edit grades') --}}
-                        <li><a href="{{ route('admin.cours.all') }}">
-                                <i class="ti-more">
-                                </i>
-                                @lang('site.all cours')
-                            </a>
-                        </li>
+                    <li><a href="{{ route('admin.cours.all') }}">
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.all cours')
+                        </a>
+                    </li>
                     {{-- @endcan --}}
                     {{-- @can('create_edit grades') --}}
-                        <li><a href="{{ route('admin.cours.add') }}">
-                                <i class="ti-more">
-                                </i>
-                                @lang('site.add new cours')
-                            </a>
-                        </li>
+                    <li><a href="{{ route('admin.cours.add') }}">
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.add new cours')
+                        </a>
+                    </li>
                     {{-- @endcan --}}
 
 
@@ -157,22 +166,20 @@ $routes = Route::current()->getName();
 
                 <ul class="treeview-menu">
                     {{-- @can('create_edit grades') --}}
-                        <li><a href="{{ route('admin.students.all') }}">
-                                <i class="ti-more">
-                                </i>
-                                @lang('site.all students')
-                            </a>
-                        </li>
+                    <li><a href="{{ route('admin.students.all') }}">
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.all students')
+                        </a>
+                    </li>
                     {{-- @endcan --}}
                     {{-- @can('create_edit grades') --}}
-                        <li><a href="{{route("admin.students.Registration-1")}}"
-                            {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}
-                            >
-                                <i class="ti-more">
-                                </i>
-                                @lang('site.register Student in Course')
-                            </a>
-                        </li>
+                    <li><a href="{{ route('admin.students.Registration-1') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.register Student in Course')
+                        </a>
+                    </li>
                     {{-- @endcan --}}
 
 

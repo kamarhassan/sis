@@ -43,12 +43,25 @@
             </ul>
         </div>
 
-        <div class="nav">
 
-<button id="change_theme" class="btn btn-success" onclick="changetheme();">t</button>
 
-        </div>
+        {{-- <a id="chmode"
+                onclick="changemodetheme('{{ route('admin.dashborad.changemode') }}', '{{ csrf_token() }}');"
+                active><i class="wi wi-day-sunny"> </i></a> --}}
+
+
         <div class="nav">
+           <li> <button id="chmode" class="btn"
+                onclick="changemodetheme('{{ route('admin.dashborad.changemode') }}', '{{ csrf_token() }}');">
+               @if (Config::get('modetheme.mode')=="dark-skin")
+               <i class="text-white wi wi-day-sunny active"></i>
+               @else
+               <i class="text-white   wi wi-moon-waning-crescent-4 active"></i>
+               @endif
+
+                {{-- <i class="text-white wi wi-day-sunny active"></i> --}}
+            </button>
+           </li>
             <li class="dropdown dropdown-language nav-item">
                 <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">

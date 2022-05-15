@@ -106,6 +106,15 @@ function string_to_array($string)
 }
 
 
+// function theme_mode()
+// {
+//     if ($mode == "dark-skin")
+//         return "light-skin";
+
+//     return "dark-skin";
+// }
+
+
 
 
 

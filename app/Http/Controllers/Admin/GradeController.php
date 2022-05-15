@@ -32,7 +32,7 @@ class GradeController extends Controller
             for ($i = 0; $i < $nb_grade; $i++) {
                 if ($request->grade[$i] != '') {
                     $grade[] = [
-                        'name' => $request->grade[$i],
+                        'grade' => $request->grade[$i],
                         'created_at' =>  Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ];
@@ -94,7 +94,7 @@ class GradeController extends Controller
                 return redirect()->route('admin.grades.add');
             } else {
 
-                $grade_updated = $grade->update(['name' => $request->grade]);
+                $grade_updated = $grade->update(['grade' => $request->grade]);
                 $notification = [
                     'message' => __('site.grade succefuly update'),
                     'status' => 'success',

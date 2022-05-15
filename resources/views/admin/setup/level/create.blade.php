@@ -10,7 +10,7 @@
     <!-- Basic Forms -->
     <div class="box">
         <div class="box-header with-border">
-            <h4 class="box-title">@lang('site.add new grade')</h4>
+            <h4 class="box-title">@lang('site.add new level')</h4>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -24,12 +24,12 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <h5>@lang('site.grade') <span class="text-danger">*</span></h5>
+                                                <h5>@lang('site.levels') <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="level[]" class="form-control">
                                                 </div>
                                             </div>
-                                            @error('grades[]')
+                                            @error('levelss[]')
                                                 <span class="text-danger">{{ $message }} </span>
                                             @enderror
                                         </div><!-- End col-md-5 -->
@@ -59,19 +59,19 @@
                             <tbody>
                                 @isset($level)
                                     @foreach ($level as $key => $levels)
-                                        {{-- <form method="post" id="grade_data" action="{{ route('admin.grades.update') }}"> --}}
+                                        {{-- <form method="post" id="levels_data" action="{{ route('admin.grades.update') }}"> --}}
                                         <tr class="Row{{ $levels->id }} ">
 
                                             @csrf
                                             <td> {{ $key + 1 }} </td>
                                             <td>
                                                 <label id="label_{{ $levels->id }}">
-                                                    <span> {{ $levels->name }}</span>
+                                                    <span> {{ $levels->level }}</span>
                                                 </label>
                                             </td>
                                             <td>
                                                 <a token="{{ csrf_token() }}"
-                                                    onclick="change_to_update_level({{ $levels->id }},'{{ $levels->name }}','{{ route('admin.level.update') }}', '{{ csrf_token() }}');"
+                                                    onclick="change_to_update_level({{ $levels->id }},'{{ $levels->level }}','{{ route('admin.level.update') }}', '{{ csrf_token() }}');"
                                                     class="btn fa fa-edit" title="@lang('site.edit')"
                                                     id="btn_editable_{{ $levels->id }}">
                                                     {{-- @lang('site.edit') --}}
@@ -79,7 +79,7 @@
 
                                                 <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
                                                     title="@lang('site.delete')"
-                                                    onclick="delete_by_id('{{ route('admin.grades.add') }}',{{ $levels->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                                    onclick="delete_by_id('{{ route('admin.level.delet') }}',{{ $levels->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
 
 
                                                 </a>

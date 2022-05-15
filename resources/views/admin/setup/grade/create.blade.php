@@ -75,12 +75,12 @@
                                             <td> {{ $key + 1 }} </td>
                                             <td>
                                                 <label id="label_{{ $grades->id }}">
-                                                    <span> {{ $grades->name }}</span>
+                                                    <span> {{ $grades->grade }}</span>
                                                 </label>
                                             </td>
                                             <td>
                                                 <a token="{{ csrf_token() }}"
-                                                    onclick="change_to_update({{ $grades->id }},'{{ $grades->name }}','{{ route('admin.grades.update') }}', '{{ csrf_token() }}');"
+                                                    onclick="change_to_update({{ $grades->id }},'{{ $grades->grade }}','{{ route('admin.grades.update') }}', '{{ csrf_token() }}');"
                                                     class="btn fa fa-edit" title="@lang('site.edit')" id="btn_editable_{{ $grades->id }}">
                                                     {{-- @lang('site.edit') --}}
                                                 </a>

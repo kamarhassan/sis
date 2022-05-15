@@ -20,7 +20,8 @@ class loginController extends Controller
 
         if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {
             toastr()->success(__('site.login succes'));
-            return redirect()->route('admin.dashborad');
+        //    dd($request);
+            return redirect()->intended('dashboard');
         }
         // notify()->error('خطا في البيانات  برجاء المجاولة مجدا ');
         toastr()->error(__('site.you have error'));

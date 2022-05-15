@@ -30,10 +30,12 @@
 
 @if (get_Default_language() == 'ar')
 
-    <body id="body_master" class="hold-transition dark-skin sidebar-mini theme-primary fixed rtl">
+    <body id="body_master"
+        class="hold-transition {{ Config::get('modetheme.mode') }} sidebar-mini theme-primary fixed rtl">
     @else
 
-        <body id="body_master" class="hold-transition dark-skin sidebar-mini theme-primary fixed ">
+        <body id="body_master"
+            class="hold-transition  {{ Config::get('modetheme.mode') }} sidebar-mini theme-primary fixed ">
 @endif
 
 
@@ -66,7 +68,8 @@
 <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ URL::asset('assets/custome_js/open_new_tab.js') }}"></script>
-<script src="{{ URL::asset('assets/custome_js/change_theme_color.js') }}"></script>
+
+<script src="{{ URL::asset('assets/custome_js/chanethememode.js') }}"></script>
 @yield('script')
 
 {{-- @jquery --}}
