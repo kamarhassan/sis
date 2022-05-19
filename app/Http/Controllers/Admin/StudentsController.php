@@ -37,19 +37,29 @@ class StudentsController extends Controller
 
 
         $std =  User::wherehas('students_only')->paginate(pagination_count()) ;
-
+// return $std;
        return view('admin.students.index',compact('std'));
     }
 
 
 
 
-    public function test()
+    public function get_std_to_payment()
     {
 
 
-        return CoursFee::Where(['cours_id'=>22])->get();
+        // $std_registartion =  StudentsRegistration::with('student:id,name','cours:id')->orderBy('created_at','Desc')->paginate(10);
+         // $std->cours;
+            // dd(  $std_registartion);
 
-        return Cours::with(['fee'])->select($fee)->find(22);
+        //  $std_registartion =  User::wherehas('students_only')->wherehas('payment')->with(['cours','payment'])->paginate(10);
+        //  $std_registartion =  User::find(8);//->with('payment')->get();
+         $std_registartion =  User::select('id','name')->with('cours_students_to_payment')->wherehas('students_only')->paginate(10);//->with('payment')->get();
+
+        //  $std_registartion->cours_students_to_payment;
+        //  $std_registartion->test;
+        //  $std_registartion->payment;
+
+        return $std_registartion;
     }
 }

@@ -13,6 +13,7 @@ class languageSeeder extends Seeder
      */
     public function run()
     {
+        
         // DB::table('languages')->delete();
         // Language::create(['code' => 'ace', 'name' => 'Achinese',               'script' => 'Latn', 'native' => 'Aceh', 'regional' =>  '',  'direction' => 'ltr', 'active' => 0, 'country' => '', 'country' => '']);
         // Language::create(['code' => 'af', 'name' => 'Afrikaans',              'script' => 'Latn', 'native' => 'Afrikaans', 'regional' => 'af_ZA', 'direction' => 'ltr', 'active' => 0, 'country' => '']);

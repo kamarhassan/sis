@@ -15,6 +15,7 @@ class NationalitieSeeder extends Seeder
     public function run()
     {
 
+        
         // DB::table('nationalities')->delete();
             //  Nationalitie::create(['name' => 'Afghanistan', 'code' => 'AF']);
             //  Nationalitie::create(['name' => 'Åland Islands', 'code' => 'AX']);

@@ -17,6 +17,7 @@ class PermissionTableSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
+        
         // create permissions
         Permission::create(['guard_name' => 'admin','name' => 'create_edit levels']);
         Permission::create(['guard_name' => 'admin','name' => 'create_edit grades']);

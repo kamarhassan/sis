@@ -12,7 +12,9 @@ namespace App\Repository\Students;
 interface StudentsInterface
 {
     public function get_std_cours($id,$slection);
-    public function students_only();
+    public function students_only( );
+    // public function students_only($array);
+    // public function get_std_to_payment();
     // public function fee_type_id();
 
 }

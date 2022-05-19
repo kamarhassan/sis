@@ -14,6 +14,7 @@ class levelseeder extends Seeder
      */
     public function run()
     {
+        
         // DB::table('levels')->delete();
         level::create(['level' => 'Elementary level 1']);
         level::create(['level' => 'Elementary level 1']);

@@ -18,6 +18,7 @@ class SponsorSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
 
+        
 
         for($i=1;$i<5;$i++){
             $defaultpercent = $faker->randomElement([10, 20]);

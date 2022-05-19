@@ -12,9 +12,16 @@ class StudentsRegistration extends Model
 
     protected  $guarded = [];
     protected $hidden = [
-        'created_at', 'updated_at'
+        'updated_at'
     ];
 
-
-  
+    public function student()
+    {
+        return $this->hasMany(User::class,'id','user_id');
+    }
+    
+    public function cours()
+    {
+        return $this->hasone(Cours::class,'id','cours_id');
+    }
 }

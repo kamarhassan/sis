@@ -118,7 +118,7 @@ Route::group([
         Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
         //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
         Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.Registration-1');
-        Route::view('Registration/step-2', 'admin.livewire.pay-fee-cours.payment_processing')->name('admin.students.Registration-2');
+        Route::get('Paymentprocesses', [StudentsController::class, 'get_std_to_payment'])->name('admin.students.get_std_to_payment');
         //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
         // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
         // Route::liverwire('p', 'admin.livewire.test');

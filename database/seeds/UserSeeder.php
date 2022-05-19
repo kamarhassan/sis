@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
         {
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 2000; $i++) {
+        for ($i = 0; $i < 5000; $i++) {
             $gender = $faker->randomElement(['male', 'female']);
             $salut = $faker->randomElement(["Mrs","Mr","Ms"]);
             User::create([

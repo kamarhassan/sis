@@ -46,7 +46,25 @@ class User extends Authenticatable
 
     public function cours()
     {
-        return $this->belongsToMany(Cours::class, 'studentsregistrations', 'user_id', 'cours_id', 'id', 'id');
+        return $this->belongsToMany(Cours::class, 'studentsregistrations', 'user_id', 'cours_id', 'id', 'id')
+        ->withPivot('cours_fee_total', 'remaining','created_at');
+    }
+
+    public function cours_students_to_payment()
+    {
+        return $this->belongsToMany(Cours::class, 'studentsregistrations', 'user_id', 'cours_id', 'id', 'id')
+       ->with('grade:id,grade')
+       ->with('level')
+       ->withPivot('cours_fee_total', 'remaining','created_at')
+       ->orderby('studentsregistrations.created_at','desc');
+    }
+
+
+
+
+    public function payment()
+    {
+        return $this->belongsToMany(Payment::class, 'studentsregistrations', 'user_id', 'id', 'id', 'studentsRegistration_id' );
     }
 
 
@@ -55,6 +73,7 @@ class User extends Authenticatable
     {
         return $query->where('name', $name)->first()->id;
     }
+
     public function students_only()
     {
         return $this->hasMany(StudentsRegistration::class, 'user_id');

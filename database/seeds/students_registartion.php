@@ -17,7 +17,8 @@ class students_registartion extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 60) as $index) {
+        for ($i = 0; $i < 9000; $i++) {
+
             DB::table('studentsRegistrations')->insert([
                 'cours_id' => Cours::inRandomOrder()->first()->id,
                 'user_id' => User::inRandomOrder()->first()->id,
@@ -27,6 +28,7 @@ class students_registartion extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
+
         }
     }
 }

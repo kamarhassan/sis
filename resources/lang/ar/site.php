@@ -256,6 +256,7 @@ return [
     'fee amount' => 'قيمة الرسم ',
     'paid amount' => 'قيمة الدفعة',
     'remaining' => 'المتبقية',
+    'register Student pay fee' => 'طلبات الدفع',
     #################################### end of students translator ###################################
 
 

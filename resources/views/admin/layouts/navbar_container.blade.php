@@ -181,6 +181,14 @@ $routes = Route::current()->getName();
                         </a>
                     </li>
                     {{-- @endcan --}}
+                    {{-- @can('create_edit grades') --}}
+                    <li><a href="{{ route('admin.students.get_std_to_payment') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.register Student pay fee')
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
 
 
                 </ul>
