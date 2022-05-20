@@ -5,7 +5,7 @@ function changemodetheme(route_, token_) {
         url: route_,
         '_token': token_,
         success: function (data) {
-            location.reload();
+            changetheme()
 
         }, error: function reject() { }
     })

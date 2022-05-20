@@ -1,3 +1,4 @@
+
 <header class="main-header">
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top pl-30">
@@ -181,7 +182,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
                         title="User">
-                        <img src="{{ URL::asset('assets/images/avatar/1.jpg') }}" alt="">
+                        <img src="{{ URL::asset('assets/images/avatar/1.jpg') }}" alt="">pppppp
                     </a>
                     <ul class="dropdown-menu animated flipInX">
                         <li class="user-body">

@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(\SponsorSeeder::class);
         // $this->call(\SposorshipSeeder::class);
         // $this->call(\ReceiptSedder::class);
-        $this->call(\paymentSeeder::class);
+        // $this->call(\paymentSeeder::class);
 
 
 
