@@ -257,6 +257,8 @@ return [
     'paid amount' => 'قيمة الدفعة',
     'remaining' => 'المتبقية',
     'register Student pay fee' => 'طلبات الدفع',
+    'id' => 'id',
+    'pay' => 'ادفع',
     #################################### end of students translator ###################################
 
 

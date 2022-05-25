@@ -53,10 +53,11 @@ class User extends Authenticatable
     public function cours_students_to_payment()
     {
         return $this->belongsToMany(Cours::class, 'studentsregistrations', 'user_id', 'cours_id', 'id', 'id')
+        ->orderby('studentsregistrations.created_at','desc')
        ->with('grade:id,grade')
        ->with('level')
        ->withPivot('cours_fee_total', 'remaining','created_at')
-       ->orderby('studentsregistrations.created_at','desc');
+       ;
     }
 
 

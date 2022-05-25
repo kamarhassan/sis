@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
@@ -17,14 +18,26 @@ class DashboardController extends Controller
 
     public function change_mode()
     {
-        if (Config::get('modetheme.mode') == "dark-skin")
-            $mode = "light-skin";
-        else    $mode = "dark-skin";
         try {
-            $modetheme = fopen(config_path() . '\modetheme.php', "w");
-            fwrite($modetheme, "<?php return ['mode' => '$mode' ];");
+
+            if (Session::has('mode')) {
+
+                if (Session::get('mode') == "dark")
+                    $mode = "light";
+                else    $mode = "dark";
+                Session::flash('mode');
+                Session::put('mode', $mode);
+            } 
+
+
+
+            // Session::put('mode',Config::get('modetheme.mode'));
+            $mode_theme = Session::get('mode', $mode);
+            //    dd(Session::get('mode'));
+            // $modetheme = fopen(config_path() . '\modetheme.php', "w");
+            // fwrite($modetheme, "<?php return ['mode' => '$mode' ];");
             // dd($modetheme);
-            return response()->json($modetheme);
+            return response()->json($mode_theme);
         } catch (\Throwable $th) {
             //throw $th;
         }

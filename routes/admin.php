@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\Livewire\Std\ClickEvent;
 use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
+use App\Http\Controllers\Admin\Livewire\PayFeeCours\Payment;
 use App\Http\Controllers\Admin\Livewire\Students\Registration;
 
 // use App\Http\Livewire\P;
@@ -118,7 +119,8 @@ Route::group([
         Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
         //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
         Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.Registration-1');
-        Route::get('Paymentprocesses', [StudentsController::class, 'get_std_to_payment'])->name('admin.students.get_std_to_payment');
+        Route::get('Payment', [StudentsController::class,'get_std_to_payment'])->name('admin.students.get_std_to_payment');
+        Route::post('get_cours_std/{id}', [StudentsController::class,'get_cours_std'])->name('admin.students.get_cours_std');
         //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
         // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
         // Route::liverwire('p', 'admin.livewire.test');
@@ -128,12 +130,11 @@ Route::group([
     ################################### Begin Language Routes #################################################
     ################################### Begin Payment Routes #################################################
     Route::group(['prefix' => 'Payment'], function () {
-       // Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
-        //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
-        Route::view('PaymentCoursFee', 'admin.livewire.pay-fee-cours.payment')->name('admin.payment.feeCours');
-        //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
-        // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
-        // Route::liverwire('p', 'admin.livewire.test');
+
+        // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
+
+        Route::view('PaymentCoursFee/{registration_id}', 'admin.livewire.pay-fee-cours.payment_processing')->name('admin.payment.feeCours');
+
         Route::get('pp', [Test::class, 'render']);
     });
 

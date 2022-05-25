@@ -17,11 +17,16 @@ class StudentsRegistration extends Model
 
     public function student()
     {
-        return $this->hasMany(User::class,'id','user_id');
+        return $this->hasMany(User::class, 'id', 'user_id');
     }
-    
+
     public function cours()
     {
-        return $this->hasone(Cours::class,'id','cours_id');
+        return $this->hasone(Cours::class, 'id', 'cours_id')
+            ->with('grade:id,grade')
+            ->with('level:id,level');
     }
+
+
+
 }

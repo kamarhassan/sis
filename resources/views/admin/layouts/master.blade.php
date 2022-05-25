@@ -28,15 +28,21 @@
 </head>
 {{-- {{   get_Default_language() }} --}}
 
-@if (get_Default_language() == 'ar')
+{{-- @if (get_Default_language() == 'ar') --}}
 
     <body id="body_master"
-        class="hold-transition {{ Config::get('modetheme.mode') }} sidebar-mini theme-primary fixed rtl">
-    @else
+        class="hold-transition
+        @if (Session::has('mode'))
+         {{ Session::get('mode') . '-skin' }}
+        @else
+        dark-skin
+        @endif
+         sidebar-mini theme-primary fixed @if (get_Default_language() == 'ar') rtl @endif">
+    {{-- @else
 
         <body id="body_master"
-            class="hold-transition  {{ Config::get('modetheme.mode') }} sidebar-mini theme-primary fixed ">
-@endif
+            class="hold-transition  {{ Session::get('mode') . '-skin' }} sidebar-mini theme-primary fixed "> --}}
+{{-- @endif --}}
 
 
 
@@ -68,6 +74,7 @@
 <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ URL::asset('assets/custome_js/open_new_tab.js') }}"></script>
+
 
 <script src="{{ URL::asset('assets/custome_js/chanethememode.js') }}"></script>
 @yield('script')

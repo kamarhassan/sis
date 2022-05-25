@@ -178,6 +178,8 @@ return [
         Yoeunes\Toastr\ToastrServiceProvider::class,   /* for toastr   */
         App\Providers\RepositoryProvider::class,
 
+
+
     ],
 
     /*

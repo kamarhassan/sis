@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 class loginController extends Controller
 {
@@ -20,7 +22,10 @@ class loginController extends Controller
 
         if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {
             toastr()->success(__('site.login succes'));
-        //    dd($request);
+            $request->session()->put('admin_name',Auth::guard('admin')->user()->name);
+
+            Session::put('mode','dark');
+
             return redirect()->intended('dashboard');
         }
         // notify()->error('خطا في البيانات  برجاء المجاولة مجدا ');

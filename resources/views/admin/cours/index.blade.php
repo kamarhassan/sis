@@ -11,7 +11,7 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="table-responsive">
-                <table id="example1" class="table table-hover  ">
+                <table id="example1" class="table table-hover">
                     <thead>
                     <tr>
                         <th>#</th>

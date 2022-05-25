@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
 use App\Repository\Students\StudentsInterface;
+use Illuminate\Support\Facades\DB;
 
 
 class StudentsController extends Controller
@@ -36,9 +37,9 @@ class StudentsController extends Controller
     {
 
 
-        $std =  User::wherehas('students_only')->paginate(pagination_count()) ;
-// return $std;
-       return view('admin.students.index',compact('std'));
+        $std =  User::wherehas('students_only')->paginate(pagination_count());
+        // return $std;
+        return view('admin.students.index', compact('std'));
     }
 
 
@@ -47,19 +48,42 @@ class StudentsController extends Controller
     public function get_std_to_payment()
     {
 
+        try {
 
-        // $std_registartion =  StudentsRegistration::with('student:id,name','cours:id')->orderBy('created_at','Desc')->paginate(10);
-         // $std->cours;
-            // dd(  $std_registartion);
+            $std_registartion =  StudentsRegistration::groupby('user_id')
+                ->selectRaw('count(*) as total, user_id,created_at')->orderByDesc('created_at')
+                ->with('student:id,name,email,photo')
+                ->paginate(1000);
+            // ->paginate(1000);
+            // ->get();
 
-        //  $std_registartion =  User::wherehas('students_only')->wherehas('payment')->with(['cours','payment'])->paginate(10);
-        //  $std_registartion =  User::find(8);//->with('payment')->get();
-         $std_registartion =  User::select('id','name')->with('cours_students_to_payment')->wherehas('students_only')->paginate(10);//->with('payment')->get();
+            // return $std_registartion ;
+        } catch (\Throwable $th) {
+            throw $th;
+            // return $th;
+        }
 
-        //  $std_registartion->cours_students_to_payment;
-        //  $std_registartion->test;
-        //  $std_registartion->payment;
 
-        return $std_registartion;
+        return view('admin.payment.index', compact('std_registartion'));
+    }
+
+
+
+
+
+    public function get_cours_std($id)
+    {
+
+
+        try {
+            $std = StudentsRegistration::where('user_id', $id)->get();
+
+
+            return response()->json($std);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        // return response()->json(Config::get('modetheme.mode'));
     }
 }

@@ -13,7 +13,7 @@ use App\Models\CoursFee;
 use PhpParser\Node\Expr\Cast\Double;
 use PhpParser\Node\Stmt\Foreach_;
 
-class CoursfeeRepository implements CoursfeeInterface
+class CoursfeeRepository implements CoursFeeInterface
 {
 
     public function create($request, $cours_id, $currency)
