@@ -53,8 +53,8 @@ class StudentsController extends Controller
             $std_registartion =  StudentsRegistration::groupby('user_id')
                 ->selectRaw('count(*) as total, user_id,created_at')->orderByDesc('created_at')
                 ->with('student:id,name,email,photo')
-                ->paginate(1000);
-            // ->paginate(1000);
+                // ->paginate(10);
+            ->paginate(1000);
             // ->get();
 
             // return $std_registartion ;
@@ -76,7 +76,7 @@ class StudentsController extends Controller
 
 
         try {
-            $std = StudentsRegistration::where('user_id', $id)->get();
+            $std = StudentsRegistration::where('user_id', $id)->with('cours')->get();
 
 
             return response()->json($std);

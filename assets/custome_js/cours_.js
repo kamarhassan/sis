@@ -11,10 +11,7 @@ console.table(fee_types_id)
             }
         }
         $('#total_coust_fee').text(sum);
-
     });
-
-
 }
 
 
@@ -22,8 +19,6 @@ function change_fee_cours(cours_fee) {
     var sum = 0;
 
     for (var i = 0; i < cours_fee.length; i++) {
-
-
         $('.fee_' + cours_fee[i].fee_types_id).prop('checked', true);
         $('.fee_value_' + cours_fee[i].fee_types_id).val(cours_fee[i].value);
         $('#md_checkbox_' + cours_fee[i].fee_types_id).val(cours_fee[i].value);

@@ -6,7 +6,7 @@
 
 
 @section('content')
-    <div class="box" >
+    <div class="box">
         <div class="box-header with-border">
             {{-- <h3 class="box-title">Individual column searching</h3> --}}
         </div>
@@ -17,7 +17,7 @@
                 @else float-right @endif " role="status">
                     <span class="sr-only">Loading...</span>
                 </div> --}}
-                <table id="example1" class="table table-hover"  >
+                <table id="example1" class="table table-hover">
                     <thead>
 
                         <tr>
@@ -32,15 +32,14 @@
 
                     </thead>
                     <tbody>
-
-
                         @isset($std_registartion)
                             @foreach ($std_registartion as $stduents)
                                 <tr id="Row{{ $stduents->user_id }}" class="bg-light mb-10 p-10 cursor_pointer hover-success">
                                     <td>
                                         <ul>
                                             <li class="list-unstyled">
-                                                <a onclick="get_cours_of_std({{ $stduents->user_id }},'{{ route('admin.students.get_cours_std', $stduents->user_id) }}','{{ csrf_token() }}');"
+                                                <a data-toggle="modal" data-target="#modal-center"
+                                                    onclick="get_cours_of_std({{ $stduents->user_id }},'{{ route('admin.students.get_cours_std', $stduents->user_id) }}','{{ csrf_token() }}');"
                                                     class="btn fa fa-credit-card hover-warning text-light"
                                                     title="@lang('site.save')"> @lang('site.pay')</a>
                                             </li>
@@ -64,11 +63,10 @@
                         @endisset
 
                     </tbody>
-
-
                 </table>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
@@ -80,10 +78,9 @@
 
     </div>
 @endsection
-
+@include('admin.payment.cours_std')
 @section('script')
     <script>
-
         // window.addEventListener('load', (event) => {
         //     $('body').css('webkit-filter', 'blur(50px)');
         // });
