@@ -23,5 +23,9 @@ class Payment extends Model
     protected $hidden = [
         'updated_at'
     ];
+    public function  courd_fee()
+    {
+        return $this->hasMany(CoursFee::class, 'cours_fee_id', 'id');
+    }
 
 }

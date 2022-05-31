@@ -10,7 +10,7 @@
             </div> --}}
             <div class="modal-body">
 
-                <p id="cours_details">Your content comes here</p>
+                <p id="cours_details">@lang('site.please wait to load cours')</p>
             </div>
             {{-- <div class="modal-footer modal-footer-uniform">
                 <button type="button" class="btn btn-rounded btn-secondary" data-dismiss="modal">Close</button>

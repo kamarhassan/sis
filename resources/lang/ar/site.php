@@ -259,6 +259,9 @@ return [
     'register Student pay fee' => 'طلبات الدفع',
     'id' => 'id',
     'pay' => 'ادفع',
+    'please wait to load cours' => 'الرجاء الانتظار يتم تحميل الدورات',
+    'this registration not found' => 'معلومات التسجيل التي تبحث عنها غير موجودة',
+    'payment type' => 'طريقة الدفع',
     #################################### end of students translator ###################################
 
 

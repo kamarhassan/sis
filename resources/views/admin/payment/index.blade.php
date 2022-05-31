@@ -6,10 +6,16 @@
 
 
 @section('content')
-    <div class="box">
-        <div class="box-header with-border">
-            {{-- <h3 class="box-title">Individual column searching</h3> --}}
+
+    <div class="box" id="spinner_loading">
+        <div   class="spinner-grow text-primary justify-content-center" role="status">
+
+            <span class="sr-only">Loading...</span>
         </div>
+    </div>
+
+    <div class="box" id="table_std" hidden>
+
         {{-- @if ((new \Jenssegers\Agent\Agent())->isDesktop()) --}}
         <div class="box-body">
             <div class="table-responsive ">
@@ -70,7 +76,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
-                    {{ $std_registartion->links('vendor.pagination.bootstrap-4') }}
+                    {{-- {{ $std_registartion->links('vendor.pagination.bootstrap-4') }} --}}
                 </div>
             </div>
         </div>
@@ -81,6 +87,14 @@
 @include('admin.payment.cours_std')
 @section('script')
     <script>
+        window.addEventListener('load', (event) => {
+            // spinner_loading
+// table_std
+            $('#spinner_loading').css("display", "none");
+            // $('#spinner_loading').hide();
+            // $('#table_std').css("display", "block");
+            $('#table_std').removeAttr('hidden');
+        });
         // window.addEventListener('load', (event) => {
         //     $('body').css('webkit-filter', 'blur(50px)');
         // });

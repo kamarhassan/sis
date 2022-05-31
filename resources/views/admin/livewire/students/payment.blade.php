@@ -29,7 +29,7 @@
     <div class="box">
         @if ($cours_fee_count > 0)
             <div class="col-md-4">
-                <input type="hidden"
+                <input type="hidden">
                 <h4 class=" bb-1  border-danger box-title text-capitalize  text-uppercase"
                     style="color:rgb(255, 153, 0)"> @lang('site.fee of this cours is')
                     {{ $cours_fee[0]->currency['currency'] }}- {{ $cours_fee[0]->currency['abbr'] }}-

@@ -51,7 +51,7 @@ Route::group([
 
     // Route::resource('products','ProductController');
     Route::get('/', 'DashboardController@index')->name('admin.dashborad');
-    Route::get('changemode', [DashboardController::class,'change_mode'])->name('admin.dashborad.changemode');
+    Route::get('changemode', [DashboardController::class, 'change_mode'])->name('admin.dashborad.changemode');
     ################################### Begin Language Routes #################################################
     Route::group(['prefix' => 'language'], function () {
         Route::get('/', [LanguageController::class, 'index'])->name('admin.language');
@@ -119,8 +119,11 @@ Route::group([
         Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
         //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
         Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.Registration-1');
-        Route::get('Payment', [StudentsController::class,'get_std_to_payment'])->name('admin.students.get_std_to_payment');
-        Route::post('get_cours_std/{id}', [StudentsController::class,'get_cours_std'])->name('admin.students.get_cours_std');
+        Route::get('Payment', [StudentsController::class, 'get_std_to_payment'])->name('admin.students.get_std_to_payment');
+        Route::post('get_cours_std/{id}', [StudentsController::class, 'get_cours_std'])->name('admin.students.get_cours_std');
+
+        Route::get('payment/{cours_id}/{user_id}', [StudentsController::class, 'user_paid_for_cours'])->name('admin.students.user_paid_for_cours');
+        Route::post('payment_receipt', [StudentsController::class, 'savepayment'])->name('admin.students.payment_to_receipt');
         //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
         // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
         // Route::liverwire('p', 'admin.livewire.test');

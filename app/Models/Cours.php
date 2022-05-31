@@ -102,6 +102,6 @@ class Cours extends Model
     public function  fee()
     {
         return $this->hasMany(CoursFee::class,'cours_id','id');
-
     }
+    
 }

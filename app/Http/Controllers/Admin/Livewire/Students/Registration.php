@@ -207,7 +207,7 @@ class Registration extends Component
         try {
             // dd($this->registration_students);
             $fee_cours_and_reaminning = $this->max_amount_to_paid();
-            $this->registration_students = $this->save_std_regitration($fee_cours_and_reaminning, $fee_cours_and_reaminning); // no fee
+            $this->registration_students = $this->save_std_regitration(0,0); // no fee
             // save payment
             // dd( $this->registration_students);
             if ($this->registration_students->id > 0) {
@@ -217,7 +217,9 @@ class Registration extends Component
                 );
 
                 $this->select_fee_required =  $this->get_fee_required_cours($this->registration_students->feesRequired);
-
+                $fee_cours_and_reaminning = $this->max_amount_to_paid();
+                // dd(  $fee_cours_and_reaminning);
+                $this->save_std_regitration($fee_cours_and_reaminning,$fee_cours_and_reaminning);
                 //return redirect()->route('admin.students.Registration-2/{id}', $this->registration_students->id);
                 $this->current_step = 3;
                 DB::commit();
@@ -287,7 +289,7 @@ class Registration extends Component
 
     public function save_payment()
     {
-        $max_amount_to_paid=$this->max_amount_to_paid();
+        $max_amount_to_paid = $this->max_amount_to_paid();
         $rules = [
             'amount_to_paid' => 'required|numeric|min:1|max:' . $max_amount_to_paid,
         ];
@@ -303,7 +305,7 @@ class Registration extends Component
         $this->init_amount_to_paid = $this->amount_to_paid;
         $payment = null;
         try {
-            $this->registration_students = $this->save_std_regitration($max_amount_to_paid,$max_amount_to_paid- $this->amount_to_paid);
+            $this->registration_students = $this->save_std_regitration($max_amount_to_paid, $max_amount_to_paid - $this->amount_to_paid);
 
             $this->receipt_information = $this->save_receipt($this->receipt_information_id);
 
