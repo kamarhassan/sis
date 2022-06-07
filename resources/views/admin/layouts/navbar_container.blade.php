@@ -193,6 +193,27 @@ $routes = Route::current()->getName();
 
                 </ul>
             </li>
+            <li class="treeview   {{ $prefix == getprefix('Payment') ? 'active' : '' }}     ">
+                <a href="#">
+                    <i class="fa fa-user-circle"></i>
+                    <span>@lang('site.students')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu">
+                    {{-- @can('create_edit grades') --}}
+                    <li><a href="{{ route('admin.payment.index') }}">
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.all students')
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+
+                </ul>
+            </li>
         </ul>
     </section>
 

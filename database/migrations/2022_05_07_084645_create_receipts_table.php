@@ -24,6 +24,9 @@ class CreateReceiptsTable extends Migration
             $table->string('description')->nullable()->default(null)->comment('ma3lomet l cours Level ,grade ,user name');
             $table->string('payType')->nullable()->enum('cash', 'check')->default('cash');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('studentsRegistration_id')->constrained('studentsRegistrations')->onDelete('cascade')->onUpdate('cascade')
+            ->comment('from students registration table is it ***id***');
+
             $table->bigInteger('checkNum')->nullable()->default(null);
             $table->tinyInteger('deleted')->enum('sponsored', [0, 1])->default(1)->comment("1 =>no, 0 =>yes");
             $table->timestamps();

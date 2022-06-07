@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Livewire\Std\ClickEvent;
 use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
 use App\Http\Controllers\Admin\Livewire\PayFeeCours\Payment;
 use App\Http\Controllers\Admin\Livewire\Students\Registration;
+use App\Http\Controllers\Admin\PaymentController;
 
 // use App\Http\Livewire\P;
 
@@ -124,6 +125,7 @@ Route::group([
 
         Route::get('payment/{cours_id}/{user_id}', [StudentsController::class, 'user_paid_for_cours'])->name('admin.students.user_paid_for_cours');
         Route::post('payment_receipt', [StudentsController::class, 'savepayment'])->name('admin.students.payment_to_receipt');
+        Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'receipt'])->name('admin.students.receipt');
         //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
         // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
         // Route::liverwire('p', 'admin.livewire.test');
@@ -136,9 +138,9 @@ Route::group([
 
         // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
 
-        Route::view('PaymentCoursFee/{registration_id}', 'admin.livewire.pay-fee-cours.payment_processing')->name('admin.payment.feeCours');
+        Route::get('/', [PaymentController::class,'index'])->name('admin.payment.index');
 
-        Route::get('pp', [Test::class, 'render']);
+
     });
 
     ################################### Begin Payment Routes #################################################

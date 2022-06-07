@@ -6,9 +6,19 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 
 
+
+
+
+
 function pagination_count()
 {
     return 15;
+}
+
+function encript_custome($id)
+{
+    return encrypt($id);
+
 }
 
 function days_of_week()

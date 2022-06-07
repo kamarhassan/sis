@@ -244,7 +244,7 @@ return [
     'description' => 'ادخل الوصف هنا',
     'next step' => 'التالي',
     'previous step' => 'السابق',
-    'amount to paid must be under fees' => 'يجب ان لا يتعدى المبلغ المراد دفعه قيمة رسوم الدورة',
+    'amount to paid must be under fees Or the rest' => 'يجب ان لا يتعدى المبلغ المراد دفعه قيمة رسوم الدورة او القيمة المتبقية',
     'receipt' => 'ايصال',
     'Release Date' => 'تاريخ الاصدار',
     'from' => 'من',
@@ -262,6 +262,10 @@ return [
     'please wait to load cours' => 'الرجاء الانتظار يتم تحميل الدورات',
     'this registration not found' => 'معلومات التسجيل التي تبحث عنها غير موجودة',
     'payment type' => 'طريقة الدفع',
+    'payment has been success' => 'تم الدفع بنجاح',
+    'payment faild' => 'فشل الدفع اعد المحاولة',
+    // معرف تسجيل
+    'registration id' => 'id تسجيل',
     #################################### end of students translator ###################################
 
 

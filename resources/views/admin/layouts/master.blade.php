@@ -52,12 +52,13 @@
     <div class="content-wrapper">
         <div class="container-full">
             <section class="content">
-                @yield('content') {{-- @include('admin.layouts.footer'); --}}
+                @yield('content')
+                {{-- @include('admin.layouts.footer'); --}}
             </section>
         </div>
 
     </div>
-    @include('admin.layouts.asside')
+    {{-- @include('admin.layouts.asside') --}}
 </div>
 
 <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>

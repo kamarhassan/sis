@@ -19,6 +19,7 @@
      <div class="col-12 no-print">
          <div class="bb-1 clearFix">
              <div class="text-right pb-15">
+                 
                  <button class="btn  fa fa-print  hover-success text-white text-light" title="@lang('site.back')"
                      type="button" onclick="printarea()">
                      <span>@lang('site.print')</span>
@@ -35,7 +36,7 @@
              <div class="page-header">
                  <h2 class="d-inline"><span class="font-size-30">@lang('site.receipt')</span></h2>
                  <div class="pull-right text-right">
-                     <h3><label>@lang('site.Release Date')</label> : {{ $receipt_information->created_at->format('d-m-Y') }}
+                     <h3><label>@lang('site.Release Date')</label> : {{$receipt_information->created_at->format('d-m-Y') }}
                      </h3>
                      {{-- <h3>{{ date('d-m-Y') }}</h3> --}}
                  </div>

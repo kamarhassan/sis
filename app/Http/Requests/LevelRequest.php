@@ -32,7 +32,6 @@ class LevelRequest extends FormRequest
     {
         return [
             'level.required' => __('site.its_require'),
-
         ];
     }
 }

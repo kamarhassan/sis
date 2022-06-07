@@ -2,16 +2,24 @@
 @section('title')
 @endsection
 @section('css')
+    <style>
+        .loader {
+            left: 50%;
+            margin-left: -4em;
+        }
+
+    </style>
 @endsection
 
 
 @section('content')
 
     <div class="box" id="spinner_loading">
-        <div   class="spinner-grow text-primary justify-content-center" role="status">
-
-            <span class="sr-only">Loading...</span>
-        </div>
+        <div class="d-flex justify-content-center text-primary" >
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
     </div>
 
     <div class="box" id="table_std" hidden>
@@ -73,13 +81,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="text-center">
-                    {{-- {{ $std_registartion->links('vendor.pagination.bootstrap-4') }} --}}
-                </div>
-            </div>
-        </div>
+
 
 
     </div>
@@ -89,7 +91,7 @@
     <script>
         window.addEventListener('load', (event) => {
             // spinner_loading
-// table_std
+            // table_std
             $('#spinner_loading').css("display", "none");
             // $('#spinner_loading').hide();
             // $('#table_std').css("display", "block");

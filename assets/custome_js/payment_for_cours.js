@@ -34,9 +34,23 @@ function savepayment(route_, token_, user_id, cours_id) {
 
         },
         success: function (data) {
-            // console.table(data)
-            //  set_cours_info_into_modal(data,route_)
+            if (data[1].status == 'success') {
+                toastr.success(data[1].message)
+            }
+            window.location.replace(data[0]);
+            // window.location
+            // location.href(data[0]);
+            //  console.table(data)
+            // set_cours_info_into_modal(data,route_)
 
-        }, error: function reject() { }
+        }, error: function reject(reject) {
+
+            var response = $.parseJSON(reject.responseText).errors.amount_to_paid;
+            // console.table(response[0]);
+            // var response = $.parseJSON(reject.responseText).errors.level;
+            $('#amount_to_paid_').text(response[0]).html;
+            // $('#pay_by_check_').text(response[0]).html;
+
+         }
     })
 }

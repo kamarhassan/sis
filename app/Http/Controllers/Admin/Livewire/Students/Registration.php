@@ -265,6 +265,7 @@ class Registration extends Component
                 'payType' => $this->payment_type,
                 'user_id' => $this->registration_students->user_id,
                 'amount_total' => $this->amount_to_paid,
+                'studentsRegistration_id'=>$this->registration_students->id,
             ]);
 
             $this->receipt_information_id = $receipt_information->id;
@@ -277,6 +278,7 @@ class Registration extends Component
                 'payType' => $this->payment_type,
                 'user_id' => $this->registration_students->user_id,
                 'amount_total' => $this->amount_to_paid,
+                'studentsRegistration_id'=>$this->registration_students->id,
             ]);
             $this->receipt_information_id = $receipt_id;
         }
@@ -340,37 +342,57 @@ class Registration extends Component
                         'receipt_id' => $this->receipt_information->id,
                     ];
 
-
-                    break;
+                    $this->amount_to_paid=0;
+                    // break;
                 } else {
-                    $payment[] =   Payment::updateOrCreate(
-                        [
-                            'studentsRegistration_id' => $this->registration_students->id,
-                            'cours_fee_id' => $fee['id']
-                        ],
-                        [
+                    if($this->amount_to_paid==0){
+
+                        $payment[] =   Payment::updateOrCreate(
+                            [
+                                'studentsRegistration_id' => $this->registration_students->id,
+                                'cours_fee_id' => $fee['id']
+                            ],
+                            [
+                                'studentsRegistration_id' => $this->registration_students->id,
+                                'amount' => $fee['fee_value'], // initial amount
+                                'paid_amount' =>0, //amount paided from students
+                                'cours_fee_id' => $fee['id'], //
+                                'remaining' => $fee['fee_value'] , //
+                                'receipt_id' => $this->receipt_information->id, //
+                            ]
+                        );
+
+                    }else {
+                        $payment[] =   Payment::updateOrCreate(
+                            [
+                                'studentsRegistration_id' => $this->registration_students->id,
+                                'cours_fee_id' => $fee['id']
+                            ],
+                            [
+                                'studentsRegistration_id' => $this->registration_students->id,
+                                'amount' => $fee['fee_value'], // initial amount
+                                'paid_amount' => $fee['fee_value'], //amount paided from students
+                                'cours_fee_id' => $fee['id'], //
+                                'remaining' => $fee['fee_value'] - $fee['fee_value'], //
+                                'receipt_id' => $this->receipt_information->id, //
+                            ]
+                        );
+                        /****
+                         * change to $this->select_fee_required
+                         * to set  type and fe and remainnig into one array
+                         */
+                        $this->payment_information[] = [
+                            'fee_type' => $this->select_fee_required[$key]['fee_type_value'],
                             'studentsRegistration_id' => $this->registration_students->id,
                             'amount' => $fee['fee_value'], // initial amount
                             'paid_amount' => $fee['fee_value'], //amount paided from students
                             'cours_fee_id' => $fee['id'], //
                             'remaining' => $fee['fee_value'] - $fee['fee_value'], //
-                            'receipt_id' => $this->receipt_information->id, //
-                        ]
-                    );
-                    /****
-                     * change to $this->select_fee_required
-                     * to set  type and fe and remainnig into one array
-                     */
-                    $this->payment_information[] = [
-                        'fee_type' => $this->select_fee_required[$key]['fee_type_value'],
-                        'studentsRegistration_id' => $this->registration_students->id,
-                        'amount' => $fee['fee_value'], // initial amount
-                        'paid_amount' => $fee['fee_value'], //amount paided from students
-                        'cours_fee_id' => $fee['id'], //
-                        'remaining' => $fee['fee_value'] - $fee['fee_value'], //
-                        'receipt_id' => $this->receipt_information->id,
-                    ];
-                    $this->amount_to_paid = $this->amount_to_paid - $fee['fee_value'];
+                            'receipt_id' => $this->receipt_information->id,
+                        ];
+                        $this->amount_to_paid = $this->amount_to_paid - $fee['fee_value'];
+                    }
+
                 }
             }
             // dd($this->receipt_information);

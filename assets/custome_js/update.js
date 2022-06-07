@@ -75,9 +75,10 @@ function change_to_update_level(id, name_, route_, token_) {
                 if (data.status == 'success') {
                     toastr.success(data.message)
                 }
+
             }, error: function reject(reject) {
                 var response = $.parseJSON(reject.responseText).errors.level;
-                console.table(response[0]);
+                // console.table(response[0]);
                 var response = $.parseJSON(reject.responseText).errors.level;
                 $('#error_' + id).text(response[0]);
             }
