@@ -52,14 +52,50 @@
                                 @lang('site.amount') :
                             </span>
                         </div>
-
+                        <input type="hidden" name="cours_id" id="cours_id" value="{{ encript_custome($cours[0]['id'] )}}">
+                        <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
                         @csrf
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="normal_pament">
                             <input type="number" id="amount_to_paid" step="any" class='form-control'
                                 placeholder="@lang('site.paid fee here')" name="amount_to_paid" value="0">
+                            <span class="text-danger" id="amount_to_paid_"> </span>
+                        </div>
 
-                                <span class="text-danger" id="amount_to_paid_">  </span>
+                        <div class="row" id="Other_payment" hidden>
+                            <div class="col-md-6" id="normal_pament">
+                                @lang('site.paid fee here')
+                                <input type="number" id="other_amount_to_paid" step="any" class='form-control'
+                                    placeholder="@lang('site.paid fee here')" name="other_amount_to_paid" value="0">
+                                <span class="text-danger" id="other_amount_to_paid_"> </span>
+                            </div>
+                            <div class="col-md-6" id="normal_pament">
+                                @lang('site.rate exchange')
+                                <input type="number" id="rate" step="any" class='form-control'
+                                    placeholder="@lang('site.rate')" name="rate" value="0">
+                                <span class="text-danger" id="rate_"> </span>
+                            </div>
+                            <div class="col-md-6" id="normal_pament">
+                                <div class="form-group">
+                                    <label>@lang('site.cours currency') </label>
+                                    <select name="cours_currency" class="form-control select2" style="width: 100%;">
+                                        @foreach ($cours_currency as $cours_currencys)
+                                            <option value="{{ $cours_currencys->id }}">
+                                                {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
+                                                    </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <span class="text-danger" id="cours_currency_"> </span>
+                        </div>
 
+                        @csrf
+                        <div class="col-md-2">
+                            <div class="demo-checkbox">
+                                <input type="checkbox" name="payment_methode" id="payment_methode" class="chk-col-success"
+                                    onchange='change_payment_methode();' value="1"/>
+                                <label for="payment_methode">@lang('site.other payment')</label>
+                            </div>
                         </div>
 
                     </div>
@@ -90,15 +126,15 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="radio">
-                                    <input name="group1" type="radio" id="pay_cache_" checked
+                                    <input name="pay_type" type="radio" id="pay_cache_" checked
                                         onclick="change_pay_type(this.value);" value="pay_cache_">
                                     <label for="pay_cache_">cache</label>
 
 
-                                    <input name="group1" type="radio" id="pay_check_" onclick="change_pay_type(this.value);"
+                                    <input name="pay_type" type="radio" id="pay_check_" onclick="change_pay_type(this.value);"
                                         value="pay_check_">
                                     <label for="pay_check_">check</label>
-                                    <span class="text-danger" id="pay_by_check_">  </span>
+                                    <span class="text-danger" id="pay_by_check_"> </span>
                                 </div>
                             </div>
                         </div>
@@ -111,11 +147,12 @@
                                     <input class='form-control' id="check_number" type="number" step="any"
                                         placeholder="@lang('site.Enter check number')" name="check_number" id="check_number">
                                 </div>
+                                <span class="text-danger" id="check_number_"> </span>
                             </div>
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-1 col-form-label">#</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="bank_" id="bank_">
+                                    <select class="form-control" name="bank" id="bank">
                                         <option></option>
                                         <option>slect from bank list 2</option>
                                         <option>slect from bank list3 </option>
@@ -124,6 +161,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <span class="text-danger" id="bank_"> </span>
                         </div>
                     </div>
                 </div>
@@ -175,7 +213,7 @@
                         <div class="col-md-3">
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
                                 type="submit"
-                                onclick="savepayment('{{ route('admin.students.payment_to_receipt') }}','{{ csrf_token() }}','{{ encript_custome($std[0]['user_id']) }}','{{ encript_custome($std[0]['cours_id']) }}');">
+                                onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}','{{ csrf_token() }}','{{ encript_custome($std[0]['user_id']) }}','{{ encript_custome($std[0]['cours_id']) }}');">
                                 <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
 use App\Http\Controllers\Admin\Livewire\PayFeeCours\Payment;
 use App\Http\Controllers\Admin\Livewire\Students\Registration;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ReceiptController;
 
 // use App\Http\Livewire\P;
 
@@ -123,9 +124,6 @@ Route::group([
         Route::get('Payment', [StudentsController::class, 'get_std_to_payment'])->name('admin.students.get_std_to_payment');
         Route::post('get_cours_std/{id}', [StudentsController::class, 'get_cours_std'])->name('admin.students.get_cours_std');
 
-        Route::get('payment/{cours_id}/{user_id}', [StudentsController::class, 'user_paid_for_cours'])->name('admin.students.user_paid_for_cours');
-        Route::post('payment_receipt', [StudentsController::class, 'savepayment'])->name('admin.students.payment_to_receipt');
-        Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'receipt'])->name('admin.students.receipt');
         //  Route::view('test',[StudentsController::class, 'test'])->name('admin.students.register');
         // Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.register');
         // Route::liverwire('p', 'admin.livewire.test');
@@ -136,11 +134,11 @@ Route::group([
     ################################### Begin Payment Routes #################################################
     Route::group(['prefix' => 'Payment'], function () {
 
-        // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
-
         Route::get('/', [PaymentController::class,'index'])->name('admin.payment.index');
-
-
+        Route::get('/{cours_id}/{user_id}', [PaymentController::class, 'user_paid_for_cours'])->name('admin.payment.user_paid_for_cours');
+        Route::post('payment_receipt', [PaymentController::class, 'savepayment'])->name('admin.payment.payment_to_receipt');
+        Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [ReceiptController::class, 'receipt'])->name('admin.payment.receipt');
+        // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
     });
 
     ################################### Begin Payment Routes #################################################

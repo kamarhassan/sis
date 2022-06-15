@@ -266,6 +266,8 @@ return [
     'payment faild' => 'فشل الدفع اعد المحاولة',
     // معرف تسجيل
     'registration id' => 'id تسجيل',
+    'other payment' => 'طريقة دفع اخرى',
+    'must be a only 14 number' => 'يجب ان يكون 14 رقما فقط',
     #################################### end of students translator ###################################
 
 

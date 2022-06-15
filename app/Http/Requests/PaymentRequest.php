@@ -36,8 +36,11 @@ class PaymentRequest extends FormRequest
         $max_amount_to_paid =  $this->get_max_amount(decrypt($this->user_id), decrypt($this->cours_id));
 
         return [
-            'amount_to_paid' => 'required|numeric|min:1|max:' . $max_amount_to_paid,
-            // 'check_number'=>$this->checkNum()
+            'amount_to_paid' => $this->amount_to_paid($max_amount_to_paid),
+            'check_number' => $this->checkNum(),
+            'other_amount_to_paid' => $this->other_amount($max_amount_to_paid),
+            'rate' => $this->rate(),
+            'bank' => $this->bank(),
         ];
     }
 
@@ -45,11 +48,11 @@ class PaymentRequest extends FormRequest
     {
         return [
             '*.required' => __('site.its_require'),
-            'amount_to_paid.numeric' => __('site.must be a number'),
-            'amount_to_paid.max' => __('site.amount to paid must be under fees Or the rest'),
+            '*.numeric' => __('site.must be a number'),
+            '*.min' => __('site.must be a number positive'),
+            '*.max' => __('site.amount to paid must be under fees Or the rest'),
 
-            // 'cours_id.min' => __('site.must be a number positive'),
-            'amount_to_paid.min' => __('site.must be a number positive'),
+            'chek_number.digits' => __('site.must be a only 14 number'),
 
         ];
     }
@@ -74,9 +77,35 @@ class PaymentRequest extends FormRequest
     }
 
 
-    public function checkNum(){
-        if($request->has('check_number'))
-        return 'required|min:13|max:14|numeric';
+    public function checkNum()
+    {
+        if ($this->pay_type == 'pay_check_')
+            return 'required|digits:14|numeric';
+        else return "";
+    }
+    public function bank()
+    {
+        if ($this->pay_type == 'pay_check_')
+            return 'required';
+        else return "";
+    }
+
+    public function other_amount($max_amount_to_paid)
+    {
+        if ($this->request->has('payment_methode'))
+            return 'required|numeric|min:1|max:' . $max_amount_to_paid;
+        else return "";
+    }
+    public function amount_to_paid($max_amount_to_paid)
+    {
+        if (!$this->request->has('payment_methode'))
+            return 'required|numeric|min:1|max:' . $max_amount_to_paid;
+        else return "";
+    }
+    public function rate()
+    {
+        if ($this->request->has('payment_methode'))
+            return 'required|numeric|min:1';
         else return "";
     }
 }

@@ -196,7 +196,7 @@ $routes = Route::current()->getName();
             <li class="treeview   {{ $prefix == getprefix('Payment') ? 'active' : '' }}     ">
                 <a href="#">
                     <i class="fa fa-user-circle"></i>
-                    <span>@lang('site.students')</span>
+                    <span>@lang('site.Payment')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -207,7 +207,7 @@ $routes = Route::current()->getName();
                     <li><a href="{{ route('admin.payment.index') }}">
                             <i class="ti-more">
                             </i>
-                            @lang('site.all students')
+                            @lang('site.All paument')
                         </a>
                     </li>
                     {{-- @endcan --}}
