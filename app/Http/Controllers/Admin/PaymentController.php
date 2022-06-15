@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Cours;
@@ -18,7 +19,8 @@ class PaymentController extends Controller
 {
     //
 
-    public function index(){
+    public function index()
+    {
         return "1";
     }
 
@@ -45,7 +47,7 @@ class PaymentController extends Controller
             ])->get();
             //  return $std;
             if ($std->count() > 0) {
-                $user =  User::where('id', $user_id)->select('id','name')->get();
+                $user =  User::where('id', $user_id)->select('id', 'name')->get();
 
                 $cours = Cours::where('id', $cours_id)
                     ->with('grade:id,grade', 'level:id,level', 'teacher:id,name')
@@ -59,7 +61,7 @@ class PaymentController extends Controller
 
                 $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])->get();
                 $cours_currency = Currency::active()->get();
-                return  view('admin.payment.payment', compact('std', 'user', 'cours', 'fees','cours_currency'));
+                return  view('admin.payment.payment', compact('std', 'user', 'cours', 'fees', 'cours_currency'));
             } else {
 
                 toastr()->error(__('site.this registration not found'));
@@ -77,7 +79,7 @@ class PaymentController extends Controller
     public function savepayment(PaymentRequest $request)
     {
 
-        return $request;
+        // return $request;
         try {
             DB::beginTransaction();
             //code...
@@ -98,14 +100,29 @@ class PaymentController extends Controller
                 $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])
                     ->with('cours_fee:id,currencies_id')->get();
 
+                if ($request->has('payment_methode')) {
+                    $payment_currency = $request->cours_currency;
+                    
+                } else {
+
+                    $payment_currency = $old_payment[0]['cours_fee']['currencies_id'];
+                }
+                if ($request->has('rate')) {
+                    $rate_exchange = $request->rate;
+                } else {
+                    $rate_exchange = 1;
+                }
+
                 $receipt_information =  Receipt::Create([
-                    'currencies_id' => $old_payment[0]['cours_fee']['currencies_id'],
+                    'currencies_id' => $payment_currency,
                     'amount' => $request->amount_to_paid,
+                    'other_amount' => $request->other_amount_to_paid,
                     'description' => $request->receipt_description,
+                    'rate_exchange' => $rate_exchange,
                     'payType' => $request->pay_type,
                     'user_id'  => decrypt($request->user_id),
                     'studentsRegistration_id' => $std[0]['id'],
-                    'amount' => $request->amount_to_paid,
+                    'amount_total' => $request->amount_to_paid,
                     'checkNum' => $check_number,
                     // 'bank_' => $bank,
                 ]);
@@ -198,5 +215,4 @@ class PaymentController extends Controller
             throw $th;
         }
     }
-
 }

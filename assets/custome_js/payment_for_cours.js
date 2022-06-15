@@ -50,8 +50,8 @@ function savepayment(route_, token_, user_id, cours_id) {
 
             var response = $.parseJSON(reject.responseText);
             $.each(response.errors, function (key, val) {
-             console.log(key);
-             console.log(val[0]);
+            //  console.log(key);
+            //  console.log(val[0]);
                 $('#' + key+'_').text(val[0]).html;
             })
             // console.table(response[0]);

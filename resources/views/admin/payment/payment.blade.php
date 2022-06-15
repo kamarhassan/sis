@@ -71,7 +71,7 @@
                             <div class="col-md-6" id="normal_pament">
                                 @lang('site.rate exchange')
                                 <input type="number" id="rate" step="any" class='form-control'
-                                    placeholder="@lang('site.rate')" name="rate" value="0">
+                                    placeholder="@lang('site.rate')" name="rate" value="1">
                                 <span class="text-danger" id="rate_"> </span>
                             </div>
                             <div class="col-md-6" id="normal_pament">

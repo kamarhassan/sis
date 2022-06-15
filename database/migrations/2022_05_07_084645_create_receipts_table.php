@@ -17,7 +17,8 @@ class CreateReceiptsTable extends Migration
             $table->id();
             $table->foreignId('currencies_id')->constrained('currencies')->onDelete('cascade')->onUpdate('cascade');
            // $table->foreignId('cours_fee_id')->constrained('cours_fees')->onDelete('cascade')->onUpdate('cascade')->comment('from cours fees ***id***');
-            $table->float('amount');
+            $table->float('amount')->default(0);
+            $table->float('other_amount')->default(0);
             $table->float('rate_exchange')->default(1);
             $table->float('amount_total');
             $table->integer('transaction_id')->nullable()->default(null);
