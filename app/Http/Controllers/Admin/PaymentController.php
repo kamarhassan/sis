@@ -100,29 +100,35 @@ class PaymentController extends Controller
                 $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])
                     ->with('cours_fee:id,currencies_id')->get();
 
-                if ($request->has('payment_methode')) {
-                    $payment_currency = $request->cours_currency;
-                    
-                } else {
 
-                    $payment_currency = $old_payment[0]['cours_fee']['currencies_id'];
-                }
+
                 if ($request->has('rate')) {
                     $rate_exchange = $request->rate;
                 } else {
                     $rate_exchange = 1;
                 }
 
+
+                if ($request->has('payment_methode')) {
+                    $payment_currency = $request->cours_currency;
+                    
+
+                } else {
+
+                    $payment_currency = $old_payment[0]['cours_fee']['currencies_id'];
+                }
+
+
                 $receipt_information =  Receipt::Create([
                     'currencies_id' => $payment_currency,
-                    'amount' => $request->amount_to_paid,
+                    'amount' => $init_amount,
                     'other_amount' => $request->other_amount_to_paid,
                     'description' => $request->receipt_description,
                     'rate_exchange' => $rate_exchange,
                     'payType' => $request->pay_type,
                     'user_id'  => decrypt($request->user_id),
                     'studentsRegistration_id' => $std[0]['id'],
-                    'amount_total' => $request->amount_to_paid,
+                    'amount_total' => $init_amount,
                     'checkNum' => $check_number,
                     // 'bank_' => $bank,
                 ]);
