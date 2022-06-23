@@ -78,7 +78,7 @@ class PaymentController extends Controller
     public function savepayment(PaymentRequest $request)
     {
 
-        return $request;
+        // return $request;
         try {
             DB::beginTransaction();
             //code...
@@ -86,6 +86,7 @@ class PaymentController extends Controller
                 'user_id'  => decrypt($request->user_id),
                 'cours_id' => decrypt($request->cours_id)
             ])->get();
+
             if ($request->has('check_number')) {
                 $check_number = $request->check_number;
                 // $bank=$request->bank;
@@ -118,9 +119,9 @@ class PaymentController extends Controller
                         w eza la byodrob yale 3am yedfa3on bl rate
                      */
                     if (($cours_cuurency_abbr == "USD" || $cours_cuurency_abbr == "EUR" && $payment_currency_abbr->abbr == "L.L")) {
-                        $init_amount = $request->other_amount / $request->rate;
+                        $init_amount = $request->other_amount_to_paid / $request->rate;
                     } else {
-                        $init_amount = $request->other_amount * $request->rate;
+                        $init_amount = $request->other_amount_to_paid * $request->rate;
                     }
                 } else {
                     $init_amount  = $request->amount_to_paid;
@@ -128,7 +129,7 @@ class PaymentController extends Controller
                     return $payment_currency;
                 }
 
-
+// dd('true');
                 $receipt_information =  Receipt::Create([
                     'currencies_id' => $payment_currency,
                     'amount' => $init_amount,
@@ -217,6 +218,7 @@ class PaymentController extends Controller
             }
         } catch (\Throwable $th) {
             DB::rollBack();
+            throw $th;
             $notification = [
                 'message' => __('site.you have error'),
                 'status' => 'error',
@@ -228,7 +230,6 @@ class PaymentController extends Controller
 
             // ];
             return  response()->json($notification);
-            throw $th;
         }
     }
 }

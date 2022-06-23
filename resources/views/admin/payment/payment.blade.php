@@ -65,7 +65,7 @@
                             <span class="text-danger" id="amount_to_paid_"> </span>
                         </div>
 
-                        <div class="row" id="Other_payment" hidden>
+                        <div class="col-md-6" id="Other_payment" hidden>
                             <div class="col-md-6" id="normal_pament">
                                 @lang('site.paid fee here')
                                 <input type="number" id="other_amount_to_paid" step="any" class='form-control'
@@ -83,7 +83,8 @@
                                     <label>@lang('site.cours currency') </label>
                                     <select name="cours_currency" class="form-control select2" style="width: 100%;">
                                         @foreach ($cours_currency as $cours_currencys)
-                                            @if ($fees[0]['currency']['id'] != $cours_currencys->id)
+
+                                        @if ($fees[0]['currency']['id'] != $cours_currencys->id)
                                                 <option value="{{ $cours_currencys->id }}">
 
                                                     {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
@@ -230,5 +231,8 @@
 
 
             @section('script')
-                <script src="{{ URL::asset('assets\custome_js\payment_for_cours.js') }}"></script>
+                <script src="{{ URL::asset('assets/custome_js/payment_for_cours.js') }}"></script>
+                <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
+                <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
+                </script>
             @endsection
