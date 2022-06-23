@@ -37,7 +37,6 @@ class PaymentController extends Controller
      */
     public function  user_paid_for_cours($cours_id, $user_id)
     {
-
         try {
             //code...
 
@@ -79,7 +78,7 @@ class PaymentController extends Controller
     public function savepayment(PaymentRequest $request)
     {
 
-        // return $request;
+        return $request;
         try {
             DB::beginTransaction();
             //code...
@@ -87,7 +86,6 @@ class PaymentController extends Controller
                 'user_id'  => decrypt($request->user_id),
                 'cours_id' => decrypt($request->cours_id)
             ])->get();
-            $init_amount  = $request->amount_to_paid;
             if ($request->has('check_number')) {
                 $check_number = $request->check_number;
                 // $bank=$request->bank;
@@ -100,8 +98,6 @@ class PaymentController extends Controller
                 $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])
                     ->with('cours_fee:id,currencies_id')->get();
 
-
-
                 if ($request->has('rate')) {
                     $rate_exchange = $request->rate;
                 } else {
@@ -110,12 +106,26 @@ class PaymentController extends Controller
 
 
                 if ($request->has('payment_methode')) {
+
+                    $cours_cuurency_abbr = $request->cours_currency_abbr;
+
                     $payment_currency = $request->cours_currency;
-                    
-
+                    $payment_currency_abbr = Currency::find($payment_currency);
+                    // $payment_currency_abbr = Currency::find($request->cours_currency)->abbr;
+                    /**
+                        hon 3am ye3mal check isa l cours bl $ aw euro bado ye2sem yale 3am yedfa3on
+                        bl lira lebneye 3al rate yale hye se3er saref
+                        w eza la byodrob yale 3am yedfa3on bl rate
+                     */
+                    if (($cours_cuurency_abbr == "USD" || $cours_cuurency_abbr == "EUR" && $payment_currency_abbr->abbr == "L.L")) {
+                        $init_amount = $request->other_amount / $request->rate;
+                    } else {
+                        $init_amount = $request->other_amount * $request->rate;
+                    }
                 } else {
-
+                    $init_amount  = $request->amount_to_paid;
                     $payment_currency = $old_payment[0]['cours_fee']['currencies_id'];
+                    return $payment_currency;
                 }
 
 

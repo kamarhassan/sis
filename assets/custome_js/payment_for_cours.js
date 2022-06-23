@@ -36,6 +36,7 @@ function savepayment(route_, token_, user_id, cours_id) {
         //     // 'data':data,
 
         // },
+        
         success: function (data) {
             if (data[1].status == 'success') {
                 window.location.replace(data[0]);

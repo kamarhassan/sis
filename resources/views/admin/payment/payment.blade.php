@@ -52,8 +52,12 @@
                                 @lang('site.amount') :
                             </span>
                         </div>
-                        <input type="hidden" name="cours_id" id="cours_id" value="{{ encript_custome($cours[0]['id'] )}}">
+                        <input type="hidden" name="cours_id" id="cours_id"
+                            value="{{ encript_custome($cours[0]['id']) }}">
                         <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
+                        <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr"
+                            value="{{ $fees[0]['currency']['abbr'] }}">
+
                         @csrf
                         <div class="col-md-6" id="normal_pament">
                             <input type="number" id="amount_to_paid" step="any" class='form-control'
@@ -71,7 +75,7 @@
                             <div class="col-md-6" id="normal_pament">
                                 @lang('site.rate exchange')
                                 <input type="number" id="rate" step="any" class='form-control'
-                                    placeholder="@lang('site.rate')" name="rate" value="1">
+                                    placeholder="@lang('site.rate')" name="rate" value="0">
                                 <span class="text-danger" id="rate_"> </span>
                             </div>
                             <div class="col-md-6" id="normal_pament">
@@ -79,9 +83,12 @@
                                     <label>@lang('site.cours currency') </label>
                                     <select name="cours_currency" class="form-control select2" style="width: 100%;">
                                         @foreach ($cours_currency as $cours_currencys)
-                                            <option value="{{ $cours_currencys->id }}">
-                                                {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
-                                                    </option>
+                                            @if ($fees[0]['currency']['id'] != $cours_currencys->id)
+                                                <option value="{{ $cours_currencys->id }}">
+
+                                                    {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
+                                                        </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -93,7 +100,7 @@
                         <div class="col-md-2">
                             <div class="demo-checkbox">
                                 <input type="checkbox" name="payment_methode" id="payment_methode" class="chk-col-success"
-                                    onchange='change_payment_methode();' value="1"/>
+                                    onchange='change_payment_methode();' value="1" />
                                 <label for="payment_methode">@lang('site.other payment')</label>
                             </div>
                         </div>
@@ -131,8 +138,8 @@
                                     <label for="pay_cache_">cache</label>
 
 
-                                    <input name="pay_type" type="radio" id="pay_check_" onclick="change_pay_type(this.value);"
-                                        value="pay_check_">
+                                    <input name="pay_type" type="radio" id="pay_check_"
+                                        onclick="change_pay_type(this.value);" value="pay_check_">
                                     <label for="pay_check_">check</label>
                                     <span class="text-danger" id="pay_by_check_"> </span>
                                 </div>
