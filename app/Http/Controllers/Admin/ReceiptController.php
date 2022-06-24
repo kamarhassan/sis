@@ -53,6 +53,7 @@ class ReceiptController extends Controller
                     'receipt' => $receipt,
                 ];
                 Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
+              
                 return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'fees', 'receipt'));
             } else {
 
