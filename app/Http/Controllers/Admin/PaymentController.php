@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\PaymentRequest;
+use App\Mail\NotifyMailPaymentReceipt;
 
 class PaymentController extends Controller
 {
@@ -126,10 +128,10 @@ class PaymentController extends Controller
                 } else {
                     $init_amount  = $request->amount_to_paid;
                     $payment_currency = $old_payment[0]['cours_fee']['currencies_id'];
-                    return $payment_currency;
+                    // return $payment_currency;
                 }
 
-// dd('true');
+                // dd('true');
                 $receipt_information =  Receipt::Create([
                     'currencies_id' => $payment_currency,
                     'amount' => $init_amount,
@@ -186,8 +188,9 @@ class PaymentController extends Controller
                     'remaining' => ($std[0]['remaining'] - $init_amount)
                 ]);
 
-
-                DB::commit();
+            //    Mail::to("kamarhassan044@gmail.com")->send(new NotifyMailPaymentReceipt);
+            //  return $mail;
+             DB::commit();
                 // return response()->json("remaning       ".($std[0]['remaining'] - $init_amount));
                 // return response()->json(( $init_amount));
                 // return response()->json($std[0]['cours_fee_total'] );
@@ -209,7 +212,6 @@ class PaymentController extends Controller
                     ];
                 }
                 // return  response()->json($notification);
-
 
                 return response()->json([route('admin.payment.receipt', [$request->user_id, $request->cours_id, $receipt_information->id]), $notification]);
 

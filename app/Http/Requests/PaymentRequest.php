@@ -94,19 +94,7 @@ class PaymentRequest extends FormRequest
     public function other_amount($max_amount_to_paid)
     {
         try {
-            //code...
-            // if ($this->request->has('payment_methode')) {
-            //     if (($this->cours_currency_abbr == "USD" || $this->cours_currency_abbr == "EUR") /*&& Currency::find($this->cours_currency)->abbr == "L.L"*/) {
-            //         return -2;
-            //         // $amount_to_paid= $this->other_amount_to_paid / $this->rate;
-            //     } else {
-            //         return -3;
-            //         // $amount_to_paid= $this->other_amount_to_paid * $this->rate;
-            //     }
-            //     if ($amount_to_paid >= $max_amount_to_paid) {
-            //         return 'required|numeric|min:1|max:' . $max_amount_to_paid;
-            //     }
-            // } else return "";
+            
             $cours_curency_abbr = Currency::find($this->cours_currency);
 
             if ($this->request->has('payment_methode')) {

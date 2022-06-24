@@ -239,6 +239,7 @@ return [
     'receipt info' => 'الوصل',
     'receipt description' => 'الوصف',
     'payment' => 'الدفعة',
+    'payments and report' => 'الدفع و التقارير',
     'must be a number positive' => 'يجب ات تكون القيمة اكبر من 0',
     'paid fee here' => 'ادخل الرسم المدفوع هنا',
     'description' => 'ادخل الوصف هنا',
@@ -268,6 +269,8 @@ return [
     'registration id' => 'id تسجيل',
     'other payment' => 'طريقة دفع اخرى',
     'must be a only 14 number' => 'يجب ان يكون 14 رقما فقط',
+    'edit receipt and payment' => 'تعديل الدفعات والايصالات',
+    ''=>'',
     #################################### end of students translator ###################################
 
 

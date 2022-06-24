@@ -1,22 +1,9 @@
-@extends('admin.layouts.master')
-@section('title')
-@endsection
-@section('css')
-@endsection
-@section('content')
-    <section class="invoice printableArea" id="print">
-        <div class="col-12 no-print">
-            <div class="bb-1 clearFix">
-                <div class="text-right pb-15">
-                    {{-- <button id="print2" class="btn btn-rounded btn-warning" type="button"> <span><i class="fa fa-print"></i> Print</span> </button> --}}
-                    <button class="btn  fa fa-print  hover-success text-white text-success" title="@lang('site.print')"
-                        type="button" onclick="printarea()">
-                        <span>@lang('site.print')</span>
-                    </button>
-                    {{-- <button id="print2" class="btn btn-rounded btn-warning" type="button"> <span><i class="fa fa-print"></i> Print</span> </button> --}}
+@component('mail::message')
+{{ $receipt->created_at->format('d-m-Y') }}
+{{ $std[0]['id'] }}
 
-                </div>
-            </div>
+    <section class="invoice printableArea" id="print">
+
         </div>
         <div class=" row">
             <div class="col-12">
@@ -114,11 +101,17 @@
         </div>
     </section>
 
-@endsection
 
 
-@section('script')
-    <script src="{{ URL::asset('assets/assets/vendor_plugins/JqueryPrintArea/demo/jquery.PrintArea.js') }}"></script>
-<script src="{{ URL::asset('assets/app-assets/js/pages/invoice.js') }}"></script>
-    <script src="{{ URL::asset('assets/custome_js/print.js') }}"></script>
-@endsection
+
+@component('mail::button', ['url' => ''])
+Button Text
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent
+
+
+
+

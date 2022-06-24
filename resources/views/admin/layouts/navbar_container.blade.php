@@ -189,6 +189,13 @@ $routes = Route::current()->getName();
                         </a>
                     </li>
                     {{-- @endcan --}}
+                    <li><a href="{{ route('admin.students.get_std_to_payment') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.edit receipt and payment')
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
 
 
                 </ul>
@@ -196,7 +203,7 @@ $routes = Route::current()->getName();
             <li class="treeview   {{ $prefix == getprefix('Payment') ? 'active' : '' }}     ">
                 <a href="#">
                     <i class="fa fa-user-circle"></i>
-                    <span>@lang('site.Payment')</span>
+                    <span>@lang('site.payments and report')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>

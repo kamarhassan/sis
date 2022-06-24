@@ -10,6 +10,9 @@ use App\Models\CoursFee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifyMailPaymentReceipt;
+use App\Mail\testnotify;
 
 class ReceiptController extends Controller
 {
@@ -29,6 +32,7 @@ class ReceiptController extends Controller
             if ($std->count() > 0) {
 
                 $user =  User::find(decrypt($user_id));
+                // dd($user['email']);
                 $cours = Cours::where('id', $cours_id)
                     ->with('grade:id,grade', 'level:id,level', 'teacher:id,name')
                     ->get();
@@ -38,8 +42,17 @@ class ReceiptController extends Controller
                     ->get();
 
                 $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])->get();
-               $receipt = Receipt::find($receipt_id);
-
+                $receipt = Receipt::find($receipt_id);
+                $data = [
+                    'std' =>$std,
+                    'user' => $user,
+                    'cours' => $cours,
+                    'fee_required' => $fee_required,
+                    'fees' => $fees,
+                    'old_payment' => $old_payment,
+                    'receipt' => $receipt,
+                ];
+                Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
                 return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'fees', 'receipt'));
             } else {
 
