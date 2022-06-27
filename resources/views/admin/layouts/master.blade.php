@@ -78,6 +78,8 @@
 
 
 <script src="{{ URL::asset('assets/custome_js/chanethememode.js') }}"></script>
+
+
 @yield('script')
 
 {{-- @jquery --}}

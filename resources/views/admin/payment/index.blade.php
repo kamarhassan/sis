@@ -89,34 +89,12 @@
 @include('admin.payment.cours_std')
 @section('script')
     <script>
-        window.addEventListener('load', (event) => {
-            // spinner_loading
-            // table_std
-            $('#spinner_loading').css("display", "none");
-            // $('#spinner_loading').hide();
-            // $('#table_std').css("display", "block");
-            $('#table_std').removeAttr('hidden');
-        });
-        // window.addEventListener('load', (event) => {
-        //     $('body').css('webkit-filter', 'blur(50px)');
-        // });
-        // window.addEventListener('load', function() {
-        //     // alert("It's loaded!")
-        //     // $("#spinner_").css("display", "none");
-
-        //     $('#example1').show();
-        //     $('#spiner_loading').css("display", "none");
-        // })
-        // $(window).on('load', function() {
-        //     $('body').css('webkit-filter', 'blur(50px)');
-
-        // });
 
         $(document).ready(function() {
-            // var table = $('#example1').DataTable({
-            //     "processing": true,
-            //     "serverSide": false,
-            // });
+            $('#spinner_loading').css("display", "none");
+
+            $('#table_std').removeAttr('hidden');
+          
             var table = $('#example1').DataTable({
                 scrollY: "400px",
                 // scrollX: true,

@@ -48,7 +48,7 @@ class CoursFee extends Model
     }
     public function  payment()
     {
-        return $this->belongsTo(Payment::class, 'id', 'cours_fee_id');
+        return $this->belongsTo(Payment::class, 'studentsRegistration_id', 'id');
     }
 
 

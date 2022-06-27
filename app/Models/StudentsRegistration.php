@@ -32,5 +32,6 @@ class StudentsRegistration extends Model
     {
         return $this->hasMany(CoursFee::class,'cours_id','id');
     }
+  
 
 }

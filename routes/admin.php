@@ -123,7 +123,9 @@ Route::group([
         Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.Registration-1');
         Route::get('Payment', [StudentsController::class, 'get_std_to_payment'])->name('admin.students.get_std_to_payment');
         Route::post('get_cours_std/{id}', [StudentsController::class, 'get_cours_std'])->name('admin.students.get_cours_std');
-        Route::post('payment_receipt', [PaymentController::class, 'savepayment'])->name('admin.payment.payment_to_receipt');
+
+        Route::get('Receipt', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
+        // Route::get('Receipt/edit/{cours_id}/{user_id}', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
 
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
         //     ->name('admin.students.get_std_to_payment');
@@ -134,7 +136,8 @@ Route::group([
     Route::group(['prefix' => 'Payment'], function () {
 
         Route::get('/', [PaymentController::class, 'index'])->name('admin.payment.index');
-        Route::get('/{cours_id}/{user_id}', [PaymentController::class, 'user_paid_for_cours'])->name('admin.payment.user_paid_for_cours');
+        Route::get('{cours_id}/{user_id}', [PaymentController::class, 'user_paid_for_cours'])->name('admin.payment.user_paid_for_cours');
+        Route::post('payment_receipt', [PaymentController::class, 'savepayment'])->name('admin.payment.payment_to_receipt');
         Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [ReceiptController::class, 'receipt'])->name('admin.payment.receipt');
         // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
     });

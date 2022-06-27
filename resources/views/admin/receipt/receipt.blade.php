@@ -76,41 +76,41 @@
                         <tr>
                             <th scope="col">@lang('site.fee type')</th>
                             <th scope="col">@lang('site.fee value')</th>
-                            <th scope="col">@lang('site.payment date')</th>
-                            <th scope="col">@lang('site.paid amount')</th>
+                            <th scope="col">@lang('site.registration date')</th>
+                            <th scope="col">@lang('site.paid')</th>
                             {{-- <th scope="col">@lang('site.paid date')</th> --}}
                             <th scope="col">@lang('site.remaining')</th>
-                            <th scope="col">@lang('site.receipt description')</th>
+                            <th scope="col">@lang('site.desription')</th>
                         </tr>
+                        <form id="alldata">
 
-                        @foreach ($fees as $feestopaid)
-                            <tr>
-                                {{-- <td scope="row"> {{$feestopaid['id']}}</td> --}}
-                                <td scope="row"> {{ $feestopaid['fee_type']['fee'] }} </td>
-                                <td scope="row"> {{ $feestopaid['value'] }} </td>
-                                <td scope="row"> {{ $feestopaid['payment']['created_at']->format('d-m-Y') }} </td>
-                                @if (!empty($feestopaid['payment']))
-                                    <td scope="row">{{ $feestopaid['payment']['paid_amount'] }} </td>
-                                    <td scope="row"> {{ $feestopaid['payment']['remaining'] }} </td>
-                                @else
-                                    <td scope="row">0 </td>
-                                    <td scope="row"> {{ $feestopaid['value'] }} </td>
-                                @endif
-                                <td scope="row"> </td>
-                            </tr>
-                        @endforeach
+                            @if ($old_payment->count() > 0)
+                                @foreach ($old_payment as $feestopaid)
+                                    <tr>
+                                        {{-- <td scope="row"> feestopaid['id']</td> -- --}}
+                                        <td scope="row"> {{ $feestopaid['cours_fee']['fee_type']['fee'] }} </td>
+                                        <td scope="row"> {{ $feestopaid['cours_fee']['value'] }} </td>
+                                        <td scope="row"> {{ $std[0]['created_at']->format('d-m-Y') }} </td>
+                                        <td scope="row"> {{ $feestopaid['paid_amount'] }} </td>
+                                        <td scope="row"> {{ $feestopaid['remaining'] }} </td>
 
+                                    </tr>
+                                @endforeach
+
+                            @endif
+                        </form>
                         <tr scope="col" class="text-warning text-uppercase">
                             <td scope="row">@lang('site.cours fee total') </td>
                             <td scope="row"> {{ $std[0]['cours_fee_total'] }}</td>
                             <td scope="row"> </td>
                             <td scope="row"> {{ $std[0]['cours_fee_total'] - $std[0]['remaining'] }} </td>
                             <td scope="row"> {{ $std[0]['remaining'] }}</td>
-                            <td scope="row"> </td>
                         </tr>
                     </table>
                 </div>
             @endisset
+
+
         </div>
     </section>
 
@@ -119,6 +119,6 @@
 
 @section('script')
     <script src="{{ URL::asset('assets/assets/vendor_plugins/JqueryPrintArea/demo/jquery.PrintArea.js') }}"></script>
-<script src="{{ URL::asset('assets/app-assets/js/pages/invoice.js') }}"></script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/invoice.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/print.js') }}"></script>
 @endsection

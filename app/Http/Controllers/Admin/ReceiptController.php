@@ -40,11 +40,13 @@ class ReceiptController extends Controller
                 $fees  = CoursFee::wherein('id', $fee_required)
                     ->with('fee_type', 'currency', 'payment:id,amount,paid_amount,remaining,cours_fee_id,created_at')
                     ->get();
+                    // return $fees;
+                    $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])->with('cours_fee')->get();
 
-                $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])->get();
+                    //  return $old_payment;
                 $receipt = Receipt::find($receipt_id);
                 $data = [
-                    'std' =>$std,
+                    'std' => $std,
                     'user' => $user,
                     'cours' => $cours,
                     'fee_required' => $fee_required,
@@ -52,9 +54,16 @@ class ReceiptController extends Controller
                     'old_payment' => $old_payment,
                     'receipt' => $receipt,
                 ];
+
                 Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
-              
-                return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'fees', 'receipt'));
+                // Mail::to("Kamar")->send(new NotifyMailPaymentReceipt($data));
+                if (Mail::failures()) {
+                    // toastr()->error(__('site.eror in sending email'));
+                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours','old_payment', 'fees', 'receipt'));
+                } else {
+
+                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment','fees', 'receipt'));
+                }
             } else {
 
                 toastr()->error(__('site.this registration not found'));
@@ -68,5 +77,24 @@ class ReceiptController extends Controller
 
 
         // return $id." - ". $t;
+    }
+
+
+    public function All_receipt()
+    {
+
+        try {
+            $receipt =  Receipt::orderBy('id', 'DESC')
+                ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email'])
+                ->paginate(10000);
+
+            //  return $receipt;
+            // dd($receipt[0]['StdRegistration']['cours']['grade']['grade']);
+            // dd($receipt);
+            return view('admin.receipt.index', compact('receipt'));
+            //code...
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

@@ -55,8 +55,13 @@
                         <input type="hidden" name="cours_id" id="cours_id"
                             value="{{ encript_custome($cours[0]['id']) }}">
                         <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
+                        <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
                         <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr"
                             value="{{ $fees[0]['currency']['abbr'] }}">
+                        <input type="hidden" name="cours_currency_id" id="cours_currency_abbr"
+                            value="{{ $fees[0]['currency']['id'] }}">
+
+
 
                         @csrf
                         <div class="col-md-6" id="normal_pament">
@@ -83,8 +88,7 @@
                                     <label>@lang('site.cours currency') </label>
                                     <select name="cours_currency" class="form-control select2" style="width: 100%;">
                                         @foreach ($cours_currency as $cours_currencys)
-
-                                        @if ($fees[0]['currency']['id'] != $cours_currencys->id)
+                                            @if ($fees[0]['currency']['id'] != $cours_currencys->id)
                                                 <option value="{{ $cours_currencys->id }}">
 
                                                     {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
@@ -188,21 +192,36 @@
                                 <th scope="col">@lang('site.desription')</th>
                             </tr>
                             <form id="alldata">
-                                @foreach ($fees as $feestopaid)
-                                    <tr>
-                                        {{-- <td scope="row"> feestopaid['id']</td> -- --}}
-                                        <td scope="row"> {{ $feestopaid['fee_type']['fee'] }} </td>
-                                        <td scope="row"> {{ $feestopaid['value'] }} </td>
-                                        <td scope="row"> {{ $std[0]['created_at']->format('d-m-Y') }} </td>
-                                        @if (!empty($feestopaid['payment']))
-                                            <td scope="row">{{ $feestopaid['payment']['paid_amount'] }} </td>
-                                            <td scope="row"> {{ $feestopaid['payment']['remaining'] }} </td>
-                                        @else
-                                            <td scope="row">0 </td>
+
+                                @if ($payment->count() > 0)
+                                    @foreach ($payment as $feestopaid)
+                                        <tr>
+                                            {{-- <td scope="row"> feestopaid['id']</td> -- --}}
+                                            <td scope="row"> {{ $feestopaid['cours_fee']['fee_type']['fee'] }} </td>
+                                            <td scope="row"> {{ $feestopaid['cours_fee']['value'] }} </td>
+                                            <td scope="row"> {{ $std[0]['created_at']->format('d-m-Y') }} </td>
+                                            <td scope="row"> {{ $feestopaid['paid_amount'] }} </td>
+                                            <td scope="row"> {{ $feestopaid['remaining'] }} </td>
+
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    @foreach ($fees as $feestopaid)
+                                        <tr>
+                                            {{-- <td scope="row"> feestopaid['id']</td> -- --}}
+                                            <td scope="row"> {{ $feestopaid['fee_type']['fee'] }} </td>
                                             <td scope="row"> {{ $feestopaid['value'] }} </td>
-                                        @endif
-                                    </tr>
-                                @endforeach
+                                            <td scope="row"> {{ $std[0]['created_at']->format('d-m-Y') }} </td>
+                                            @if (!empty($feestopaid['payment']))
+                                                <td scope="row">{{ $feestopaid['payment']['paid_amount'] }} </td>
+                                                <td scope="row"> {{ $feestopaid['payment']['remaining'] }} </td>
+                                            @else
+                                                <td scope="row">0 </td>
+                                                <td scope="row"> {{ $feestopaid['value'] }} </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </form>
                             <tr scope="col" class="text-warning text-uppercase">
                                 <td scope="row">@lang('site.cours fee total') </td>
@@ -227,12 +246,16 @@
                         </div>
                     </div>
                 </div>
-            @endsection
+            </div>
+        </div>
+    </div>
+    
+    @endsection
 
 
-            @section('script')
-                <script src="{{ URL::asset('assets/custome_js/payment_for_cours.js') }}"></script>
-                <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
-                <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
-                </script>
-            @endsection
+    @section('script')
+        <script src="{{ URL::asset('assets/custome_js/payment_for_cours.js') }}"></script>
+        <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
+        <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
+        </script>
+    @endsection

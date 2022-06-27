@@ -25,7 +25,7 @@ class Payment extends Model
     ];
     public function  cours_fee()
     {
-        return $this->belongsTo(CoursFee::class, 'cours_fee_id', 'id');
+        return $this->belongsTo(CoursFee::class, 'cours_fee_id', 'id')->with('fee_type', 'currency');
     }
 
 }

@@ -189,7 +189,7 @@ $routes = Route::current()->getName();
                         </a>
                     </li>
                     {{-- @endcan --}}
-                    <li><a href="{{ route('admin.students.get_std_to_payment') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                    <li><a href="{{ route('admin.all-receipt') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
                             <i class="ti-more">
                             </i>
                             @lang('site.edit receipt and payment')

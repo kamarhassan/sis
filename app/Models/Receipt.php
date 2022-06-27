@@ -22,4 +22,21 @@ class Receipt extends Model
     protected $hidden = [
         'updated_at'
     ];
+
+
+    public function  StdRegistration()
+    {
+        return $this->belongsTo(StudentsRegistration::class,'studentsRegistration_id','id')
+        ->with('cours');
+    }
+
+
+    public function  students()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
+
+
+
 }

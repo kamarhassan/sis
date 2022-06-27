@@ -49,20 +49,20 @@ class PaymentController extends Controller
             //  return $std;
             if ($std->count() > 0) {
                 $user =  User::where('id', $user_id)->select('id', 'name')->get();
-
                 $cours = Cours::where('id', $cours_id)
                     ->with('grade:id,grade', 'level:id,level', 'teacher:id,name')
                     ->get();
-
                 $fee_required =  string_to_array($std[0]['feesRequired']);
-
                 $fees  = CoursFee::wherein('id', $fee_required)
-                    ->with('fee_type', 'currency', 'payment:id,amount,paid_amount,remaining,cours_fee_id')
+                    ->with('fee_type', 'currency')
                     ->get();
+                //  return $fees;
+                $payment = Payment::where('studentsRegistration_id', $std[0]['id'])->with('cours_fee')->get();
+                // return $payment;
 
-                $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])->get();
+                // return $payment;
                 $cours_currency = Currency::active()->get();
-                return  view('admin.payment.payment', compact('std', 'user', 'cours', 'fees', 'cours_currency'));
+                return  view('admin.payment.payment', compact('std', 'user', 'cours', 'payment', 'fees', 'cours_currency'));
             } else {
 
                 toastr()->error(__('site.this registration not found'));
@@ -80,7 +80,7 @@ class PaymentController extends Controller
     public function savepayment(PaymentRequest $request)
     {
 
-        // return $request;
+
         try {
             DB::beginTransaction();
             //code...
@@ -96,6 +96,7 @@ class PaymentController extends Controller
                 $check_number = null;
                 // $bank=$request->bank;
             }
+
             if ($std->count() > 0) {
                 // return $std[0]['id'];
                 $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])
@@ -126,8 +127,9 @@ class PaymentController extends Controller
                         $init_amount = $request->other_amount_to_paid * $request->rate;
                     }
                 } else {
+                    // return "line 129";
                     $init_amount  = $request->amount_to_paid;
-                    $payment_currency = $old_payment[0]['cours_fee']['currencies_id'];
+                    $payment_currency = $request->cours_currency_id;
                     // return $payment_currency;
                 }
 
@@ -145,42 +147,7 @@ class PaymentController extends Controller
                     'checkNum' => $check_number,
                     // 'bank_' => $bank,
                 ]);
-                foreach ($old_payment as $key => $value) {
-                    # code...
-                    if ($value->remaining != 0) {
-                        if ($request->amount_to_paid  >=  $value->remaining) {
-                            /**
-                             'remaining' => $value->amount-($request->amount_to_paid + $value->paid_amount),
-                             hye l 2ime l2ejmelye lal fee type masal exam aw book aw fee registration aw shi tene
-                             l 2ime lejmelye na2es yale dafa3on ma3 yale keyen defe3on abel
-                             l2an momken ykon defe3 jeze2 men hede l 2ime
-                             w yale keyen defe3on bzyde 3layhon l2ime ljdide
-                             */
-                            Payment::where('id', $value->id)
-                                ->update([
-                                    'paid_amount' => $value->amount,
-                                    'remaining' => 0,
-                                    'receipt_id' => $receipt_information->id,
-                                    'created_at' => Carbon::now()
-                                ]);
-                            $request->amount_to_paid -= $value->remaining;
-                        } else {
 
-                            Payment::where('id', $value->id)->update([
-                                'paid_amount' => $request->amount_to_paid,
-                                'remaining' => $value->amount - $request->amount_to_paid,
-                                'receipt_id' => $receipt_information->id,
-                                'created_at' => Carbon::now()
-                            ]);
-                            break;
-                        }
-                    }
-                }
-
-                // $old_payment->where('id', $value->id)
-                //     ->update($payment_data);
-
-                // cours_fee_total  remaining
                 $std_update_remaining = StudentsRegistration::where([
                     'user_id'  => decrypt($request->user_id),
                     'cours_id' => decrypt($request->cours_id)
@@ -188,16 +155,96 @@ class PaymentController extends Controller
                     'remaining' => ($std[0]['remaining'] - $init_amount)
                 ]);
 
-            //    Mail::to("kamarhassan044@gmail.com")->send(new NotifyMailPaymentReceipt);
-            //  return $mail;
-             DB::commit();
-                // return response()->json("remaning       ".($std[0]['remaining'] - $init_amount));
-                // return response()->json(( $init_amount));
-                // return response()->json($std[0]['cours_fee_total'] );
-                // $notification = [
-                //     'message' => __('site.payment has been success'),
-                //     'status' => 'success',
-                // ];
+                if ($old_payment->count() > 0) {
+                    // return 150;
+
+                    foreach ($old_payment as $key => $value) {
+                        // $it[] =["initinal",'init_amount'=>$init_amount,'remaining'=>$value->remaining];
+                        if ($value->remaining != 0) {
+                            if ($init_amount >=  $value->remaining) {
+                                /**
+                                 'remaining' => $value->amount-($request->amount_to_paid + $value->paid_amount),
+                                 hye l 2ime l2ejmelye lal fee type masal exam aw book aw fee registration aw shi tene
+                                 l 2ime lejmelye na2es yale dafa3on ma3 yale keyen defe3on abel
+                                 l2an momken ykon defe3 jeze2 men hede l 2ime
+                                 w yale keyen defe3on bzyde 3layhon l2ime ljdide
+                                 */
+                                Payment::where('id', $value->id)
+                                ->update([
+                                    'paid_amount' =>   $value->amount,
+                                    'remaining' => 0,
+                                    'receipt_id' => $receipt_information->id,
+                                    'created_at' => Carbon::now()
+                                ]);
+                                $init_amount -= $value->remaining;
+                                // $it[] =["init_amount >= remaining",'init_amount'=>$init_amount,'remaining'=>$value->remaining];
+
+                            } else {
+                                Payment::where('id', $value->id)->update([
+                                    'paid_amount' => $init_amount + $value->paid_amount ,
+                                    'remaining' => $value->amount - ($init_amount + $value->paid_amount),
+                                    'receipt_id' => $receipt_information->id,
+                                    'created_at' => Carbon::now()
+                                ]);
+                                // $it[] =["else ",'init_amount'=>$init_amount,'remaining'=>$value->remaining];
+                                break;
+                            }
+                        }
+                    }
+                    // return $it;
+                } else {
+
+                    $fee_required =  string_to_array($std[0]['feesRequired']);
+                    $fees  = CoursFee::wherein('id', $fee_required)
+                        ->with('fee_type', 'currency')
+                        ->get();
+                    foreach ($fees as $key => $fee) {
+                        if ($init_amount == 0) {
+                            Payment::Create([
+                                'studentsRegistration_id' => $std[0]['id'],
+                                'amount' => $fee['value'], // initial amount
+                                'paid_amount' => 0, //amount paided from students
+                                'cours_fee_id' => $fee['id'], //
+                                'remaining' => $fee['value'], //
+                                'receipt_id' => $receipt_information['id'], //
+                            ]);
+                        } else {
+                            if ($init_amount <= $fee['value']) {
+                                //  return    $fee['value'];
+                                Payment::Create(
+                                    [
+                                        'studentsRegistration_id' => $std[0]['id'],
+                                        'amount' => $fee['value'], // initial amount
+                                        'paid_amount' => $init_amount, //amount paided from students
+                                        'remaining' => $fee['value'] - $init_amount, //
+                                        'cours_fee_id' => $fee['id'], //
+                                        'receipt_id' => $receipt_information['id'], //
+                                    ]
+                                );
+                                $init_amount = 0;
+                            } else {
+                                Payment::Create(
+                                    [
+                                        'studentsRegistration_id' => $std[0]['id'],
+                                        'amount' => $fee['value'], // initial amount
+                                        'paid_amount' => $fee['value'], //amount paided from students
+                                        'remaining' => 0, //
+                                        'cours_fee_id' => $fee['id'], //
+                                        'receipt_id' => $receipt_information['id'], //
+                                    ]
+                                );
+                                $init_amount -= $fee['value'];
+                            }
+                        }
+
+                        # code...
+                    }
+                    // return $fees_requird;
+                }
+
+
+                DB::commit();
+
                 if ($std_update_remaining)
                     $notification = [
                         'message' => __('site.payment has been success'),
@@ -219,18 +266,13 @@ class PaymentController extends Controller
                 // DB::commit();
             }
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
+            DB::rollBack();
             $notification = [
                 'message' => __('site.you have error'),
                 'status' => 'error',
 
             ];
-            // $notification = [
-            //     'message' => __('site.you have error'),
-            //     'status' => 'error',
-
-            // ];
             return  response()->json($notification);
         }
     }

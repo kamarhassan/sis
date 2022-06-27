@@ -207,7 +207,7 @@ class Registration extends Component
         try {
             // dd($this->registration_students);
             $fee_cours_and_reaminning = $this->max_amount_to_paid();
-            $this->registration_students = $this->save_std_regitration(0,0); // no fee
+            $this->registration_students = $this->save_std_regitration(0, 0); // no fee
             // save payment
             // dd( $this->registration_students);
             if ($this->registration_students->id > 0) {
@@ -217,12 +217,21 @@ class Registration extends Component
                 );
 
                 $this->select_fee_required =  $this->get_fee_required_cours($this->registration_students->feesRequired);
+
                 $fee_cours_and_reaminning = $this->max_amount_to_paid();
+
                 // dd(  $fee_cours_and_reaminning);
-                $this->save_std_regitration($fee_cours_and_reaminning,$fee_cours_and_reaminning);
+                $this->save_std_regitration($fee_cours_and_reaminning, $fee_cours_and_reaminning);
                 //return redirect()->route('admin.students.Registration-2/{id}', $this->registration_students->id);
-                $this->current_step = 3;
+
+
                 DB::commit();
+
+                return redirect()->route('admin.payment.user_paid_for_cours',
+                [$this->registration_students->cours_id, $this->registration_students->user_id]);
+                // return redirect()->route('admin.payment.user_paid_for_cours', $this->registration_students->user_id, $this->registration_students->cours_id);
+
+                // return redirect()->route('admin.payment.user_paid_for_cours', $this->registration_students->user_id, $this->registration_students->cours_id);
             }
         } catch (\Throwable $th) {
             DB::rollback();
@@ -265,7 +274,7 @@ class Registration extends Component
                 'payType' => $this->payment_type,
                 'user_id' => $this->registration_students->user_id,
                 'amount_total' => $this->amount_to_paid,
-                'studentsRegistration_id'=>$this->registration_students->id,
+                'studentsRegistration_id' => $this->registration_students->id,
             ]);
 
             $this->receipt_information_id = $receipt_information->id;
@@ -278,7 +287,7 @@ class Registration extends Component
                 'payType' => $this->payment_type,
                 'user_id' => $this->registration_students->user_id,
                 'amount_total' => $this->amount_to_paid,
-                'studentsRegistration_id'=>$this->registration_students->id,
+                'studentsRegistration_id' => $this->registration_students->id,
             ]);
             $this->receipt_information_id = $receipt_id;
         }
@@ -342,10 +351,10 @@ class Registration extends Component
                         'receipt_id' => $this->receipt_information->id,
                     ];
 
-                    $this->amount_to_paid=0;
+                    $this->amount_to_paid = 0;
                     // break;
                 } else {
-                    if($this->amount_to_paid==0){
+                    if ($this->amount_to_paid == 0) {
 
                         $payment[] =   Payment::updateOrCreate(
                             [
@@ -355,14 +364,13 @@ class Registration extends Component
                             [
                                 'studentsRegistration_id' => $this->registration_students->id,
                                 'amount' => $fee['fee_value'], // initial amount
-                                'paid_amount' =>0, //amount paided from students
+                                'paid_amount' => 0, //amount paided from students
                                 'cours_fee_id' => $fee['id'], //
-                                'remaining' => $fee['fee_value'] , //
+                                'remaining' => $fee['fee_value'], //
                                 'receipt_id' => $this->receipt_information->id, //
                             ]
                         );
-
-                    }else {
+                    } else {
                         $payment[] =   Payment::updateOrCreate(
                             [
                                 'studentsRegistration_id' => $this->registration_students->id,
@@ -392,7 +400,6 @@ class Registration extends Component
                         ];
                         $this->amount_to_paid = $this->amount_to_paid - $fee['fee_value'];
                     }
-
                 }
             }
             // dd($this->receipt_information);
