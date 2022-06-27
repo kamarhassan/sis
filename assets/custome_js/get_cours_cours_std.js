@@ -19,7 +19,7 @@ function get_cours_of_std(id, route_, token_) {
 function set_cours_info_into_modal(data,route_) {
     var html = '<div class="text-center" id="cours_details">';
     for (let i = 0; i < data.length; i++) {
-        html += '<a href="'+route_.split('Students')[0]+'Payment/'+data[i]['cours_id'] + '/'+ data[i]['user_id']+'" class="text-white hover-warning text-center align-center"><span class="text-center align-center">';
+        html += '<a href="'+route_.split('Students')[0]+'Payment/'+encypt(data[i]['cours_id'] )+ '/'+ data[i]['user_id']+'" class="text-white hover-warning text-center align-center"><span class="text-center align-center">';
         html += data[i]['created_at'].split('T')[0] + ' - #';
         html += data[i]['cours_id'] + '#'+ data[i]['user_id'] + '#';
         html += data[i]['cours']['grade']['grade'] + ' - ';

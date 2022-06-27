@@ -1,54 +1,43 @@
+<table class="no-border">
+    <tr>
+        <td  colspan="2">
+            <h2 class="d-inline"><span class="font-size-30">@lang('site.receipt')</span></h2>
+        </td>
+        <td  colspan="2">
+            <h3><label>@lang('site.Release Date')</label> :{{ $receipt->created_at->format('d-m-Y') }}
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td  colspan="2">
+            <strong>@lang('site.from')</strong>
+            <address>
 
-<table>
+                <strong class="text-blue bb-1 font-size-24">{{ $user->name }}</strong>
+                <br>@lang('site.registration id') : {{ $std[0]['id'] }}<br>
+                <br>@lang('site.registration date') : {{ $std[0]['created_at']->format('d-m-Y') }}<br>
+
+            </address>
+        </td>
+        <td  colspan="2">
+            <strong>@lang('site.to')</strong>
+            <address>
+                <strong class="text-blue bb-1  font-size-24">@lang('site.site name') </strong><br>
+                <strong class="d-inline">العنوان from database settings table and site name</strong><br>
+                <strong>تفاصيل email , nb pfone ...... from database settings table and site name</strong>
+            </address>
+        </td>
+    </tr>
+    <tr>
+        <td><b>receipr id # {{ $receipt->id }}</b></td>
+        <td><b>user ID : {{ $std[0]['cours_id'] }}</b></td>
+        <td><b>cours : {{ $std[0]['user_id'] }}</b></td>
+        <td><b>amount: {{ $receipt->amount }}</b></td>
+    </tr>
 </table>
 
-<div class=" row">
-    <div class="col-12">
-        <div class="bb-1 clearFix">
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="page-header">
-            <h2 class="d-inline"><span class="font-size-30">@lang('site.receipt')</span></h2>
-            <div class="pull-right text-right">
-                <h3><label>@lang('site.Release Date')</label> :{{ $receipt->created_at->format('d-m-Y') }}
-                </h3>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row invoice-info">
-    <div class="col-md-6 invoice-col">
-        <strong>@lang('site.from')</strong>
-        <address>
 
-            <strong class="text-blue bb-1 font-size-24">{{ $user->name }}</strong>
-            <br>@lang('site.registration id') : {{ $std[0]['id'] }}<br>
-            <br>@lang('site.registration date') : {{ $std[0]['created_at']->format('d-m-Y') }}<br>
 
-        </address>
-    </div>
-    <div class="col-md-6 invoice-col">
-        <strong>@lang('site.to')</strong>
-        <address>
-            <strong class="text-blue bb-1  font-size-24">@lang('site.site name') </strong><br>
-            <strong class="d-inline">العنوان from database settings table and site name</strong><br>
-            <strong>تفاصيل email , nb pfone ...... from database settings table and site name</strong>
-        </address>
-    </div>
-    <div class="col-sm-12 invoice-col mb-15">
-        <div class="invoice-details row no-margin">
-            <div class="col-md-6 col-lg-3"><b>receipr id # {{ $receipt->id }}</b></div>
-
-            <div class="col-md-6 col-lg-3"><b>user ID : {{ $std[0]['cours_id'] }}</b></div>
-            <div class="col-md-6 col-lg-3"><b>cours : {{ $std[0]['user_id'] }}</b>
-
-            </div>
-            <div class="col-md-6 col-lg-3"><b>amount: {{ $receipt->amount }}</b></div>
-        </div>
-    </div>
-
-</div>
 <div class="col-md-12">
     @isset($fees)
         <div class="table-responsive">
