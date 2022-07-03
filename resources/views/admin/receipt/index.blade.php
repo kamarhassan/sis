@@ -66,7 +66,7 @@
                                 <td>{{ $receipts['created_at']->format('d-m-Y') }}</td>
 
                                 <td>
-                                    <a class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')" onclick="">
+                                    <a href="{{route('admin.students.payment.edit', $receipts['id'])}}" class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')" >
                                     </a>
                                     <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary" title="@lang('site.delete')" onclick="">
                                     </a>

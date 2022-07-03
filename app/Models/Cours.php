@@ -92,6 +92,10 @@ class Cours extends Model
     {
         return $this->hasOne(Admin::class, 'id', 'teacher_id');
     }
+    public function teacher_name()
+    {
+        return $this->hasOne(Admin::class, 'id', 'teacher_id')->select('id','name');
+    }
 
     public function students()
     {
@@ -103,5 +107,5 @@ class Cours extends Model
     {
         return $this->hasMany(CoursFee::class,'cours_id','id');
     }
-    
+
 }

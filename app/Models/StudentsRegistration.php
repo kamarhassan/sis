@@ -24,7 +24,8 @@ class StudentsRegistration extends Model
     {
         return $this->hasone(Cours::class, 'id', 'cours_id')
             ->with('grade:id,grade')
-            ->with('level:id,level');
+            ->with('level:id,level')
+            ->with('teacher_name');
     }
 
 
@@ -32,6 +33,6 @@ class StudentsRegistration extends Model
     {
         return $this->hasMany(CoursFee::class,'cours_id','id');
     }
-  
+
 
 }

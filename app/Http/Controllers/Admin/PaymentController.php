@@ -19,21 +19,23 @@ use App\Mail\NotifyMailPaymentReceipt;
 
 class PaymentController extends Controller
 {
-    //
 
-    public function index()
+
+    public function edit_payment($id)
     {
-        return "1";
+        $receipt = Receipt::find($id);
+        $cours = $receipt->StdRegistration;
+        $currency = $receipt->currency;
+        $payment = $receipt->payment;
+        $students = $receipt->students;
+        $currency_active = Currency::where('active', 1)->get();
+        return view('admin.payment.edit_payment', compact('receipt', 'currency', 'payment', 'cours', 'students',
+        'currency_active'));
     }
-
-
-
-
-
     /****
      *
-     * after choose one cours to be paid
-     * it get all inforation needed
+     *  after choose one cours to be paid
+     *  it get all inforation needed
      *  $user ,  $cours ,   $fee_required ,   $fees  ,  $old_payment
      *
      */
@@ -170,18 +172,18 @@ class PaymentController extends Controller
                                  w yale keyen defe3on bzyde 3layhon l2ime ljdide
                                  */
                                 Payment::where('id', $value->id)
-                                ->update([
-                                    'paid_amount' =>   $value->amount,
-                                    'remaining' => 0,
-                                    'receipt_id' => $receipt_information->id,
-                                    'created_at' => Carbon::now()
-                                ]);
+                                    ->update([
+                                        'paid_amount' =>   $value->amount,
+                                        'remaining' => 0,
+                                        'receipt_id' => $receipt_information->id,
+                                        'created_at' => Carbon::now()
+                                    ]);
                                 $init_amount -= $value->remaining;
                                 // $it[] =["init_amount >= remaining",'init_amount'=>$init_amount,'remaining'=>$value->remaining];
 
                             } else {
                                 Payment::where('id', $value->id)->update([
-                                    'paid_amount' => $init_amount + $value->paid_amount ,
+                                    'paid_amount' => $init_amount + $value->paid_amount,
                                     'remaining' => $value->amount - ($init_amount + $value->paid_amount),
                                     'receipt_id' => $receipt_information->id,
                                     'created_at' => Carbon::now()
@@ -276,4 +278,7 @@ class PaymentController extends Controller
             return  response()->json($notification);
         }
     }
+    /****
+     * from here all methode using in controller
+     */
 }

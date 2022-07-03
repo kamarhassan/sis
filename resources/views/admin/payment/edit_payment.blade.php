@@ -9,25 +9,23 @@
         <div class="box-body">
             <div class="box-header with-border">
                 <h3 class="box-title text-capitalize text-warning text-uppercase">
-                    {{-- <span>@lang('site.pay')</span> --}}
                 </h3>
             </div>
             <div class="row show-grid">
                 <div class="col-md-6">
                     <span>
                         @lang('site.student name') : <span class="bb-1 border-success">
-                            {{ $user[0]['name'] }}
-
+                            {{ $students->name }}
                         </span>
                     </span>
                 </div>
                 <div class="col-md-6">
                     <span>
                         @lang('site.cours info') : <span class="bb-1 border-success">
-                            @if ($cours[0]['grade']['grade'] != '' && $cours[0]['level']['level'] != '' && $cours[0]['teacher']['name'] != '')
-                                {{ $cours[0]['grade']['grade'] }} - {{ $cours[0]['level']['level'] }} -
-                                {{ $cours[0]['teacher']['name'] }}
-                            @endif
+                            @isset($cours)
+                                {{ $cours['cours']['grade']['grade'] }} - {{ $cours['cours']['level']['level'] }} -
+                                {{ $cours['cours']['teacher_name']['name'] }}
+                            @endisset
                         </span>
                     </span>
                 </div>
@@ -40,8 +38,7 @@
                 <input type="hidden">
                 <h4 class=" bb-1  border-danger box-title text-capitalize  text-uppercase" style="color:rgb(255, 153, 0)">
                     @lang('site.fee of this cours is')
-                    {{ $fees[0]['currency']['currency'] }} - {{ $fees[0]['currency']['abbr'] }} -
-                    {{ $fees[0]['currency']['symbol'] }}
+                    {{ $currency['currency'] }} - {{ $currency['abbr'] }} - {{ $currency['symbol'] }}
                 </h4>
             </div>
             <form id="payment_data">
@@ -52,21 +49,18 @@
                                 @lang('site.amount') :
                             </span>
                         </div>
-                        <input type="hidden" name="cours_id" id="cours_id"
-                            value="{{ encript_custome($cours[0]['id']) }}">
-                        <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
-                        <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
-                        <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr"
-                            value="{{ $fees[0]['currency']['abbr'] }}">
-                        <input type="hidden" name="cours_currency_id" id="cours_currency_abbr"
-                            value="{{ $fees[0]['currency']['id'] }}">
+                        <input type="hidden" name="cours_id" id="cours_id" value="{{$cours['cours']['id']}}">
+                        <input type="hidden" name="user_id" id="user_id" value="{{ $students->id }}">
+
+                        <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr" value="{{ $currency['abbr'] }}">
+                        <input type="hidden" name="cours_currency_id" id="cours_currency_abbr" value="{{ $currency['id'] }}">
 
 
 
                         @csrf
                         <div class="col-md-6" id="normal_pament">
                             <input type="number" id="amount_to_paid" step="any" class='form-control'
-                                placeholder="@lang('site.paid fee here')" name="amount_to_paid" value="0">
+                                placeholder="@lang('site.paid fee here')" name="amount_to_paid" value="{{ $receipt['amount'] }}">
                             <span class="text-danger" id="amount_to_paid_"> </span>
                         </div>
 
@@ -74,27 +68,30 @@
                             <div class="col-md-6" id="normal_pament">
                                 @lang('site.paid fee here')
                                 <input type="number" id="other_amount_to_paid" step="any" class='form-control'
-                                    placeholder="@lang('site.paid fee here')" name="other_amount_to_paid" value="0">
+                                    placeholder="@lang('site.paid fee here')" name="other_amount_to_paid"
+                                    value="{{ $receipt['other_amount'] }}">
                                 <span class="text-danger" id="other_amount_to_paid_"> </span>
                             </div>
                             <div class="col-md-6" id="normal_pament">
                                 @lang('site.rate exchange')
                                 <input type="number" id="rate" step="any" class='form-control'
-                                    placeholder="@lang('site.rate')" name="rate" value="0">
+                                    placeholder="@lang('site.rate')" name="rate"
+                                    value="{{ $receipt['rate_exchange'] }}">
                                 <span class="text-danger" id="rate_"> </span>
                             </div>
                             <div class="col-md-6" id="normal_pament">
                                 <div class="form-group">
                                     <label>@lang('site.cours currency') </label>
                                     <select name="cours_currency" class="form-control select2" style="width: 100%;">
-                                        @foreach ($cours_currency as $cours_currencys)
-                                            @if ($fees[0]['currency']['id'] != $cours_currencys->id)
-                                                <option value="{{ $cours_currencys->id }}">
-
-                                                    {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
-                                                        </option>
-                                            @endif
-                                        @endforeach
+                                        @isset($currency_active)
+                                            @foreach ($currency_active as $cours_currencys)
+                                                @if ($currency['id'] != $cours_currencys->id)
+                                                    <option value="{{ $cours_currencys->id }}">
+                                                        {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
+                                                            </option>
+                                                @endif
+                                            @endforeach
+                                        @endisset
                                     </select>
                                 </div>
                             </div>
@@ -121,7 +118,8 @@
                         </div>
                         <div class="col-md-6">
                             <input type="text" class='form-control' placeholder="@lang('site.description')"
-                                name="receipt_description" id="receipt_description">
+                                name="receipt_description" id="receipt_description"
+                                value="{{ $receipt['description'] }}">
                             <span class="bb-1 border-success">
                         </div>
                     </div>
@@ -157,7 +155,8 @@
                                 <label for="example-text-input" class="col-sm-1 col-form-label">#</label>
                                 <div class="col-sm-10">
                                     <input class='form-control' id="check_number" type="number" step="any"
-                                        placeholder="@lang('site.Enter check number')" name="check_number" id="check_number">
+                                        placeholder="@lang('site.Enter check number')" name="check_number" id="check_number"
+                                        value="{{ $receipt['checkNum'] }}">
                                 </div>
                                 <span class="text-danger" id="check_number_"> </span>
                             </div>
@@ -179,7 +178,8 @@
                 </div>
             </form>
             <div class="col-md-12">
-                @isset($fees)
+                @isset($payment)
+                {{-- {{dd($payment)}} --}}
                     <div class="table-responsive">
                         <table id="payment_table" class="table table-hover mb-0">
                             <tr>
@@ -192,43 +192,44 @@
                                 {{-- <th scope="col">@lang('site.desription')</th> --}}
                             </tr>
                             <form id="alldata">
-
                                 @if ($payment->count() > 0)
-                                    @foreach ($payment as $feestopaid)
+
+                                    @foreach ($payment as $old_payment)
                                         <tr>
-                                            {{-- <td scope="row"> feestopaid['id']</td> -- --}}
-                                            <td scope="row"> {{ $feestopaid['cours_fee']['fee_type']['fee'] }} </td>
-                                            <td scope="row"> {{ $feestopaid['cours_fee']['value'] }} </td>
-                                            <td scope="row"> {{ $std[0]['created_at']->format('d-m-Y') }} </td>
-                                            <td scope="row"> {{ $feestopaid['paid_amount'] }} </td>
-                                            <td scope="row"> {{ $feestopaid['remaining'] }} </td>
+
+                                            <td scope="row"> 1</td>
+                                            <td scope="row">2 </td>
+                                            <td scope="row">3 </td>
+                                            <td scope="row">4 </td>
+                                            {{-- <td scope=" row">5 </td> --}}
+
 
                                         </tr>
                                     @endforeach
                                 @else
-                                    @foreach ($fees as $feestopaid)
+                                    {{-- @foreach ($fees as $feestopaid)
                                         <tr>
-                                            {{-- <td scope="row"> feestopaid['id']</td> -- --}}
-                                            <td scope="row"> {{ $feestopaid['fee_type']['fee'] }} </td>
-                                            <td scope="row"> {{ $feestopaid['value'] }} </td>
-                                            <td scope="row"> {{ $std[0]['created_at']->format('d-m-Y') }} </td>
+
+                                            <td scope="row">32 </td>
+                                            <td scope="row"> 32</td>
+                                            <td scope="row"> 32</td>
                                             @if (!empty($feestopaid['payment']))
-                                                <td scope="row">{{ $feestopaid['payment']['paid_amount'] }} </td>
-                                                <td scope="row"> {{ $feestopaid['payment']['remaining'] }} </td>
+                                                <td scope="row"> 32 </td>
+                                                <td scope="row"> 32 </td>
                                             @else
                                                 <td scope="row">0 </td>
-                                                <td scope="row"> {{ $feestopaid['value'] }} </td>
+                                                <td scope="row">  </td>
                                             @endif
                                         </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                 @endif
                             </form>
                             <tr scope="col" class="text-warning text-uppercase">
                                 <td scope="row">@lang('site.cours fee total') </td>
-                                <td scope="row"> {{ $std[0]['cours_fee_total'] }}</td>
                                 <td scope="row"> </td>
-                                <td scope="row"> {{ $std[0]['cours_fee_total'] - $std[0]['remaining'] }} </td>
-                                <td scope="row"> {{ $std[0]['remaining'] }}</td>
+                                <td scope="row"> </td>
+                                <td scope="row"> </td>
+                                <td scope="row"> </td>
                             </tr>
                         </table>
                     </div>
@@ -239,9 +240,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
-                                type="submit"
-                                onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}','{{ csrf_token() }}','{{ encript_custome($std[0]['user_id']) }}','{{ encript_custome($std[0]['cours_id']) }}');">
-                                <span class=""> @lang('site.next step')</span>
+                                type="submit" {{-- onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}','{{ csrf_token() }}','{{ $std[0]['user_id'] }}','{{ $std[0]['cours_id'] }}');"> --}}> <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>
                     </div>
@@ -249,13 +248,12 @@
             </div>
         </div>
     </div>
+@endsection
 
-    @endsection
 
-
-    @section('script')
-        <script src="{{ URL::asset('assets/custome_js/payment_for_cours.js') }}"></script>
-        <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
-        <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
-        </script>
-    @endsection
+@section('script')
+    <script src="{{ URL::asset('assets/custome_js/payment_for_cours.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
+    </script>
+@endsection

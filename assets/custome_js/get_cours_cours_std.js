@@ -12,7 +12,9 @@ function get_cours_of_std(id, route_, token_) {
             // console.table(data)
             set_cours_info_into_modal(data,route_)
 
-        }, error: function reject() { }
+        }, error: function reject() {
+            
+        }
     })
 }
 

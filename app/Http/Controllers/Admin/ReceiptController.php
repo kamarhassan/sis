@@ -86,11 +86,9 @@ class ReceiptController extends Controller
         try {
             $receipt =  Receipt::orderBy('id', 'DESC')
                 ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email'])
-                ->paginate(10000);
+                ->paginate(1000);
 
-            //  return $receipt;
-            // dd($receipt[0]['StdRegistration']['cours']['grade']['grade']);
-            // dd($receipt);
+
             return view('admin.receipt.index', compact('receipt'));
             //code...
         } catch (\Throwable $th) {

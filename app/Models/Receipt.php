@@ -26,17 +26,29 @@ class Receipt extends Model
 
     public function  StdRegistration()
     {
-        return $this->belongsTo(StudentsRegistration::class,'studentsRegistration_id','id')
-        ->with('cours');
+        return $this->belongsTo(StudentsRegistration::class, 'studentsRegistration_id', 'id')
+            ->with('cours');
     }
 
 
     public function  students()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function registartion()
+    {
+        return $this->belongsTo(StudentsRegistration::class, 'studentsRegistration_id', 'id');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'id', 'receipt_id');
     }
 
 
-
-
+    public function currency()
+    {
+        return $this->hasOne(currency::class, 'id', 'currencies_id');
+    }
 }

@@ -61,7 +61,8 @@ class StudentsController extends Controller
             // $std_registartion =  StudentsRegistration::whereBetween('created_at', [
             //     $start_date, $end_date
             //   ])-> orderBy('created_at', 'DESC')
-            $std_registartion =  StudentsRegistration::orderBy('created_at', 'DESC')
+            $std_registartion =  StudentsRegistration::where('created_at', 'LIKE', '%'.current_school_year().'%')
+            ->orderBy('created_at', 'DESC')
                 ->selectRaw('count(*) as total, user_id,created_at')->groupby('user_id')
                 ->with('student:id,name,email,photo')
                 // ->paginate(10);
@@ -106,5 +107,5 @@ class StudentsController extends Controller
 
 
 
-   
+
 }

@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\Livewire\Std\ClickEvent;
-use App\Http\Controllers\Admin\Livewire\Admins\ShowPosts;
+
 use App\Http\Controllers\Admin\Livewire\PayFeeCours\Payment;
 use App\Http\Controllers\Admin\Livewire\Students\Registration;
 use App\Http\Controllers\Admin\PaymentController;
@@ -108,7 +108,7 @@ Route::group([
         Route::post('store', [CoursController::class, 'store'])->name('admin.cours.store');
         Route::get('edit/{id}', [CoursController::class, 'edit'])->name('admin.cours.edit');
         Route::post('update/{id}', [CoursController::class, 'update'])->name('admin.cours.update');
-        Route::get('ppp', [ShowPosts::class, 'render']);
+        // Route::get('ppp', [ShowPosts::class, 'render']);
 
         Route::get('fee/{id}', [CoursController::class, 'edit'])->name('admin.cours.get.fee');
     });
@@ -125,6 +125,7 @@ Route::group([
         Route::post('get_cours_std/{id}', [StudentsController::class, 'get_cours_std'])->name('admin.students.get_cours_std');
 
         Route::get('Receipt', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
+        Route::get('edit-old-payment/{receipt_id}', [PaymentController::class, 'edit_payment'])->name('admin.students.payment.edit');
         // Route::get('Receipt/edit/{cours_id}/{user_id}', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
 
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
@@ -139,6 +140,7 @@ Route::group([
         Route::get('{cours_id}/{user_id}', [PaymentController::class, 'user_paid_for_cours'])->name('admin.payment.user_paid_for_cours');
         Route::post('payment_receipt', [PaymentController::class, 'savepayment'])->name('admin.payment.payment_to_receipt');
         Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [ReceiptController::class, 'receipt'])->name('admin.payment.receipt');
+
         // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
     });
 
