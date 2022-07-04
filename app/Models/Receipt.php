@@ -44,6 +44,7 @@ class Receipt extends Model
     public function payment()
     {
         return $this->belongsTo(Payment::class, 'id', 'receipt_id');
+        // ->with('cours_fee');
     }
 
 

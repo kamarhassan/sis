@@ -49,11 +49,13 @@
                                 @lang('site.amount') :
                             </span>
                         </div>
-                        <input type="hidden" name="cours_id" id="cours_id" value="{{$cours['cours']['id']}}">
+                        <input type="hidden" name="cours_id" id="cours_id" value="{{ $cours['cours']['id'] }}">
                         <input type="hidden" name="user_id" id="user_id" value="{{ $students->id }}">
 
-                        <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr" value="{{ $currency['abbr'] }}">
-                        <input type="hidden" name="cours_currency_id" id="cours_currency_abbr" value="{{ $currency['id'] }}">
+                        <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr"
+                            value="{{ $currency['abbr'] }}">
+                        <input type="hidden" name="cours_currency_id" id="cours_currency_abbr"
+                            value="{{ $currency['id'] }}">
 
 
 
@@ -179,7 +181,7 @@
             </form>
             <div class="col-md-12">
                 @isset($payment)
-                {{-- {{dd($payment)}} --}}
+                    {{-- {{dd($payment)}} --}}
                     <div class="table-responsive">
                         <table id="payment_table" class="table table-hover mb-0">
                             <tr>
@@ -192,17 +194,16 @@
                                 {{-- <th scope="col">@lang('site.desription')</th> --}}
                             </tr>
                             <form id="alldata">
+
                                 @if ($payment->count() > 0)
-
-                                    @foreach ($payment as $old_payment)
+                                    @foreach ($payment as $feestopaid)
                                         <tr>
-
-                                            <td scope="row"> 1</td>
-                                            <td scope="row">2 </td>
-                                            <td scope="row">3 </td>
-                                            <td scope="row">4 </td>
-                                            {{-- <td scope=" row">5 </td> --}}
-
+                                            {{-- <td scope="row"> feestopaid['id']</td> -- --}}
+                                            <td scope="row"> {{ $feestopaid['cours_fee']['fee_type']['fee'] }} </td>
+                                            <td scope="row"> {{ $feestopaid['cours_fee']['value'] }} </td>
+                                            <td scope="row"> {{ $students['created_at']->format('d-m-Y') }} </td>
+                                            <td scope="row"> {{ $feestopaid['paid_amount'] }} </td>
+                                            <td scope="row"> {{ $feestopaid['remaining'] }} </td>
 
                                         </tr>
                                     @endforeach

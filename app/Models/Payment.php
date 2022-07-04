@@ -28,4 +28,8 @@ class Payment extends Model
         return $this->belongsTo(CoursFee::class, 'cours_fee_id', 'id')->with('fee_type', 'currency');
     }
 
+    public function receipt(){
+        return $this->belongsTo(Receipt::class,'receipt_id','id');
+    }
+
 }
