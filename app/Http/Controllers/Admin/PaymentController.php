@@ -59,27 +59,32 @@ class PaymentController extends Controller
         // }
 
 
-try {
+        try {
 
-    $receipt = Receipt::find($id);
-    $cours = $receipt->StdRegistration;
-    $currency = $receipt->currency;
-    $students = $receipt->students;
+            $receipt = Receipt::find($id);
+            $cours = $receipt->StdRegistration;
+            $currency = $receipt->currency;
+            $students = $receipt->students;
 
-     $payment = Payment::where('studentsRegistration_id', $receipt['studentsRegistration_id'])
+            $payment = Payment::where('studentsRegistration_id', $receipt['studentsRegistration_id'])
                 ->with('cours_fee')->get();
-                // return $payment[0]['cours_fee']['fee_type']['fee'];
-// return $payment;
-    //  $payment = Payment::where('receipt_id', $receipt['id'])->get();
-    //  $payment = $receipt->payment;
-    //  dd($payment);
-    $currency_active = Currency::where('active', 1)->get();
-    return view('admin.payment.edit_payment', compact('receipt', 'currency', 'payment', 'cours', 'students',
-    'currency_active'));
-
-} catch (\Throwable $th) {
-    //throw $th;
-}
+            // return $payment[0]['cours_fee']['fee_type']['fee'];
+            // return $payment;
+            //  $payment = Payment::where('receipt_id', $receipt['id'])->get();
+            //  $payment = $receipt->payment;
+            //  dd($payment);
+            $currency_active = Currency::where('active', 1)->get();
+            return view('admin.payment.edit_payment', compact(
+                'receipt',
+                'currency',
+                'payment',
+                'cours',
+                'students',
+                'currency_active'
+            ));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
     /****
      *
@@ -330,4 +335,13 @@ try {
     /****
      * from here all methode using in controller
      */
+
+
+
+
+
+    public function save_edit_payment(Request $request)
+    {
+        return $request;
+    }
 }

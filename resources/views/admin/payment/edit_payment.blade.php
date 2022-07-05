@@ -237,11 +237,17 @@
                 @endisset
 
 
+                
                 <div>
                     <div class="row">
                         <div class="col-md-3">
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
-                                type="submit" {{-- onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}','{{ csrf_token() }}','{{ $std[0]['user_id'] }}','{{ $std[0]['cours_id'] }}');"> --}}> <span class=""> @lang('site.next step')</span>
+                                type="submit"
+                                onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}'
+                                ,'{{ csrf_token() }}',
+                                '   {{ $students->id }}',
+                                '{{$cours['cours']['id']}}');">
+                                <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>
                     </div>

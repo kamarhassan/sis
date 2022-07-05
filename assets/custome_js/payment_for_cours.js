@@ -20,6 +20,7 @@ function get_pay_type() {
 function savepayment(route_, token_, user_id, cours_id) {
     var formdata = $("#payment_data").serializeArray();
     // console.table(formdata)
+    console.table(formdata);
     $.ajax({
         type: 'POST',
         url: route_,
@@ -36,9 +37,10 @@ function savepayment(route_, token_, user_id, cours_id) {
         //     // 'data':data,
 
         // },
-        
+
         success: function (data) {
             if (data[1].status == 'success') {
+                console.table(data);
                 window.location.replace(data[0]);
                 toastr.success(data[1].message)
             }
@@ -51,9 +53,9 @@ function savepayment(route_, token_, user_id, cours_id) {
 
             var response = $.parseJSON(reject.responseText);
             $.each(response.errors, function (key, val) {
-            //  console.log(key);
-            //  console.log(val[0]);
-                $('#' + key+'_').text(val[0]).html;
+                //  console.log(key);
+                //  console.log(val[0]);
+                $('#' + key + '_').text(val[0]).html;
             })
             // console.table(response[0]);
             // var response = $.parseJSON(reject.responseText).errors.level;
