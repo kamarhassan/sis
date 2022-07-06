@@ -20,27 +20,14 @@ function get_pay_type() {
 function savepayment(route_, token_, user_id, cours_id) {
     var formdata = $("#payment_data").serializeArray();
     // console.table(formdata)
-    console.table(formdata);
+    // console.table(formdata);
     $.ajax({
         type: 'POST',
         url: route_,
         data: formdata,
-        // data: {
-        //     '_token': token_,
-        //     'user_id': user_id,
-        //     'cours_id': cours_id,
-        //     'amount_to_paid': $('#amount_to_paid').val(),
-        //     'description': $('#receipt_description').val(),
-        //     'pay_type': get_pay_type(),
-        //     'check_number': $('#check_number').val(),
-        //     'bank_': $('#bank_').val(),
-        //     // 'data':data,
-
-        // },
-
         success: function (data) {
+            // console.table(data);
             if (data[1].status == 'success') {
-                console.table(data);
                 window.location.replace(data[0]);
                 toastr.success(data[1].message)
             }

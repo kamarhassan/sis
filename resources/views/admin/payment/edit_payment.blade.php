@@ -237,13 +237,13 @@
                 @endisset
 
 
-                
+
                 <div>
                     <div class="row">
                         <div class="col-md-3">
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
                                 type="submit"
-                                onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}'
+                                onclick="savepayment('{{ route('admin.payment_edit_to_receipt') }}'
                                 ,'{{ csrf_token() }}',
                                 '   {{ $students->id }}',
                                 '{{$cours['cours']['id']}}');">
