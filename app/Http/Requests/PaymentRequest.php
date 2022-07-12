@@ -40,6 +40,8 @@ class PaymentRequest extends FormRequest
             'amount_to_paid' => $this->amount_to_paid($max_amount_to_paid),
             'check_number' => $this->checkNum(),
             'other_amount_to_paid' => $this->other_amount($max_amount_to_paid),
+            'cours_currency_id' => 'required|exists:currencies,id',
+          
             'rate' => $this->rate(),
             'bank' => $this->bank(),
         ];
@@ -84,6 +86,10 @@ class PaymentRequest extends FormRequest
             return 'required|digits:14|numeric';
         else return "";
     }
+    public function userId()
+    {
+       return  'required|exists:users,'.decrypt($this->user_id);
+    }
     public function bank()
     {
         if ($this->pay_type == 'pay_check_')
@@ -94,7 +100,7 @@ class PaymentRequest extends FormRequest
     public function other_amount($max_amount_to_paid)
     {
         try {
-            
+
             $cours_curency_abbr = Currency::find($this->cours_currency);
 
             if ($this->request->has('payment_methode')) {

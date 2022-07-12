@@ -101,7 +101,7 @@
                             <span class="text-danger" id="cours_currency_"> </span>
                         </div>
 
-                        @csrf
+                   
                         <div class="col-md-2">
                             <div class="demo-checkbox">
                                 <input type="checkbox" name="payment_methode" id="payment_methode" class="chk-col-success"

@@ -15,7 +15,8 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('currencies_id')->constrained('currencies')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('currencies_id')->constrained('currencies')->onDelete('cascade')->onUpdate('cascade')->comment('it is the currency of payment ');
+            $table->foreignId('cours_currency_id')->constrained('currencies')->onDelete('cascade')->onUpdate('cascade')->comment('it is the currency of cours');
            // $table->foreignId('cours_fee_id')->constrained('cours_fees')->onDelete('cascade')->onUpdate('cascade')->comment('from cours fees ***id***');
             $table->float('amount')->default(0);
             $table->float('other_amount')->default(0);

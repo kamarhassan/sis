@@ -52,4 +52,8 @@ class Receipt extends Model
     {
         return $this->hasOne(currency::class, 'id', 'currencies_id');
     }
+    public function cours_currency()
+    {
+        return $this->hasOne(currency::class, 'id', 'cours_currency_id');
+    }
 }

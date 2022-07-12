@@ -228,7 +228,7 @@ class Registration extends Component
                 DB::commit();
 
                 return redirect()->route('admin.payment.user_paid_for_cours',
-                [encript_custome($this->registration_students->cours_id), encript_custome($this->registration_students->user_id)]);
+                [$this->registration_students->cours_id,$this->registration_students->user_id]);
                 // return redirect()->route('admin.payment.user_paid_for_cours', $this->registration_students->user_id, $this->registration_students->cours_id);
 
                 // return redirect()->route('admin.payment.user_paid_for_cours', $this->registration_students->user_id, $this->registration_students->cours_id);

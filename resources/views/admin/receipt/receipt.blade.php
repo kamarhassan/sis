@@ -64,7 +64,7 @@
                         {{ $coursinfo->grade['grade'] }} -{{ $coursinfo->level['level'] }}
                     @endif --}}
                     </div>
-                    <div class="col-md-6 col-lg-3"><b>amount: {{ $receipt->amount }}</b></div>
+                    <div class="col-md-6 col-lg-3"><b>amount: {{ $receipt->amount }} <span class="text-warning"> {{ $currency['symbol'] }} - {{ $currency['abbr'] }}</span></b></div>
                 </div>
             </div>
 

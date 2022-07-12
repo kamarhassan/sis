@@ -24,6 +24,7 @@ class NotifyMailPaymentReceipt extends Mailable
     public  $fees;
     public  $old_payment;
     public  $receipt;
+    public  $currency ;
 //  public function __construct($std,$user,$cours,$fee_required,$fees,$old_payment,$receipt)
  public function __construct($data)
     {
@@ -45,6 +46,7 @@ class NotifyMailPaymentReceipt extends Mailable
         $this->old_payment = $data['old_payment'];
         $this->receipt = $data['receipt'];
         $this->std = $data['std'];
+        $this->currency = $data['currency'];
     }
 
     /**

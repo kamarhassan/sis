@@ -32,7 +32,7 @@
         <td><b>receipr id # {{ $receipt->id }}</b></td>
         <td><b>user ID : {{ $std[0]['cours_id'] }}</b></td>
         <td><b>cours : {{ $std[0]['user_id'] }}</b></td>
-        <td><b>amount: {{ $receipt->amount }}</b></td>
+        <td><b>amount: {{ $receipt->amount }}   <span class="text-warning"> {{ $currency['symbol'] }} - {{ $currency['abbr'] }}</span></b></td>
     </tr>
 </table>
 

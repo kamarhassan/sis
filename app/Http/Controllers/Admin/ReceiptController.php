@@ -45,6 +45,7 @@ class ReceiptController extends Controller
 
                     //  return $old_payment;
                 $receipt = Receipt::find($receipt_id);
+                $currency = $receipt->cours_currency ;
                 $data = [
                     'std' => $std,
                     'user' => $user,
@@ -53,16 +54,17 @@ class ReceiptController extends Controller
                     'fees' => $fees,
                     'old_payment' => $old_payment,
                     'receipt' => $receipt,
+                    'currency' => $currency,
                 ];
 
                 Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
                 // Mail::to("Kamar")->send(new NotifyMailPaymentReceipt($data));
                 if (Mail::failures()) {
                     // toastr()->error(__('site.eror in sending email'));
-                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours','old_payment', 'fees', 'receipt'));
+                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours','old_payment', 'fees', 'receipt','currency'));
                 } else {
 
-                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment','fees', 'receipt'));
+                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment','fees', 'receipt','currency'));
                 }
             } else {
 
@@ -82,10 +84,10 @@ class ReceiptController extends Controller
 
     public function All_receipt()
     {
-
+        
         try {
-            $receipt =  Receipt::orderBy('id', 'DESC')
-                ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email'])
+             $receipt =  Receipt::orderBy('id', 'DESC')
+                ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email','cours_currency'])
                 ->paginate(1000);
 
 

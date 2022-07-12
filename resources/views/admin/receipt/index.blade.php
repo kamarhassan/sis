@@ -62,7 +62,7 @@
                                     {{ $receipts['StdRegistration']['cours']['level']['level'] }}
 
                                 </td>
-                                <td>{{ $receipts['amount_total'] }}</td>
+                                <td>{{ $receipts['amount_total'] }}    <span class="text-warning"> {{ $receipts['cours_currency']['symbol'] }} - {{ $receipts['cours_currency']['abbr'] }}</span></td>
                                 <td>{{ $receipts['created_at']->format('d-m-Y') }}</td>
 
                                 <td>

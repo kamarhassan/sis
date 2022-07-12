@@ -26,39 +26,6 @@ class PaymentController extends Controller
 
         $receipt = Receipt::find($id);
 
-        // try {
-        //     //code...
-
-        //     $std = StudentsRegistration::where('id',$receipt['studentsRegistration_id'])->get();
-        //     //  return $std;
-        //     if ($std->count() > 0) {
-        //         $user =  User::where('id', $user_id)->select('id', 'name')->get();
-        //         $cours = Cours::where('id', $cours_id)
-        //             ->with('grade:id,grade', 'level:id,level', 'teacher:id,name')
-        //             ->get();
-        //         $fee_required =  string_to_array($std[0]['feesRequired']);
-        //         $fees  = CoursFee::wherein('id', $fee_required)
-        //             ->with('fee_type', 'currency')
-        //             ->get();
-        //         //  return $fees;
-        //         $payment = Payment::where('studentsRegistration_id', $std[0]['id'])->with('cours_fee')->get();
-        //         // return $payment;
-
-        //         // return $payment;
-        //         $cours_currency = Currency::active()->get();
-        //         return  view('admin.payment.edit_payment', compact('std', 'user', 'cours', 'payment', 'fees', 'cours_currency'));
-        //     } else {
-
-        //         toastr()->error(__('site.this registration not found'));
-        //         return redirect()->route('admin.students.get_std_to_payment');
-        //     }
-        // } catch (\Throwable $th) {
-        //     throw $th;
-        //     // toastr()->error(__('site.you have error'));
-        //     // return redirect()->route('admin.students.get_std_to_payment');
-        // }
-
-
         try {
 
             $receipt = Receipt::find($id);
@@ -68,11 +35,7 @@ class PaymentController extends Controller
 
             $payment = Payment::where('studentsRegistration_id', $receipt['studentsRegistration_id'])
                 ->with('cours_fee')->get();
-            // return $payment[0]['cours_fee']['fee_type']['fee'];
-            // return $payment;
-            //  $payment = Payment::where('receipt_id', $receipt['id'])->get();
-            //  $payment = $receipt->payment;
-            //  dd($payment);
+
             $currency_active = Currency::where('active', 1)->get();
             return view('admin.payment.edit_payment', compact(
                 'receipt',
@@ -97,7 +60,6 @@ class PaymentController extends Controller
     {
         try {
             //code...
-
             $std = StudentsRegistration::where([
                 'user_id' => $user_id,
                 'cours_id' => $cours_id
@@ -192,6 +154,7 @@ class PaymentController extends Controller
                 // dd('true');
                 $receipt_information =  Receipt::Create([
                     'currencies_id' => $payment_currency,
+                    'cours_currency_id' => $request->cours_currency_id,
                     'amount' => $init_amount,
                     'other_amount' => $request->other_amount_to_paid,
                     'description' => $request->receipt_description,
@@ -213,7 +176,6 @@ class PaymentController extends Controller
 
                 if ($old_payment->count() > 0) {
                     // return 150;
-
                     foreach ($old_payment as $key => $value) {
                         // $it[] =["initinal",'init_amount'=>$init_amount,'remaining'=>$value->remaining];
                         if ($value->remaining != 0) {
@@ -342,6 +304,11 @@ class PaymentController extends Controller
 
     public function save_edit_payment(Request $request)
     {
-        return $request;
+
+        try {
+            return $request;
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }
