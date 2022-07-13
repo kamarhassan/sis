@@ -21,34 +21,7 @@ class PaymentController extends Controller
 {
 
 
-    public function edit_payment($id)
-    {
 
-        $receipt = Receipt::find($id);
-
-        try {
-
-            $receipt = Receipt::find($id);
-            $cours = $receipt->StdRegistration;
-            $currency = $receipt->currency;
-            $students = $receipt->students;
-
-            $payment = Payment::where('studentsRegistration_id', $receipt['studentsRegistration_id'])
-                ->with('cours_fee')->get();
-
-            $currency_active = Currency::where('active', 1)->get();
-            return view('admin.payment.edit_payment', compact(
-                'receipt',
-                'currency',
-                'payment',
-                'cours',
-                'students',
-                'currency_active'
-            ));
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
-    }
     /****
      *
      *  after choose one cours to be paid
@@ -131,8 +104,8 @@ class PaymentController extends Controller
 
                     $cours_cuurency_abbr = $request->cours_currency_abbr;
 
-                    $payment_currency = $request->cours_currency;
-                    $payment_currency_abbr = Currency::find($payment_currency);
+                    $other_payment_currency = $request->other_payment_currency;
+                    $payment_currency_abbr = Currency::find($other_payment_currency);
                     // $payment_currency_abbr = Currency::find($request->cours_currency)->abbr;
                     /**
                         hon 3am ye3mal check isa l cours bl $ aw euro bado ye2sem yale 3am yedfa3on
@@ -147,13 +120,13 @@ class PaymentController extends Controller
                 } else {
                     // return "line 129";
                     $init_amount  = $request->amount_to_paid;
-                    $payment_currency = $request->cours_currency_id;
+                    $other_payment_currency = $request->cours_currency_id;
                     // return $payment_currency;
                 }
 
                 // dd('true');
                 $receipt_information =  Receipt::Create([
-                    'currencies_id' => $payment_currency,
+                    'currencies_id' => $other_payment_currency,
                     'cours_currency_id' => $request->cours_currency_id,
                     'amount' => $init_amount,
                     'other_amount' => $request->other_amount_to_paid,
@@ -302,13 +275,184 @@ class PaymentController extends Controller
 
 
 
-    public function save_edit_payment(Request $request)
+
+
+
+
+
+    #########################################################
+    #########################################################
+    #########################################################
+    /*
+
+            Edit
+    */
+    #########################################################
+    #########################################################
+    #########################################################
+    public function edit_payment($id)
+    {
+
+        $receipt = Receipt::find($id);
+
+        try {
+
+            $receipt = Receipt::find($id);
+            $cours = $receipt->StdRegistration;
+            $currency = $receipt->currency;
+            $students = $receipt->students;
+            $payment = Payment::where('studentsRegistration_id', $receipt['studentsRegistration_id'])
+                ->with('cours_fee')->get();
+            $cours_currency = $payment[0]['cours_fee']['currency'];
+            $currency_active = Currency::where('active', 1)->get();
+
+            return view('admin.payment.edit_payment', compact(
+                'receipt',
+                'currency',
+                'payment',
+                'cours_currency',
+                'cours',
+                'students',
+                'currency_active'
+            ));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function save_edit_payment(PaymentRequest $request)
     {
 
         try {
-            return $request;
+
+            $receipt =  Receipt::find($request->receipt_id);
+            $std_registration = StudentsRegistration::where([
+                'user_id'  => decrypt($request->user_id),
+                'cours_id' => decrypt($request->cours_id)
+            ])->get();
+
+            if ($receipt->count() > 0 && $std_registration->count() > 0) {
+                if ($request->has('check_number')) {
+                    $check_number = $request->check_number;
+                    // $bank=$request->bank;
+                } else {
+                    $check_number = null;
+                    // $bank=$request->bank;
+                }
+                $old_payment = Payment::where('studentsRegistration_id', $std_registration[0]['id'])
+                    ->get();
+
+                if ($request->has('payment_methode')) {
+                    $cours_cuurency_abbr = $request->cours_currency_abbr;
+                    $other_payment_currency = $request->other_payment_currency;
+                    $payment_currency_abbr = Currency::find($other_payment_currency);
+                    if (($cours_cuurency_abbr == "USD" || $cours_cuurency_abbr == "EUR" && $payment_currency_abbr->abbr == "L.L")) {
+                        $init_amount = $request->other_amount_to_paid / $request->rate;
+                    } else {
+                        $init_amount = $request->other_amount_to_paid * $request->rate;
+                    }
+
+                    $other_amount = $request->other_amount_to_paid;
+                    $rate_exchange = $request->rate;
+                } else {
+                    $init_amount  = $request->amount_to_paid;
+                    $other_payment_currency = $request->cours_currency_id;
+                    $other_amount = 0;
+                    $rate_exchange = 1;
+                }
+
+                $old_remaining =  $receipt['amount_total'] + $std_registration[0]['remaining'];
+                $new_remaining = $old_remaining - $init_amount;
+                $old_amount = $receipt['amount_total'];
+
+
+                $receipt->update([
+                    'currencies_id' => $other_payment_currency,
+                    'cours_currency_id' => $request->cours_currency_id,
+                    'amount' => $init_amount,
+                    'other_amount' => $other_amount,
+                    'amount_total' => $init_amount,
+                    'description' => $request->receipt_description,
+                    'rate_exchange' => $rate_exchange,
+                    'payType' => $request->pay_type,
+                    // 'user_id'  => $request->user_id,
+                    // 'studentsRegistration_id' => $std_registration[0]['id'],
+                    'checkNum' => $check_number,
+                    // 'bank_' => $bank,
+                ]);
+
+                $t = [
+                    'old_remaining' => $old_remaining,
+                    'new_remaining' => $new_remaining,
+                    'currencies_id' => $other_payment_currency,
+                    'cours_currency_id' => $request->cours_currency_id,
+
+                    'init amount' => $init_amount,
+                    'amount' => $init_amount,
+                    'other_amount' => $other_amount,
+                    'amount_total' => $init_amount,
+                    'description' => $request->receipt_description,
+                    'rate_exchange' => $rate_exchange,
+                    'payType' => $request->pay_type,
+                    'user_id'  => $request->user_id,
+                    'studentsRegistration_id' => $std_registration[0]['id'],
+                    'checkNum' => $check_number,
+                ];
+                $std_registration_updaed = StudentsRegistration::where('id',  $receipt['studentsRegistration_id'])->update([
+                    'remaining' => $new_remaining,
+                ]);
+
+
+
+                if ($init_amount > $old_amount) {
+                    $init_amount = $init_amount -$old_amount;
+                    $t []=  ['new init amount' => $init_amount];
+                    // return $t;
+                    $old_payment = Payment::where('studentsRegistration_id', $std_registration[0]['id'])
+                        ->get();
+                    if ($old_payment->count() > 0) {
+                        // return 150;
+                        foreach ($old_payment as $key => $value) {
+                            // $it[] = ["initinal", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
+                            if ($value->remaining != 0) {
+                                if ($init_amount >=  $value->remaining) {
+                                    Payment::where('id', $value->id)
+                                        ->update([
+                                            'paid_amount' =>   $value->amount,
+                                            'remaining' => 0,
+                                            'receipt_id' => $receipt->id,
+                                            'created_at' => Carbon::now()
+                                        ]);
+                                    $init_amount -= $value->remaining;
+                                    // $it[] = ["init_amount >= remaining", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
+                                } else {
+                                    Payment::where('id', $value->id)->update([
+                                        'paid_amount' => $init_amount + $value->paid_amount,
+                                        'remaining' => $value->amount - ($init_amount + $value->paid_amount),
+                                        'receipt_id' => $receipt->id,
+                                        'created_at' => Carbon::now()
+                                    ]);
+                                    // $it[] = ["else ", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // return $t;
+                    // return      $std_registration[0]['remaining'];
+                } else {
+                }
+
+
+                return $t;
+
+
+                return $request;
+            } else {
+            }
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
     }
 }

@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('cours_fee_id')->constrained('cours_fees')->onDelete('cascade')->onUpdate('cascade')->comment('from cours fees ***id***');
             $table->foreignId('receipt_id')->constrained('receipts')->onDelete('cascade')->onUpdate('cascade')->comment('from from receipt ***id***');
             $table->timestamps();
-        }); 
+        });
     }
 
     /**

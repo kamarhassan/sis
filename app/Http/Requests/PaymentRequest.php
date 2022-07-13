@@ -41,7 +41,7 @@ class PaymentRequest extends FormRequest
             'check_number' => $this->checkNum(),
             'other_amount_to_paid' => $this->other_amount($max_amount_to_paid),
             'cours_currency_id' => 'required|exists:currencies,id',
-          
+
             'rate' => $this->rate(),
             'bank' => $this->bank(),
         ];
@@ -101,7 +101,7 @@ class PaymentRequest extends FormRequest
     {
         try {
 
-            $cours_curency_abbr = Currency::find($this->cours_currency);
+            $cours_curency_abbr = Currency::find($this->other_payment_currency);
 
             if ($this->request->has('payment_methode')) {
                 if (
@@ -115,7 +115,7 @@ class PaymentRequest extends FormRequest
                 }
                 if ($amount_to_paid <= $max_amount_to_paid)
                     return 'required|numeric|min:1';
-                else     return 'required|numeric|min:1|max:' . $max_amount_to_paid;;
+                else     return 'required|numeric|min:1|max:' . $max_amount_to_paid;
             } else return "";
         } catch (\Throwable $th) {
             throw $th;

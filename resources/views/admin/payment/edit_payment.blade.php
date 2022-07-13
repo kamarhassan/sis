@@ -38,7 +38,7 @@
                 <input type="hidden">
                 <h4 class=" bb-1  border-danger box-title text-capitalize  text-uppercase" style="color:rgb(255, 153, 0)">
                     @lang('site.fee of this cours is')
-                    {{ $currency['currency'] }} - {{ $currency['abbr'] }} - {{ $currency['symbol'] }}
+                    {{ $cours_currency['currency'] }} - {{ $cours_currency['abbr'] }} - {{ $cours_currency['symbol'] }}
                 </h4>
             </div>
             <form id="payment_data">
@@ -49,13 +49,14 @@
                                 @lang('site.amount') :
                             </span>
                         </div>
-                        <input type="hidden" name="cours_id" id="cours_id" value="{{ $cours['cours']['id'] }}">
-                        <input type="hidden" name="user_id" id="user_id" value="{{ $students->id }}">
+                        <input type="hidden" name="cours_id" id="cours_id" value="{{ encrypt($cours['cours']['id']) }}">
+                        <input type="hidden" name="user_id" id="user_id" value="{{ encrypt($students->id )}}">
+                        <input type="hidden" name="receipt_id" id="receipt_id" value="{{$receipt['id']}}">
 
                         <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr"
-                            value="{{ $currency['abbr'] }}">
+                            value="{{ $cours_currency['abbr'] }}">
                         <input type="hidden" name="cours_currency_id" id="cours_currency_abbr"
-                            value="{{ $currency['id'] }}">
+                            value="{{ $cours_currency['id'] }}">
 
 
 
@@ -84,10 +85,10 @@
                             <div class="col-md-6" id="normal_pament">
                                 <div class="form-group">
                                     <label>@lang('site.cours currency') </label>
-                                    <select name="cours_currency" class="form-control select2" style="width: 100%;">
+                                    <select name="other_payment_currency" class="form-control select2" style="width: 100%;">
                                         @isset($currency_active)
                                             @foreach ($currency_active as $cours_currencys)
-                                                @if ($currency['id'] != $cours_currencys->id)
+                                                @if ( $cours_currency['id'] != $cours_currencys->id)
                                                     <option value="{{ $cours_currencys->id }}">
                                                         {{ $cours_currencys->symbol }} <- {{ $cours_currencys->currency }}
                                                             </option>
@@ -227,10 +228,11 @@
                             </form>
                             <tr scope="col" class="text-warning text-uppercase">
                                 <td scope="row">@lang('site.cours fee total') </td>
+
+                                <td scope="row">{{ $cours['cours_fee_total']}}</td>
                                 <td scope="row"> </td>
                                 <td scope="row"> </td>
-                                <td scope="row"> </td>
-                                <td scope="row"> </td>
+                                <td scope="row">{{ $cours['remaining']}}</td>
                             </tr>
                         </table>
                     </div>
@@ -244,9 +246,9 @@
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
                                 type="submit"
                                 onclick="savepayment('{{ route('admin.payment_edit_to_receipt') }}'
-                                ,'{{ csrf_token() }}',
-                                '   {{ $students->id }}',
-                                '{{$cours['cours']['id']}}');">
+                                ,'{{ csrf_token() }}'
+                                ,'{{ $students->id }}'
+                               ,'{{$cours['cours']['id']}}');">
                                 <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>

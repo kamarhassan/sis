@@ -86,7 +86,7 @@
                             <div class="col-md-6" id="normal_pament">
                                 <div class="form-group">
                                     <label>@lang('site.cours currency') </label>
-                                    <select name="cours_currency" class="form-control select2" style="width: 100%;">
+                                    <select name="other_payment_currency" class="form-control select2" style="width: 100%;">
                                         @foreach ($cours_currency as $cours_currencys)
                                             @if ($fees[0]['currency']['id'] != $cours_currencys->id)
                                                 <option value="{{ $cours_currencys->id }}">
@@ -101,7 +101,7 @@
                             <span class="text-danger" id="cours_currency_"> </span>
                         </div>
 
-                   
+
                         <div class="col-md-2">
                             <div class="demo-checkbox">
                                 <input type="checkbox" name="payment_methode" id="payment_methode" class="chk-col-success"
