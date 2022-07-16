@@ -189,7 +189,7 @@
                                 <th scope="col">@lang('site.paid')</th>
                                 {{-- <th scope="col">@lang('site.paid date')</th> --}}
                                 <th scope="col">@lang('site.remaining')</th>
-                                <th scope="col">@lang('site.desription')</th>
+                                {{-- <th scope="col">@lang('site.desription')</th> --}}
                             </tr>
                             <form id="alldata">
 

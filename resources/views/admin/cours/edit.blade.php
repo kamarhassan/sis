@@ -401,7 +401,6 @@
                                 <i class="ft-x"></i>@lang('site.back')
                             </button>
 
-
                             <button type="submit" class="btn btn-close btn-success btn-round fa fa-save">
 
                                 <i class="ft-x"></i> @lang('site.save')

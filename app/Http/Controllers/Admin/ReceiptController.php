@@ -6,13 +6,14 @@ use App\Models\User;
 use App\Models\Cours;
 use App\Models\Payment;
 use App\Models\Receipt;
+use App\Mail\testnotify;
 use App\Models\CoursFee;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifyMailPaymentReceipt;
-use App\Mail\testnotify;
 
 class ReceiptController extends Controller
 {
@@ -40,12 +41,12 @@ class ReceiptController extends Controller
                 $fees  = CoursFee::wherein('id', $fee_required)
                     ->with('fee_type', 'currency', 'payment:id,amount,paid_amount,remaining,cours_fee_id,created_at')
                     ->get();
-                    // return $fees;
-                    $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])->with('cours_fee')->get();
+                // return $fees;
+                $old_payment = Payment::where('studentsRegistration_id', $std[0]['id'])->with('cours_fee')->get();
 
-                    //  return $old_payment;
+                //  return $old_payment;
                 $receipt = Receipt::find($receipt_id);
-                $currency = $receipt->cours_currency ;
+                $currency = $receipt->cours_currency;
                 $data = [
                     'std' => $std,
                     'user' => $user,
@@ -56,15 +57,16 @@ class ReceiptController extends Controller
                     'receipt' => $receipt,
                     'currency' => $currency,
                 ];
-
-                Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
+                $contains = Str::contains(url()->previous(), 'admin/Payment');
+                if ($contains)
+                    Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
                 // Mail::to("Kamar")->send(new NotifyMailPaymentReceipt($data));
                 if (Mail::failures()) {
                     // toastr()->error(__('site.eror in sending email'));
-                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours','old_payment', 'fees', 'receipt','currency'));
+                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
                 } else {
 
-                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment','fees', 'receipt','currency'));
+                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
                 }
             } else {
 
@@ -84,10 +86,10 @@ class ReceiptController extends Controller
 
     public function All_receipt()
     {
-        
+
         try {
-             $receipt =  Receipt::orderBy('id', 'DESC')
-                ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email','cours_currency'])
+            $receipt =  Receipt::orderBy('id', 'DESC')
+                ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email', 'cours_currency'])
                 ->paginate(1000);
 
 

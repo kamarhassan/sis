@@ -324,8 +324,22 @@ class PaymentController extends Controller
     {
 
         try {
-
+            DB::beginTransaction();
             $receipt =  Receipt::find($request->receipt_id);
+
+            $last_receipt = Receipt::latest('id')->first();
+
+            if ($receipt->id != $last_receipt->id) {
+
+                $notification = [
+                    'message' => __('site.you can edit only the last receipt'),
+                    'status' => 'error',
+
+                ];
+
+                return response()->json([route('admin.all-receipt'), $notification]);
+            }
+
             $std_registration = StudentsRegistration::where([
                 'user_id'  => decrypt($request->user_id),
                 'cours_id' => decrypt($request->cours_id)
@@ -351,7 +365,6 @@ class PaymentController extends Controller
                     } else {
                         $init_amount = $request->other_amount_to_paid * $request->rate;
                     }
-
                     $other_amount = $request->other_amount_to_paid;
                     $rate_exchange = $request->rate;
                 } else {
@@ -365,8 +378,7 @@ class PaymentController extends Controller
                 $new_remaining = $old_remaining - $init_amount;
                 $old_amount = $receipt['amount_total'];
 
-
-                $receipt->update([
+                $receipt_updated =  $receipt->update([
                     'currencies_id' => $other_payment_currency,
                     'cours_currency_id' => $request->cours_currency_id,
                     'amount' => $init_amount,
@@ -381,32 +393,9 @@ class PaymentController extends Controller
                     // 'bank_' => $bank,
                 ]);
 
-                $t = [
-                    'old_remaining' => $old_remaining,
-                    'new_remaining' => $new_remaining,
-                    'currencies_id' => $other_payment_currency,
-                    'cours_currency_id' => $request->cours_currency_id,
-
-                    'init amount' => $init_amount,
-                    'amount' => $init_amount,
-                    'other_amount' => $other_amount,
-                    'amount_total' => $init_amount,
-                    'description' => $request->receipt_description,
-                    'rate_exchange' => $rate_exchange,
-                    'payType' => $request->pay_type,
-                    'user_id'  => $request->user_id,
-                    'studentsRegistration_id' => $std_registration[0]['id'],
-                    'checkNum' => $check_number,
-                ];
-                $std_registration_updaed = StudentsRegistration::where('id',  $receipt['studentsRegistration_id'])->update([
-                    'remaining' => $new_remaining,
-                ]);
-
-
-
                 if ($init_amount > $old_amount) {
-                    $init_amount = $init_amount -$old_amount;
-                    $t []=  ['new init amount' => $init_amount];
+                    $init_amount = $init_amount - $old_amount;
+                    // $t[] =  ['new init amount' => $init_amount];
                     // return $t;
                     $old_payment = Payment::where('studentsRegistration_id', $std_registration[0]['id'])
                         ->get();
@@ -416,21 +405,17 @@ class PaymentController extends Controller
                             // $it[] = ["initinal", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
                             if ($value->remaining != 0) {
                                 if ($init_amount >=  $value->remaining) {
-                                    Payment::where('id', $value->id)
-                                        ->update([
-                                            'paid_amount' =>   $value->amount,
-                                            'remaining' => 0,
-                                            'receipt_id' => $receipt->id,
-                                            'created_at' => Carbon::now()
-                                        ]);
+                                    Payment::where('id', $value->id)->update([
+                                        'paid_amount' =>   $value->amount, 'remaining' => 0,
+                                        'receipt_id' => $receipt->id, 'created_at' => Carbon::now()
+                                    ]);
                                     $init_amount -= $value->remaining;
                                     // $it[] = ["init_amount >= remaining", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
                                 } else {
                                     Payment::where('id', $value->id)->update([
                                         'paid_amount' => $init_amount + $value->paid_amount,
                                         'remaining' => $value->amount - ($init_amount + $value->paid_amount),
-                                        'receipt_id' => $receipt->id,
-                                        'created_at' => Carbon::now()
+                                        'receipt_id' => $receipt->id, 'created_at' => Carbon::now()
                                     ]);
                                     // $it[] = ["else ", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
                                     break;
@@ -442,10 +427,57 @@ class PaymentController extends Controller
                     // return $t;
                     // return      $std_registration[0]['remaining'];
                 } else {
+                    /**
+                     * start edit and delet receipt use it in finction to make delete code
+                     */
+                    $diff_old_init_anount =  $old_amount - $init_amount;
+                    $r = [];
+                    $old_payment = Payment::where('studentsRegistration_id', $std_registration[0]['id'])->where('paid_amount', '>', 0)
+                        ->get();
+
+                    for ($i = $old_payment->count() - 1; $i >= 0; $i--) {
+                        // return $old_payment[$i]->id;
+                        if ($diff_old_init_anount <= $old_payment[$i]->paid_amount) {
+                            Payment::where('id', $old_payment[$i]->id)->update([
+                                'paid_amount' => $old_payment[$i]->paid_amount - $diff_old_init_anount,
+                                'remaining' => $old_payment[$i]->remaining + $diff_old_init_anount,
+                                'receipt_id' => $receipt->id,
+                                'created_at' => Carbon::now()
+                            ]);
+                            break;
+                        } else {
+                            Payment::where('id', $old_payment[$i]->id)->update([
+                                'paid_amount' => 0,
+                                'remaining' => $old_payment[$i]->amount,
+                                'receipt_id' => $receipt->id,
+                                'created_at' => Carbon::now()
+                            ]);
+                            $diff_old_init_anount <= $old_payment[$i]->paid_amount;
+                        }
+                    }
                 }
 
+                $std_registration_updated = StudentsRegistration::where('id',  $receipt['studentsRegistration_id'])->update([
+                    'remaining' => $new_remaining,
+                ]);
+                DB::commit();
 
-                return $t;
+                if ($std_registration_updated && $receipt_updated)
+                    $notification = [
+                        'message' => __('site.payment has been success'),
+                        'status' => 'success',
+                    ];
+                else {
+                    $notification = [
+                        'message' => __('site.payment faild'),
+                        'status' => 'error',
+
+                    ];
+                }
+
+                return response()->json([route('admin.payment.receipt', [$request->user_id, $request->cours_id, $receipt->id]), $notification]);
+
+
 
 
                 return $request;

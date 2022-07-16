@@ -16,7 +16,6 @@ function get_pay_type() {
     else return "pay_check_"
 }
 
-
 function savepayment(route_, token_, user_id, cours_id) {
     var formdata = $("#payment_data").serializeArray();
     // console.table(formdata)
@@ -26,11 +25,16 @@ function savepayment(route_, token_, user_id, cours_id) {
         url: route_,
         data: formdata,
         success: function (data) {
-            // console.table(data);
             if (data[1].status == 'success') {
                 window.location.replace(data[0]);
                 toastr.success(data[1].message)
+            } else {
+                if (data[1].status == 'error') {
+                    window.location.replace(data[0]);
+                    toastr.error(data[1].message);
+                }
             }
+
             // window.location
             // location.href(data[0]);
             //  console.table(data)

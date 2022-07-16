@@ -192,11 +192,12 @@ class Registration extends Component
                 'cours_fee_total' => $cours_fee_total,
                 'remaining' => $remaining,
             ]);
-
+           
             if ($succes_std_regi) {
                 return  $succes_std_regi;
             } else return -1;
         } catch (\Throwable $th) {
+            throw $th;
         }
     }
 
@@ -209,12 +210,13 @@ class Registration extends Component
             $fee_cours_and_reaminning = $this->max_amount_to_paid();
             $this->registration_students = $this->save_std_regitration(0, 0); // no fee
             // save payment
-            // dd( $this->registration_students);
+            //  dd( $this->registration_students->id);
             if ($this->registration_students->id > 0) {
                 $this->dispatchBrowserEvent(
                     'alert',
                     ['type' => 'success',  'message' => __('site.students created successfully!')]
                 );
+                // dd(170);
 
                 $this->select_fee_required =  $this->get_fee_required_cours($this->registration_students->feesRequired);
 
@@ -226,16 +228,17 @@ class Registration extends Component
 
 
                 DB::commit();
-
-                return redirect()->route('admin.payment.user_paid_for_cours',
-                [$this->registration_students->cours_id,$this->registration_students->user_id]);
+                return redirect()->route(
+                    'admin.payment.user_paid_for_cours',
+                    [$this->registration_students->cours_id, $this->registration_students->user_id]
+                );
                 // return redirect()->route('admin.payment.user_paid_for_cours', $this->registration_students->user_id, $this->registration_students->cours_id);
 
                 // return redirect()->route('admin.payment.user_paid_for_cours', $this->registration_students->user_id, $this->registration_students->cours_id);
             }
         } catch (\Throwable $th) {
+            throw $th;
             DB::rollback();
-            //throw $th;
         }
     }
 

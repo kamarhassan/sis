@@ -231,7 +231,7 @@
 
                                 <td scope="row">{{ $cours['cours_fee_total']}}</td>
                                 <td scope="row"> </td>
-                                <td scope="row"> </td>
+                                <td scope="row"> {{ $cours['cours_fee_total'] -$cours['remaining']}}</td>
                                 <td scope="row">{{ $cours['remaining']}}</td>
                             </tr>
                         </table>
@@ -248,7 +248,7 @@
                                 onclick="savepayment('{{ route('admin.payment_edit_to_receipt') }}'
                                 ,'{{ csrf_token() }}'
                                 ,'{{ $students->id }}'
-                               ,'{{$cours['cours']['id']}}');">
+                                ,'{{$cours['cours']['id']}}');">
                                 <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>

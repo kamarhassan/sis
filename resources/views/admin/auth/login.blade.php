@@ -42,7 +42,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text bg-transparent text-white"><i class="ti-user"></i></span>
                                 </div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"value="{{ old('email') }}" required autocomplete="email" autofocus >
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"value="{{ old('email') }}"  autocomplete="email" autofocus >
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                                         <span class="input-group-text  bg-transparent text-white"><i class="ti-lock"></i></span>
                                     </div>
                                     <input id="password" type="password" class="form-control @error('password')
-                                        is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{__('schoolms.Enter Your Password')}}">
+                                        is-invalid @enderror" name="password"  autocomplete="current-password" placeholder="{{__('schoolms.Enter Your Password')}}">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">

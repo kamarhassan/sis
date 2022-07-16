@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(\CoursSedeer::class);
         $this->call(\Status_of_coursSeed::class);
         $this->call(\FeeTypeSeeder::class);
-        $this->call(\CoursFeeSeeder::class);
+        // $this->call(\CoursFeeSeeder::class);
         // $this->call(students_registartion::class);
         // $this->call(\SponsorSeeder::class);
         // $this->call(\SposorshipSeeder::class);

@@ -1,9 +1,10 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\Admin;
 use App\Models\Cours;
 use App\Models\Grade;
 use App\Models\level;
-use App\Models\Admin;
 use Illuminate\Database\Seeder;
 
 class CoursSedeer extends Seeder
@@ -19,18 +20,18 @@ class CoursSedeer extends Seeder
         for ($i = 0; $i < 15; $i++) {
             $delete = $faker->randomElement([0, 1]);
             $status = $faker->randomElement(['open','closed','postopen','canceled']);
-          $date  =$faker->date(now());
+          $date  =Carbon::now();
         //   $teacher = Admin::role('teacher')->get();
-            Cours::create([
+         $this_cours =   Cours::create([
                 'startDate' =>$date,
                 'endDate' =>$date,
                 'maxStd' =>random_int(0, 60),
+                'days' =>'1;2;5;6',
                 'status' => $status,
                 // 'teachername' =>$faker->name(),
                 'teacherFee' =>random_int(1000, 60000),
                 'startTime' =>$faker->time('H:i:s', now()),
                 'endTime' =>$faker->time('H:i:s', now()),
-                'days' =>'1;2;5;6',
                 'act_StartDa' =>$date,
                 'act_EndDa' =>$date,
                 'year' =>current_school_year(),
@@ -40,6 +41,8 @@ class CoursSedeer extends Seeder
                 // 'grade' =>Grade::inRandomOrder()->first()->name,
                 // 'level' =>Level::inRandomOrder()->first()->name,
             ]);
+
+
         }
     }
 }
