@@ -25,19 +25,34 @@ function delete_by_id(route_, id_, token_, array_of_msg,) {
                     'id': id_delet
                 },
                 success: function (data) {
+                    // console.log(data)
+                    // console.table(data); // toast.success(data.message);
                     if (data.status == 'success') {
-                        toaster.success(data.message);
-                    }
-                    $('.Row' + id_delet).remove();
 
-                }, error: function reject() { }
+                        Swal.fire(
+                            msg[4],
+                            msg[5],
+                            'success'
+                            )
+                            $('.Row' + id_delet).remove();
+                        }else{
+                            Swal.fire(
+                                msg[6],
+                                data.message,
+                                'error'
+                            )
+                        }
+
+                }, error: function reject() {
+
+                    Swal.fire(
+                        msg[6],
+                        msg[7],
+                        'error'
+                    )
+                }
             });
 
-            Swal.fire(
-                msg[4],
-                msg[5],
-                'success'
-            )
         }
     })
 }

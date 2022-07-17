@@ -52,37 +52,37 @@
                 <tbody>
                     @isset($receipt)
                         @foreach ($receipt as $receipts)
-                            <tr>
-
+                            <tr class="Row{{ $receipts['id'] }}">
                                 <td>{{ $receipts['id'] }}</td>
                                 <td>{{ $receipts['students']['id'] }} # {{ $receipts['students']['name'] }}</td>
-
                                 <td>
                                     {{ $receipts['StdRegistration']['cours']['grade']['grade'] }} #
                                     {{ $receipts['StdRegistration']['cours']['level']['level'] }}
-
                                 </td>
-                                <td>{{ $receipts['amount_total'] }}    <span class="text-warning"> {{ $receipts['cours_currency']['symbol'] }} - {{ $receipts['cours_currency']['abbr'] }}</span></td>
+                                <td>{{ $receipts['amount_total'] }} <span class="text-warning">
+                                        {{ $receipts['cours_currency']['symbol'] }} -
+                                        {{ $receipts['cours_currency']['abbr'] }}</span></td>
                                 <td>{{ $receipts['created_at']->format('d-m-Y') }}</td>
-
                                 <td>
-                                    <a href="{{route('admin.students.payment.edit', $receipts['id'])}}" class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')" >
+                                    <a href="{{ route('admin.students.payment.edit', $receipts['id']) }}"
+                                        class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')">
                                     </a>
-                                    <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary" title="@lang('site.delete')" onclick="">
+                                    <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
+                                        title="@lang('site.delete')"
+                                        onclick="delete_by_id('{{ route('admin.students.delete_payment_receipt') }}',{{ $receipts['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
                                     </a>
-                                    <a class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')" onclick="">
+                                    <a href="{{ route('admin.payment.receipt', [encrypt($receipts['students']['id']), encrypt($receipts['StdRegistration']['cours']['id']), $receipts['id']]) }}"
+                                        class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')">
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
-
-                        @endisset
-                    </tbody>
-                </table>
-                @isset($receipt)
-
+                    @endisset
+                </tbody>
+            </table>
+            @isset($receipt)
                 {{ $receipt->links() }}
-                @endisset
+            @endisset
         </div>
     </div>
     </div>
@@ -97,7 +97,9 @@
 
             $('#table_std').removeAttr('hidden');
             var table = $('#example1').DataTable({
-                order: [[0, 'desc']],
+                order: [
+                    [0, 'desc']
+                ],
                 scrollY: "400px",
                 // scrollX: true,
                 // scrollCollapse: true,
@@ -107,7 +109,7 @@
             });
         });
     </script>
-
+    <script src="{{ URL::asset('assets/custome_js/delete.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/fixed_column_datatable.js') }}"></script>

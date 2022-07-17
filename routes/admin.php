@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Livewire\PayFeeCours\Payment;
 use App\Http\Controllers\Admin\Livewire\Students\Registration;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ReceiptController;
+use App\Http\Controllers\Admin\Services\ServicesController;
 
 // use App\Http\Livewire\P;
 
@@ -126,6 +127,7 @@ Route::group([
 
         Route::get('Receipt', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
         Route::get('edit-old-payment/{receipt_id}', [PaymentController::class, 'edit_payment'])->name('admin.students.payment.edit');
+        Route::post('delet_receipt', [PaymentController::class, 'delete_payment_receipt'])->name('admin.students.delete_payment_receipt');
         // Route::get('Receipt/edit/{cours_id}/{user_id}', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
 
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
@@ -145,7 +147,20 @@ Route::group([
         // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
     });
 
-    ################################### Begin Payment Routes #################################################
+    ################################### end  Payment Routes #################################################
+
+
+    ################################### Begin Services  Routes #################################################
+
+    Route::group(['prefix' => 'Services'], function () {
+
+        Route::get('/', [ServicesController::class, 'create'])->name('admin.Services.add');
+        Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
+        // Route::post('grade_delete', [GradeController::class, 'delete'])->name('admin.grades.delete');
+        // Route::post('grade_update', [GradeController::class, 'update'])->name('admin.grades.update');
+
+    });
+    ################################### end  Services Routes #################################################
 
 
 

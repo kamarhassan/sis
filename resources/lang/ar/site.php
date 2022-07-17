@@ -127,6 +127,8 @@ return [
     'cancelButtonTextof_delet_swal_fire'        => 'كلا',
     'deleted_msg_swal_fire'        => 'حذفت',
     'succes_msj_swal_fire'        => 'تم الحذف بنجاح',
+    'failed_delete'        => 'لم يتم الحذف',
+    'failed_msj_swal_fire'        => 'لم يتم الحذف هناك مشكلة حاول من جديد او اتصل بالمشرف',
 
 
 
@@ -271,12 +273,12 @@ return [
     'must be a only 14 number' => 'يجب ان يكون 14 رقما فقط',
     'edit receipt and payment' => 'تعديل الدفعات والايصالات',
     'pay for firs time'=>'لا يوجد دفعات سابقة',
-    'paid'=>'',
-    'you can edit only the last receipt'=>'يمكنك تعديل آخر إيصال فقط',
-    'you can delete only the last receipt'=>'يمكنك حذف آخر إيصال فقط',
+    'paid'=>'الدفعة',
+    'you can edit only the last receipt or receipt not found'=>'يمكنك تعديل آخر إيصال فقط او الايصال غير موجود',
+    'you can delete only the last receipt or receipt not found'=>'يمكنك حذف آخر إيصال فقط او الايصال غير موجود',
 
-    ''=>'',
-    ''=>'',
+    'report'=>'التقارير',
+    'services'=>'الخدمات',
     ''=>'',
     #################################### end of students translator ###################################
 

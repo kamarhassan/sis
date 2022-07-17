@@ -90,6 +90,8 @@ function  swal_fire_msg()
         __('site.cancelButtonTextof_delet_swal_fire'),
         __('site.deleted_msg_swal_fire'),
         __('site.succes_msj_swal_fire'),
+        __('site.failed_delete'),
+        __('site.failed_msj_swal_fire'),
 
     ];
 }

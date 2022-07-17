@@ -16,6 +16,7 @@ use App\Models\StudentsRegistration;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\PaymentRequest;
 use App\Mail\NotifyMailPaymentReceipt;
+use App\Http\Requests\EditPaymentRequest;
 
 class PaymentController extends Controller
 {
@@ -294,7 +295,10 @@ class PaymentController extends Controller
     {
 
         $receipt = Receipt::find($id);
-
+        if (!$this->is_last_receipt($id)) {
+            toastr()->error(__('site.you can edit only the last receipt or receipt not found'));
+            return redirect()->route('admin.all-receipt');
+        }
         try {
 
             $receipt = Receipt::find($id);
@@ -320,21 +324,19 @@ class PaymentController extends Controller
         }
     }
 
-    public function save_edit_payment(PaymentRequest $request)
+    public function save_edit_payment(EditPaymentRequest $request)
     {
 
         try {
             DB::beginTransaction();
             $receipt =  Receipt::find($request->receipt_id);
 
-            $last_receipt = Receipt::latest('id')->first();
-
-            if ($receipt->id != $last_receipt->id) {
-
+            $last_receipt = Receipt::latest('id')->where('deleted', '=', 1)->first();
+            // $this->is_last_receipt($receipt->id)
+            if (!$this->is_last_receipt($receipt->id)) {
                 $notification = [
-                    'message' => __('site.you can edit only the last receipt'),
+                    'message' => __('site.you can edit only the last receipt or receipt not found'),
                     'status' => 'error',
-
                 ];
 
                 return response()->json([route('admin.all-receipt'), $notification]);
@@ -406,8 +408,10 @@ class PaymentController extends Controller
                             if ($value->remaining != 0) {
                                 if ($init_amount >=  $value->remaining) {
                                     Payment::where('id', $value->id)->update([
-                                        'paid_amount' =>   $value->amount, 'remaining' => 0,
-                                        'receipt_id' => $receipt->id, 'created_at' => Carbon::now()
+                                        'paid_amount' =>   $value->amount,
+                                        'remaining' => 0,
+                                        'receipt_id' => $receipt->id,
+                                        'created_at' => Carbon::now()
                                     ]);
                                     $init_amount -= $value->remaining;
                                     // $it[] = ["init_amount >= remaining", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
@@ -415,7 +419,8 @@ class PaymentController extends Controller
                                     Payment::where('id', $value->id)->update([
                                         'paid_amount' => $init_amount + $value->paid_amount,
                                         'remaining' => $value->amount - ($init_amount + $value->paid_amount),
-                                        'receipt_id' => $receipt->id, 'created_at' => Carbon::now()
+                                        'receipt_id' => $receipt->id,
+                                        'created_at' => Carbon::now()
                                     ]);
                                     // $it[] = ["else ", 'init_amount' => $init_amount, 'remaining' => $value->remaining];
                                     break;
@@ -430,39 +435,16 @@ class PaymentController extends Controller
                     /**
                      * start edit and delet receipt use it in finction to make delete code
                      */
-                    $diff_old_init_anount =  $old_amount - $init_amount;
-                    $r = [];
-                    $old_payment = Payment::where('studentsRegistration_id', $std_registration[0]['id'])->where('paid_amount', '>', 0)
-                        ->get();
+                    $edit = $this->edit_delet($receipt->id, $std_registration[0]['id'], $old_amount, $init_amount); // edit if $old amount > = $initamount
 
-                    for ($i = $old_payment->count() - 1; $i >= 0; $i--) {
-                        // return $old_payment[$i]->id;
-                        if ($diff_old_init_anount <= $old_payment[$i]->paid_amount) {
-                            Payment::where('id', $old_payment[$i]->id)->update([
-                                'paid_amount' => $old_payment[$i]->paid_amount - $diff_old_init_anount,
-                                'remaining' => $old_payment[$i]->remaining + $diff_old_init_anount,
-                                'receipt_id' => $receipt->id,
-                                'created_at' => Carbon::now()
-                            ]);
-                            break;
-                        } else {
-                            Payment::where('id', $old_payment[$i]->id)->update([
-                                'paid_amount' => 0,
-                                'remaining' => $old_payment[$i]->amount,
-                                'receipt_id' => $receipt->id,
-                                'created_at' => Carbon::now()
-                            ]);
-                            $diff_old_init_anount <= $old_payment[$i]->paid_amount;
-                        }
-                    }
                 }
 
+                // return $edit;
                 $std_registration_updated = StudentsRegistration::where('id',  $receipt['studentsRegistration_id'])->update([
                     'remaining' => $new_remaining,
                 ]);
                 DB::commit();
-
-                if ($std_registration_updated && $receipt_updated)
+                if ($std_registration_updated && $receipt_updated && $edit)
                     $notification = [
                         'message' => __('site.payment has been success'),
                         'status' => 'success',
@@ -474,15 +456,100 @@ class PaymentController extends Controller
 
                     ];
                 }
-
                 return response()->json([route('admin.payment.receipt', [$request->user_id, $request->cours_id, $receipt->id]), $notification]);
-
-
-
-
-                return $request;
             } else {
             }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function delete_payment_receipt(Request $request)
+    {
+
+        try {
+            DB::beginTransaction();
+            $receipt_id   = $request->id;
+            $receipt = Receipt::find($receipt_id);
+            if (!$this->is_last_receipt($receipt_id) || !$receipt) {
+                $notification = [
+                    'message' => __('site.you can delete only the last receipt or receipt not found'),
+                    'status' => 'error',
+                ];
+                return response()->json($notification);
+            }
+
+            $std_registration = StudentsRegistration::find($receipt->studentsRegistration_id);
+            $receipt_delet   =  $receipt->update(['deleted' => 0]);
+            $edit = $this->edit_delet($receipt->id, $receipt->studentsRegistration_id, $receipt->amount_total, 0); // edit if $old amount > = $initamount
+            $std_registration_updated = StudentsRegistration::where('id',  $receipt['studentsRegistration_id'])
+                ->update(['remaining' => $std_registration->remaining + $receipt->amount_total]);
+            if ($edit && $receipt_delet && $std_registration_updated)
+                $notification = [
+                    'message' => __('site.payment has delete success'),
+                    'status' => 'success',
+                ];
+            else {
+                $notification = [
+                    'message' => __('site.payment faild '),
+                    'status' => 'error',
+
+                ];
+            }
+
+            DB::commit();
+            // return response()->json($notification);
+
+            //code...
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    /*
+        edit or delete if Old paid amount is greater than  the new paid amount
+    */
+
+    private function is_last_receipt($receipt_id)
+    {
+        try {
+
+            $last_receipt = Receipt::latest('id')->where('deleted', '=', 1)->first();
+            if ($receipt_id != $last_receipt->id)
+                return false;
+            return true;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    private function edit_delet($receipt_id, $std_registration_id, $old_amount, $init_amount)
+    {
+        $diff_old_init_anount =  $old_amount - $init_amount;
+        try {
+            //code...
+            $old_payment = Payment::where('studentsRegistration_id', $std_registration_id)->where('paid_amount', '>', 0)
+                ->get();
+            for ($i = $old_payment->count() - 1; $i >= 0; $i--) {
+                // return $old_payment[$i]->id;
+                if ($diff_old_init_anount <= $old_payment[$i]->paid_amount) {
+                    Payment::where('id', $old_payment[$i]->id)->update([
+                        'paid_amount' => $old_payment[$i]->paid_amount - $diff_old_init_anount,
+                        'remaining' => $old_payment[$i]->remaining + $diff_old_init_anount,
+                        'receipt_id' => $receipt_id,
+                        'created_at' => Carbon::now()
+                    ]);
+                    break;
+                } else {
+                    Payment::where('id', $old_payment[$i]->id)->update([
+                        'paid_amount' => 0,
+                        'remaining' => $old_payment[$i]->amount,
+                        'receipt_id' => $receipt_id,
+                        'created_at' => Carbon::now()
+                    ]);
+                    $diff_old_init_anount -= $old_payment[$i]->paid_amount;
+                }
+            }
+            return true;
         } catch (\Throwable $th) {
             throw $th;
         }

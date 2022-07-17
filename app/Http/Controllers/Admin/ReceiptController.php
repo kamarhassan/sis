@@ -57,26 +57,25 @@ class ReceiptController extends Controller
                     'receipt' => $receipt,
                     'currency' => $currency,
                 ];
-                $contains = Str::contains(url()->previous(), 'admin/Payment');
-                if ($contains)
-                    Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
-                // Mail::to("Kamar")->send(new NotifyMailPaymentReceipt($data));
+                $contains1 = Str::contains(url()->previous(), 'Payment');
+                $contains2 = Str::contains(url()->previous(), 'edit-old-payment');
+                if ($contains1 ||$contains2)
+                  Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
+ 
                 if (Mail::failures()) {
                     // toastr()->error(__('site.eror in sending email'));
                     return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
                 } else {
-
                     return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
                 }
             } else {
-
                 toastr()->error(__('site.this registration not found'));
                 return redirect()->route('admin.students.get_std_to_payment');
             }
         } catch (\Throwable $th) {
-            throw $th;
-            // toastr()->error(__('site.you have error'));
-            // return redirect()->route('admin.students.get_std_to_payment');
+            // throw $th;
+            toastr()->error(__('site.you have error'));
+            return redirect()->route('admin.students.get_std_to_payment');
         }
 
 
@@ -88,7 +87,7 @@ class ReceiptController extends Controller
     {
 
         try {
-            $receipt =  Receipt::orderBy('id', 'DESC')
+            $receipt =  Receipt::orderBy('id', 'DESC')->where('deleted',1) // 1 is not delete
                 ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email', 'cours_currency'])
                 ->paginate(1000);
 
