@@ -94,7 +94,7 @@
             $('#spinner_loading').css("display", "none");
 
             $('#table_std').removeAttr('hidden');
-          
+
             var table = $('#example1').DataTable({
                 scrollY: "400px",
                 // scrollX: true,

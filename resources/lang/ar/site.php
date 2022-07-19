@@ -279,6 +279,10 @@ return [
 
     'report'=>'التقارير',
     'services'=>'الخدمات',
+    'choose currency'=>'اختر العملة',
+    'services succefuly inserted'=>'تم تسجيل خدمات جديدة بنجاح',
+    'faild to  craete new services'=>'فشل تسجيل الخدمات حاول من جديد او اتصل بالمشرف اذا بقيت المشكلة',
+    ''=>'',
     ''=>'',
     #################################### end of students translator ###################################
 

@@ -80,6 +80,8 @@ class CoursController extends Controller
                 $cours_fee = $this->coursfee->create($request->fee, $id_cours, $request->cours_currency);
             }
 
+
+            
             DB::commit();
             if (!$id_cours) {
                 toastr()->error(__('site.please add data in the field'));

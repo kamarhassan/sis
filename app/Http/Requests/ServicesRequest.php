@@ -25,15 +25,20 @@ class ServicesRequest extends FormRequest
     {
         return [
             'services.*' => 'required',
-          //   'grade.*' => 'required'
-          ];
+            'fee.*' => 'required|numeric',
+            'currency.*' => 'required|exists:currencies,id',
+            //   'grade.*' => 'required'
+        ];
     }
     public  function messages()
     {
         return [
-             'services.*.required'=>__('site.its_require'),
+            'services.*.required' => __('site.its_require'),
+            'fee.*.required' => __('site.its_require'),
+            'fee.*.numeric' => __('site.must be a number'),
+            'currency.*.required' => __('site.its_require'),
+            'currency.*.exists' => __('site.its_exists'),
 
         ];
-
     }
 }

@@ -48,8 +48,6 @@ Route::group([
 
 ], function () {
 
-
-
     Route::get('logout', [loginController::class, 'logout'])->name('get.admin.logout');
 
     // Route::resource('products','ProductController');
