@@ -279,9 +279,14 @@ return [
 
     'report'=>'التقارير',
     'services'=>'الخدمات',
+    'add services'=>'اضف خدمات',
     'choose currency'=>'اختر العملة',
     'services succefuly inserted'=>'تم تسجيل خدمات جديدة بنجاح',
     'faild to  craete new services'=>'فشل تسجيل الخدمات حاول من جديد او اتصل بالمشرف اذا بقيت المشكلة',
+    'services note defined'=>'هذه الخدمة غير موجودة',
+
+    'please wait to load service' => 'الرجاء الانتظار يتم تحميل الخدمة',
+    ''=>'',
     ''=>'',
     ''=>'',
     #################################### end of students translator ###################################

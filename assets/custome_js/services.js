@@ -9,13 +9,14 @@ function services(route_) {
         success: function (data) {
             // console.table(data);
             if (data[0].status == 'success') {
-                // console.table(data);
+                console.table(data[1]);
                 // window.location.replace(data[0]);
                 toastr.success(data[0].message)
-                // var services_table = $('#example').DataTable();
+                location.reload();
+                // var services_table = $('#services_table').DataTable();
 
                 // for (var i = 0; i < data[1].length; i++) {
-                //     services_table.row.add([]).draw(false);
+                //     services_table.row.add([data[1][i].services,data[1][i].fee,]).draw(false);
 
                 // }
             } else {
@@ -34,4 +35,24 @@ function services(route_) {
             })
         }
     });
+}
+
+
+
+function get_service(route_){
+    $.ajax({
+        type: 'POST',
+        url: route_,
+        data: {
+            '_token': token_,
+            // 'id': id,
+        },
+        success: function (data) {
+            console.table(data)
+            // set_cours_info_into_modal(data,route_)
+
+        }, error: function reject() {
+
+        }
+    })
 }

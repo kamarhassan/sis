@@ -154,8 +154,8 @@ Route::group([
 
         Route::get('/', [ServicesController::class, 'create'])->name('admin.Services.add');
         Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
-        // Route::post('grade_delete', [GradeController::class, 'delete'])->name('admin.grades.delete');
-        // Route::post('grade_update', [GradeController::class, 'update'])->name('admin.grades.update');
+        Route::post('services_delete', [ServicesController::class, 'delete'])->name('admin.services.delete');
+        Route::post('get-services-update/{services_id}', [GradeController::class, 'to_update'])->name('admin.services.update');
 
     });
     ################################### end  Services Routes #################################################

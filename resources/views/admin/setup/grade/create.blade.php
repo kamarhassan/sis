@@ -88,8 +88,6 @@
                                                 <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
                                                     title="@lang('site.delete')"
                                                     onclick="delete_by_id('{{ route('admin.grades.delete') }}',{{ $grades->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-
-
                                                 </a>
                                                 {{-- <a token="{{ csrf_token() }}" lang_id="{{ $grades->id }}"
                                                     class="delete_btn btn btn-close btn-danger btn-round fa fa-times"

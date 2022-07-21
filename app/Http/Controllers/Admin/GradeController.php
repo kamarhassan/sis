@@ -122,4 +122,10 @@ class GradeController extends Controller
             //   toastr()->error(__('site.you have error'));
         }
     }
+
+
+    public function to_update($services_id)
+    {
+        return $services_id;
+    }
 }
