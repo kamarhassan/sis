@@ -6,18 +6,19 @@ use App\Http\Controllers\Admin\CoursController;
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\loginController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ReceiptController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
+
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\Livewire\Std\ClickEvent;
-
+use App\Http\Controllers\Admin\Services\ServicesController;
 use App\Http\Controllers\Admin\Livewire\PayFeeCours\Payment;
 use App\Http\Controllers\Admin\Livewire\Students\Registration;
-use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\ReceiptController;
-use App\Http\Controllers\Admin\Services\ServicesController;
+use App\Http\Controllers\Admin\Services\ServicesClientController;
 
 // use App\Http\Livewire\P;
 
@@ -77,7 +78,7 @@ Route::group([
 
 
     ################################### Begin Settings Routes #################################################
-    Route::group(['prefix' => 'Setting'], function () {
+    Route::group(['prefix' => 'setting'], function () {
         // Setting/add_grades
         // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
         // Route::get('/a', Count::class)->name('admin.grades.add');
@@ -101,7 +102,7 @@ Route::group([
     ################################### End Settings Routes ###################################################
 
     ################################### Begin Cours Routes #################################################
-    Route::group(['prefix' => 'Cours'], function () {
+    Route::group(['prefix' => 'cours'], function () {
         Route::get('/', [CoursController::class, 'index'])->name('admin.cours.all');
         Route::get('create', [CoursController::class, 'create'])->name('admin.cours.add');
         Route::post('store', [CoursController::class, 'store'])->name('admin.cours.store');
@@ -116,7 +117,7 @@ Route::group([
 
 
     ################################### Begin Students Routes #################################################
-    Route::group(['prefix' => 'Students'], function () {
+    Route::group(['prefix' => 'students'], function () {
         Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
         //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
         Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.Registration-1');
@@ -134,14 +135,14 @@ Route::group([
 
     ################################### Begin Language Routes #################################################
     ################################### Begin Payment Routes #################################################
-    Route::group(['prefix' => 'Payment'], function () {
+    Route::group(['prefix' => 'payment'], function () {
 
         Route::get('/', [PaymentController::class, 'index'])->name('admin.payment.index');
         Route::get('{cours_id}/{user_id}', [PaymentController::class, 'user_paid_for_cours'])->name('admin.payment.user_paid_for_cours');
         Route::post('payment_receipt', [PaymentController::class, 'savepayment'])->name('admin.payment.payment_to_receipt');
         Route::post('edit_payment_receipt', [PaymentController::class, 'save_edit_payment'])->name('admin.payment_edit_to_receipt');
         Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [ReceiptController::class, 'receipt'])->name('admin.payment.receipt');
-
+        ###########################################################################################
         // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
     });
 
@@ -150,13 +151,17 @@ Route::group([
 
     ################################### Begin Services  Routes #################################################
 
-    Route::group(['prefix' => 'Services'], function () {
+    Route::group(['prefix' => 'services'], function () {
 
         Route::get('/', [ServicesController::class, 'create'])->name('admin.Services.add');
         Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
         Route::post('services_delete', [ServicesController::class, 'delete'])->name('admin.services.delete');
-        Route::post('get-services-update/{services_id}', [GradeController::class, 'to_update'])->name('admin.services.update');
+        Route::post('get-services-update/{services_id}', [ServicesController::class, 'to_update'])->name('admin.services.to-update');
+        Route::post('update', [ServicesController::class, 'update'])->name('admin.services.update');
+        // C:\xampp\htdocs\sis\resources\views\admin\livewire\services\servicesclient.blade.php
+        Route::view('client', 'admin.livewire.services.services-to-client')->name('admin.Services.to.client');
 
+        // Route::get('client', [ServicesClientController::class, 'service_to_client'])->name('admin.Services.to.client');
     });
     ################################### end  Services Routes #################################################
 
@@ -166,7 +171,7 @@ Route::group([
 
 
 
-    Route::group(['prefix' => 'Users'], function () {
+    Route::group(['prefix' => 'users'], function () {
 
         Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
         Route::get('add', [UserController::class, 'create'])->middleware(['permission:edit'])->name('admin.users.add');

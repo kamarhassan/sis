@@ -9,6 +9,7 @@ use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServicesEditRequest;
 use App\Http\Requests\ServicesRequest;
 
 class ServicesController extends Controller
@@ -16,7 +17,7 @@ class ServicesController extends Controller
     public function create()
     {
         $currency = Currency::active()->get();
-        $services = Service::active()->with('currency')->paginate(1000);
+        $services = Service::with('currency')->paginate(1000);
         return view('admin.services.services.create', compact('currency', 'services'));
     }
 
@@ -93,18 +94,94 @@ class ServicesController extends Controller
                     ];
                 }
                 DB::commit();
-               return response()->json($notification);
+                return response()->json($notification);
             }
         } catch (\Exception $th) {
             // throw $th;
-             $notification = [
-                        'message' => __('site.you have error'),
-                        'status' => 'error',
-                    ];
+            $notification = [
+                'message' => __('site.you have error'),
+                'status' => 'error',
+            ];
             // toastr()->error(__('site.you have error'));
             return response()->json($notification);
         }
 
         # code...
     }
+
+
+
+
+
+    public function to_update($services_id)
+    {
+
+
+        try {
+            $services =  Service::with('currency')->find($services_id);
+            if (!$services) {
+                $notification = [
+                    'message' =>  __('site.services note defined'),
+                    'status' => 'error',
+
+                ];
+                return  response()->json($notification);
+            }
+            return $services;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+
+
+
+
+    public function update(ServicesEditRequest $request)
+    {
+        try {
+             $request;
+             $services =  Service::find($request->service_id);
+            //code...
+            if (!$services) {
+                $notification = [
+                    'message' =>  __('site.services note defined'),
+                    'status' => 'error',
+                ];
+                return  response()->json($notification);
+            }
+
+
+            if (!$request->has('active'))
+                $active = 0;
+            else $active = 1;
+
+          $updated =  $services->update([
+                "service" => $request->service,
+                "active" => $active,
+                "fee" => $request->fee,
+                "currencies_id" => $request->currency,
+            ]);
+
+            if (!$updated) {
+                $notification = [
+                    'message' =>  __('site.services not updated'),
+                    'status' => 'error',
+                ];
+            } else {
+                $notification = [
+                    'message' =>  __('site.services has been updated'),
+                    'status' => 'success',
+                ];
+            }
+
+            return  response()->json($notification);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+
+
+        
 }

@@ -221,7 +221,7 @@ $routes = Route::current()->getName();
 
                 </ul>
             </li>
-            <li class="treeview   {{ $prefix == getprefix('Services') ? 'active' : '' }}     ">
+            <li class="treeview   {{ $prefix == getprefix('services') ? 'active' : '' }}     ">
                 <a href="#">
                     <i class="fa fa-user-circle"></i>
                     <span>@lang('site.services')</span>
@@ -233,22 +233,29 @@ $routes = Route::current()->getName();
                 <ul class="treeview-menu">
                     {{-- @can('create_edit grades') --}}
                     <li><a href="{{ route('admin.Services.add') }}">
-                            <i class="ti-more">
-                            </i>
+                            <i class="ti-more"></i>
                             @lang('site.services')
                         </a>
-                    </li>
-                    {{-- @endcan --}}
-
+                    </li> {{-- @endcan --}}
                 </ul>
+
+                <ul class="treeview-menu">
+                    {{-- @can('create_edit grades') --}}
+                    <li><a href="{{ route('admin.Services.to.client') }}">
+                            <i class="ti-more"></i>
+                            @lang('site.byuing services')
+                        </a>
+                    </li> {{-- @endcan --}}
+                </ul>
+
             </li>
         </ul>
     </section>
 
     <div class="sidebar-footer">
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
-            data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
+            aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
         <!-- item-->
         <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title=""
             data-original-title="Email"><i class="ti-email"></i></a>

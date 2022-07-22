@@ -286,8 +286,13 @@ return [
     'services note defined'=>'هذه الخدمة غير موجودة',
 
     'please wait to load service' => 'الرجاء الانتظار يتم تحميل الخدمة',
-    ''=>'',
-    ''=>'',
+
+    'services has been updated'=>'تم تعديل الخدمة بنجاح',
+    'services not updated'=>'فشل تعديل خدمة حاول من جديد او اتصل بالمشرف اذا بقيت المشكلة',
+
+
+
+    'byuing services'=>'بيع الخدمات',
     ''=>'',
     #################################### end of students translator ###################################
 

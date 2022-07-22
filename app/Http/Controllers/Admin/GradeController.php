@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GradesRequest;
 use App\Models\Grade;
-
+use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
@@ -124,8 +124,5 @@ class GradeController extends Controller
     }
 
 
-    public function to_update($services_id)
-    {
-        return $services_id;
-    }
+   
 }

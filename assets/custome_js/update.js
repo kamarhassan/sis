@@ -48,9 +48,6 @@ function change_to_update(id, name_, route_, token_) {
 
 
 function change_to_update_level(id, name_, route_, token_) {
-
-
-
     var html = '<div class="row">';
     html += '<input type="text" name="level" id="level_' + id + '"';
     html += 'value="' + name_ + '">     ';

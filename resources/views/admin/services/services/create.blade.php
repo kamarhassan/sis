@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+@lang('site.services')
+@endsection
 @section('css')
     @livewireStyles()
 @endsection
@@ -81,7 +83,7 @@
                         <div class="row">
                             <div class="text-xs-right">
                                 <a class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
-                                    onclick="services('{{ route('admin.Services.store') }}')">
+                                    onclick="services('{{ route('admin.Services.store') }}','services_form')">
                                     <span class=""> @lang('site.next step')</span>
                                 </a>
                             </div>
@@ -204,7 +206,7 @@
         <script src="{{ URL::asset('assets/custome_js/services.js') }}"></script>
         <script src="{{ URL::asset('assets/custome_js/delete.js') }}"></script>
         <script src="{{ URL::asset('assets/custome_js/update.js') }}"></script>
-
+        <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
         <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
         <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
         </script>
