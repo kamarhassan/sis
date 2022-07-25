@@ -52,14 +52,10 @@
                         <input type="hidden" name="cours_id" id="cours_id" value="{{ encrypt($cours['cours']['id']) }}">
                         <input type="hidden" name="user_id" id="user_id" value="{{ encrypt($students->id )}}">
                         <input type="hidden" name="receipt_id" id="receipt_id" value="{{$receipt['id']}}">
-
                         <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr"
                             value="{{ $cours_currency['abbr'] }}">
                         <input type="hidden" name="cours_currency_id" id="cours_currency_abbr"
                             value="{{ $cours_currency['id'] }}">
-
-
-
                         @csrf
                         <div class="col-md-6" id="normal_pament">
                             <input type="number" id="amount_to_paid" step="any" class='form-control'
@@ -245,10 +241,7 @@
                         <div class="col-md-3">
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
                                 type="submit"
-                                onclick="savepayment('{{ route('admin.payment_edit_to_receipt') }}'
-                                ,'{{ csrf_token() }}'
-                                ,'{{ $students->id }}'
-                                ,'{{$cours['cours']['id']}}');">
+                                onclick="savepayment('{{ route('admin.payment_edit_to_receipt') }}';">
                                 <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>
@@ -261,7 +254,7 @@
 
 
 @section('script')
-    <script src="{{ URL::asset('assets/custome_js/payment_for_cours.js') }}"></script>
+    <script src="{{ URL::asset('assets/custome_js/payment_for_cours_and_services.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
     </script>

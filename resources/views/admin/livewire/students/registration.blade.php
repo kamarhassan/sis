@@ -12,9 +12,9 @@
             <div class="col-md-12">
                 <div class="form-gourp">
                     <label>
-                        @lang('site.students')  <span class="text text-danger">*</span>
+                        @lang('site.students') <span class="text text-danger">*</span>
                     </label>
-                    <input wire:model='std_name' wire:keypress.debounce.500ms="updateQuery($event.target.value)"
+                    <input wire:model='std_name' wire:keypress.debounce.500ms="updateQuery()"
                         class='form-control' type="text" placeholder="@lang('site.searche std')" list="std_list"
                         wire:keydown.escape="reset_" wire:keydown.tab="reset_" name="std_name">
                     {{-- <input wire:model.debounce.500ms='std_name' class='form-control' type="text" list="std_name"> --}}
@@ -24,25 +24,28 @@
                     @enderror
 
                     @if (!empty($std_name))
+                    <div wire:loading wire:target="updateQuery()"> </div>
 
+                        <div class="fixed  top-0 bottom-0 left-0 right-0" wire:click="reset_">
 
-                        <div class="fixed  top-0 bottom-0 left-0 right-0" wire:click="reset_"></div>
+                        </div>
                         <div class="absolute z-10 w-full bg-white rounded-t-none shadow-lg list-group">
                             @if (!empty($all_std_as_std_name))
                                 <datalist id="std_list" class="col-md-12">
                                     @foreach ($all_std_as_std_name as $i => $student)
                                         <option class="form-control" value="{{ $student['name'] }}">
-                                            {{ $student['name'] }}</option>
+                                            {{ $student['id'] }}#{{ $student['name'] }}</option>
                                     @endforeach
                                 </datalist>
-
+                            @else
+                                <div wire:loading.remove>
+                                    {{-- <div class="text-error"> --}}
+                                    <span class="text-danger"> @lang('site.No results!')</span>
+                                    {{-- </div> --}}
+                                </div>
                             @endif
                         </div>
-                        @if (empty($all_std_as_std_name))
-                            <div class="text-error">
-                                <span class="text-danger"> @lang('site.No results!')</span>
-                            </div>
-                        @endif
+
                     @endif
 
                 </div>
@@ -56,7 +59,7 @@
                         <select wire:model="cours_id" wire:change="get_cours_fee($event.target.value)" name="cours_id"
                             class="form-control " style="width: 100%;">
                             @isset($cours)
-                                <option value="">@lang("site.chosse the cours")</option>
+                                <option value="">@lang('site.chosse the cours')</option>
                                 @foreach ($cours as $cours_)
                                     <option value="{{ $cours_->id }}">{{ $cours_->id }} -
                                         {{ $cours_->grade['grade'] }} -
@@ -115,20 +118,22 @@
             <div>
 
                 @if ($cours_fee_count == 0)
-                    <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light" disabled title="@lang('site.save')">
+                    <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light" disabled
+                        title="@lang('site.save')">
                     </a><span class="text text-danger"> @lang('site.next step')</span>
                 @elseif($cours_fee_count < 0)
-                    <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light" disabled title="@lang('site.save')">
+                    <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light" disabled
+                        title="@lang('site.save')">
                     </a><span class="text text-danger"> @lang('site.next step')</span>
                 @else
                     <button class="btn  glyphicon glyphicon-arrow-left hover-success text-warning-light"
-                    title="@lang('site.save')" type="submit"> <span> @lang('site.next step')</span>
+                        title="@lang('site.save')" type="submit"> <span> @lang('site.next step')</span>
                     </button>
                 @endif
 
             </div>
 
-</form>
+        </form>
     @elseif ($current_step == 2)
         @include('admin.livewire.students.fee')
     @elseif ($current_step == 3)

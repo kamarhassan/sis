@@ -1,4 +1,0 @@
-<div>
-{{dd($cours)}}
-
-</div>

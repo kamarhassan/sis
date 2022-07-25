@@ -16,7 +16,7 @@ function get_pay_type() {
     else return "pay_check_"
 }
 
-function savepayment(route_, token_, user_id, cours_id) {
+function savepayment(route_) {
     var formdata = $("#payment_data").serializeArray();
     // console.table(formdata)
     // console.table(formdata);

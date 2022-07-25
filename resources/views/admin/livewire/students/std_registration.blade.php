@@ -18,7 +18,7 @@
 @section('script')
     @livewireScripts
     <script>
-       
+
         // $(document).ready(function() {
         //     var table = $('#payment_table').DataTable({
         //         scrollY: "300px",

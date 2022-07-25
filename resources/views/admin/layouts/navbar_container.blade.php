@@ -95,7 +95,7 @@ $routes = Route::current()->getName();
 
 
 
-            <li class="treeview   {{ $prefix == getprefix('Setting') ? 'active' : '' }}     ">
+            <li class="treeview   {{ $prefix == getprefix('setting') ? 'active' : '' }}     ">
                 <a href="#">
                     <i class="ti-settings"></i>
                     <span>@lang('site.setting')</span>
@@ -118,6 +118,13 @@ $routes = Route::current()->getName();
                         <li><a href="{{ route('admin.Currency.get') }}">
                                 <i class="ti-more"></i>@lang('site.add new Currency')</a></li>
                     @endcan
+
+                    {{-- @can('create_edit grades') --}}
+                    <li><a href="{{ route('admin.Services.add') }}">
+                            <i class="ti-more"></i>
+                            @lang('site.add and edit services')
+                        </a>
+                    </li> {{-- @endcan --}}
                 </ul>
             </li>
 
@@ -229,25 +236,14 @@ $routes = Route::current()->getName();
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
-
                 <ul class="treeview-menu">
                     {{-- @can('create_edit grades') --}}
-                    <li><a href="{{ route('admin.Services.add') }}">
+                    <li><a href="{{ route('admin.Services.to.client') }}">
                             <i class="ti-more"></i>
                             @lang('site.services')
                         </a>
                     </li> {{-- @endcan --}}
                 </ul>
-
-                <ul class="treeview-menu">
-                    {{-- @can('create_edit grades') --}}
-                    <li><a href="{{ route('admin.Services.to.client') }}">
-                            <i class="ti-more"></i>
-                            @lang('site.byuing services')
-                        </a>
-                    </li> {{-- @endcan --}}
-                </ul>
-
             </li>
         </ul>
     </section>

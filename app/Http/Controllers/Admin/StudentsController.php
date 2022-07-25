@@ -61,8 +61,8 @@ class StudentsController extends Controller
             // $std_registartion =  StudentsRegistration::whereBetween('created_at', [
             //     $start_date, $end_date
             //   ])-> orderBy('created_at', 'DESC')
-            $std_registartion =  StudentsRegistration::where('created_at', 'LIKE', '%'.current_school_year().'%')
-            ->orderBy('created_at', 'DESC')
+            $std_registartion =  StudentsRegistration::where('created_at', 'LIKE', '%' . current_school_year() . '%')
+                ->orderBy('created_at', 'DESC')
                 ->selectRaw('count(*) as total, user_id,created_at')->groupby('user_id')
                 ->with('student:id,name,email,photo')
                 // ->paginate(10);
@@ -94,18 +94,12 @@ class StudentsController extends Controller
             $std = StudentsRegistration::where('user_id', $id)->with('cours')->get();
 
 
-            return response()->json($std);
+          $redirect_route = route('admin.payment.user_paid_for_cours',[ $std[0]['cours_id'], $std[0]['user_id']]);
+           return response()->json([$std, $redirect_route]);
         } catch (\Throwable $th) {
-            //throw $th;
+         throw $th;
         }
 
         // return response()->json(Config::get('modetheme.mode'));
     }
-
-
-
-
-
-
-
 }

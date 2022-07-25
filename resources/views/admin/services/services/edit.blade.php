@@ -24,9 +24,9 @@
                                             <div class="form-group">
                                                 <h5>@lang('site.services') <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" id="services" name="service"
+                                                    <input type="text" id="service" name="service"
                                                         class="form-control">
-                                                    <span class="text-danger" id="services_"> </span>
+                                                    <span class="text-danger" id="service_"> </span>
                                                 </div>
                                             </div>
                                         </div>

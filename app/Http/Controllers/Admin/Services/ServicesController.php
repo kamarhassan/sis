@@ -50,7 +50,7 @@ class ServicesController extends Controller
                     'status' => 'success',
 
                 ];
-                return   response()->json([$notification, $temp]);
+                return   response()->json([$notification]);
             } else {
                 $notification = [
                     'message' => __('site.faild to  craete new services'),
@@ -183,5 +183,5 @@ class ServicesController extends Controller
 
 
 
-        
+
 }

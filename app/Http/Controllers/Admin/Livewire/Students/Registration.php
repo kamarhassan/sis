@@ -90,9 +90,9 @@ class Registration extends Component
         $this->all_std_as_std_name = [];
     }
 
-    public function updateQuery($std_name)
+    public function updateQuery()
     {
-        $this->all_std_as_std_name = User::where('name', 'like', '%' . $std_name . '%')
+        $this->all_std_as_std_name = User::where('name', 'like', '%' . $this->std_name . '%')
             ->get(['id', 'name'])
             ->toArray();
     }
@@ -192,7 +192,7 @@ class Registration extends Component
                 'cours_fee_total' => $cours_fee_total,
                 'remaining' => $remaining,
             ]);
-           
+
             if ($succes_std_regi) {
                 return  $succes_std_regi;
             } else return -1;

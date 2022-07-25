@@ -52,8 +52,7 @@
                                 @lang('site.amount') :
                             </span>
                         </div>
-                        <input type="hidden" name="cours_id" id="cours_id"
-                            value="{{ encript_custome($cours[0]['id']) }}">
+                        <input type="hidden" name="cours_id" id="cours_id" value="{{ encript_custome($cours[0]['id']) }}">
                         <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
                         <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user[0]['id']) }}">
                         <input type="hidden" name="cours_currency_abbr" id="cours_currency_abbr"
@@ -150,26 +149,25 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div id="div_pay_check" hidden>
-
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-1 col-form-label">#</label>
-                                <div class="col-sm-10">
-                                    <input class='form-control' id="check_number" type="number" step="any"
-                                        placeholder="@lang('site.Enter check number')" name="check_number" id="check_number">
-                                </div>
+                        <div class="col-md-12" id="div_pay_check" hidden>
+                            <div class="col-md-6" id="normal_pament">
+                                <label>#@lang('site.check number')</label>
+                                <input class='form-control' id="check_number" type="number" step="any"
+                                    placeholder="@lang('site.Enter check number')" name="check_number" id="check_number">
                                 <span class="text-danger" id="check_number_"> </span>
                             </div>
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-1 col-form-label">#</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="bank" id="bank">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>#@lang('site.bank')</label>
+                                    <select class="form-control select2" name="bank" id="bank"
+                                        class="form-control select2" style="width: 100%;">
                                         <option></option>
                                         <option>slect from bank list 2</option>
                                         <option>slect from bank list3 </option>
                                         <option>slect from bank list 4</option>
                                         <option>slect from bank list 5</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -239,8 +237,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
-                                type="submit"
-                                onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}','{{ csrf_token() }}','{{ encript_custome($std[0]['user_id']) }}','{{ encript_custome($std[0]['cours_id']) }}');">
+                                type="submit" onclick="savepayment('{{ route('admin.payment.payment_to_receipt') }}');">
                                 <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>
@@ -250,12 +247,12 @@
         </div>
     </div>
 
-    @endsection
+@endsection
 
 
-    @section('script')
-        <script src="{{ URL::asset('assets/custome_js/payment_for_cours.js') }}"></script>
-        <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
-        <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
-        </script>
-    @endsection
+@section('script')
+    <script src="{{ URL::asset('assets/custome_js/payment_for_cours_and_services.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
+    </script>
+@endsection

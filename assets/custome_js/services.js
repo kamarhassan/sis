@@ -6,13 +6,13 @@ function services(route_,form_id) {
         url: route_,
         data: formdata,
         success: function (data) {
-            console.table(data.message);
-            if (data.status == 'success') {
-                toastr.success(data.message)
+            console.table(data);
+            if (data[0].status == 'success') {
+                toastr.success(data[0].message)
                 location.reload();
             } else {
-                if (data.status == 'error') {
-                    toastr.error(data.message);
+                if (data[0].status == 'error') {
+                    toastr.error(data[0].message);
                 }
             }
         }, error: function reject(reject) {
@@ -49,7 +49,7 @@ function get_service(route_, token_) {
 
 function set_services_info_into_modal(data) {
     $('#service_id').val(data['id']);
-    $('#services').val(data['service']);
+    $('#service').val(data['service']);
     $('#fee').val(data['fee']);
     if (data['active'] ==1) {
         $('#active').attr('checked', true);

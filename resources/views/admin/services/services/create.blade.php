@@ -129,7 +129,7 @@
                                 <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     @isset($currency)
-                                        <select name="currency[]" id="currency_number" class="form-control select2"
+                                        <select name="currency[]" id="currency_number" class="form-control "
                                             style="width: 100%;">
                                             <option value="">--------------</option>
                                             @foreach ($currency as $currencys)

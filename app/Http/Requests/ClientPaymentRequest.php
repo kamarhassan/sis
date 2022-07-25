@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Models\Currency;
-use App\Models\StudentsRegistration;
+use App\Models\UserService;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentRequest extends FormRequest
+class ClientPaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,30 +23,21 @@ class PaymentRequest extends FormRequest
      *
      * @return array
      */
-
-
-
-
     public function rules()
     {
-        /****
-         * $this->get_max_amount(decrypt($this->user_id), decrypt($this->cours_id));
-         * get the max fees required
-         * of this cours
-         */
-        $max_amount_to_paid =  $this->get_max_amount(decrypt($this->user_id), decrypt($this->cours_id));
 
+        $max_amount_to_paid =  $this->get_max_amount( decrypt($this->client_services_id));
+        // $t = ['user-id'=>decrypt($this->user_id),'service-id'=>decrypt($this->service_id)];
+        //             dd($t);
         return [
             'amount_to_paid' => $this->amount_to_paid($max_amount_to_paid),
             'check_number' => $this->checkNum(),
             'other_amount_to_paid' => $this->other_amount($max_amount_to_paid),
-            'cours_currency_id' => 'required|exists:currencies,id',
-
+            'service_currency_id' => 'required|exists:currencies,id',
             'rate' => $this->rate(),
             'bank' => $this->bank(),
         ];
     }
-
     public  function messages()
     {
         return [
@@ -54,42 +45,52 @@ class PaymentRequest extends FormRequest
             '*.numeric' => __('site.must be a number'),
             '*.min' => __('site.must be a number positive'),
             '*.max' => __('site.amount to paid must be under fees Or the rest')
-                . "  " . $this->cours_currency_abbr . "  " . $this->get_max_amount(decrypt($this->user_id), decrypt($this->cours_id)),
+                . "  " . $this->service_currency_abbr . "  " . $this->get_max_amount(decrypt($this->client_services_id)),
             'chek_number.digits' => __('site.must be a only 14 number'),
 
         ];
     }
 
-    public function get_max_amount($user_id, $cours_id)
+
+    private function get_max_amount( $service_client_id)
     {
+        // dd($service_client_id);
         try {
-            $std = StudentsRegistration::where([
-                'user_id' => $user_id,
-                'cours_id' => $cours_id
-            ])->get();
-            if ($std->count() > 0) {
-                return $std[0]['remaining'];
+            $client_services = UserService::where('id',$service_client_id)->get();
+
+            // dd($client_services);
+            if ($client_services->count() > 0) {
+                return $client_services[0]['remaining'];
+                // return $client_services->remaining;
             } else {
                 return 0;
             }
             //code...
         } catch (\Throwable $th) {
-            //throw $th;
-            return 0;
+            throw $th;
+            return -1;
         }
     }
 
-
+    private function amount_to_paid($max_amount_to_paid)
+    {
+        if (!$this->request->has('payment_methode'))
+            return 'required|numeric|min:1|max:' . $max_amount_to_paid;
+        else return "";
+    }
+ //
     public function checkNum()
     {
         if ($this->pay_type == 'pay_check_')
             return 'required|digits:14|numeric';
         else return "";
     }
-    public function userId()
-    {
-       return  'required|exists:users,'.decrypt($this->user_id);
-    }
+    // public function userId()
+
+    // public function userId()
+    // {
+    //     return  'required|exists:users,' . decrypt($this->user_id);
+    // }
     public function bank()
     {
         if ($this->pay_type == 'pay_check_')
@@ -100,14 +101,12 @@ class PaymentRequest extends FormRequest
     public function other_amount($max_amount_to_paid)
     {
         try {
-
-            $cours_curency_abbr = Currency::find($this->other_payment_currency);
-
             if ($this->request->has('payment_methode')) {
+                $service_curency_abbr = Currency::find($this->other_payment_currency);
                 if (
-                    strcmp($cours_curency_abbr['abbr'], "L.L") == 0
-                    && (strcmp($this->cours_currency_abbr, "USD") == 0 || strcmp($this->cours_currency_abbr, "EUR") == 0)
-                    &&$this->rate >0
+                    strcmp($service_curency_abbr['abbr'], "L.L") == 0
+                    && (strcmp($this->service_currency_abbr, "USD") == 0 || strcmp($this->service_currency_abbr, "EUR") == 0)
+               &&$this->rate >0
                     ) {
                     $amount_to_paid = $this->other_amount_to_paid / $this->rate;
                     // dd($amount_to_paid);
@@ -122,12 +121,7 @@ class PaymentRequest extends FormRequest
             throw $th;
         }
     }
-    public function amount_to_paid($max_amount_to_paid)
-    {
-        if (!$this->request->has('payment_methode'))
-            return 'required|numeric|min:1|max:' . $max_amount_to_paid;
-        else return "";
-    }
+
     public function rate()
     {
         if ($this->request->has('payment_methode'))

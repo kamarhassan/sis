@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\Livewire\Test;
+
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\CoursController;
 use App\Http\Controllers\Admin\GradeController;
@@ -12,13 +12,9 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
-
 use App\Http\Controllers\Admin\SuperviserController;
-use App\Http\Controllers\Admin\Livewire\Std\ClickEvent;
 use App\Http\Controllers\Admin\Services\ServicesController;
-use App\Http\Controllers\Admin\Livewire\PayFeeCours\Payment;
-use App\Http\Controllers\Admin\Livewire\Students\Registration;
-use App\Http\Controllers\Admin\Services\ServicesClientController;
+use App\Http\Controllers\Admin\Services\ClientPaymentController;
 
 // use App\Http\Livewire\P;
 
@@ -98,6 +94,10 @@ Route::group([
         ###########################  for Currency setting
         Route::get('Currency', [CurrencyController::class, 'index'])->middleware(['permission:activate currency'])->name('admin.Currency.get');
         Route::post('Currency_store', [CurrencyController::class, 'edit'])->name('admin.Currency.active');
+
+        ###########################  for services setting
+        Route::get('services', [ServicesController::class, 'create'])->name('admin.Services.add');
+        Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
     });
     ################################### End Settings Routes ###################################################
 
@@ -121,7 +121,7 @@ Route::group([
         Route::get('/', [StudentsController::class, 'students'])->name('admin.students.all');
         //Route::get('Registration', [Registration::class,'render'])->name('admin.students.register');
         Route::view('Registration', 'admin.livewire.students.std_registration')->name('admin.students.Registration-1');
-        Route::get('Payment', [StudentsController::class, 'get_std_to_payment'])->name('admin.students.get_std_to_payment');
+        Route::get('payment', [StudentsController::class, 'get_std_to_payment'])->name('admin.students.get_std_to_payment');
         Route::post('get_cours_std/{id}', [StudentsController::class, 'get_cours_std'])->name('admin.students.get_cours_std');
 
         Route::get('Receipt', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
@@ -153,14 +153,17 @@ Route::group([
 
     Route::group(['prefix' => 'services'], function () {
 
-        Route::get('/', [ServicesController::class, 'create'])->name('admin.Services.add');
-        Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
+        // Route::get('services/', [ServicesController::class, 'create'])->name('admin.Services.add');
+        // Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
         Route::post('services_delete', [ServicesController::class, 'delete'])->name('admin.services.delete');
         Route::post('get-services-update/{services_id}', [ServicesController::class, 'to_update'])->name('admin.services.to-update');
         Route::post('update', [ServicesController::class, 'update'])->name('admin.services.update');
         // C:\xampp\htdocs\sis\resources\views\admin\livewire\services\servicesclient.blade.php
         Route::view('client', 'admin.livewire.services.services-to-client')->name('admin.Services.to.client');
 
+        // Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services1'])->name('admin.payment.user_paid_for_services1');
+        Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services'])->name('admin.payment.user_paid_for_services');
+        Route::post('save_payment_client', [ClientPaymentController::class, 'savepaymentCient'])->name('admin.payment.payment_client_to_receipt');
         // Route::get('client', [ServicesClientController::class, 'service_to_client'])->name('admin.Services.to.client');
     });
     ################################### end  Services Routes #################################################

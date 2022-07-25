@@ -17,8 +17,9 @@ class CreateUserServicesTable extends Migration
             $table->id();
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->float('amount')->nullable();
-            $table->float('remaining')->nullable();
+            $table->double('amount')->nullable();
+            $table->double('paid_amount')->nullable();
+            $table->double('remaining')->nullable();
             $table->timestamps();
         });
     }

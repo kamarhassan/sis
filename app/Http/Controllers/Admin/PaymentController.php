@@ -33,6 +33,7 @@ class PaymentController extends Controller
     public function  user_paid_for_cours($cours_id, $user_id)
     {
         try {
+          
             //code...
             $std = StudentsRegistration::where([
                 'user_id' => $user_id,
