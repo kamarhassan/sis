@@ -27,7 +27,7 @@
                 <div class="page-header">
                     <h2 class="d-inline"><span class="font-size-30">@lang('site.receipt')</span></h2>
                     <div class="pull-right text-right">
-                        <h3><label>@lang('site.Release Date')</label> :{{ $receipt->created_at->format('d-m-Y') }}
+                        <h3><label>@lang('site.Release Date')</label> :{{ $service_repceit->created_at->format('d-m-Y') }}
                         </h3>
                         {{-- <h3>{{ date('d-m-Y') }}</h3> --}}
                     </div>
@@ -41,8 +41,8 @@
 
                     {{-- <strong class="text-blue bb-1 font-size-24">{{ $std_name }}</strong> --}}
                     <strong class="text-blue bb-1 font-size-24">{{ $user->name }}</strong>
-                    <br>@lang('site.registration id') : {{ $std[0]['id'] }}<br>
-                    <br>@lang('site.registration date') : {{ $std[0]['created_at']->format('d-m-Y') }}<br>
+                    {{-- <br>@lang('site.registration id') : {{ $std[0]['id'] }}<br>
+                    <br>@lang('site.registration date') : {{ $std[0]['created_at']->format('d-m-Y') }}<br> --}}
 
                 </address>
             </div>
@@ -56,20 +56,22 @@
             </div>
             <div class="col-sm-12 invoice-col mb-15">
                 <div class="invoice-details row no-margin">
-                    <div class="col-md-6 col-lg-3"><b>receipr id # {{ $receipt->id }}</b></div>
+                    <div class="col-md-6 col-lg-3"><b>receipr id # {{ $service_repceit['id'] }}</b></div>
 
-                    <div class="col-md-6 col-lg-3"><b>user ID : {{ $std[0]['cours_id'] }}</b></div>
-                    <div class="col-md-6 col-lg-3"><b>cours : {{ $std[0]['user_id'] }}# {{$cours[0]['grade']['grade']}},{{$cours[0]['level']['level']}}</b>
+                    <div class="col-md-6 col-lg-3"><b>user ID : {{ $user['id'] }}</b></div>
+                    <div class="col-md-6 col-lg-3"><b>services : {{ $service ['id'] }} #  {{ $service ['service'] }}  </b>
                         {{-- @if ($coursinfo->grade['grade'] != '' && $coursinfo->level['level'] != '')
                         {{ $coursinfo->grade['grade'] }} -{{ $coursinfo->level['level'] }}
                     @endif --}}
                     </div>
-                    <div class="col-md-6 col-lg-3"><b>amount: {{ $receipt->amount }} <span class="text-warning"> {{ $currency['symbol'] }} - {{ $currency['abbr'] }}</span></b></div>
+                    <div class="col-md-6 col-lg-3"><b>amount: {{ $service_repceit['amount'] }} <span class="text-warning"> {{ $currency['symbol'] }} - {{ $currency['abbr'] }}</span></b></div>
                 </div>
             </div>
-
+            <div class="col-sm-12 invoice-col mb-15">
+     
+            </div>
         </div>
-        <div class="col-md-12">
+        {{-- <div class="col-md-12">
             @isset($fees)
                 <div class="table-responsive">
                     <table id="payment_table" class="table table-hover mb-0">
@@ -78,16 +80,16 @@
                             <th scope="col">@lang('site.fee value')</th>
                             <th scope="col">@lang('site.registration date')</th>
                             <th scope="col">@lang('site.paid')</th>
-                            {{-- <th scope="col">@lang('site.paid date')</th> --}}
+
                             <th scope="col">@lang('site.remaining')</th>
-                            {{-- <th scope="col">@lang('site.desription')</th> --}}
+
                         </tr>
                         <form id="alldata">
 
                             @if ($old_payment->count() > 0)
                                 @foreach ($old_payment as $feestopaid)
                                     <tr>
-                                        {{-- <td scope="row"> feestopaid['id']</td> -- --}}
+
                                         <td scope="row"> {{ $feestopaid['cours_fee']['fee_type']['fee'] }} </td>
                                         <td scope="row"> {{ $feestopaid['cours_fee']['value'] }} </td>
                                         <td scope="row"> {{ $std[0]['created_at']->format('d-m-Y') }} </td>
@@ -111,7 +113,7 @@
             @endisset
 
 
-        </div>
+        </div> --}}
     </section>
 
 @endsection

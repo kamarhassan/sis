@@ -25,6 +25,7 @@ function savepayment(route_) {
         url: route_,
         data: formdata,
         success: function (data) {
+            console.log(data);
             if (data[1].status == 'success') {
                 window.location.replace(data[0]);
                 toastr.success(data[1].message)

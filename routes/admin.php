@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\Services\ServicesController;
 use App\Http\Controllers\Admin\Services\ClientPaymentController;
+use App\Http\Controllers\Admin\Services\ServicesReceiptController;
 
 // use App\Http\Livewire\P;
 
@@ -142,6 +143,7 @@ Route::group([
         Route::post('payment_receipt', [PaymentController::class, 'savepayment'])->name('admin.payment.payment_to_receipt');
         Route::post('edit_payment_receipt', [PaymentController::class, 'save_edit_payment'])->name('admin.payment_edit_to_receipt');
         Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [ReceiptController::class, 'receipt'])->name('admin.payment.receipt');
+        Route::get('client/receipt/{user_service_receipt_id}', [ServicesReceiptController::class, 'receipt'])->name('admin.payment.service.receipt');
         ###########################################################################################
         // Route::get('PaymentCoursFee/{registration_id}', [Payment::class,'render'])->name('admin.payment.feeCours');
     });
@@ -164,7 +166,7 @@ Route::group([
         // Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services1'])->name('admin.payment.user_paid_for_services1');
         Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services'])->name('admin.payment.user_paid_for_services');
         Route::post('save_payment_client', [ClientPaymentController::class, 'savepaymentCient'])->name('admin.payment.payment_client_to_receipt');
-        // Route::get('client', [ServicesClientController::class, 'service_to_client'])->name('admin.Services.to.client');
+        Route::get('receipt', [ServicesReceiptController::class, 'all_receipt'])->name('admin.Services..allreceipt');
     });
     ################################### end  Services Routes #################################################
 

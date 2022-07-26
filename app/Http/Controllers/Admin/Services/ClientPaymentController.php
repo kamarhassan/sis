@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientPaymentRequest;
+use App\Models\ServiceReceipt;
 
 class ClientPaymentController extends Controller
 {
@@ -49,10 +50,11 @@ class ClientPaymentController extends Controller
     public function savepaymentCient(ClientPaymentRequest $request)
     {
         try {
+            // return $request;
             $client_services_id = decrypt($request->client_services_id);
             DB::beginTransaction();
             $client_services = UserService::find($client_services_id);
-            
+
             if ($request->has('check_number')) {
                 $check_number = $request->check_number;
                 // $bank=$request->bank;
@@ -62,7 +64,7 @@ class ClientPaymentController extends Controller
             }
             if ($client_services->count() > 0) {
                 // return $std[0]['id'];
-                return $client_services;
+
                 if ($request->has('rate')) {
                     $rate_exchange = $request->rate;
                 } else {
@@ -70,29 +72,67 @@ class ClientPaymentController extends Controller
                 }
 
                 if ($request->has('payment_methode')) {
-
                     $service_curency_abbr = $request->service_currency_abbr;
-
                     $other_payment_currency = $request->other_payment_currency;
                     $payment_currency_abbr = Currency::find($other_payment_currency);
-
                     if (($service_curency_abbr == "USD" || $service_curency_abbr == "EUR" && $payment_currency_abbr->abbr == "L.L")) {
                         $init_amount = $request->other_amount_to_paid / $request->rate;
                     } else {
                         $init_amount = $request->other_amount_to_paid * $request->rate;
                     }
                 } else {
-                    // return "line 129";
                     $init_amount  = $request->amount_to_paid;
-                    $other_payment_currency = $request->cours_currency_id;
-                    // return $payment_currency;
+                    $other_payment_currency = $request->service_currency_id;
                 }
+
+                $receipt_information =  ServiceReceipt::Create([
+
+                    'currencies_id' =>    $other_payment_currency,
+                    'service_currency_id' => $request->service_currency_id,
+                    'amount' => $init_amount,
+                    'other_amount' => $request->other_amount_to_paid,
+                    'description' => $request->receipt_description,
+                    'rate_exchange' => $rate_exchange,
+                    'payType' => $request->pay_type,
+                    'user_id'  => decrypt($request->user_id),
+                    'user_service_id' =>  $client_services['id'],
+                    'amount_total' => $init_amount,
+                    'checkNum' => $check_number,
+                    // 'bank_' => $bank,
+                ]);
+
+                $client_services->update([
+
+                    'paid_amount' => $init_amount,
+                    'remaining' => $client_services['remaining'] - $init_amount,
+                ]);
             }
             DB::commit();
+            if (  $receipt_information && $client_services)
+                $notification = [
+                    'message' => __('site.payment has been success'),
+                    'status' => 'success',
+                ];
+            // return  response()->json($notification);
+            else {
+                $notification = [
+                    'message' => __('site.payment faild'),
+                    'status' => 'error',
 
-            return $request;
+                ];
+            }
+            // $t = route('admin.payment.service.receipt',  $receipt_information->id);
+            // return $t;
+            return response()->json([route('admin.payment.service.receipt', $receipt_information->id), $notification]);
         } catch (\Throwable $th) {
             throw $th;
+            DB::rollBack();
+            $notification = [
+                'message' => __('site.you have error'),
+                'status' => 'error',
+
+            ];
+            return  response()->json($notification);
         }
     }
 }

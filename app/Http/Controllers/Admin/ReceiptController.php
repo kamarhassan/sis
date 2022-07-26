@@ -34,10 +34,10 @@ class ReceiptController extends Controller
 
                 $user =  User::find(decrypt($user_id));
                 // dd($user['email']);
-                $cours = Cours::where('id', $cours_id)
+                $cours = Cours::where('id', decrypt($cours_id))
                     ->with('grade:id,grade', 'level:id,level', 'teacher:id,name')
                     ->get();
-                $fee_required =  string_to_array($std[0]['feesRequired']);
+                                  $fee_required =  string_to_array($std[0]['feesRequired']);
                 $fees  = CoursFee::wherein('id', $fee_required)
                     ->with('fee_type', 'currency', 'payment:id,amount,paid_amount,remaining,cours_fee_id,created_at')
                     ->get();
@@ -61,7 +61,7 @@ class ReceiptController extends Controller
                 $contains2 = Str::contains(url()->previous(), 'edit-old-payment');
                 if ($contains1 ||$contains2)
                   Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
- 
+
                 if (Mail::failures()) {
                     // toastr()->error(__('site.eror in sending email'));
                     return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
