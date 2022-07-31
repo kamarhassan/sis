@@ -33,7 +33,7 @@ class PaymentController extends Controller
     public function  user_paid_for_cours($cours_id, $user_id)
     {
         try {
-          
+
             //code...
             $std = StudentsRegistration::where([
                 'user_id' => $user_id,
@@ -130,7 +130,7 @@ class PaymentController extends Controller
                 $receipt_information =  Receipt::Create([
                     'currencies_id' => $other_payment_currency,
                     'cours_currency_id' => $request->cours_currency_id,
-                    'amount' => $init_amount,
+                    'amount' => $request->amount_to_paid,
                     'other_amount' => $request->other_amount_to_paid,
                     'description' => $request->receipt_description,
                     'rate_exchange' => $rate_exchange,
@@ -286,7 +286,6 @@ class PaymentController extends Controller
     #########################################################
     #########################################################
     /*
-
             Edit
     */
     #########################################################
@@ -384,7 +383,7 @@ class PaymentController extends Controller
                 $receipt_updated =  $receipt->update([
                     'currencies_id' => $other_payment_currency,
                     'cours_currency_id' => $request->cours_currency_id,
-                    'amount' => $init_amount,
+                    'amount' => $request->amount_to_paid,
                     'other_amount' => $other_amount,
                     'amount_total' => $init_amount,
                     'description' => $request->receipt_description,
@@ -445,7 +444,7 @@ class PaymentController extends Controller
                     'remaining' => $new_remaining,
                 ]);
                 DB::commit();
-                if ($std_registration_updated && $receipt_updated && $edit)
+                if ($std_registration_updated && $receipt_updated )
                     $notification = [
                         'message' => __('site.payment has been success'),
                         'status' => 'success',

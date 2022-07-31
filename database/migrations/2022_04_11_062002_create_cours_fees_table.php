@@ -19,9 +19,9 @@ class CreateCoursFeesTable extends Migration
             // $table->integer('currencies_id');
             // $table->integer('primary_price')->nullable();
             // $table->integer('sponsored')->enum('sponsored', [0, 1])->default(1)->comment("0 =>  not entry in fees cours  , 1 =>  is entry in fees cours   ");
-            $table->foreignId('currencies_id')->constrained('currencies')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('cours_id')->constrained('courss')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('fee_types_id')->constrained('fee_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('currencies_id')->constrained('currencies')->onUpdate('cascade');
+            $table->foreignId('cours_id')->constrained('courss')->onUpdate('cascade');
+            $table->foreignId('fee_types_id')->constrained('fee_types')->onUpdate('cascade');
             $table->timestamps();
         });
     }

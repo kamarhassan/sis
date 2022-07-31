@@ -40,7 +40,7 @@ class Servicesclient extends Component
 
 
             $rules = [
-                'client_name' => 'required|exists:Users,name',
+                'client_name' => 'required|exists:users,name',
                 'service_id' => 'required|exists:services,id',
             ];
 

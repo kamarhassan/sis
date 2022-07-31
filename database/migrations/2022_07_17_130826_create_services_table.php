@@ -17,7 +17,9 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('service');
             $table->float('fee');
-            $table->foreignId('currencies_id')->constrained('currencies')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('currencies_id')->constrained('currencies')->onUpdate('cascade');
+            $table->boolean('active')->default(1)->comment = '1 is active 0 is inactive'; //
+
             $table->timestamps();
         });
     }

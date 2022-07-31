@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserService extends Model
 {
     use HasFactory;
-    protected $table ='user_services';
+    protected $table = 'user_services';
 
     protected  $guarded = [];
     protected $hidden = [
-        'created_at','updated_at'
+        'created_at', 'updated_at'
     ];
 
 
@@ -20,5 +20,8 @@ class UserService extends Model
     {
         return $this->hasMany(User::class, 'id', 'user_id');
     }
-
+    public function service_()
+    {
+        return $this->hasMany(Service::class, 'id', 'service_id');
+    }
 }

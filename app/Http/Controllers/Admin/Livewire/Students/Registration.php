@@ -61,7 +61,7 @@ class Registration extends Component
     {
 
         $rules = [
-            'std_name' => 'required|exists:Users,name',
+            'std_name' => 'required|exists:users,name',
             'cours_id' => 'required|exists:courss,id',
         ];
 
@@ -428,7 +428,7 @@ class Registration extends Component
 
 
     public function init_model()
-    {
+    {$this->cours_fee = null;
         $this->registration_students = 0;
         $this->coursinfo = "";
         $this->select_cours = null;

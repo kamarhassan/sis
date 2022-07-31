@@ -30,9 +30,9 @@ class CreateCoursTable extends Migration
             $table->string('act_EndDa');
             $table->string('year');
             $table->string('deleted')->enum('deleted', [0, 1])->default(1)->comment("0=>delete  1=>is active");
-            $table->foreignId('teacher_id')->constrained('admins')->onDelete('cascade')->onUpdate('cascade')->comment('for teacher name');
-            $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('level_id')->constrained('levels')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('teacher_id')->constrained('admins')->onUpdate('cascade')->comment('for teacher name');
+            $table->foreignId('grade_id')->constrained('grades')->onUpdate('cascade');
+            $table->foreignId('level_id')->constrained('levels')->onUpdate('cascade');
 
 
 

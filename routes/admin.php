@@ -162,11 +162,16 @@ Route::group([
         Route::post('update', [ServicesController::class, 'update'])->name('admin.services.update');
         // C:\xampp\htdocs\sis\resources\views\admin\livewire\services\servicesclient.blade.php
         Route::view('client', 'admin.livewire.services.services-to-client')->name('admin.Services.to.client');
+        Route::get('receipt', [ServicesReceiptController::class, 'All_receipt'])->name('admin.Services.all-receipt');
 
         // Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services1'])->name('admin.payment.user_paid_for_services1');
         Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services'])->name('admin.payment.user_paid_for_services');
         Route::post('save_payment_client', [ClientPaymentController::class, 'savepaymentCient'])->name('admin.payment.payment_client_to_receipt');
-        Route::get('receipt', [ServicesReceiptController::class, 'all_receipt'])->name('admin.Services..allreceipt');
+        // Route::get('receipt', [ServicesReceiptController::class, 'all_receipt'])->name('admin.Services..allreceipt');
+        Route::post('delet_receipt', [ServicesReceiptController::class, 'delete_payment_receipt'])->name('admin.service.delete_payment_receipt');
+        Route::get('edit-old-payment/{receipt_id}', [ClientPaymentController::class, 'get_old_payment'])->name('admin.service.get_old_payment.edit');
+        Route::post('edit-payment', [ClientPaymentController::class, 'edit_payment'])->name('admin.service.edit.old.payment');
+
     });
     ################################### end  Services Routes #################################################
 

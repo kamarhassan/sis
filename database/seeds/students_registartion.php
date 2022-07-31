@@ -17,7 +17,7 @@ class students_registartion extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 9000; $i++) {
+        for ($i = 0; $i < 90; $i++) {
 
             DB::table('studentsRegistrations')->insert([
                 'cours_id' => Cours::inRandomOrder()->first()->id,

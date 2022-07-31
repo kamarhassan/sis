@@ -25,7 +25,7 @@ function delete_by_id(route_, id_, token_, array_of_msg,) {
                     'id': id_delet
                 },
                 success: function (data) {
-                    // console.log(data)
+                     console.log('Row' + id_delet)
                     // console.table(data); // toast.success(data.message);
                     if (data.status == 'success') {
 

@@ -29,6 +29,7 @@ class Service extends Model
         return $query->where('active',1);
     }
 
+  
     public function currency()
     {
         return $this->hasOne(currency::class, 'id', 'currencies_id');

@@ -243,6 +243,12 @@ $routes = Route::current()->getName();
                             @lang('site.services')
                         </a>
                     </li> {{-- @endcan --}}
+                    <li><a href="{{ route('admin.Services.all-receipt') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                        <i class="ti-more">
+                        </i>
+                        @lang('site.edit receipt and payment')
+                    </a>
+                </li>
                 </ul>
             </li>
         </ul>

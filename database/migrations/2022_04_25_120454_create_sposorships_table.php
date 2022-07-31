@@ -16,8 +16,7 @@ class CreateSposorshipsTable extends Migration
         Schema::create('sposorships', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('sponsorID')->constrained('sponsors')
-            ->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreignId('sponsorID')->constrained('sponsors') ->onUpdate('cascade');;
             $table->integer('type');
             $table->float('amount');
             $table->float('percent')->default(000);

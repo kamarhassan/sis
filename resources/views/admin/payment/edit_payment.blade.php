@@ -241,7 +241,7 @@
                         <div class="col-md-3">
                             <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
                                 type="submit"
-                                onclick="savepayment('{{ route('admin.payment_edit_to_receipt') }}';">
+                                onclick="savepayment('{{ route('admin.payment_edit_to_receipt') }}');">
                                 <span class=""> @lang('site.next step')</span>
                             </button>
                         </div>
