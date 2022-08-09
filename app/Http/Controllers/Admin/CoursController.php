@@ -71,8 +71,8 @@ class CoursController extends Controller
         // return $request;
         try {
             DB::beginTransaction();
-            // $teacher_id = Admin::GetIdByName($request->teacher_name);
-            $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
+            $teacher_id = Admin::GetIdByName($request->teacher_name);
+            // $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
 
             $id_cours = $this->cours->store_cours($request, $teacher_id);
 
@@ -81,7 +81,7 @@ class CoursController extends Controller
             }
 
 
-            
+
             DB::commit();
             if (!$id_cours) {
                 toastr()->error(__('site.please add data in the field'));
@@ -150,7 +150,8 @@ class CoursController extends Controller
 
         try {
             //code...
-            $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
+            // $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
+            $teacher_id = Admin::GetIdByName($request->teacher_name);
             $this->cours->update_cours($request, $teacher_id, $id);
             $cours_fee = $this->coursfee->update_fee_cours($request->fee, $id, $request->cours_currency);
             toastr()->success(__('site.Post created successfully!'));

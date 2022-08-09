@@ -233,13 +233,12 @@ return [
     'check number' =>'رقم الشيك',
     'Enter check number' =>'ادخل رقم الشيك',
     'bank'  => 'البنك',
-
     'client name'  => 'اسم العميل',
     'services info'  => 'معلومات الخدمة',
     'fee of this services is'  => 'رسوم هذةالخدمة تحتسب ب',
-    ''  => '',
-    ''  => '',
-    ''  => '',
+    'report'  => 'التقارير',
+    'daily reports'  => 'التقارير اليومية',
+    'sum of payment for'  => 'مجموع القيمة حسب العملة',
     ''  => '',
 
 ];

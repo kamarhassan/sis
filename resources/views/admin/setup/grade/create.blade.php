@@ -69,7 +69,7 @@
                                 @isset($grade)
                                     @foreach ($grade as $key => $grades)
                                     {{-- <form method="post" id="grade_data" action="{{ route('admin.grades.update') }}"> --}}
-                                        <tr class="Row{{ $grades->id }} ">
+                                        <tr class="Row{{ $grades->id }} " id="Row{{ $grades->id }} ">
 
                                             @csrf
                                             <td> {{ $key + 1 }} </td>

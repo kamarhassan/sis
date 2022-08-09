@@ -22,11 +22,12 @@ class ServiceReceipt extends Model
      */
 
     protected $hidden = [
-        'created_at',
+
         'updated_at'
     ];
 
 
+   
     public function client_services()
     {
         return $this->belongsTo(UserService::class, 'user_service_id', 'id');
@@ -36,7 +37,7 @@ class ServiceReceipt extends Model
         return $this->belongsTo(Service::class, 'service_id', 'id');
     }
 
-    public function client()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }

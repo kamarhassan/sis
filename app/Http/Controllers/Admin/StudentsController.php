@@ -68,15 +68,12 @@ class StudentsController extends Controller
                 // ->paginate(10);
                 // ->paginate(100);
                 ->get();
-
+            return view('admin.payment.index', compact('std_registartion'));
             // return $std_registartion;
         } catch (\Throwable $th) {
             throw $th;
             // return $th;
         }
-
-
-        return view('admin.payment.index', compact('std_registartion'));
     }
 
 
@@ -94,10 +91,10 @@ class StudentsController extends Controller
             $std = StudentsRegistration::where('user_id', $id)->with('cours')->get();
 
 
-          $redirect_route = route('admin.payment.user_paid_for_cours',[ $std[0]['cours_id'], $std[0]['user_id']]);
-           return response()->json([$std, $redirect_route]);
+            $redirect_route = route('admin.payment.user_paid_for_cours', [$std[0]['cours_id'], $std[0]['user_id']]);
+            return response()->json([$std, $redirect_route]);
         } catch (\Throwable $th) {
-         throw $th;
+            throw $th;
         }
 
         // return response()->json(Config::get('modetheme.mode'));

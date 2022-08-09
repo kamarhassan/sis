@@ -207,7 +207,7 @@ $routes = Route::current()->getName();
 
                 </ul>
             </li>
-            <li class="treeview   {{ $prefix == getprefix('Payment') ? 'active' : '' }}     ">
+            <li class="treeview   {{ $prefix == getprefix('reports') ? 'active' : '' }}     ">
                 <a href="#">
                     <i class="fa fa-user-circle"></i>
                     <span>@lang('site.report')</span>
@@ -218,10 +218,10 @@ $routes = Route::current()->getName();
 
                 <ul class="treeview-menu">
                     {{-- @can('create_edit grades') --}}
-                    <li><a href="{{ route('admin.payment.index') }}">
+                    <li><a href="{{ route('admin.report') }}">
                             <i class="ti-more">
                             </i>
-                            @lang('site.All paument')
+                            @lang('site.report')
                         </a>
                     </li>
                     {{-- @endcan --}}

@@ -61,11 +61,11 @@
 
     <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/icons/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
     {{-- <script src="{{URL::asset('assets/assets/vendor_components/easypiechart/dist/jquery.easypiechart.js')}}"></script> --}}
     {{-- <script src="{{URL::asset('assets/assets/vendor_components/apexcharts-bundle/irregular-data-series.js')}}"></script> --}}
     {{-- <script src="{{URL::asset('assets/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script> --}}
     <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
-    <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/dashboard.js') }}"></script>
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">

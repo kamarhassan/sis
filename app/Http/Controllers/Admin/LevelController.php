@@ -58,14 +58,23 @@ class LevelController extends Controller
                 toastr()->error(__('site.level note defined'));
                 return redirect()->route('admin.level.add');
             } else {
-                $level->delete();
+                $deleted=  $level->delete();
+                if (!$deleted) {
+                    $notification = [
+                        'message' => __('site.payment faild '),
+                        'status' => 'error',
+                    ];
+                } else {
+                    $notification = [
+                        'message' => __('site.payment has delete success'),
+                        'status' => 'success',
+                    ];
+                }
+                return  response()->json($notification);
             }
         } catch (\Exception $th) {
             toastr()->error(__('site.you have error'));
         }
-
-
-
     }
 
 
@@ -91,7 +100,6 @@ class LevelController extends Controller
                     $notification = [
                         'message' => __('site.grade faild to update'),
                         'status' => 'error',
-
                     ];
                     return  response()->json($notification);
                 }

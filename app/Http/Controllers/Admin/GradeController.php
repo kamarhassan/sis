@@ -74,7 +74,20 @@ class GradeController extends Controller
                 toastr()->error(__('site.grade note defined'));
                 return redirect()->route('admin.grades.add');
             } else {
-                $grade->delete();
+                $deleted =    $grade->delete();
+                if (!$deleted) {
+                    $notification = [
+                        'message' => __('site.payment faild '),
+                        'status' => 'error',
+
+                    ];
+                } else {
+                    $notification = [
+                        'message' => __('site.payment has delete success'),
+                        'status' => 'success',
+                    ];
+                }
+                return  response()->json($notification);
             }
         } catch (\Exception $th) {
             toastr()->error(__('site.you have error'));
@@ -122,7 +135,4 @@ class GradeController extends Controller
             //   toastr()->error(__('site.you have error'));
         }
     }
-
-
-   
 }

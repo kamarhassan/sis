@@ -40,7 +40,7 @@ class InsertCoursRequest extends FormRequest
             'ac_start_date' => 'required|date|after_or_equal:start_date',
             'ac_end_date' =>   'required|date|after_or_equal:end_date',
             'status' => 'required|exists:statusofcours,name',
-            'teacher_name' => 'required|exists:Admins,name',
+            'teacher_name' => 'required|exists:admins,name',
             'teacher_fee' => 'required|numeric',
             'days' => 'required|array|min:1',
             'days.*' => 'numeric',

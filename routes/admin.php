@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\Services\ServicesController;
 use App\Http\Controllers\Admin\Services\ClientPaymentController;
@@ -171,10 +172,13 @@ Route::group([
         Route::post('delet_receipt', [ServicesReceiptController::class, 'delete_payment_receipt'])->name('admin.service.delete_payment_receipt');
         Route::get('edit-old-payment/{receipt_id}', [ClientPaymentController::class, 'get_old_payment'])->name('admin.service.get_old_payment.edit');
         Route::post('edit-payment', [ClientPaymentController::class, 'edit_payment'])->name('admin.service.edit.old.payment');
-
     });
     ################################### end  Services Routes #################################################
-
+    Route::group(['prefix' => 'reports'], function () {
+        Route::get('/', [ReportsController::class, 'index'])->name('admin.report');
+        Route::post('daily-report', [ReportsController::class, 'daily_report'])->name('admin.daily.report');
+        Route::post('distrubtion', [ReportsController::class, 'dist_'])->name('admin.distrubtion.report');
+    });
 
 
 
