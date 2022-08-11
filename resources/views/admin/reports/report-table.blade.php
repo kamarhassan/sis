@@ -11,7 +11,7 @@
 
     <div class="box-body">
         <div class="table-responsive ">
-            <table id="custome_data_table" class="table table-hover display nowrap margin-top-10 w-p100">
+            <table id="custome_data_table" style="width: 100%"   class="table table-hover display nowrap margin-top-10 w-p100">
                 <thead>
                     <tr>
                         <th> id</th>

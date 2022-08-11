@@ -27,7 +27,7 @@ class ServiceReceipt extends Model
     ];
 
 
-   
+
     public function client_services()
     {
         return $this->belongsTo(UserService::class, 'user_service_id', 'id');
@@ -37,12 +37,15 @@ class ServiceReceipt extends Model
         return $this->belongsTo(Service::class, 'service_id', 'id');
     }
 
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    //     "": 3,
-    // "": 3,
+
     public function services_currency()
     {
         return $this->belongsTo(Currency::class, 'service_currency_id', 'id');

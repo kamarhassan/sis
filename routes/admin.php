@@ -178,6 +178,7 @@ Route::group([
         Route::get('/', [ReportsController::class, 'index'])->name('admin.report');
         Route::post('daily-report', [ReportsController::class, 'daily_report'])->name('admin.daily.report');
         Route::post('distrubtion', [ReportsController::class, 'dist_'])->name('admin.distrubtion.report');
+        Route::post('service-by-type', [ReportsController::class, 'service_by_type'])->name('admin.service.by.type.report');
     });
 
 

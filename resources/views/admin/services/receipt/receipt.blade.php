@@ -64,11 +64,11 @@
                         {{ $coursinfo->grade['grade'] }} -{{ $coursinfo->level['level'] }}
                     @endif --}}
                     </div>
-                    <div class="col-md-6 col-lg-3"><b>amount: {{ $service_repceit['amount'] }} <span class="text-warning"> {{ $currency['symbol'] }} - {{ $currency['abbr'] }}</span></b></div>
+                    <div class="col-md-6 col-lg-3"><b>amount: {{ $service_repceit['amount_total'] }} <span class="text-warning"> {{ $currency['symbol'] }} - {{ $currency['abbr'] }}</span></b></div>
                 </div>
             </div>
             <div class="col-sm-12 invoice-col mb-15">
-     
+
             </div>
         </div>
         {{-- <div class="col-md-12">

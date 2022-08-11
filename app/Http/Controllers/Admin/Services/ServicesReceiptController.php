@@ -89,7 +89,7 @@ class ServicesReceiptController extends Controller
             if ($user_service && $service_repceit) {
                 $notification = [
                     'message' => __('site.succes_msj_swal_fire'),
-                    'status' => 'succes',
+                    'status' => 'success',
                 ];
                 return response()->json($notification);
             } else {
@@ -120,5 +120,5 @@ class ServicesReceiptController extends Controller
     }
 
 
-   
+
 }

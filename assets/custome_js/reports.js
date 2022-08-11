@@ -15,10 +15,10 @@ function get_report(route_) {
                 remove_loading_showing_table();
                 set_data_by_mode(data['mode'], JSON.parse(data['dataset']))
 
-                toastr.success(data['notification'].message)
+                // toastr.success(data['notification'].message)
             } else {
                 if (data['notification'].status == 'error') {
-                    toastr.error(data['notification'].message);
+                    // toastr.error(data['notification'].message);
                 }
             }
         }, error: function reject(reject) {
@@ -40,7 +40,11 @@ function set_data_by_mode(mode, dataSet) {
             // set_daily_reports(data);
             break;
         case 'distrubtion':
-            customize_data_table(columns_distrubion_reports(), dataset_distrubion_reports(dataSet));
+            // customize_data_table(columns_distrubion_reports()();
+            // data_reports(data);
+            break;
+        case 'service_by_type':
+            customize_data_table(columns_service_by_reports(), dataSet);
             // data_reports(data);
             break;
 
@@ -54,7 +58,7 @@ function set_data_by_mode(mode, dataSet) {
 
 
 function customize_data_table(columns, dataSet) {
-
+  
     // $(document).ready(function () {
     var table = $('#custome_data_table').DataTable();
     table.destroy();
@@ -64,24 +68,27 @@ function customize_data_table(columns, dataSet) {
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],
+
         "paging": false,
-        "autoWidth": true,
+        "autoWidth": false,
         "lengthChange": true,
         "scrollY": "400px",
         "processing": true,
         "scrollCollapse": true,
         "ordering": false,
+        "scrollX": false,
         "data": dataSet,
         "columns": columns,
+        "info": false,
         'createdRow': function (row, data, dataIndex) {
             // Use empty value in the "Office" column
             // as an indication that grouping with COLSPAN is needed
-            if ( isNaN(data['id'])  /* and not contain  data['id'] it is abbr */ ) {
+            if (isNaN(data['id'])  /* and not contain  data['id'] it is abbr */) {
                 // Add COLSPAN attribute
 
-                $('td:eq(0)', row).attr('colspan', columns.length ).css('color','#f89406')
-                for (var i = 1; i < columns.length ; i++)
-                    $('td:eq(' + i + ')', row).attr("hidden", true);
+                for (var i = 0; i < columns.length; i++)
+                    // $('td:eq(0)', row).css('color', '#f89406')
+                    $('td:eq(' + i + ')', row).css('color', '#f89406')
             }
             //  this.api().cell($('td:eq(0)', row)).data(data['id']);
         }
@@ -104,11 +111,11 @@ function loading_showing_table() {
 
 function columns_daily_reports() {
     return [
-        { data: 'id', title: 'id', "defaultContent": "" },
-        { data: 'Name', title: 'Name', "defaultContent": "" },
-        { data: 'Amount', title: 'Amount', "defaultContent": "" },
-        { data: 'Payment date', title: 'Payment date', "defaultContent": "" },
-        { data: 'Description', title: 'Description', "defaultContent": "" },
+        { data: 'id', title: 'id', "defaultContent": "", "width": "5%" },
+        { data: 'Name', title: 'Name', "defaultContent": "", "width": "30%" },
+        { data: 'Amount', title: 'Amount', "defaultContent": "", "width": "20" },
+        { data: 'Payment date', title: 'Payment date', "defaultContent": "", "width": "20" },
+        { data: 'Description', title: 'Description', "defaultContent": "", "width": "20" },
     ];
 }
 
@@ -122,12 +129,19 @@ function columns_distrubion_reports() {
         { data: 'Start Date', title: 'Start Date', "defaultContent": "" },
         { data: 'End Date', title: 'End Date', "defaultContent": "" },
         { data: 'Receipt Number', title: 'Receipt Number', "defaultContent": "" },
-        { data: 'First Name', title: 'First Name', "defaultContent": "" },
-        { data: 'Father Name', title: 'Father Name', "defaultContent": "" },
-        { data: 'Last Name', title: 'Last Name', "defaultContent": "" },
+        { data: 'Name', title: 'Name', "defaultContent": "" },
         { data: 'Amount Amount', title: 'Amount Amount', "defaultContent": "" },
         { data: 'Date', title: 'Date', "defaultContent": "" },
         { data: 'Payment Type', title: 'Payment Type', "defaultContent": "" },
+    ];
+}
+function columns_service_by_reports() {
+    return [
+        { data: 'id', title: 'id', "defaultContent": "", "width": "5%" },
+        { data: 'Name', title: 'Name', "defaultContent": "", "width": "30%" },
+        { data: 'Amount', title: 'Amount', "defaultContent": "", "width": "20" },
+        { data: 'Payment date', title: 'Payment date', "defaultContent": "", "width": "20" },
+        { data: 'Description', title: 'Description', "defaultContent": "", "width": "20" },
     ];
 }
 

@@ -58,7 +58,7 @@ $routes = Route::current()->getName();
 
 
 
-            <li class="treeview">
+       <!--     <li class="treeview">
                 <a href="#">
                     <i data-feather="message-circle"></i>
                     <span>Application</span>
@@ -74,6 +74,7 @@ $routes = Route::current()->getName();
                     <li><a href="calendar.html"><i class="ti-more"></i></a></li>
                 </ul>
             </li>
+
 
 
             <li class="treeview   {{ $prefix == getprefix('grade') ? 'active' : '' }}     ">
@@ -92,7 +93,7 @@ $routes = Route::current()->getName();
                     {{-- @endcan --}}
                 </ul>
             </li>
-
+ -->
 
 
             <li class="treeview   {{ $prefix == getprefix('setting') ? 'active' : '' }}     ">

@@ -31,22 +31,21 @@
 
 
     </form>
-    <a class="btn  glyphicon glyphicon-arrow-left hover-success text-warning-light" title="@lang('site.save')"
-        type="submit" onclick="get_report('{{ route('admin.daily.report') }}');"> <span> @lang('site.daily reports')</span>
-    </a>
-    <a class="btn  glyphicon glyphicon-arrow-left hover-success text-warning-light" title="@lang('site.save')"
-        type="submit" onclick="get_report('{{ route('admin.distrubtion.report') }}');"> <span> @lang('site.distrubtion')</span>
-    </a>
+    <div class="row">
+        <a class="btn  glyphicon glyphicon-print hover-report text-report" title="@lang('site.save')"
+            type="submit" onclick="get_report('{{ route('admin.daily.report') }}');"> <span> @lang('site.daily reports')</span>
+        </a>
+        <a class="btn  glyphicon glyphicon-print hover-report text-report" title="@lang('site.save')"
+            type="submit" onclick="get_report('{{ route('admin.service.by.type.report') }}');"> <span> @lang('site.Receipt Report Service Sold By Type')</span>
+        </a>
+    </div>
     <div class="row-fluid" id='data-report' hidden>
         @include('admin.reports.report-table')
     </div>
 @endsection
 
 @section('script')
-
-
-
-<script src="{{ URL::asset('assets/custome_js/reports.js') }}"></script>
+    <script src="{{ URL::asset('assets/custome_js/reports.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/data-table-responsive/datatable-responsive.js') }}"></script>
