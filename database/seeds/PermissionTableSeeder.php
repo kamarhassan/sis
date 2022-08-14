@@ -17,15 +17,26 @@ class PermissionTableSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        
+
         // create permissions
         Permission::create(['guard_name' => 'admin','name' => 'create_edit levels']);
         Permission::create(['guard_name' => 'admin','name' => 'create_edit grades']);
         Permission::create(['guard_name' => 'admin','name' => 'activate currency']);
         // Permission::create(['guard_name' => 'admin','name' => 'unpublish articles']);
-
         // create roles and assign created permissions
-
+        Permission::create(['guard_name' => 'admin','name' => 'setting']);
+        Permission::create(['guard_name' => 'admin','name' => 'cours']);
+        Permission::create(['guard_name' => 'admin','name' => 'show all cours']);
+        Permission::create(['guard_name' => 'admin','name' => 'add cours']);
+        Permission::create(['guard_name' => 'admin','name' => 'students']);
+        Permission::create(['guard_name' => 'admin','name' => 'registe rstudents']);
+        Permission::create(['guard_name' => 'admin','name' => 'payment students']);
+        Permission::create(['guard_name' => 'admin','name' => 'receipt']);
+        Permission::create(['guard_name' => 'admin','name' => 'reports']);
+        Permission::create(['guard_name' => 'admin','name' => 'view report']);
+        Permission::create(['guard_name' => 'admin','name' => 'services']);
+        Permission::create(['guard_name' => 'admin','name' => 'register service to client']);
+        Permission::create(['guard_name' => 'admin','name' => 'all services receipt']);
 
         $role = Role::create(['guard_name' => 'admin','name' => 'super admin']);
         $role->givePermissionTo(Permission::all());

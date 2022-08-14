@@ -6,13 +6,13 @@ function services(route_,form_id) {
         url: route_,
         data: formdata,
         success: function (data) {
-            console.table(data);
-            if (data[0].status == 'success') {
-                toastr.success(data[0].message)
-                location.reload();
+
+            if (data.status == 'success') {
+                toastr.success(data.message)
+                $('#modal-center').modal('hide')
             } else {
-                if (data[0].status == 'error') {
-                    toastr.error(data[0].message);
+                if (data.status == 'error') {
+                    toastr.error(data.message);
                 }
             }
         }, error: function reject(reject) {

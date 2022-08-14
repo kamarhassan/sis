@@ -20,11 +20,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// Route::get('/p', Count::class);
-Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/w', 'Livewire\Counter')->name('home');
-// C:\xampp\htdocs\sis\app\Http\Livewire\Counter.php
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/post', [ShowPosts::class,'render']);
+

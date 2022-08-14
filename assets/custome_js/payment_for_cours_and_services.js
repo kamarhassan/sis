@@ -31,6 +31,7 @@ function savepayment(route_) {
                 toastr.success(data[1].message)
             } else {
                 if (data[1].status == 'error') {
+
                     window.location.replace(data[0]);
                     toastr.error(data[1].message);
                 }

@@ -161,10 +161,7 @@
                 var counter = 1;
                 $(document).on("click", ".addeventmore", function() {
                     var whole_extra_item_add = $('#whole_extra_item_add').html();
-
                     $(this).closest(".add_item").append(whole_extra_item_add);
-
-
                     $("#services_number").attr("id", "services_" + counter);
                     $("#services_number_error").attr("id", "services_" + counter + "_");
 
@@ -176,7 +173,6 @@
 
                     $("#status_number").attr("id", "status_" + counter);
                     $("#status_number_error").attr("id", "status_" + counter + "_");
-
                     // $(this).closest(".add_item").attr("id","whole_extra_item_add_"+counter);;
 
                     counter++;

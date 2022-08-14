@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReportsController;
+use App\Http\Controllers\Admin\RoleAndPermissionController;
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\Services\ServicesController;
 use App\Http\Controllers\Admin\Services\ClientPaymentController;
@@ -79,7 +80,9 @@ Route::group([
     Route::group(['prefix' => 'setting'], function () {
         // Setting/add_grades
         // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
-        // Route::get('/a', Count::class)->name('admin.grades.add');
+        Route::get('role', [RoleAndPermissionController::class,'all_role'])->name('admin.setting.role');
+        Route::post('get_permission_for_role/{role_id}',  [RoleAndPermissionController::class, 'get_permission_for_role'])->name('admin.setting.get.permission.for.role');
+        Route::post('update_permission_for_role',  [RoleAndPermissionController::class, 'update_permission_for_role'])->name('admin.setting.update.permission.for.role');
 
         ###########################  for grades setting
         Route::get('add_grades', [GradeController::class, 'create'])->name('admin.grades.add');

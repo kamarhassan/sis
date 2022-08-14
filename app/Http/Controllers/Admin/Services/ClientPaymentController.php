@@ -133,12 +133,14 @@ class ClientPaymentController extends Controller
         try {
 
             $client_receipt = ServiceReceipt::find($receipt_id);
-            if (!$client_receipt || !$this->is_last_receipt($receipt_id)) {
+            if (!$this->is_last_receipt($receipt_id)) {
                 $notification = [
                     'message' => __('site.you can edit only the last receipt or receipt not found'),
                     'status' => 'error',
                 ];
-                return response()->json([route('admin.Services.all-receipt'), $notification]);
+
+                toastr()->error(__('site.you can edit only the last receipt or receipt not found'));
+                return redirect()->route('admin.Services.all-receipt');
             } else {
                 $client_services = UserService::find($client_receipt['user_service_id']);
                 $user = User::find($client_services['user_id']);
