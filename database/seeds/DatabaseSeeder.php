@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
         $this->call(GradeSeeder::class);
         $this->call(levelseeder::class);
         $this->call(CurrencySeeder::class);
-        $this->call(NationalitieSeeder::class);
+       $this->call(NationalitieSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(\CoursSedeer::class);
+       $this->call(\CoursSedeer::class);
         $this->call(\Status_of_coursSeed::class);
         $this->call(\FeeTypeSeeder::class);
-        //$this->call(\CoursFeeSeeder::class);
-       $this->call(students_registartion::class);
+       $this->call(\CoursFeeSeeder::class);
+       //$this->call(students_registartion::class);
         // $this->call(\SponsorSeeder::class);
         // $this->call(\SposorshipSeeder::class);
         // $this->call(\ReceiptSedder::class);

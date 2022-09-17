@@ -1,5 +1,10 @@
-@extends('layouts.app')
-@livewireStyles()
+@extends('frontend.layouts.master')
+@section('title')
+
+@endsection
+@section('css')
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -13,7 +18,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{--@livewire('count')--}}
+                        {{-- @livewire('count') --}}
 
                         {{-- {{$id_o}} --}}
                         {{ __('You are logged in!') }}
@@ -23,4 +28,7 @@
         </div>
     </div>
 @endsection
-@livewireScripts()
+
+
+@section('script')
+@endsection

@@ -21,10 +21,10 @@ class AdminSeeder extends Seeder
 
         Admin::create([
             'name' => 'Hassan Kamar',
-            'email' => 'hassankamar795@gmail.com',
+            'email' => 'sadmin@gmail.com',
             'admin_status' => '1',
             //'roles_name' => ['super-admin'],
-            'password' => bcrypt('123456789')
+            'password' => bcrypt('123456')
         ])->assignRole('super admin');
 
         Admin::create([

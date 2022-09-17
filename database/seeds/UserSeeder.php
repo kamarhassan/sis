@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'midName' =>   $faker->name(),
                 'LastName' =>    $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
-                'password' => bcrypt('123456789'),
+                'password' => bcrypt('123456'),
                 'MotherName' =>    $faker->name(),
                 'salut' =>  $salut,
                 'birthday' =>    $faker->date('y-m-d',now()) ,  // Carbon::create($year, $month, $day, 0, 0, 0),

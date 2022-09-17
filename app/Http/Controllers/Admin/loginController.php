@@ -26,7 +26,7 @@ class loginController extends Controller
 
             Session::put('mode','dark');
 
-            return redirect()->intended('dashboard');
+            return redirect()->route('admin.dashborad');
         }
         // notify()->error('خطا في البيانات  برجاء المجاولة مجدا ');
         toastr()->error(__('site.you have error'));
