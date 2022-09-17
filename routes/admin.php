@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FeetypeController;
 use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\RoleAndPermissionController;
 use App\Http\Controllers\Admin\SuperviserController;
@@ -96,6 +97,7 @@ Route::group([
         // Route::post('grade_delete', [LevelController::class, 'delete'])->name('admin.grades.delete');
         Route::post('level_update', [LevelController::class, 'update'])->name('admin.level.update');
         Route::post('delet', [LevelController::class, 'delete'])->name('admin.level.delet');
+      
         ###########################  for Currency setting
         Route::get('Currency', [CurrencyController::class, 'index'])->middleware(['permission:activate currency'])->name('admin.Currency.get');
         Route::post('Currency_store', [CurrencyController::class, 'edit'])->name('admin.Currency.active');
@@ -103,6 +105,12 @@ Route::group([
         ###########################  for services setting
         Route::get('services', [ServicesController::class, 'create'])->name('admin.Services.add');
         Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
+        
+        ###########################  for fee type setting
+        Route::get('fee_type', [FeetypeController::class, 'index'])->name('admin.setting.fee');
+        Route::post('store_fee_type', [FeetypeController::class, 'store'])->name('admin.setting.fee.store');
+        Route::get('delete_fee_type/{fee_types_id}', [FeetypeController::class, 'delete'])->name('admin.setting.fee.delete');
+    
     });
     ################################### End Settings Routes ###################################################
 

@@ -17,8 +17,8 @@
                         <div class="col-12">
                             <form id='services_form_edit'>
                                 @csrf
-                                <input hidden name="service_id" id="service_id" >
-                                 <div class="add_item">
+                                <input hidden name="service_id" id="service_id">
+                                <div class="add_item">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -41,64 +41,63 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        @isset($currency)
-                                                            <select name="currency" id="currency"
-                                                                class="form-control select2" style="width: 100%;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    @isset($currency)
+                                                        <select name="currency" id="currency" class="form-control select2"
+                                                            style="width: 100%;">
 
-                                                                @foreach ($currency as $currencys)
-                                                                    <option value="{{ $currencys->id }}">
-                                                                        {{ $currencys->symbol }} <-
-                                                                            {{ $currencys->currency }} </option>
-                                                                @endforeach
-                                                            </select>
-                                                        @endisset
-                                                        <span class="text-danger" id="currency_"> </span>
+                                                            @foreach ($currency as $currencys)
+                                                                <option value="{{ $currencys->id }}">
+                                                                    {{ $currencys->symbol }} <- {{ $currencys->currency }}
+                                                                        </option>
+                                                            @endforeach
+                                                        </select>
+                                                    @endisset
+                                                    <span class="text-danger" id="currency_"> </span>
 
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <h5>@lang('site.language is active') <span class="text-danger"></span></h5>
-                                                <div class="form-group">
-                                                    <div class="box-controls pull-left">
-                                                        <label class="switch switch-border switch-success">
-                                                            <input type="checkbox" value="1"
-                                                                name="active" id="active"  />
-                                                            <span class="switch-indicator"></span>
-                                                            <label for="switcheryColor4"
-                                                                class="card-title ml-1">@lang('site.language is active') </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>@lang('site.language is active') <span class="text-danger"></span></h5>
+                                            <div class="form-group">
+                                                <div class="box-controls pull-left">
+                                                    <label class="switch switch-border switch-success">
+                                                        <input type="checkbox" value="1" name="active"
+                                                            id="active" />
+                                                        <span class="switch-indicator"></span>
+                                                        <label for="switcheryColor4"
+                                                            class="card-title ml-1">@lang('site.language is active') </label>
 
-                                                            <span class="text-danger" id="active_"> </span>
-                                                    </div>
+                                                        <span class="text-danger" id="active_"> </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <div class="row">
-                                <div class="text-xs-right">
-                                    <a class="btn  glyphicon glyphicon-arrow-left hover-success "
-                                        title="@lang('site.save')"
-                                        onclick="services('{{ route('admin.services.update')}}','services_form_edit')">
-                                        <span class=""> @lang('site.next step')</span>
-                                    </a>
-                                </div>
+                        </div>
+                        </form>
+                        <div class="row">
+                            <div class="text-xs-right">
+                                <a class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
+                                    onclick="services('{{ route('admin.services.update') }}','services_form_edit')">
+                                    <span class=""> @lang('site.next step')</span>
+                                </a>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
-            {{-- <div class="modal-footer modal-footer-uniform">
+        </div>
+        {{-- <div class="modal-footer modal-footer-uniform">
                 <button type="button" class="btn btn-rounded btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-rounded btn-primary float-right">Save changes</button>
             </div> --}}
-        </div>
     </div>
+</div>
 </div>

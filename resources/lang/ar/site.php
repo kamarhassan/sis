@@ -107,6 +107,8 @@ return [
     'cours'  => 'الدورات',
     'cours info'  => 'معلومات الدورة',
     'cours fees'  => 'تكاليف الدورة',
+    'fee order'  => 'ترتيب الرسوم',
+    'fee primary price'  => 'الرسوم الاساسية',
     'all cours'  => ' جميع الدورات',
     'teacher name'  => '  اسم المدرس',
     'teacher fee'  => '  اجرة المدرس',
@@ -250,8 +252,11 @@ return [
 'create_edit roles'=>'انشاء و تعديل الصلاحيات',
 
     'this role not found'  => 'هذه الصلاحيات غير موجودة',
-    ''  => '',
-    ''  => '',
+    'must be a unique'  => 'هذا الرقم موجود يجب ان لا يتكرر',
+    'add fee type'  => 'اضف رسوم',
+   
+    'fee type created successfully!'=>'تم تسجيل الرسم بنجاح',
+    'failed to create fee type'=>'فشل  تسجيل الرسم بنجاح',
     ''  => '',
     ''  => '',
 

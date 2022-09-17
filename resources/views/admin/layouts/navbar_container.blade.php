@@ -135,6 +135,14 @@ $routes = Route::current()->getName();
                           </a>
                       </li>
                    @endcan
+                      
+                     @can('create_edit_roles')
+                      <li><a href="{{ route('admin.setting.fee') }}">
+                              <i class="ti-more"></i>
+                              @lang('site.fees')
+                          </a>
+                      </li>
+                   @endcan
                   </ul>
               </li>
 
@@ -278,6 +286,7 @@ $routes = Route::current()->getName();
  {{-- @endcan --}}
 
         </ul>
+
     </section>
 
     <div class="sidebar-footer">
