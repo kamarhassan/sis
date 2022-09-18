@@ -19,7 +19,8 @@ Route::get('/', function () {
     return view('frontend.index');
 })->name('web.index');
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
