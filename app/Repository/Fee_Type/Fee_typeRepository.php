@@ -36,7 +36,7 @@ class Fee_typeRepository implements Fee_TypeInterface
             $request_count = count($request->fee);
             $fee =  $request->fee;
             $order =  $request->order;
-            $primary_price =  $request->primary_price;
+            // $primary_price =  $request->primary_price;
             $temp = [];
             DB::beginTransaction();
             for ($i = 0; $i < $request_count; $i++) {
@@ -44,7 +44,7 @@ class Fee_typeRepository implements Fee_TypeInterface
                 $temp[] = [
                     'fee'                =>     $fee[$i],
                     'order'            =>     $order[$i],
-                    'primary_price'      =>     $primary_price[$i],
+                    // 'primary_price'      =>     $primary_price[$i],
                     'created_at' =>  Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ];

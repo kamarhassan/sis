@@ -58,7 +58,7 @@ $routes = Route::current()->getName();
 
 
 
-       <!--     <li class="treeview">
+            <!--     <li class="treeview">
                 <a href="#">
                     <i data-feather="message-circle"></i>
                     <span>Application</span>
@@ -96,167 +96,167 @@ $routes = Route::current()->getName();
  -->
 
 
-          @can ('setting')
-              <li class="treeview   {{ $prefix == getprefix('setting') ? 'active' : '' }}     ">
-                  <a href="#">
-                      <i class="ti-settings"></i>
-                      <span>@lang('site.setting')</span>
-                      <span class="pull-right-container">
-                          <i class="fa fa-angle-right pull-right"></i>
-                      </span>
-                  </a>
-                  <ul class="treeview-menu">
-                      @can('create_edit_grades')
-                          <li><a href="{{ route('admin.grades.add') }}">
-                                  <i class="ti-more"></i>@lang('site.add new grade')</a></li>
-                      @endcan
+            {{-- @can('setting') --}}
+                <li class="treeview   {{ $prefix == getprefix('setting') ? 'active' : '' }}     ">
+                    <a href="#">
+                        <i class="ti-settings"></i>
+                        <span>@lang('site.setting')</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        {{-- @can('create_edit_grades') --}}
+                            <li><a href="{{ route('admin.grades.add') }}">
+                                    <i class="ti-more"></i>@lang('site.add new grade')</a></li>
+                        {{-- @endcan
 
-                      @can('create_edit_levels')
-                          <li><a href="{{ route('admin.level.add') }}">
-                                  <i class="ti-more"></i>@lang('site.add new level')</a></li>
-                      @endcan
+                        @can('create_edit_levels') --}}
+                            <li><a href="{{ route('admin.level.add') }}">
+                                    <i class="ti-more"></i>@lang('site.add new level')</a></li>
+                        {{-- @endcan --}}
 
-                      @can('activate_currency')
-                          <li><a href="{{ route('admin.Currency.get') }}">
-                                  <i class="ti-more"></i>@lang('site.add new Currency')</a></li>
-                      @endcan
+                        {{-- @can('activate_currency') --}}
+                            <li><a href="{{ route('admin.Currency.get') }}">
+                                    <i class="ti-more"></i>@lang('site.add new Currency')</a></li>
+                        {{-- @endcan
 
-                      @can('create_edit_services')
-                      <li><a href="{{ route('admin.Services.add') }}">
-                              <i class="ti-more"></i>
-                              @lang('site.add and edit services')
-                          </a>
-                      </li>
-                      @endcan
-                     @can('create_edit_roles')
-                      <li><a href="{{ route('admin.setting.role') }}">
-                              <i class="ti-more"></i>
-                              @lang('site.role and permission')
-                          </a>
-                      </li>
-                   @endcan
-                      
-                     @can('create_edit_roles')
-                      <li><a href="{{ route('admin.setting.fee') }}">
-                              <i class="ti-more"></i>
-                              @lang('site.fees')
-                          </a>
-                      </li>
-                   @endcan
-                  </ul>
-              </li>
+                        @can('create_edit_services') --}}
+                            <li><a href="{{ route('admin.Services.add') }}">
+                                    <i class="ti-more"></i>
+                                    @lang('site.add and edit services')
+                                </a>
+                            </li>
+                        {{-- @endcan
+                        @can('create_edit_roles') --}}
+                            <li><a href="{{ route('admin.setting.role') }}">
+                                    <i class="ti-more"></i>
+                                    @lang('site.role and permission')
+                                </a>
+                            </li>
+                        {{-- @endcan --}}
 
-          @endcan
+                        {{-- @can('create_edit_fee') --}}
+                            <li><a href="{{ route('admin.setting.fee') }}">
+                                    <i class="ti-more"></i>
+                                    @lang('site.fees')
+                                </a>
+                            </li>
+                        {{-- @endcan --}}
+                    </ul>
+                </li>
 
-
-           @can ('cours')
-             <li class="treeview   {{ $prefix == getprefix('Cours') ? 'active' : '' }}     ">
-                 <a href="#">
-                     <i class="fa fa-book "></i>
-                     <span>@lang('site.cours')</span>
-                     <span class="pull-right-container">
-                         <i class="fa fa-angle-right pull-right"></i>
-                     </span>
-                 </a>
-
-                 <ul class="treeview-menu">
-                     @can('show_all_cours')
-                     <li><a href="{{ route('admin.cours.all') }}">
-                             <i class="ti-more">
-                             </i>
-                             @lang('site.all cours')
-                         </a>
-                     </li>
-                     @endcan
-                     @can('add_cours')
-                     <li><a href="{{ route('admin.cours.add') }}">
-                             <i class="ti-more">
-                             </i>
-                             @lang('site.add new cours')
-                         </a>
-                     </li>
-                     @endcan
+            {{-- @endcan --}}
 
 
-                 </ul>
-             </li>
+            @can('cours')
+                <li class="treeview   {{ $prefix == getprefix('Cours') ? 'active' : '' }}     ">
+                    <a href="#">
+                        <i class="fa fa-book "></i>
+                        <span>@lang('site.cours')</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
 
-           @endcan
-
-          @can ('students')
-              <li class="treeview   {{ $prefix == getprefix('Students') ? 'active' : '' }}     ">
-                  <a href="#">
-                      <i class="fa fa-user-circle"></i>
-                      <span>@lang('site.students')</span>
-                      <span class="pull-right-container">
-                          <i class="fa fa-angle-right pull-right"></i>
-                      </span>
-                  </a>
-
-                  <ul class="treeview-menu">
-                      @can('show all students')
-                      <li><a href="{{ route('admin.students.all') }}">
-                              <i class="ti-more">
-                              </i>
-                              @lang('site.all students')
-                          </a>
-                      </li>
-                      @endcan
-                       @can('register_students')
-                      <li><a href="{{ route('admin.students.Registration-1') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
-                              <i class="ti-more">
-                              </i>
-                              @lang('site.register Student in Course')
-                          </a>
-                      </li>
-                      @endcan
-                      @can('payment_students')
-                      <li><a href="{{ route('admin.students.get_std_to_payment') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
-                              <i class="ti-more">
-                              </i>
-                              @lang('site.register Student pay fee')
-                          </a>
-                      </li>
-                      @endcan
-                      @can('receipt')
-                      <li><a href="{{ route('admin.all-receipt') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
-                              <i class="ti-more">
-                              </i>
-                              @lang('site.edit receipt and payment')
-                          </a>
-                      </li>
-                      @endcan
+                    <ul class="treeview-menu">
+                        @can('show_all_cours')
+                            <li><a href="{{ route('admin.cours.all') }}">
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.all cours')
+                                </a>
+                            </li>
+                        @endcan
+                        @can('add_cours')
+                            <li><a href="{{ route('admin.cours.add') }}">
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.add new cours')
+                                </a>
+                            </li>
+                        @endcan
 
 
-                  </ul>
-              </li>
+                    </ul>
+                </li>
 
-          @endcan
+            @endcan
 
-          @can ('reports')
-              <li class="treeview   {{ $prefix == getprefix('reports') ? 'active' : '' }}     ">
-                  <a href="#">
-                      <i class="fa fa-user-circle"></i>
-                      <span>@lang('site.report')</span>
-                      <span class="pull-right-container">
-                          <i class="fa fa-angle-right pull-right"></i>
-                      </span>
-                  </a>
+            @can('students')
+                <li class="treeview   {{ $prefix == getprefix('Students') ? 'active' : '' }}     ">
+                    <a href="#">
+                        <i class="fa fa-user-circle"></i>
+                        <span>@lang('site.students')</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
 
-                  <ul class="treeview-menu">
-                      @can('view report')
-                      <li><a href="{{ route('admin.report') }}">
-                              <i class="ti-more">
-                              </i>
-                              @lang('site.report')
-                          </a>
-                      </li>
-                      @endcan
+                    <ul class="treeview-menu">
+                        @can('show all students')
+                            <li><a href="{{ route('admin.students.all') }}">
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.all students')
+                                </a>
+                            </li>
+                        @endcan
+                        @can('register_students')
+                            <li><a href="{{ route('admin.students.Registration-1') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.register Student in Course')
+                                </a>
+                            </li>
+                        @endcan
+                        @can('payment_students')
+                            <li><a href="{{ route('admin.students.get_std_to_payment') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.register Student pay fee')
+                                </a>
+                            </li>
+                        @endcan
+                        @can('receipt')
+                            <li><a href="{{ route('admin.all-receipt') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.edit receipt and payment')
+                                </a>
+                            </li>
+                        @endcan
 
-                  </ul>
-              </li>
-          @endcan
-{{-- @can ('services') --}}
+
+                    </ul>
+                </li>
+
+            @endcan
+
+            @can('reports')
+                <li class="treeview   {{ $prefix == getprefix('reports') ? 'active' : '' }}     ">
+                    <a href="#">
+                        <i class="fa fa-user-circle"></i>
+                        <span>@lang('site.report')</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+
+                    <ul class="treeview-menu">
+                        @can('view report')
+                            <li><a href="{{ route('admin.report') }}">
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.report')
+                                </a>
+                            </li>
+                        @endcan
+
+                    </ul>
+                </li>
+            @endcan
+            {{-- @can('services') --}}
             <li class="treeview   {{ $prefix == getprefix('services') ? 'active' : '' }}     ">
                 <a href="#">
                     <i class="fa fa-user-circle"></i>
@@ -272,18 +272,18 @@ $routes = Route::current()->getName();
                             @lang('site.services')
                         </a>
                     </li>
-                     {{-- @endcan --}}
-{{-- @can('all services receipt') --}}
+                    {{-- @endcan --}}
+                    {{-- @can('all services receipt') --}}
                     <li><a href="{{ route('admin.Services.all-receipt') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
-                        <i class="ti-more">
-                        </i>
-                        @lang('site.edit receipt and payment')
-                    </a>
-                </li>
-                {{-- @endcan --}}
+                            <i class="ti-more">
+                            </i>
+                            @lang('site.edit receipt and payment')
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
                 </ul>
             </li>
- {{-- @endcan --}}
+            {{-- @endcan --}}
 
         </ul>
 
@@ -291,8 +291,8 @@ $routes = Route::current()->getName();
 
     <div class="sidebar-footer">
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
-            aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
+            data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
         <!-- item-->
         <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title=""
             data-original-title="Email"><i class="ti-email"></i></a>
