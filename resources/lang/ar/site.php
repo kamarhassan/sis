@@ -232,8 +232,8 @@ return [
 
     #################################### end of students translator ###################################
 
-    'check number' =>'رقم الشيك',
-    'Enter check number' =>'ادخل رقم الشيك',
+    'check number' => 'رقم الشيك',
+    'Enter check number' => 'ادخل رقم الشيك',
     'bank'  => 'البنك',
     'client name'  => 'اسم العميل',
     'services info'  => 'معلومات الخدمة',
@@ -246,17 +246,19 @@ return [
     'Receipt Info by currency and services'  => ' معلومات الوصل و الدفع حسب العملة والخدمة ',
     'role and permission'  => 'الصلاحيات',
     'role name'  => 'الصلاحيات',
-'create_edit levels'=>'انشاء و تعديل المستويات',
-'activate currency'=>'تفعيل العملات',
-'create_edit grades'=>'انشاء و تعديل المادة',
-'create_edit roles'=>'انشاء و تعديل الصلاحيات',
+    'create_edit levels' => 'انشاء و تعديل المستويات',
+    'activate currency' => 'تفعيل العملات',
+    'create_edit grades' => 'انشاء و تعديل المادة',
+    'create_edit roles' => 'انشاء و تعديل الصلاحيات',
 
     'this role not found'  => 'هذه الصلاحيات غير موجودة',
     'must be a unique'  => 'هذا الرقم موجود يجب ان لا يتكرر',
     'add fee type'  => 'اضف رسوم',
-   
-    'fee type created successfully!'=>'تم تسجيل الرسم بنجاح',
-    'failed to create fee type'=>'فشل  تسجيل الرسم بنجاح',
+
+    'fee type created successfully!' => 'تم تسجيل الرسم بنجاح',
+    'failed to create fee type' => 'فشل  تسجيل الرسم بنجاح',
+     
+    'failed to delete beacuse it is used' => 'لم يتم الحذف لانها مستخدمة مسبقا',
     ''  => '',
     ''  => '',
 

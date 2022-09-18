@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeeTypeRequest;
 use App\Repository\Fee_Type\Fee_TypeInterface;
-
 use Illuminate\Http\Request;
 
 class FeetypeController extends Controller
@@ -39,13 +38,20 @@ class FeetypeController extends Controller
             throw $th;
         }
     }
-    public  function delete($fee_types_id)
+    public  function delete(Request $request)
     {
         try {
+            $fee_types_id =$request->id;
             $it_used = $this->fee_type->it_is_used($fee_types_id);
-            if (!$it_used)
-                return "not used";  // can delete it 
-            return "used"; // can't delete it 
+            if (!$it_used) {
+                $deleted = $this->fee_type->delete_fee_type($fee_types_id);
+                if ($deleted)
+                    return   response()->json(['status' => 'success', 'message' => __('site.succes_msj_swal_fire')]);
+                return   response()->json(['status' => 'error', 'message' => __('site.you have error')]);
+            } else {
+                return   response()->json(['status' => 'error', 'message' => __('site.failed to delete beacuse it is used')]);
+            }
+            // can't delete it 
         } catch (\Throwable $th) {
             //throw $th;
         }

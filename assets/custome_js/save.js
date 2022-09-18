@@ -1,16 +1,12 @@
 function submit(route_,form_id) {
     var formdata = $("#"+form_id).serializeArray();
-    // console.table(formdata);
     $.ajax({
         type: 'POST',
         url: route_,
         data: formdata,
         success: function (data) {
-console.log(data)
             if (data.status == 'success') {
-              
-                toastr.success(data.message)
-               
+                toastr.success(data.message) 
             } else {
                 if (data.status == 'error') {
                     toastr.error(data.message);

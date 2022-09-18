@@ -68,4 +68,16 @@ class Fee_typeRepository implements Fee_TypeInterface
             return true;
         return false;
     }
+    public function delete_fee_type($fee_types_id)
+    {
+        try {
+            $fee_type = Fee_type::find($fee_types_id);
+            $is_deleted = $fee_type->delete();
+            if ($is_deleted ==1)
+                return true;
+            return false;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

@@ -109,7 +109,7 @@ Route::group([
         ###########################  for fee type setting
         Route::get('fee_type', [FeetypeController::class, 'index'])->name('admin.setting.fee');
         Route::post('store_fee_type', [FeetypeController::class, 'store'])->name('admin.setting.fee.store');
-        Route::get('delete_fee_type/{fee_types_id}', [FeetypeController::class, 'delete'])->name('admin.setting.fee.delete');
+        Route::post('delete_fee_type', [FeetypeController::class, 'delete'])->name('admin.setting.fee.delete');
     
     });
     ################################### End Settings Routes ###################################################

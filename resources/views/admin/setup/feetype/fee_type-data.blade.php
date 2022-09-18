@@ -16,7 +16,7 @@
                         <th>#</th>
                         <th>@lang('site.fee type')</th>
                         <th>@lang('site.fee order')</th>
-                        <th>@lang('site.fee value')</th>
+                        {{-- <th>@lang('site.fee value')</th> --}}
                         <th>@lang('site.options')</th>
                        
                     </tr>
@@ -28,7 +28,7 @@
                               <td>{{ $fee_types['id'] }}</td>
                               <td>{{$fee_types['fee']}}</td>
                               <td>{{$fee_types['order']}}</td>
-                              <td>{{$fee_types['primary_price']}}</td>
+                              {{-- <td>{{$fee_types['primary_price']}}</td> --}}
                               <td>
                                
                                         <a class="btn text-success fa fa-pencil hover  hover-primary"
@@ -40,7 +40,7 @@
                             
                                 <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
                                     title="@lang('site.delete')"
-                                    onclick="">
+                                    onclick="delete_by_id('{{ route('admin.setting.fee.delete') }}',{{ $fee_types['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
                                 </a>
                             </td>
                             </tr>
