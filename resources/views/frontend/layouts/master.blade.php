@@ -33,9 +33,9 @@
   <link href="{{ URL::asset('assets/frontend/css/style.css')}}" rel="stylesheet">
 
 
+  <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
   
   {{-- <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}"> --}}
-  <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
   {{-- <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}"> --}}
   <!-- =======================================================
   * Template Name: Company - v2.1.0
@@ -54,7 +54,7 @@
   <!-- ======= Hero Section ======= -->
   <!-- End Hero -->
 
-<div id="app" style="padding: 2.5cm">
+<div id="app" style="padding-top: 2.5cm">
      @yield('content')
 </div>
 
@@ -80,7 +80,31 @@
 
   <!-- Template Main JS File -->
   <script src="{{ URL::asset('assets/frontend/js/main.js')}}"></script>
+  {{-- <script src="https://js.pusher.com/7.2/pusher.min.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
   {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
+  {{-- <script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('719ad0b49c92300764ea', {
+      cluster: 'mt1'
+    });
+
+    // var channel = pusher.subscribe('my-channel');
+    // channel.bind('my-event', function(data) {
+    //   app.messages.push(JSON.stringify(data));
+    // });
+
+    // Vue application
+    // const app = new Vue({
+    //   el: '#app',
+    //   data: {
+    //     messages: [],
+    //   },
+    // });
+  </script> --}}
 </body>
 
 </html>

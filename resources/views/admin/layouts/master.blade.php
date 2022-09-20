@@ -25,6 +25,75 @@
 
     @toastr_css()
 
+
+
+    <style>
+           .pulse {
+            position: absolute;
+            top: -10px;
+            right: -9px;
+            height: 20px;
+            width: 20px;
+            z-index: 10;
+            font-size: medium;
+            font-weight: bold; 
+            color: rgb(255, 255, 255);
+            border: rgb(255, 255, 255);
+            border-radius: 70px;
+            /* animation: pulse 1s ease-out infinite; */
+        }
+
+    
+        /* .pulse {
+            position: absolute;
+            top: -10px;
+            right: -9px;
+            height: 20px;
+            width: 20px;
+            z-index: 10;
+            border: 5px solid #fbff00;
+            border-radius: 70px;
+            animation: pulse 1s ease-out infinite;
+        } */
+
+        .marker {
+            position: absolute;
+            top: -0px;
+            right: 10px;
+            height: 20px;
+            width: 20px;
+            border-radius: 70px;
+            background: rgb(255, 0, 0);
+        }
+
+
+        /* @keyframes pulse {
+            0% {
+                -webkit-transform: scale(0);
+                opacity: 0.0;
+            }
+
+            25% {
+                -webkit-transform: scale(0.1);
+                opacity: 0.1;
+            }
+
+            50% {
+                -webkit-transform: scale(0.5);
+                opacity: 0.3;
+            }
+
+            75% {
+                -webkit-transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            100% {
+                -webkit-transform: scale(1);
+                opacity: 0.0;
+            }
+        } */
+    </style>
 </head>
 {{-- {{   get_Default_language() }} --}}
 
@@ -80,12 +149,34 @@
 
 
     @yield('script')
-
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
     {{-- @jquery --}}
     @toastr_js
     @toastr_render
 
     @method('scripts')
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('719ad0b49c92300764ea', {
+            cluster: 'mt1'
+        });
+
+        // var channel = pusher.subscribe('my-channel');
+        // channel.bind('my-event', function(data) {
+        //   app.messages.push(JSON.stringify(data));
+        // });
+
+        // Vue application
+        // const app = new Vue({
+        //   el: '#app',
+        //   data: {
+        //     messages: [],
+        //   },
+        // });
+    </script>
 </body>
 
 </html>

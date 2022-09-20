@@ -22,7 +22,7 @@ class CreateCoursTable extends Migration
             $table->integer('maxStd')->nullable();
             $table->string('days');
             $table->string('status', 50);
-            // $table->string('teachername');
+            $table->text('description');
             $table->double('teacherFee');
             $table->time('startTime')->nullable();
             $table->time('endTime')->nullable();

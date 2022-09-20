@@ -33,6 +33,7 @@ class InsertCoursRequest extends FormRequest
     public function rules()
     {
         return [
+            'description'  => 'required',
             'grade'  => 'required|exists:grades,grade',
             'level' => 'required|exists:levels,level',
             'start_date' => 'required|date',

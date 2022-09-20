@@ -56,7 +56,7 @@ class Cours extends Model
     }
 
 
-    public function save_day_of_week($array)
+    public static function save_day_of_week($array)
     {
         $string = implode(";", $array);
         return $string;

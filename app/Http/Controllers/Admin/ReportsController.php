@@ -148,7 +148,7 @@ class ReportsController extends Controller
 
         //  $sort_array_by_abbr_currency = $array_of_data->groupBy('currencies_id');
         $result_sort_array_by_abbr_currency = [];
-
+        $dataSet=[];
 
         $result_sort_array_by_abbr_currency = $array_of_data->groupBy([
             'currencies_id',
@@ -158,6 +158,15 @@ class ReportsController extends Controller
         ], $preserveKeys = true);
 
         // return $result_sort_array_by_abbr_currency;
+        if ($array_of_data->count() == 0) {
+          return  $dataSet[] = [
+                "id" => '',
+                "Name" => "",
+                "Amount" =>  '',
+                "Payment date" => '',
+                "Description" => "",
+            ];
+        }
 
         foreach ($result_sort_array_by_abbr_currency as $key_currency => $result_sort_array_by_services) {
 
@@ -178,11 +187,11 @@ class ReportsController extends Controller
                     $dataSet[] = [
                         "id" => $receipt['id'],
                         "Name" => $receipt['user']['name'] . ' # ' . $receipt['user']['id'],
-                        "Amount" => $receipt['amount']+$receipt['other_amount'],
+                        "Amount" => $receipt['amount'] + $receipt['other_amount'],
                         "Payment date" => $receipt['created_at']->format('d-m-Y'),
                         "Description" => $receipt['description'],
                     ];
-                    $sum +=$receipt['amount']+$receipt['other_amount'];
+                    $sum += $receipt['amount'] + $receipt['other_amount'];
                 }
                 $dataSet[] = [
                     "id" => __('site.sum of payment for'),
@@ -252,11 +261,11 @@ class ReportsController extends Controller
                     $dataSet[] = [
                         "id" => $receipt['id'],
                         "Name" => $receipt['user']['name'] . ' # ' . $receipt['user']['id'],
-                        "Amount" =>  $receipt['amount']+$receipt['other_amount'],
+                        "Amount" =>  $receipt['amount'] + $receipt['other_amount'],
                         "Payment date" => $receipt['created_at']->format('d-m-Y'),
                         "Description" => $receipt['description'],
                     ];
-                    $sum += $receipt['amount']+$receipt['other_amount'];
+                    $sum += $receipt['amount'] + $receipt['other_amount'];
                 }
                 $dataSet[] = [
                     "id" => __('site.sum of payment for'),

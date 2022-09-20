@@ -131,7 +131,7 @@ class CoursController extends Controller
                     'cours_currency',
                     'fee_type',
                     'coursfee_max',
-                    'fee_type_id',
+                    'fee_type_id'
                 ));
             }
         } catch (\Throwable $th) {

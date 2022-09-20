@@ -52,6 +52,7 @@ class CoursRepository implements CoursInterface
             'status' => $request->status,
             'teacher_id' => $teacher_id,
             'teacherFee' => $request->teacher_fee,
+            'description' => $request->description,
             'startTime' => $request->start_time,
             'endTime' => $request->end_time,
             'days' => Cours::save_day_of_week($request->days),
@@ -83,6 +84,7 @@ class CoursRepository implements CoursInterface
             'status' => $request->status,
             'teacher_id' => $teacher_id,
             'teacherFee' => $request->teacher_fee,
+            'description' => $request->description,
             'startTime' => $request->start_time,
             'endTime' => $request->end_time,
             'days' => Cours::save_day_of_week($request->days),
@@ -102,5 +104,11 @@ class CoursRepository implements CoursInterface
         if (!$cours)
             return false;
         return $cours;
+    }
+
+
+    public function open_and_postopen_cours()
+    {
+       return Cours::where('status','open')->orWhere('status','postopen')->with('grade','level')->get();
     }
 }// end of class

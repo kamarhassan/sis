@@ -19,6 +19,7 @@ class RepositoryProvider extends ServiceProvider
        $this->app->bind('App\Repository\Cours_fee\CoursfeeInterface','App\Repository\Cours_fee\CoursfeeRepository');
        $this->app->bind('App\Repository\Admin\AdminInterface','App\Repository\Admin\AdminRepository');
        $this->app->bind('App\Repository\Students\StudentsInterface','App\Repository\Students\StudentsRepository');
+       $this->app->bind('App\Repository\RegisterCours\RegisterCoursInterface','Repository\RegisterCours\RegisterCoursRepository');
     }
 
     /**

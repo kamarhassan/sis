@@ -280,6 +280,15 @@
                                                         @error('days[]')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>@lang('site.description') </label>
+                                                                <textarea name="description" id="description" class="form-control"  value="{{ $cours->description }}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        @error('description')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>{{-- end of row teacher name and fee --}}
                                             </div>

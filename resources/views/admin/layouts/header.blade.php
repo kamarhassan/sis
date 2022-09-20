@@ -105,10 +105,38 @@
                     </div>
                 </li> --}}
                 <!-- Notifications -->
-                {{-- <li class="dropdown notifications-menu">
+                
+
+                <!-- User Account-->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
+                        title="User">
+                        <img src="{{ URL::asset('assets/images/avatar/1.jpg') }}" alt="">
+                        {{-- {{Session::get('admin_name')}} --}}
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu animated flipInX">
+                        <li class="user-body">
+                            <a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i>
+                                Profile</a>
+                            <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> My
+                                Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
+                                Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('get.admin.logout') }}"><i
+                                    class="ti-lock text-muted mr-2"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+<li class="dropdown user notifications-menu">
                     <a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown"
                         title="Notifications">
-                        <i class="ti-bell"></i>
+                        <i class="ti-bell">
+                            {{-- <div class="pulse nbmarker pulseWarningIns"></div> --}}
+                            <div class="pulse  marker pulseWarningIns">15
+                            </div>
+                        </i>
                     </a>
                     <ul class="dropdown-menu animated bounceIn">
 
@@ -175,30 +203,7 @@
                             <a href="#">View all</a>
                         </li>
                     </ul>
-                </li> --}}
-
-                <!-- User Account-->
-                <li class="dropdown user user-menu">
-                    <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
-                        title="User">
-                        <img src="{{ URL::asset('assets/images/avatar/1.jpg') }}" alt="">
-                        {{Session::get('admin_name')}}
-                    </a>
-                    <ul class="dropdown-menu animated flipInX">
-                        <li class="user-body">
-                            <a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i>
-                                Profile</a>
-                            <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> My
-                                Wallet</a>
-                            <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
-                                Settings</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('get.admin.logout') }}"><i
-                                    class="ti-lock text-muted mr-2"></i> Logout</a>
-                        </li>
-                    </ul>
                 </li>
-
                 {{-- <li>
                     <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light">
                         <i class="ti-settings"></i>
