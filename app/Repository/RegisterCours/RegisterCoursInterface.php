@@ -13,7 +13,8 @@ namespace App\Repository\RegisterCours;
 interface RegisterCoursInterface
 {
 
-    public function register_in_cours($request,$user_id);
-    public function delete_register_in_cours($request,$user_id);
+    public function register_in_cours($request);
+    public function user_cours_reserved($user_id);
+    public function delete_register_in_cours($register_id);
  
 }

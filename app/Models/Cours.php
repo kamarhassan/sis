@@ -94,7 +94,7 @@ class Cours extends Model
     }
     public function teacher_name()
     {
-        return $this->hasOne(Admin::class, 'id', 'teacher_id')->select('id','name');
+        return $this->hasOne(Admin::class, 'id', 'teacher_id')->select('id', 'name');
     }
 
     public function students()
@@ -105,7 +105,19 @@ class Cours extends Model
 
     public function  fee()
     {
-        return $this->hasMany(CoursFee::class,'cours_id','id');
+        return $this->hasMany(CoursFee::class, 'cours_id', 'id');
     }
 
+
+
+    public function  fee_with_type()
+    {
+        return $this->hasMany(CoursFee::class, 'cours_id', 'id')
+            ->with('fee_type');
+    }
+    public function  fee_with_type_currency()
+    {
+        return $this->hasMany(CoursFee::class, 'cours_id', 'id')
+            ->with('fee_type','currency');
+    }
 }

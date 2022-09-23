@@ -26,8 +26,8 @@ class CreateCoursTable extends Migration
             $table->double('teacherFee');
             $table->time('startTime')->nullable();
             $table->time('endTime')->nullable();
-            $table->string('act_StartDa');
-            $table->string('act_EndDa');
+            $table->date('act_StartDa');
+            $table->date('act_EndDa');
             $table->string('year');
             $table->string('deleted')->enum('deleted', [0, 1])->default(1)->comment("0=>delete  1=>is active");
             $table->foreignId('teacher_id')->constrained('admins')->onUpdate('cascade')->comment('for teacher name');

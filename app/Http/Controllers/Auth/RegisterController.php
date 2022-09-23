@@ -51,14 +51,21 @@ class RegisterController extends Controller
     {
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
             'midname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
+            'phonenumber' => ['required', 'digits:8', 'numeric'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
+// private function phone_pattern($phonenumber){
+//     $ph_prefix = substr($phonenumber, 0, 2);
+  
 
+//     if($ph_prefix =='04' || $ph_prefix =='05'|| $ph_prefix =='01'|| 
+//     $ph_prefix =='08'|| $ph_prefix =='09'|| $ph_prefix =='08'|| $ph_prefix =='06')
+// }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,8 +76,10 @@ class RegisterController extends Controller
     {
         return User::create([
 
-            'name' => $data['name'],
+            'name' => $data['firstname'].' '.$data['midname'].' '.$data['lastname'],
+            'firstname' => $data['firstname'],
             'midname' => $data['midname'],
+            'phonenumber' => $data['phonenumber'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

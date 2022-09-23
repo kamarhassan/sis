@@ -34,7 +34,7 @@
 
 
   <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
-  
+  @toastr_css()
   {{-- <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}"> --}}
   {{-- <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}"> --}}
   <!-- =======================================================
@@ -80,6 +80,14 @@
 
   <!-- Template Main JS File -->
   <script src="{{ URL::asset('assets/frontend/js/main.js')}}"></script>
+
+  <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
+
+  @yield('script')
+
+  @toastr_js
+  @toastr_render
+
   {{-- <script src="https://js.pusher.com/7.2/pusher.min.js"></script> --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
   {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}

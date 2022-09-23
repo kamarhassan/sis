@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\CoursController;
 use App\Http\Controllers\Admin\GradeController;
@@ -223,6 +223,24 @@ Route::group([
         // Route::post('delete',[LanguageController::class ,'delete'])->name('admin.language.delete');
     });
     ################################### End Language Routes ###################################################
+
+
+
+    Route::group(['prefix' => 'notification'], function () {
+
+        // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
+        Route::get('all', [AdminNotificationController::class, 'all'])->name('admin.notification.all');
+        Route::get('new-register', [AdminNotificationController::class, 'new_register'])->name('admin.notification.new.register');
+        Route::post('get_user_info/{userid}', [AdminNotificationController::class, 'user_info'])->name('admin.notification.get.user.info');
+        // Route::post('store', [SuperviserController::class, 'store'])->name('admin.supervisor.store');
+
+        // Route::get('edit/{id}',[UserController::class ,'edit'])->name('admin.language.edit');
+        // Route::post('update/{id}',[UserController::class ,'update'])->name('admin.language.update');
+
+        // Route::post('delete',[UserController::class ,'delete'])->name('admin.language.delete');
+        // Route::post('delete',[LanguageController::class ,'delete'])->name('admin.language.delete');
+    });
+    ################################### End notification Routes ###################################################
 
 
 

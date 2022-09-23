@@ -2,17 +2,68 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repository\Cours\CoursInterface;
+use App\Repository\Cours_fee\CoursfeeInterface;
+use App\Http\Requests\OrderRegistartionFromUser;
+use App\Repository\RegisterCours\RegisterCoursInterface;
 
 class RegisterCoursController extends Controller
 {
-   public function __construct()
-   {
+   protected $cours;
+   protected $coursfee;
+   protected $registerCoursInterface;
+   public function __construct(
+      CoursInterface $cours,
+      CoursFeeInterface $coursfee,
+      RegisterCoursInterface $registerCoursInterface
+   ) {
       $this->middleware('auth');
+
+      $this->coursfee = $coursfee;
+      $this->cours = $cours;
+      $this->registerCoursInterface = $registerCoursInterface;
    }
 
-   public function register()
+   // public function RegisterCours(Request $request)
+   public function RegisterCours(OrderRegistartionFromUser $request)
    {
+      try {
+         $inserted=     $this->registerCoursInterface->register_in_cours($request);
+         if ($inserted) {
+
+            
+          
+            return   response()->json(['status' => 'success','message' => __('site.cours successfully registered')]);
+        } else {
+            
+            return  response()->json(['status' => 'error','message' => __('site.cours failed registered')]);
+        }
+      } catch (\Throwable $th) {
+         throw $th;
+      }
+   }
+   public function delete_cours_reserved(Request $request)
+   {
+      try {
+          $delete =  $this->registerCoursInterface->delete_register_in_cours($request->id);
+         if ($delete) 
+         {
+
+            $notification = [
+               'message' => __('site.payment has delete success'),
+               'status' => 'success',
+            ];
+         } else {
+            $notification = [
+               'message' => __('site.payment faild '),
+               'status' => 'error',
+            ];
+         }
+         return response()->json($notification);
+      } catch (\Throwable $th) {
+         throw $th;
+      }
    }
 }

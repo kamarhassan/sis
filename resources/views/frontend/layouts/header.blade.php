@@ -22,7 +22,7 @@
                         </li>
                     @endif
                 @else
-                <li><a href="{{ route('web.dashboard') }}">Dasborad</a></li>
+                <li><a href="{{ route('web.user.cours', Auth::user()->id ) }}">Reserved cours</a></li>
                     <li class="drop-down"><a href="">{{ Auth::user()->name }}</a>
                         <ul>
                             <li>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontEnd\CoursDetailController;
 use App\Http\Livewire\Count;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,13 @@ Route::get('/', [HomeController::class,'index'])->name('web.index');
 // Auth::routes(['verify'=>true]);
 Auth::routes();
 
-Route::get('/dashboard',[UserDashboradController::class,'index'])->name('web.dashboard');
-Route::get('/register-cours', [RegisterCoursController::class,'RegisterCours'])->name('web.registerCours');
+Route::get('dashboard',[UserDashboradController::class,'index'])->name('web.dashboard');
+Route::get('my-cours/{user_id}',[UserDashboradController::class,'user_cours_reserved'])->name('web.user.cours');
+Route::get('cours/{cours_name}/{coursid}',[CoursDetailController::class,'cours_details'])->name('web.cours-details');
+Route::post('delete',[RegisterCoursController::class,'delete_cours_reserved'])->name('web.delete.cours.reserved');
+Route::post('register-cours', [RegisterCoursController::class,'RegisterCours'])->name('web.registerCours');
 
 
-
+// Route::get('admin', function () {
+//     return 1; //redirect()->route('get.admin.login');
+// });

@@ -1,4 +1,3 @@
-
 <header class="main-header">
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top pl-30">
@@ -25,8 +24,8 @@
 
                 </ul>
                 <li class="btn-group nav-item">
-                    <a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link rounded svg-bt-icon"
-                        title="Full Screen">
+                    <a href="#" data-provide="fullscreen"
+                        class="waves-effect waves-light nav-link rounded svg-bt-icon" title="Full Screen">
                         <i class="nav-link-icon mdi mdi-crop-free"></i>
                     </a>
                 </li>
@@ -52,9 +51,9 @@
 
 
         <div class="nav">
-           {{-- <li> <button id="chmode" class="btn"
+            {{-- <li> <button id="chmode" class="btn"
                 onclick="changemodetheme('{{ route('admin.dashborad.changemode') }}', '{{ csrf_token() }}');">
-               @if (Config::get('modetheme.mode')=="dark-skin")
+               @if (Config::get('modetheme.mode') == 'dark-skin')
                <i class="text-white wi wi-day-sunny active"></i>
                @else
                <i class="text-white   wi wi-moon-waning-crescent-4 active"></i>
@@ -98,19 +97,19 @@
         <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">
                 <!-- full Screen -->
-{{--
+                {{--
                 <li class="search-bar">
                     <div class="lookup lookup-circle lookup-right">
                         <input type="text" name="s">
                     </div>
                 </li> --}}
                 <!-- Notifications -->
-                
+
 
                 <!-- User Account-->
                 <li class="dropdown user user-menu">
-                    <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
-                        title="User">
+                    <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0"
+                        data-toggle="dropdown" title="User">
                         <img src="{{ URL::asset('assets/images/avatar/1.jpg') }}" alt="">
                         {{-- {{Session::get('admin_name')}} --}}
                         {{ Auth::user()->name }}
@@ -129,81 +128,8 @@
                         </li>
                     </ul>
                 </li>
-<li class="dropdown user notifications-menu">
-                    <a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown"
-                        title="Notifications">
-                        <i class="ti-bell">
-                            {{-- <div class="pulse nbmarker pulseWarningIns"></div> --}}
-                            <div class="pulse  marker pulseWarningIns">15
-                            </div>
-                        </i>
-                    </a>
-                    <ul class="dropdown-menu animated bounceIn">
 
-                        <li class="header">
-                            <div class="p-20">
-                                <div class="flexbox">
-                                    <div>
-                                        <h4 class="mb-0 mt-0">Notifications</h4>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-danger">Clear All</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            <ul class="menu sm-scrol">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc
-                                        suscipit blandit.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu
-                                        sapien elementum, in semper diam posuere.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor
-                                        commodo porttitor pretium a erat.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-shopping-cart text-success"></i> In gravida mauris et
-                                        nisi
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero
-                                        dictum fermentum.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-user text-primary"></i> Nunc fringilla lorem
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam
-                                        interdum, at scelerisque ipsum imperdiet.
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <a href="#">View all</a>
-                        </li>
-                    </ul>
-                </li>
+                @include('admin.layouts.admin-notification-bar')
                 {{-- <li>
                     <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light">
                         <i class="ti-settings"></i>

@@ -131,8 +131,10 @@
                     <h2>@lang('site.cours')</strong></h2>
                     <p>Laborum repudiandae omnis voluptatum consequatur mollitia ea est voluptas ut</p>
                 </div>
-
-                <div class="row">
+                
+            
+             
+              <div class="row">
                     @isset($cours)
                         @foreach ($cours as $item)
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 overlay" data-aos="zoom-in"
@@ -147,17 +149,18 @@
                                         </svg>
                                         <i class="bx bx-arch"></i>
                                     </div>
-                                    <h4><a href="" title="More Details">{{ $item['grade']['grade'] }} # {{ $item['level']['level'] }}</a></h4>
+                                    
+                                    <h4><a href="{{route('web.cours-details',[ $item['grade']['grade'].'-'. $item['level']['level'] ,$item['id']])}}" title="More Details">{{ $item['grade']['grade'] }} # {{ $item['level']['level'] }}</a></h4>
                                     <p>
                                         @isset($item['description'])
                                             {{ $item['description'] }}
                                         @endisset
                                     </p>
 
-                                    <a class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                                    {{-- <a class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                                  @auth
                                      <a  title="take cours"><i class="bx bx-plus"></i></a>
-                                 @endauth
+                                 @endauth --}}
                                 </div>
 
                             </div>

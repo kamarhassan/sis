@@ -78,4 +78,12 @@ class User extends Authenticatable  //implements MustVerifyEmail
     {
         return $this->hasMany(StudentsRegistration::class, 'user_id');
     }
+
+
+    
+    public function reserved_cours()
+    {
+        return $this->hasMany(NotificationAdmin::class, 'user_id','id')
+        ->with('cours_reserved');
+    }
 }

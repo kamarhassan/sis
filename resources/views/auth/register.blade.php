@@ -26,10 +26,10 @@
                                                     class="ti-user"></i></span>
                                         </div>
                                         <input id="name" type="text"
-                                            class="form-control @error('name') is-invalid @enderror" name="name"
-                                            value="{{ old('name') }}" autocomplete="name"  placeholder="@lang('site.lang name')" autofocus>
+                                            class="form-control @error('firstname') is-invalid @enderror" name="firstname"
+                                            value="{{ old('firstname') }}" autocomplete="firstname"  placeholder="@lang('site.lang name')" autofocus>
 
-                                        @error('name')
+                                        @error('firstname')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -81,6 +81,23 @@
                                             value="{{ old('email') }}" autocomplete="email">
 
                                         @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent text-black">
+                                                <i class="ti ti-mobile"></i></span>
+                                        </div>
+                                        <input id="phonenumber" type="tel"
+                                            class="form-control @error('phonenumber') is-invalid @enderror" name="phonenumber" placeholder="@lang('site.phone ')"
+                                            value="{{ old('phonenumber') }}" autocomplete="phonenumber">
+
+                                        @error('phonenumber')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

@@ -28,7 +28,7 @@ class CoursSedeer extends Seeder
                 'maxStd' =>random_int(0, 60),
                 'days' =>'1;2;5;6',
                 'status' => $status,
-                // 'teachername' =>$faker->name(),
+                'description' =>$faker->text(),
                 'teacherFee' =>random_int(1000, 60000),
                 'startTime' =>$faker->time('H:i:s', now()),
                 'endTime' =>$faker->time('H:i:s', now()),

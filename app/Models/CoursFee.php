@@ -39,12 +39,12 @@ class CoursFee extends Model
 
     public function  currency()
     {
-        return $this->belongsTo(currency::class, 'currencies_id', 'id');
+        return $this->belongsTo(Currency::class, 'currencies_id', 'id');
     }
 
     public function  fee_type()
     {
-        return $this->belongsTo(fee_type::class, 'fee_types_id', 'id');
+        return $this->belongsTo(Fee_Type::class, 'fee_types_id', 'id');
     }
     public function  payment()
     {

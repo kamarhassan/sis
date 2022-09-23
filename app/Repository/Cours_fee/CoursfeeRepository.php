@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Hassan
- * Date: 4/14/2022
- * Time: 4:57 PM
- */
 
 namespace App\Repository\Cours_fee;
 
@@ -50,12 +44,25 @@ class CoursfeeRepository implements CoursFeeInterface
             return $saved;
         } else {
             //
-            foreach($cours_fee as $key=>$cours_fees)
-            {
+            foreach ($cours_fee as $key => $cours_fees) {
                 $cours_fee[$key]->delete();
             }
             $saved = $this->create($request, $cours_id, $currency);
             return $saved;
         }
+    }
+
+
+    public function cours_fee_with_type($cours)
+    {
+        if (!$cours)
+            return false;
+        return  $fee = $cours->fee_with_type;
+    }
+    public function cours_fee_with_type_and_currency($cours)
+    {
+        if (!$cours)
+            return false;
+        return  $fee = $cours->fee_with_type_currency;
     }
 }

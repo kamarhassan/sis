@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cours= $this->cours->open_and_postopen_cours();
-        return view('frontend.index',compact('cours'));
+       $cours= $this->cours->open_and_postopen_cours();
+         return view('frontend.index',compact('cours'));
     }
 }
