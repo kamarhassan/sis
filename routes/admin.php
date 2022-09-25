@@ -141,7 +141,7 @@ Route::group([
         Route::get('edit-old-payment/{receipt_id}', [PaymentController::class, 'edit_payment'])->name('admin.students.payment.edit');
         Route::post('delet_receipt', [PaymentController::class, 'delete_payment_receipt'])->name('admin.students.delete_payment_receipt');
         // Route::get('Receipt/edit/{cours_id}/{user_id}', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
-
+        Route::get('new-registration-order', [AdminNotificationController::class, 'new_register'])->name('admin.new.register.order');
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
         //     ->name('admin.students.get_std_to_payment');
     });
@@ -231,7 +231,8 @@ Route::group([
         // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
         Route::get('all', [AdminNotificationController::class, 'all'])->name('admin.notification.all');
         Route::get('new-register', [AdminNotificationController::class, 'new_register'])->name('admin.notification.new.register');
-        Route::post('get_user_info/{userid}', [AdminNotificationController::class, 'user_info'])->name('admin.notification.get.user.info');
+        Route::post('get_user_info/{orders_id}', [AdminNotificationController::class, 'user_info_with_cours'])->name('admin.notification.get.user.info');
+        Route::post('delete-marked', [AdminNotificationController::class, 'delete_marked'])->name('admin.notification.delete.marked');
         // Route::post('store', [SuperviserController::class, 'store'])->name('admin.supervisor.store');
 
         // Route::get('edit/{id}',[UserController::class ,'edit'])->name('admin.language.edit');

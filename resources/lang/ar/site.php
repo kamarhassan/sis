@@ -257,7 +257,7 @@ return [
 
     'fee type created successfully!' => 'تم تسجيل الرسم بنجاح',
     'failed to create fee type' => 'فشل  تسجيل الرسم بنجاح',
-     
+
     'failed to delete beacuse it is used' => 'لم يتم الحذف لانها مستخدمة مسبقا',
     'this cours is not defined'  => 'هناك خطأ ما او ربما الدورة غي موجودة',
     'description cours'  => 'الوسف',
@@ -266,8 +266,9 @@ return [
     'you have a new registration'  => 'لديك طلب تسجيل جديد',
     'cours successfully registered'  => ' تم تسجيل الدورة بنجاح',
     'cours failed registered'  => ' فشل تسجيل الدورة بنجاح',
-        'you dont have any notification'  => 'you don\'t have any notification',
-        'notification new regisration'  => 'لديك طلب تسجيل جديد',
-        ''  => '',
+    'you dont have any notification'  => 'you don\'t have any notification',
+    'notification new regisration'  => 'لديك طلب تسجيل جديد',
+    'new registration order'  => 'طلبات التسجيل',
+    ''  => '',
 
 ];

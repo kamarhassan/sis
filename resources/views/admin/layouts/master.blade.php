@@ -139,6 +139,9 @@
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">
     </script>
+     <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script>
+     <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
+     </script>
     {{-- C:\xampp\htdocs\sis/assets/app-assets/js/jquery-3.6.0.min.js --}}
     <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -158,11 +161,11 @@
     @method('scripts')
     <script>
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+        // Pusher.logToConsole = true;
 
-        var pusher = new Pusher('719ad0b49c92300764ea', {
-            cluster: 'mt1'
-        });
+        // var pusher = new Pusher('719ad0b49c92300764ea', {
+        //     cluster: 'mt1'
+        // });
 
         // var channel = pusher.subscribe('my-channel');
         // channel.bind('my-event', function(data) {

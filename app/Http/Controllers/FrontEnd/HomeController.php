@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function __construct(CoursInterface $cours)
     {
         $this->cours = $cours;
-      
+      $this->middleware('auth');
     }
 
     /**

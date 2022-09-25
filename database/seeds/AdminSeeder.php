@@ -21,10 +21,10 @@ class AdminSeeder extends Seeder
 
         Admin::create([
             'name' => 'Hassan Kamar',
-            'email' => 'sadmin@gmail.com',
+            'email' => 'hassankamar795@gmail.com',
             'admin_status' => '1',
             //'roles_name' => ['super-admin'],
-            'password' => bcrypt('123456')
+            'password' => bcrypt('1234')
         ])->assignRole('super admin');
 
         Admin::create([
@@ -32,17 +32,9 @@ class AdminSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'admin_status' => '1',
             //'roles_name' => ['super-admin'],
-            'password' => bcrypt('admin')
+            'password' => bcrypt('1234')
         ])->assignRole('super admin');
 
-
-        Admin::create([
-            'name' => 'Hassan Kamar 2',
-            'email' => 'hassankamar7952@gmail.com',
-            'admin_status' => '1',
-            //'roles_name' => ['super-admin'],
-            'password' => bcrypt('123456789')
-        ])->assignRole('edit_currency');
 
 
 

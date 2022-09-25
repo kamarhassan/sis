@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class fee_type extends Model
+class fee_types extends Model
 {
     use HasFactory;
 

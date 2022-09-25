@@ -1,5 +1,6 @@
 function submit(route_,form_id) {
     var formdata = $("#"+form_id).serializeArray();
+    console.log(formdata);
     $.ajax({
         type: 'POST',
         url: route_,

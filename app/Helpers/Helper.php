@@ -3,6 +3,7 @@
 
 use App\Models\Language;
 use App\Models\NotificationAdmin;
+use App\Repository\AdminNotification\AdminNotificationRepository;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 
@@ -19,7 +20,6 @@ function pagination_count()
 function encript_custome($id)
 {
     return encrypt($id);
-
 }
 
 function days_of_week()
@@ -118,13 +118,16 @@ function string_to_array($string)
     return explode(";", $string);
 }
 
-function get_count_notification(){
-    // return 0;
-    return NotificationAdmin::where(['delete'=>0,'status'=>1])->get()->count();
+function get_count_notification()
+{
+    $count_notification = new  AdminNotificationRepository();
+    return   $count_notification->get_all_unread_notification()->count();
 }
 
-function get_type_notification(){
-    return NotificationAdmin::where(['delete'=>0,'status'=>1])->get(['id','description']) ;
+function get_type_notification()
+{
+    $type_id_description = new  AdminNotificationRepository();
+    return   $type_id_description->get_type_id_description();
 }
 
 

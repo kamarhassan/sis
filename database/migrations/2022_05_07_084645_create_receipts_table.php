@@ -18,10 +18,10 @@ class CreateReceiptsTable extends Migration
             $table->foreignId('currencies_id')->constrained('currencies')->onUpdate('cascade')->comment('it is the currency of payment ');
             $table->foreignId('cours_currency_id')->constrained('currencies')->onUpdate('cascade')->comment('it is the currency of cours');
            // $table->foreignId('cours_fee_id')->constrained('cours_fees')->onUpdate('cascade')->comment('from cours fees ***id***');
-            $table->float('amount')->default(0);
-            $table->float('other_amount')->default(0);
-            $table->float('rate_exchange')->default(1);
-            $table->float('amount_total');
+            $table->double('amount')->default(0);
+            $table->double('other_amount')->default(0);
+            $table->double('rate_exchange')->default(1);
+            $table->double('amount_total');
             $table->integer('transaction_id')->nullable()->default(null);
             $table->string('description')->nullable()->default(null)->comment('ma3lomet l cours Level ,grade ,user name');
             $table->string('payType')->nullable()->enum('cash', 'check')->default('cash');

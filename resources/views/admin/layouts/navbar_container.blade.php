@@ -184,7 +184,7 @@ $routes = Route::current()->getName();
             @endcan
 
             @can('students')
-                <li class="treeview   {{ $prefix == getprefix('Students') ? 'active' : '' }}     ">
+                <li class="treeview   {{ $prefix == getprefix('students') ? 'active' : '' }}     ">
                     <a href="#">
                         <i class="fa fa-user-circle"></i>
                         <span>@lang('site.students')</span>
@@ -226,6 +226,14 @@ $routes = Route::current()->getName();
                                 </a>
                             </li>
                         @endcan
+                        {{-- @can('receipt') --}}
+                            <li><a href="{{ route('admin.new.register.order') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                                    <i class="ti-more">
+                                    </i>
+                                    @lang('site.new registration order')
+                                </a>
+                            </li>
+                        {{-- @endcan --}}
                        
 
 

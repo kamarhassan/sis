@@ -16,7 +16,7 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('service');
-            $table->float('fee');
+            $table->double('fee');
             $table->foreignId('currencies_id')->constrained('currencies')->onUpdate('cascade');
             $table->boolean('active')->default(1)->comment = '1 is active 0 is inactive'; //
 

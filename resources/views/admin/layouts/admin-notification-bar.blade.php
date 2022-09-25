@@ -1,7 +1,12 @@
+{{-- {{dd(get_count_notification())}} --}}
+
 <li class="dropdown user notifications-menu">
     <a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown" title="Notifications">
         <i class="ti-bell">
             {{-- <div class="pulse nbmarker pulseWarningIns"></div> --}}
+  
+  
+  
             @if (get_count_notification() > 0)
                 <div class="pulse  marker pulseWarningIns">
                     {{ get_count_notification() }}

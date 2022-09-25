@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\InsertCoursRequest;
 use App\Models\Admin;
-use App\Models\Currency;
 use App\Models\Grade;
 use App\Models\level;
+use App\Models\Currency;
 use App\Models\Statusofcour;
-use App\Repository\Admin\AdminInterface;
 use Illuminate\Support\Facades\DB;
-use App\Repository\Cours_fee\CoursfeeInterface;
+use App\Http\Controllers\Controller;
+use App\Repository\Admin\AdminInterface;
 use App\Repository\Cours\CoursInterface;
+use App\Http\Requests\InsertCoursRequest;
 use App\Repository\Fee_Type\Fee_TypeInterface;
+use App\Repository\Cours_fee\CoursfeeInterface;
 
 class CoursController extends Controller
 {
