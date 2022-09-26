@@ -94,6 +94,7 @@ return [
     'succes_msj_swal_fire'         => 'تم الحذف بنجاح',
     'failed_delete'         => 'لم يتم الحذف',
     'failed_msj_swal_fire'         => 'لم يتم الحذف هناك مشكلة حاول من جديد او اتصل بالمشرف',
+    'select_at_least_one_to_delete'         => 'اختر طلب واحد على الاقل',
     #################################### end of delet by swal fire translator ###################################
     #################################### begin   grade  translator ###################################
     ' grade note defined'  => 'هذه الدورة غير موجودة',
@@ -269,6 +270,18 @@ return [
     'you dont have any notification'  => 'you don\'t have any notification',
     'notification new regisration'  => 'لديك طلب تسجيل جديد',
     'new registration order'  => 'طلبات التسجيل',
+    'notifications deleted'  => 'تم حذف طلبات التسجيل بنجاح',
+    'notifications not deleted'  => 'فشل  حذف طلبات التسجيل',
+
+    'pending' => 'معلق',
+    'approved' => 'مقبول',
+    'deny' => 'مرفوض',
+    'read' => 'مقروء',
+    'unread' => 'غير مقروء',
+
     ''  => '',
+    ''  => '',
+    ''  => '',
+
 
 ];

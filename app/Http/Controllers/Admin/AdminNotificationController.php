@@ -7,13 +7,14 @@ use App\Traits\Image;
 use Illuminate\Http\Request;
 use App\Models\NotificationAdmin;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Repository\User\UserInterface;
 
+use App\Repository\User\UserInterface;
+use GrahamCampbell\ResultType\Success;
 use App\Repository\Cours\CoursInterface;
 use App\Repository\Cours_fee\CoursfeeInterface;
 use App\Repository\AdminNotification\AdminNotificationInterface;
-use GrahamCampbell\ResultType\Success;
 
 class AdminNotificationController extends Controller
 {
@@ -64,9 +65,8 @@ class AdminNotificationController extends Controller
             $order = NotificationAdmin::find($order_id);
             $user = $this->userrepository->get_user_by_id($order['user_id']);
             $cours_info = $this->coursrepository->is_defined($order['order_id']);
-
             if ($order && $user && $cours_info) {
-
+                
                 $user_info = [
                     'img_profile'      => photos_dir($user['photo']),
                     'full_name'    => $user['name'],
@@ -83,12 +83,14 @@ class AdminNotificationController extends Controller
                     'level' => $cours_info->level,
                 ];
 
-               
-
+                
+                
                 $cours_fee = $this->coursfeerepository->cours_fee_with_type($cours_info);
                 $total_cours_fee = $cours_fee->sum('value');
+               $this->adminnotification->reading_notification([$order->id]);
+                
                 return response()->json([
-                    'status'=>'success',
+                    'status' => 'success',
                     'user_info' => $user_info,
                     'cours_details' => $cours_details,
                     'cours_fee' => $cours_fee,
@@ -102,9 +104,26 @@ class AdminNotificationController extends Controller
 
     public  function delete_marked(Request $request)
     {
-        return $request;
-        // return NotificationAdmin::where(['delete'=>1,'status'=>1])->get(['id','description']);
+        //   return $request;
+
+        try {
+            DB::beginTransaction();
+            $deleted = $this->adminnotification->delete_notification($request->order_id);
+            if ($deleted == true) {
+                $status = 'success';
+                $message = __('site.notifications deleted');
+            } else {
+                $status = 'error';
+                $message = __('site.notifications not deleted');
+            }
+            DB::commit();
+            return response()->json(['status' => $status, 'message' => $message]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            throw $th;
+        }
+        //  $marked = NotificationAdmin::whereIn('id',$request->order_id)->get();
+        //     return   $marked->update(['delete'=>0]);
+
     }
-
-
 }

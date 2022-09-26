@@ -35,8 +35,8 @@
                         {{-- @include('admin.alerts.toaster') --}}
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.cours.update', $cours->id) }}"
-                                    class="form" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('admin.cours.update', $cours->id) }}" class="form"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class=" col-12">
                                         <div class="box bl-3.border-primary">
@@ -109,8 +109,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.start date') </label>
                                                                 <input name="start_date" class="form-control" type="date"
-                                                                    value="{{ $cours->startDate }}"
-                                                                    id="example-date-input">
+                                                                    value="{{ $cours->startDate }}" id="example-date-input">
                                                                 @error('start_date')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -120,8 +119,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.end date') </label>
                                                                 <input name="end_date" class="form-control" type="date"
-                                                                    value="{{ $cours->endDate }}"
-                                                                    id="example-date-input">
+                                                                    value="{{ $cours->endDate }}" id="example-date-input">
                                                                 @error('end_date')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -146,8 +144,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.end time') </label>
                                                                 <input name="end_time" class="form-control" type="time"
-                                                                    value="{{ $cours->endTime }}"
-                                                                    id="example-date-input">
+                                                                    value="{{ $cours->endTime }}" id="example-date-input">
                                                                 @error('end_time')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -170,8 +167,8 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.actually end date') </label>
-                                                                <input name="ac_end_date" class="form-control" type="date"
-                                                                    value="{{ $cours->act_EndDa }}"
+                                                                <input name="ac_end_date" class="form-control"
+                                                                    type="date" value="{{ $cours->act_EndDa }}"
                                                                     id="example-date-input">
                                                                 @error('ac_end_date')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -225,8 +222,8 @@
                                                                 <div class="form-group">
                                                                     <div class="form-group">
                                                                         <label>@lang('site.teacher name') </label>
-                                                                        <select name="teacher_name" class="form-control select2"
-                                                                            style="width: 100%;">
+                                                                        <select name="teacher_name"
+                                                                            class="form-control select2" style="width: 100%;">
                                                                             @foreach ($teacher as $teachers)
                                                                                 <option value="{{ $teachers->name }}"
                                                                                     @if ($teachers->id == $cours->teacher_id) selected="selected" @endif>
@@ -283,7 +280,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.description') </label>
-                                                                <textarea name="description" id="description" class="form-control"  value="{{ $cours->description }}"></textarea>
+                                                                <textarea name="description" id="description" class="form-control"   >{{ $cours->description }}</textarea>
                                                             </div>
                                                         </div>
                                                         @error('description')
@@ -325,124 +322,123 @@
                                                         <select name="cours_currency" class="form-control select2"
                                                             style="width: 100%;">
                                                             @foreach ($cours_currency as $cours_currencys)
-
                                                                 <option value="{{ $cours_currencys->id }}"
                                                                     @empty($coursfee)
                                                                     @if ($cours_currencys->id == $coursfee[0]->currencies_id)
                                                                         selected="selected"
                                                                     @endempty
                                                                 @endisset>
-                                                                    {{ $cours_currencys->symbol }} <-
-                                                                        {{ $cours_currencys->currency }} </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                                {{ $cours_currencys->symbol }} <-
+                                                                    {{ $cours_currencys->currency }} </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
-                                                @error('cours_currency')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
                                             </div>
-                                        @endisset
-
-
-                                    </div>
-                                    @isset($fee_type)
-                                        <div class="table-responsive">
-                                            <table class="table table-hover ">
-                                                <tr>
-                                                    <th>@lang('site.select fee')</th>
-                                                    <th>@lang('site.fee value')</th>
-                                                </tr>
-
-                                                @foreach ($fee_type as $key => $feeType)
-                                                    <tr>
-                                                        <td>
-
-                                                            <div class="demo-checkbox">
-                                                                <input type="checkbox" name="fee[{{ $feeType->id }}]"
-                                                                    id="md_checkbox_{{ $feeType->id }}"
-                                                                    onchange='total_coust(@json($fee_type_id) );'
-                                                                    class="chk-col-primary fee_{{ $feeType->id }}" />
-                                                                <label
-                                                                    for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
-
-                                                                @error('fee.*')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-
-                                                            </div>
-                                                        </td>
-                                                        <td>
-
-                                                            <input class="form-control fee_value_{{ $feeType->id }}"
-                                                                type="number" step="any" id="fee_value_{{ $feeType->id }}"
-                                                                onchange='total_coust(@json($fee_type_id) );' />
-
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-
-                                                {{-- class="box-inverse box-warning" --}}
-                                                <tr>
-                                                    <td>
-                                                        <div>
-                                                            <label for="total_coust"
-                                                                id="total_coust">@lang('site.total_coust')</label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div>
-                                                            <label for="total_coust" id="total_coust_fee">0</label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            @error('cours_currency')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     @endisset
+
+
                                 </div>
+                                @isset($fee_type)
+                                    <div class="table-responsive">
+                                        <table class="table table-hover ">
+                                            <tr>
+                                                <th>@lang('site.select fee')</th>
+                                                <th>@lang('site.fee value')</th>
+                                            </tr>
+
+                                            @foreach ($fee_type as $key => $feeType)
+                                                <tr>
+                                                    <td>
+
+                                                        <div class="demo-checkbox">
+                                                            <input type="checkbox" name="fee[{{ $feeType->id }}]"
+                                                                id="md_checkbox_{{ $feeType->id }}"
+                                                                onchange='total_coust(@json($fee_type_id) );'
+                                                                class="chk-col-primary fee_{{ $feeType->id }}" />
+                                                            <label
+                                                                for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
+
+                                                            @error('fee.*')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </td>
+                                                    <td>
+
+                                                        <input class="form-control fee_value_{{ $feeType->id }}"
+                                                            type="number" step="any"
+                                                            id="fee_value_{{ $feeType->id }}"
+                                                            onchange='total_coust(@json($fee_type_id) );' />
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                            {{-- class="box-inverse box-warning" --}}
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <label for="total_coust"
+                                                            id="total_coust">@lang('site.total_coust')</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <label for="total_coust" id="total_coust_fee">0</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                @endisset
                             </div>
                         </div>
-                        {{-- end  start blade to cours fee --}}
-
-
-                        <div class="form-actions">
-                            <button class="btn btn-close btn-danger btn-round fa fa-times" onclick="history.back();">
-                                <i class="ft-x"></i>@lang('site.back')
-                            </button>
-
-                            <button type="submit" class="btn btn-close btn-success btn-round fa fa-save">
-
-                                <i class="ft-x"></i> @lang('site.save')
-                            </button>
-
-
-                        </div>
-                        </form>
                     </div>
+                    {{-- end  start blade to cours fee --}}
+
+
+                    <div class="form-actions">
+                        <button class="btn btn-close btn-danger btn-round fa fa-times" onclick="history.back();">
+                            <i class="ft-x"></i>@lang('site.back')
+                        </button>
+
+                        <button type="submit" class="btn btn-close btn-success btn-round fa fa-save">
+
+                            <i class="ft-x"></i> @lang('site.save')
+                        </button>
+
+
+                    </div>
+                    </form>
                 </div>
             </div>
-    </div>
-    </div>
-    </section>
-    <!-- // Basic form layout section end -->
-    </div>
+        </div>
+</div>
+</div>
+</section>
+<!-- // Basic form layout section end -->
+</div>
 @endsection
 @section('script')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-                    change_fee_cours(@json($coursfee))
-                    select_day_of_cours(@json(day_of_week_for_cours($cours->days)))
-                    // console.table(@json($coursfee));
-                    // console.table(@json(day_of_week_for_cours($cours->days));
-                    });
-    </script>
-    <script src="{{ URL::asset('assets/custome_js/cours_.js') }}"></script>
-    <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
-    <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
-    </script>
-    <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
-    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.js') }}"></script>
-    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js') }}">
-    </script>
-    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        change_fee_cours(@json($coursfee))
+        select_day_of_cours(@json(day_of_week_for_cours($cours->days)))
+        // console.table(@json($coursfee));
+        // console.table(@json(day_of_week_for_cours($cours->days));
+    });
+</script>
+<script src="{{ URL::asset('assets/custome_js/cours_.js') }}"></script>
+<script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
+<script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
+</script>
+<script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
+<script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.js') }}"></script>
+<script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+<script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
 @endsection

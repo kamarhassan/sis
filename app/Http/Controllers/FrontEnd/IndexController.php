@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\Cours\CoursInterface;
 
-class HomeController extends Controller
+class IndexController extends Controller
 {
     protected $cours;
     public function __construct(CoursInterface $cours)

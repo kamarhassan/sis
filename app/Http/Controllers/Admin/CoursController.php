@@ -102,7 +102,8 @@ class CoursController extends Controller
 
     public function edit($id)
     {
-        $cours =  $this->cours->is_defined($id);
+         $cours =  $this->cours->is_defined($id);
+       
         try {
             if (!$cours) {
                 toastr()->error(__('site.cours note defined'));

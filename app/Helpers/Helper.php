@@ -85,15 +85,14 @@ function  swal_fire_msg()
 {
 
     return [
-        __('site.title_of_delet_swal_fire'),
-        __('site.text_of_delet_swal_fire'),
-        __('site.confirmButtonTextof_delet_swal_fire'),
-        __('site.cancelButtonTextof_delet_swal_fire'),
-        __('site.deleted_msg_swal_fire'),
-        __('site.succes_msj_swal_fire'),
-        __('site.failed_delete'),
-        __('site.failed_msj_swal_fire'),
-
+       'title'=> __('site.title_of_delet_swal_fire'),
+       'text_of_delet'=> __('site.text_of_delet_swal_fire'),
+       'confirmButtonTextof'=> __('site.confirmButtonTextof_delet_swal_fire'),
+       'cancelButton'=> __('site.cancelButtonTextof_delet_swal_fire'),
+       'deleted_msg'=> __('site.deleted_msg_swal_fire'),
+       'succes_msj'=> __('site.succes_msj_swal_fire'),
+       'failed_delete'=> __('site.failed_delete'),
+       'not_any_selection'=> __('site.select_at_least_one_to_delete'),
     ];
 }
 function  photos_dir($photoUrl)

@@ -15,6 +15,7 @@ class CoursDetailController extends Controller
     {
         $this->cours = $cours;
         $this->coursfee=$coursfeeinterface;
+    
     }
 
 

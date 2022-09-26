@@ -73,10 +73,11 @@ class CoursRepository implements CoursInterface
 
     public  function  update_cours($request, $teacher_id, $cours_id)
     {
-        // return $request;
+         
         $cours = Cours::find($cours_id);
         if (!$cours)
             return false;
+
         $cours_updated = $cours->update([
             'startDate' => $request->start_date,
             'endDate' => $request->end_date,

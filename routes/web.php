@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\FrontEnd\CoursDetailController;
 use App\Http\Livewire\Count;
 use Illuminate\Support\Facades\Route;
-
-
-use App\Http\Controllers\FrontEnd\HomeController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontEnd\IndexController;
+use App\Http\Controllers\FrontEnd\CoursDetailController;
 use App\Http\Controllers\FrontEnd\RegisterCoursController;
 use App\Http\Controllers\FrontEnd\UserDashboradController;
 
@@ -20,21 +19,14 @@ use App\Http\Controllers\FrontEnd\UserDashboradController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('web.index');
+Route::get('/', [IndexController::class, 'index'])->name('web.index');
+Route::get('/home', [HomeController::class, 'index'])->name('web.home');
 
-Auth::routes(['verify' => true]);
-// Auth::routes();
+// Auth::routes(['verify' => true]);
+Auth::routes();
 
-Route::group(
-    [
-
-        'middleware' => ['verified']
-    ],
-    function () {
-        Route::get('dashboard', [UserDashboradController::class, 'index'])->name('web.dashboard');
-        Route::get('my-cours/{user_id}', [UserDashboradController::class, 'user_cours_reserved'])->name('web.user.cours');
-        Route::get('cours/{cours_name}/{coursid}', [CoursDetailController::class, 'cours_details'])->name('web.cours-details');
-        Route::post('delete', [RegisterCoursController::class, 'delete_cours_reserved'])->name('web.delete.cours.reserved');
-        Route::post('register-cours', [RegisterCoursController::class, 'RegisterCours'])->name('web.registerCours');
-    }
-);
+Route::get('dashboard', [UserDashboradController::class, 'index'])->middleware('verified')->name('web.dashboard');
+Route::get('my-cours/{user_id}', [UserDashboradController::class, 'user_cours_reserved'])->middleware('verified')->name('web.user.cours');
+Route::get('cours/{cours_name}/{coursid}', [CoursDetailController::class, 'cours_details'])->middleware('verified')->name('web.cours-details');
+Route::post('delete', [RegisterCoursController::class, 'delete_cours_reserved'])->middleware('verified')->name('web.delete.cours.reserved');
+Route::post('register-cours', [RegisterCoursController::class, 'RegisterCours'])->middleware('verified')->name('web.registerCours');

@@ -19,7 +19,7 @@ class RegisterCoursController extends Controller
       CoursFeeInterface $coursfee,
       RegisterCoursInterface $registerCoursInterface
    ) {
-      $this->middleware('auth');
+    
 
       $this->coursfee = $coursfee;
       $this->cours = $cours;
@@ -32,10 +32,7 @@ class RegisterCoursController extends Controller
       try {
          $inserted=     $this->registerCoursInterface->register_in_cours($request);
          if ($inserted) {
-
-            
-          
-            return   response()->json(['status' => 'success','message' => __('site.cours successfully registered')]);
+            return   response()->json(['status' => 'success','message' => __('site.cours successfully registered'),'ets'=>'this test']);
         } else {
             
             return  response()->json(['status' => 'error','message' => __('site.cours failed registered')]);

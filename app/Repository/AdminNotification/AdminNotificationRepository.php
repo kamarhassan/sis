@@ -10,21 +10,42 @@ class AdminNotificationRepository implements AdminNotificationInterface
 
     public  function get_all_unread_notification()
     {
-        return NotificationAdmin::where(['delete' => 1, 'status' => 1])->get();
+        return NotificationAdmin::where(['delete' => 1, 'is_read' => 1])->get();
     }
+
     public  function get_register_notification()
     {
-        return NotificationAdmin::where(['delete' => 1, 'status' => 1, 'order_type' => 'registration'])
+        return NotificationAdmin::where(['delete' => 1, 'order_type' => 'registration'])
             ->with('cours_reserved', 'user')
             ->get();
     }
 
     public  function get_type_id_description()
     {
-        return NotificationAdmin::where(['delete'=>1,'status'=>1])->get(['id','description']);
+        return NotificationAdmin::where(['delete' => 1, 'is_read' => 1])->get(['id', 'description']);
     }
-    
 
+    public  function delete_notification($array_of_id)
+    {
+        
+        $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
+        if ($selected->count() > 0) {
+            $updated = NotificationAdmin::whereIn('id', $array_of_id)->update(['delete' => 0]);
+            if ($updated)
+                return true;
+            return false;
+        }
+        return false;
+    }
 
-
+    public  function reading_notification($array_of_id){
+        $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
+        if ($selected->count() > 0) {
+            $updated = NotificationAdmin::whereIn('id', $array_of_id)->update(['is_read' => 0]);
+            if ($updated)
+                return true;
+            return false;
+        }
+        return false;
+    }
 }

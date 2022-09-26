@@ -19,7 +19,8 @@ class CreateNotificationAdminsTable extends Migration
             $table->integer('order_id');
             $table->string('order_type');
             $table->text('description');
-            $table->Integer('status')->enum('0','1')->default(1)->comment('0 => unreading     1=>unread');
+            $table->Integer('status')->enum('0','1')->nullable()->comment('null=> pending  0 => deny     1=>approved');
+            $table->Integer('is_read')->enum('0','1')->default(1)->comment('0 =>  read     1=>unread');
             $table->Integer('delete')->enum('0','1')->default(1)->comment('0 => undeleted     1=>deleted ');
             $table->timestamps();
         });
