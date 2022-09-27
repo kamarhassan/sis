@@ -35,52 +35,35 @@
             <div class="mailbox-controls">
 
                 <button type="button" class="btn btn-sm checkbox-toggle btn-outline" id="action_after_select"><i
-                        class="ion ion-android-checkbox-outline-blank" onclick="show_hide_action();"></i>
+                        class="ion ion-android-checkbox-outline-blank"></i>
                 </button>
-      
-                    <div class="btn-group" >
-                        <a type="button" class="btn btn-outline btn-sm"
-                            onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','new_regitration_order','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                            <i class="ion ion-trash-a"></i>
-                        </a>
-                    </div>
- 
-                    <div class="btn-group" >
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-outline btn-sm dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="ion ion-flag margin-r-5"></i>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-outline btn-sm dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="ion ion-folder margin-r-5"></i>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-           
-                {{-- <button type="button" class="btn btn-outline btn-sm"><i class="fa fa-refresh"></i></button> --}}
-                {{-- <div class="pull-right">
-                    1-50/200
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-outline btn-sm"><i class="fa fa-chevron-left"></i></button>
-                        <button type="button" class="btn btn-outline btn-sm"><i class="fa fa-chevron-right"></i></button>
-                    </div>
 
-                </div> --}}
+                <div class="btn-group">
+                    <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.delete all')"
+                        onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','new_regitration_order','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                        <i class="ion ion-trash-a"></i>
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    <a type="button" class="btn btn-outline btn-sm hover-warning" title="@lang('site.mark all as read')"
+                        onclick="submit('{{ route('admin.notification.read.marked') }}','new_regitration_order');">
+                        <i class="fa fa-envelope-open-o"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a type="button" class="btn btn-outline btn-sm hover-success" title="@lang('site.approved')"
+                        onclick="submit('{{ route('admin.notification.approve.marked') }}','new_regitration_order');">
+                        <i class="ti ti-check"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.deny')"
+                        onclick="submit('{{ route('admin.notification.deny.marked') }}','new_regitration_order');">
+                        <i class="ti ti-close"></i>
+                    </a>
+                </div>
+
 
             </div>
             <div class="mailbox-messages">
@@ -109,15 +92,16 @@
                                             </td>
                                             <td>
                                                 <div class="box-body ribbon-box">
-                                                    @if ($new_order['status'] == null)
+                                                    @if (is_null($new_order['status']) )
                                                         <div class="ribbon ribbon-warning rounded20" id="pending">
                                                             @lang('site.pending')</div>
                                                     @elseif ($new_order['status'] == 1)
                                                         <div class="ribbon ribbon-success rounded20" id="approved">
                                                             @lang('site.approved')</div>
-                                                    @else
+                                                        @elseif($new_order['status'] == 0)
                                                         <div class="ribbon ribbon-danger rounded20" id="deny">
                                                             @lang('site.deny')</div>
+                                                    @else
                                                     @endif
                                                 </div>
                                             </td>

@@ -2,8 +2,24 @@
 
 namespace App\Providers;
 
+use App\Repository\User\UserInterface;
+use App\Repository\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repository\Admin\AdminInterface;
+use App\Repository\Cours\CoursInterface;
 use phpDocumentor\Reflection\Types\This;
+use App\Repository\Admin\AdminRepository;
+use App\Repository\Cours\CoursRepository;
+use App\Repository\Fee_Type\Fee_TypeInterface;
+use App\Repository\Students\StudentsInterface;
+use App\Repository\Cours_fee\CoursFeeInterface;
+use App\Repository\Fee_Type\Fee_typeRepository;
+use App\Repository\Students\StudentsRepository;
+use App\Repository\Cours_fee\CoursfeeRepository;
+use App\Repository\RegisterCours\RegisterCoursInterface;
+use App\Repository\RegisterCours\RegisterCoursRepository;
+use App\Repository\AdminNotification\AdminNotificationInterface;
+use App\Repository\AdminNotification\AdminNotificationRepository;
 
 class RepositoryProvider extends ServiceProvider
 {
@@ -14,14 +30,14 @@ class RepositoryProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->bind('App\Repository\Cours\CoursInterface','App\Repository\Cours\CoursRepository');
-       $this->app->bind('App\Repository\Fee_Type\Fee_TypeInterface','App\Repository\Fee_Type\Fee_typeRepository');
-       $this->app->bind('App\Repository\Cours_fee\CoursfeeInterface','App\Repository\Cours_fee\CoursfeeRepository');
-       $this->app->bind('App\Repository\Admin\AdminInterface','App\Repository\Admin\AdminRepository');
-       $this->app->bind('App\Repository\Students\StudentsInterface','App\Repository\Students\StudentsRepository');
-       $this->app->bind('App\Repository\RegisterCours\RegisterCoursInterface','App\Repository\RegisterCours\RegisterCoursRepository');
-       $this->app->bind('App\Repository\AdminNotification\AdminNotificationInterface','App\Repository\AdminNotification\AdminNotificationRepository');
-       $this->app->bind('App\Repository\User\UserInterface','App\Repository\User\UserRepository');
+       $this->app->bind(CoursInterface::class,CoursRepository::class);
+       $this->app->bind(Fee_TypeInterface::class,Fee_typeRepository::class);
+       $this->app->bind(CoursFeeInterface::class,CoursfeeRepository::class);
+       $this->app->bind(AdminInterface::class,AdminRepository::class);
+       $this->app->bind(StudentsInterface::class,StudentsRepository::class);
+       $this->app->bind(RegisterCoursInterface::class,RegisterCoursRepository::class);
+       $this->app->bind(AdminNotificationInterface::class,AdminNotificationRepository::class);
+       $this->app->bind(UserInterface::class,UserRepository::class);
        
     }
  

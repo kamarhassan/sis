@@ -226,7 +226,6 @@ class Registration extends Component
                 $this->save_std_regitration($fee_cours_and_reaminning, $fee_cours_and_reaminning);
                 //return redirect()->route('admin.students.Registration-2/{id}', $this->registration_students->id);
 
-
                 DB::commit();
                 return redirect()->route(
                     'admin.payment.user_paid_for_cours',

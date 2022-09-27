@@ -13,6 +13,8 @@ use App\Models\Grade;
 use App\Models\level;
 
 use App\Models\Cours;
+use App\Models\CoursFee;
+use App\Models\Currency;
 
 class CoursRepository implements CoursInterface
 {
@@ -68,12 +70,12 @@ class CoursRepository implements CoursInterface
     }
 
 
-   
+
 
 
     public  function  update_cours($request, $teacher_id, $cours_id)
     {
-         
+
         $cours = Cours::find($cours_id);
         if (!$cours)
             return false;
@@ -110,6 +112,14 @@ class CoursRepository implements CoursInterface
 
     public function open_and_postopen_cours()
     {
-       return Cours::where('status','open')->orWhere('status','postopen')->with('grade','level')->get();
+        return Cours::where('status', 'open')->orWhere('status', 'postopen')->with('grade', 'level')->get();
+    }
+    public function cours_fee_currency($cours_id)
+    {
+        $cours_fee = CoursFee::where('cours_id', $cours_id)->first();
+        $cours_curency = Currency::find($cours_fee['currencies_id']);
+        if ($cours_curency)
+            return $cours_curency;
+        return false;
     }
 }// end of class

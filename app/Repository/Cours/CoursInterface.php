@@ -15,8 +15,8 @@ interface CoursInterface
 
     public function is_defined($id);
     public function all_cours();
-  
     public function open_and_postopen_cours();
     public function store_cours($REQUEST, $teacher_id);
-    public function update_cours($request, $teacher_id,$cours_id);
+    public function update_cours($request, $teacher_id, $cours_id);
+    public function cours_fee_currency($cours_id);
 }

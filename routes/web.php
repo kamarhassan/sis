@@ -22,8 +22,8 @@ use App\Http\Controllers\FrontEnd\UserDashboradController;
 Route::get('/', [IndexController::class, 'index'])->name('web.index');
 Route::get('/home', [HomeController::class, 'index'])->name('web.home');
 
-// Auth::routes(['verify' => true]);
-Auth::routes();
+Auth::routes(['verify' => true]);
+// Auth::routes();
 
 Route::get('dashboard', [UserDashboradController::class, 'index'])->middleware('verified')->name('web.dashboard');
 Route::get('my-cours/{user_id}', [UserDashboradController::class, 'user_cours_reserved'])->middleware('verified')->name('web.user.cours');

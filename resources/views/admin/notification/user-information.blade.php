@@ -47,12 +47,38 @@
 
                     </div>
                 </div>
+<form id="user_registration">
+    @csrf
+    <input hidden name="order_id[]" id="order_id" >
+    <input hidden name="user_id" id="user_id" >
+    <input hidden name="cours_id" id="cours_id" >
+
+
+</form>
+          
+            <div class="mailbox-controls ">
+                <div class="btn-group">
+                    <a type="button" class="text-white btn btn-outline btn-sm hover-danger" title="@lang('site.delete all')"
+                        onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','user_registration','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                        <i class="ion ion-trash-a"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a type="button" class="text-white btn btn-outline btn-sm hover-success" title="@lang('site.approved')"
+                        onclick="submit('{{ route('admin.notification.approve.user') }}','user_registration');">
+                        <i class="ti ti-check"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a type="button" class="text-white btn btn-outline btn-sm hover-danger" title="@lang('site.deny')"
+                        onclick="submit('{{ route('admin.notification.deny.marked') }}','user_registration');">
+                        <i class="ti ti-close"></i>
+                    </a>
+                </div>
+
 
             </div>
-            {{-- <div class="modal-footer modal-footer-uniform">
-                <button type="button" class="btn btn-rounded btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-rounded btn-primary float-right">Save changes</button>
-            </div> --}}
+          </div>
         </div>
     </div>
 </div>

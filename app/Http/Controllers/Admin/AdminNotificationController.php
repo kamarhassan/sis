@@ -66,8 +66,9 @@ class AdminNotificationController extends Controller
             $user = $this->userrepository->get_user_by_id($order['user_id']);
             $cours_info = $this->coursrepository->is_defined($order['order_id']);
             if ($order && $user && $cours_info) {
-                
+
                 $user_info = [
+                    'id'    => $user['id'],
                     'img_profile'      => photos_dir($user['photo']),
                     'full_name'    => $user['name'],
                     'user_mail'    => $user['email'],
@@ -81,20 +82,22 @@ class AdminNotificationController extends Controller
                     'teacher_name' => $cours_info->teacher_name['name'],
                     'grade' => $cours_info->grade,
                     'level' => $cours_info->level,
+                   
                 ];
 
-                
-                
+
+
                 $cours_fee = $this->coursfeerepository->cours_fee_with_type($cours_info);
                 $total_cours_fee = $cours_fee->sum('value');
-               $this->adminnotification->reading_notification([$order->id]);
-                
+                $this->adminnotification->reading_notification([$order->id]);
+
                 return response()->json([
                     'status' => 'success',
                     'user_info' => $user_info,
                     'cours_details' => $cours_details,
                     'cours_fee' => $cours_fee,
-                    'total_cours_fee' => $total_cours_fee
+                    'total_cours_fee' => $total_cours_fee,
+                    'order_id' =>  $order_id,
                 ]);
             }
         } catch (\Throwable $th) {
@@ -122,8 +125,52 @@ class AdminNotificationController extends Controller
             DB::rollback();
             throw $th;
         }
-        //  $marked = NotificationAdmin::whereIn('id',$request->order_id)->get();
-        //     return   $marked->update(['delete'=>0]);
+    }
 
+    public function deny_marked(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $deleted = $this->adminnotification->deny_all_notification($request->order_id);
+            if ($deleted == true) {
+                $status = 'success';
+                $message = __('site.notifications deny');
+            } else {
+                $status = 'error';
+                $message = __('site.you have error');
+            }
+            DB::commit();
+            return response()->json(['status' => $status, 'message' => $message]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            throw $th;
+        }
+    }
+
+
+    public function read_marked(Request $request)
+    {
+      
+        try {
+            //code...
+            DB::beginTransaction();
+             $mark_as_read = $this->adminnotification->reading_notification($request->order_id);
+            if ($mark_as_read == true) {
+                $status = 'success';
+                $message = __('site.mark all as read');
+            } else {
+                $status = 'error';
+                $message = __('site.fail mark all as read');
+            }
+            DB::commit();
+            return response()->json(['status' => $status, 'message' => $message]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            throw $th;
+        }
+    }
+
+    public function approve_marked(Request $request)
+    {
     }
 }

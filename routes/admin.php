@@ -1,22 +1,23 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\CoursController;
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\loginController;
+use App\Http\Controllers\Admin\FeetypeController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ReceiptController;
+use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\FeetypeController;
-use App\Http\Controllers\Admin\ReportsController;
-use App\Http\Controllers\Admin\RoleAndPermissionController;
 use App\Http\Controllers\Admin\SuperviserController;
+use App\Http\Controllers\Admin\AdminNotificationController;
+use App\Http\Controllers\Admin\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Services\ServicesController;
+use App\Http\Controllers\Admin\RegistartionStudentsController;
 use App\Http\Controllers\Admin\Services\ClientPaymentController;
 use App\Http\Controllers\Admin\Services\ServicesReceiptController;
 
@@ -140,8 +141,13 @@ Route::group([
         Route::get('Receipt', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
         Route::get('edit-old-payment/{receipt_id}', [PaymentController::class, 'edit_payment'])->name('admin.students.payment.edit');
         Route::post('delet_receipt', [PaymentController::class, 'delete_payment_receipt'])->name('admin.students.delete_payment_receipt');
-        // Route::get('Receipt/edit/{cours_id}/{user_id}', [ReceiptController::class, 'All_receipt'])->name('admin.all-receipt');
         Route::get('new-registration-order', [AdminNotificationController::class, 'new_register'])->name('admin.new.register.order');
+        Route::post('approve-user-register', [RegistartionStudentsController::class, 'approve_user_register'])->name('admin.notification.approve.user');
+        Route::post('approve-edit-register', [RegistartionStudentsController::class, 'approve_edit_register'])->name('admin.notification.approve.edit.register');
+     
+     
+     
+     
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
         //     ->name('admin.students.get_std_to_payment');
     });
@@ -233,6 +239,9 @@ Route::group([
         Route::get('new-register', [AdminNotificationController::class, 'new_register'])->name('admin.notification.new.register');
         Route::post('get_user_info/{orders_id}', [AdminNotificationController::class, 'user_info_with_cours'])->name('admin.notification.get.user.info');
         Route::post('delete-marked', [AdminNotificationController::class, 'delete_marked'])->name('admin.notification.delete.marked');
+        Route::post('deny-marked', [AdminNotificationController::class, 'deny_marked'])->name('admin.notification.deny.marked');
+        Route::post('read-marked', [AdminNotificationController::class, 'read_marked'])->name('admin.notification.read.marked');
+        Route::post('approve-marked', [AdminNotificationController::class, 'approve_marked'])->name('admin.notification.approve.marked');
         // Route::post('store', [SuperviserController::class, 'store'])->name('admin.supervisor.store');
 
         // Route::get('edit/{id}',[UserController::class ,'edit'])->name('admin.language.edit');

@@ -3,9 +3,10 @@
 
 namespace App\Repository\Cours_fee;
 
+// use App\Models\CoursFee;
 use App\Models\CoursFee;
-use PhpParser\Node\Expr\Cast\Double;
 use PhpParser\Node\Stmt\Foreach_;
+use PhpParser\Node\Expr\Cast\Double;
 
 class CoursfeeRepository implements CoursFeeInterface
 {
