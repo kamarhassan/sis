@@ -40,4 +40,15 @@ class Admin extends Authenticatable
         return $query->where('name', $name)->first()->id;
     }
     
+    
+
+    public function cours()
+    {
+        return $this->belongsTo(Cours::class,'id','teacher_id');
+    }
+    
+    public function getActive(){
+        return $this->admin_status == 1 ? __('site.is active'):__('site.is not active');
+    }
+
 }

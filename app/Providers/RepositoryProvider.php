@@ -10,6 +10,8 @@ use App\Repository\Cours\CoursInterface;
 use phpDocumentor\Reflection\Types\This;
 use App\Repository\Admin\AdminRepository;
 use App\Repository\Cours\CoursRepository;
+use App\Repository\Payment\PaymentInterface;
+use App\Repository\Payment\PaymentRepository;
 use App\Repository\Fee_Type\Fee_TypeInterface;
 use App\Repository\Students\StudentsInterface;
 use App\Repository\Cours_fee\CoursFeeInterface;
@@ -38,6 +40,7 @@ class RepositoryProvider extends ServiceProvider
        $this->app->bind(RegisterCoursInterface::class,RegisterCoursRepository::class);
        $this->app->bind(AdminNotificationInterface::class,AdminNotificationRepository::class);
        $this->app->bind(UserInterface::class,UserRepository::class);
+       $this->app->bind(PaymentInterface::class,PaymentRepository::class);
        
     }
  

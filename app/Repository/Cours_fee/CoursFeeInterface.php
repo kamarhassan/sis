@@ -16,4 +16,5 @@ interface CoursFeeInterface
     public function update_fee_cours($request, $cours_id, $currency);
     public function cours_fee_with_type($id);
     public function cours_fee_with_type_and_currency($id);
+    public function get_fee_required_cours($array_id_fee_required);
 }

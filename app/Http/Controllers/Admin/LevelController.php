@@ -11,6 +11,10 @@ use Yoeunes\Toastr\Facades\Toastr;
 
 class LevelController extends Controller
 {
+    public function __construct()
+    {
+      
+     }
     public function create()
     {
         $level = level::select()->get();

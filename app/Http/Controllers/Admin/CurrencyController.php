@@ -9,18 +9,21 @@ use App\Http\Controllers\Controller;
 class CurrencyController extends Controller
 {
 
-
+    public function __construct()
+    {
+      
+     }
     public function index()
     {
         $currency =  Currency::select()->Descending()->get();
         return view('admin.setup.Currency.index', compact('currency'));
     }
+
     public function edit(Request $request)
     {
-        // return  $request->currecny_name;
+        return  $request->currecny_name;
 
         $cur = Currency::select()->find($request->currecny_name);
-
 
         try {
             if (!$cur) {
@@ -41,8 +44,46 @@ class CurrencyController extends Controller
             return redirect()->back();
         }
     }
+    public function activate(Request $request)
+    {
 
-    public function delete(Request $request){
-return $request;
+
+        $cur = Currency::select()->find($request->id);
+
+        try {
+            if (!$cur) {
+
+                toastr()->error(__('site.currency is not defined'));
+                return redirect()->route('admin.Currency.get');
+            } else {
+                $statuse = $cur->active == 1 ? 0 : 1;
+                $cur->update(['active' => $statuse]);
+
+
+                if ($cur) {
+                    $status = 'success';
+                    $statuse == 1 ? $message = __('site.currency activate successful') : $message = __('site.currency disable successful');;
+                        
+                } else {
+                    $status = 'error';
+                    $message = __('site.notifications not deleted');
+                }
+                return response()->json(['status' => $status, 'message' => $message]);
+
+
+
+                toastr()->success(__('site.Post created successfully!'));
+
+                return redirect()->route('admin.Currency.get');
+            }
+        } catch (\Exception $th) {
+            toastr()->error(__('site.you have error'));
+            return redirect()->back();
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        return $request;
     }
 }

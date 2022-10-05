@@ -20,7 +20,7 @@ use App\Repository\Students\StudentsInterface;
 class StudentsController extends Controller
 {
 
-
+   
     protected $students;
 
     /**
@@ -33,8 +33,7 @@ class StudentsController extends Controller
 
     ) {
         $this->students = $students;
-    }
-
+ }
 
 
 

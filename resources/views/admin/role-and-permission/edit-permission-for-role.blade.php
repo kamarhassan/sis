@@ -1,82 +1,104 @@
 {{-- <div class="modal center-modal fade bs-example-modal-lg" id="modal-center" tabindex="-1"> --}}
-    <div class="modal bs-examplemodal-lg  center-modal  " id="modal-center" tabindex="-1" tabindex="-1" role="dialog"
+<div class="modal bs-examplemodal-lg  center-modal  " id="modal-center" tabindex="-1" tabindex="-1" role="dialog"
     aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            {{-- <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div> --}}
-            <div class="modal-body">
 
-                {{-- <p id="cours_details">@lang('site.please wait to load service')</p> --}}
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form id='update_permission_for_role'>
-                                @csrf
-<input type="hidden" name="role_id" id="role_id" value="">
-                                 <div class="add_item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h5>@lang('site.services') <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <input type="text" id="role_name" name="role_name"
-                                                        class="form-control">
-                                                    <span class="text-danger" id="role_name_"> </span>
-                                                </div>
-                                            </div>
+            <form action="" id="permission_">
+                @csrf
+                <div class="modal-header">
+                    <span class="modal-title" id="myLargeModalLabel"> @lang('permission.role name') : </span> <input type="text"
+                        class='form-control' name="role_name" id="role_name">
+                        @error('role_name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    <a onclick="reset_input();" type="button" class="close text-warning" data-dismiss="modal"
+                        aria-hidden="true">×</a>
+                </div>
+
+
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="box-body no-bg">
+                            <ul class="nav nav-pills mb-20 no-border">
+                                @php
+                                    $tab_counter_active = 0;
+                                    $item_counter_active = 0;
+                                @endphp
+                                @isset($tab_name)
+                                    @foreach ($tab_name as $tab)
+                                        <li class="nav-item">
+                                            <a href="#{{ $tab['tab_name'] }}"
+                                                class="nav-link 
+                                            @if ($tab_counter_active == 0) active @php
+                                            $tab_counter_active++;
+                                        @endphp @endif"
+                                                data-toggle="tab" aria-expanded="false">
+                                                {{ $tab['tab_name'] }}</a>
+
+                                        </li>
+                                    @endforeach
+                                @endisset
+                            </ul>
+                            <div class="tab-content">
+                                @isset($permission)
+                                    @foreach ($permission as $tab_names => $item)
+                                        <div id="{{ $tab_names }}"
+                                            class="tab-pane  
+                                    @if ($item_counter_active == 0) active @php
+                                    $item_counter_active++;
+                                @endphp @endif">
+                                            {{-- <input type="hidden" name="tab" value="{{ $tab_names }}"> --}}
+                                            <table class="table table-striped">
+
+
+                                                @foreach ($item as $item_in_tab => $permission_in_tab)
+                                                    {{-- <input type="hidden" name="permission[]" value="{{ $item_in_tab }}"> --}}
+                                                    <tr>
+                                                        {{-- <td>1</td>
+                                                    <td>2</td> --}}
+                                                        <td>
+                                                            <div class="row">
+                                                                @foreach ($permission_in_tab as $permission)
+                                                                    <div class="demo-checkbox">
+                                                                        <input type="checkbox" name="permission[]"
+                                                                            id="md_checkbox_{{ $permission['id'] }}"
+                                                                            class="chk-col-primary"
+                                                                            value="{{ $permission['name'] }}" />
+                                                                        <label for="md_checkbox_{{ $permission['id'] }}">
+                                                                            {{ $permission['name'] }}
+                                                                            {{-- {{ __('permission.' . $permission['name']) }} --}}
+                                                                        </label>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
                                         </div>
-
-                                    {{-- </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-
-                                                        <span class="text-danger" id="currency_"> </span>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h5>@lang('site.language is active') <span class="text-danger"></span></h5>
-                                                <div class="form-group">
-                                                    <div class="box-controls pull-left">
-                                                        <label class="switch switch-border switch-success">
-                                                            <input type="checkbox" value="1"
-                                                                name="active" id="active"  />
-                                                            <span class="switch-indicator"></span>
-                                                            <label for="switcheryColor4"
-                                                                class="card-title ml-1">@lang('site.language is active') </label>
-
-                                                            <span class="text-danger" id="active_"> </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                @include('admin.role-and-permission.all-permission')
-                            </form>
+                                    @endforeach
+                                @endisset
+                            </div>
                             <div class="row">
-                                <div class="text-xs-right">
-                                    <a class="btn  glyphicon glyphicon-ok hover-success "
-                                        title="@lang('site.save')"
-                                         onclick="update_permission_for_role('{{ route('admin.setting.update.permission.for.role')}}')";
-                                        ><span class=""> @lang('site.next step')</span>
+                                <div class="text-xs-right" id="update_role" hidden>
+                                    <a class="btn  glyphicon glyphicon-ok hover-success " title="@lang('site.edit')"
+                                        onclick="update_permission_for_role('{{ route('admin.setting.update.permission.for.role') }}')";><span
+                                            class=""> @lang('site.next step')</span>
+                                    </a>
+                                </div>
+                                <div class="text-xs-right" id="new_role">
+                                    <a class="btn  glyphicon glyphicon-ok hover-success " title="@lang('site.save')"
+                                        onclick="submit('{{ route('admin.setting.new.role') }}','permission_');";><span
+                                            class=""> @lang('site.next step')</span>
                                     </a>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
+            </form>
         </div>
     </div>
+
+</div>
+</div>
+</div>
 </div>

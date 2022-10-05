@@ -15,6 +15,7 @@ function submit(route_,form_id) {
             }
         }, error: function reject(reject) {
             var response = $.parseJSON(reject.responseText);
+            // console.log(response.errors)
             $.each(response.errors, function (key, val) {
                 let t = key.replace('.', '_');
                 console.log(t);

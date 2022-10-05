@@ -28,7 +28,7 @@
 
 
     <style>
-           .pulse {
+        .pulse {
             position: absolute;
             top: -10px;
             right: -9px;
@@ -36,14 +36,14 @@
             width: 20px;
             z-index: 10;
             font-size: medium;
-            font-weight: bold; 
+            font-weight: bold;
             color: rgb(255, 255, 255);
             border: rgb(255, 255, 255);
             border-radius: 70px;
             /* animation: pulse 1s ease-out infinite; */
         }
 
-    
+
         /* .pulse {
             position: absolute;
             top: -10px;
@@ -118,9 +118,12 @@
         @include('admin.layouts.navbar_container')
         <div class="content-wrapper">
             <div class="container-full">
-                <section class="content">
-                    @yield('content')
-                    {{-- @include('admin.layouts.footer'); --}}
+              
+
+
+                   
+                @yield('content')
+                {{-- @include('admin.layouts.footer'); --}}
                 </section>
             </div>
 
@@ -130,7 +133,6 @@
 
     <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/icons/feather-icons/feather.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
     {{-- <script src="{{URL::asset('assets/assets/vendor_components/easypiechart/dist/jquery.easypiechart.js')}}"></script> --}}
     {{-- <script src="{{URL::asset('assets/assets/vendor_components/apexcharts-bundle/irregular-data-series.js')}}"></script> --}}
     {{-- <script src="{{URL::asset('assets/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script> --}}
@@ -139,14 +141,14 @@
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">
     </script>
-     <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script>
-     <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
-     </script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script>
+    <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
+    </script>
     {{-- C:\xampp\htdocs\sis/assets/app-assets/js/jquery-3.6.0.min.js --}}
     <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ URL::asset('assets/custome_js/open_new_tab.js') }}"></script>
-
+    <script src="{{ URL::asset('assets/assets/vendor_components/dropzone/dropzone.js') }}"></script>
 
     <script src="{{ URL::asset('assets/custome_js/chanethememode.js') }}"></script>
 
@@ -155,6 +157,7 @@
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
     {{-- @jquery --}}
+    <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
     @toastr_js
     @toastr_render
 

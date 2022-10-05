@@ -23,6 +23,6 @@ class Language extends Model
         }
 
         public function getActive(){
-            return $this->active == 1 ? __('site.language is active'):__('site.language is not active');
+            return $this->active == 1 ? __('site.is active'):__('site.is not active');
         }
 }

@@ -9,6 +9,10 @@ use App\Http\Requests\LanguageRequest;
 
 class LanguageController extends Controller
 {
+    public function __construct()
+    {
+      
+     }
     public   function index()
     {
         $lang=Language::select()->get();

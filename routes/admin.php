@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CoursController;
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\loginController;
+use App\Http\Middleware\Admin\PasswordIsChanged;
 use App\Http\Controllers\Admin\FeetypeController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ReceiptController;
@@ -40,55 +41,98 @@ Route::group(
     }
 );
 
+######################################### for change password on first logged ################################################
+Route::group(
+    [
+        'namespace' => 'Admin',
+        'prefix' => LaravelLocalization::setLocale() . '/admin',
+        'middleware' => ['auth:admin', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
 
+        Route::get('change-password', [SuperviserController::class, 'change_password'])->name('admin.change.password.mandatory');
+        Route::post('edit-password-first-logged', [SuperviserController::class, 'edit_password_first_logged'])->name('admin.edit.password.first.logged');
+        Route::get('inactive-account', [SuperviserController::class, 'acount_inactive'])->name('admin.acount.is.not.active');
+    
+    }
+);
+######################################### for change password on first logged ################################################
 
 
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale() . '/admin',
-    'middleware' => ['auth:admin', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    'middleware' => ['auth:admin', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'PasswordIsChanged','IsActive']
 
 ], function () {
 
     Route::get('logout', [loginController::class, 'logout'])->name('get.admin.logout');
+    // Route::get('change-password', [SuperviserController::class,'change_password'])->name('admin.change.password.mandatory');
 
     // Route::resource('products','ProductController');
     Route::get('/', 'DashboardController@index')->name('admin.dashborad');
+    // Route::get('/', [DashboardController::class, 'index'])->name('admin.dashborad');
     Route::get('changemode', [DashboardController::class, 'change_mode'])->name('admin.dashborad.changemode');
     ################################### Begin Language Routes #################################################
-    Route::group(['prefix' => 'language'], function () {
-        Route::get('/', [LanguageController::class, 'index'])->name('admin.language');
+    // Route::group(['prefix' => 'language'], function () {
+    // Route::get('/language', [LanguageController::class, 'index'])->name('admin.language');
 
-        Route::get('create', [LanguageController::class, 'create'])->name('admin.language.create');
-        Route::post('store', [LanguageController::class, 'store'])->name('admin.language.store');
+    // Route::get('language/create', [LanguageController::class, 'create'])->name('admin.language.create');
+    // Route::post('language/store', [LanguageController::class, 'store'])->name('admin.language.store');
 
-        Route::get('edit/{id}', [LanguageController::class, 'edit'])->name('admin.language.edit');
-        Route::post('update/{id}', [LanguageController::class, 'update'])->name('admin.language.update');
+    // Route::get('language/edit/{id}', [LanguageController::class, 'edit'])->name('admin.language.edit');
+    // Route::post('language/update/{id}', [LanguageController::class, 'update'])->name('admin.language.update');
 
-        // Route::post('delete', [LanguageController::class, 'delete'])->name('admin.language.delete');
-        // Route::post('delete',[LanguageController::class ,'delete'])->name('admin.language.delete');
-    });
+    // Route::post('delete', [LanguageController::class, 'delete'])->name('admin.language.delete');
+    // Route::post('delete',[LanguageController::class ,'delete'])->name('admin.language.delete');
+    // });
     ################################### End Language Routes ###################################################
-
-
-
-
-
-
-
 
 
     ################################### Begin Settings Routes #################################################
     Route::group(['prefix' => 'setting'], function () {
         // Setting/add_grades
-        // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
-        Route::get('role', [RoleAndPermissionController::class,'all_role'])->name('admin.setting.role');
-        Route::post('get_permission_for_role/{role_id}',  [RoleAndPermissionController::class, 'get_permission_for_role'])->name('admin.setting.get.permission.for.role');
-        Route::post('update_permission_for_role',  [RoleAndPermissionController::class, 'update_permission_for_role'])->name('admin.setting.update.permission.for.role');
+        Route::group(['prefix' => 'supervisor'], function () {
+
+            // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
+            Route::get('all', [SuperviserController::class, 'all'])->name('admin.supervisor.all');
+            Route::get('add', [SuperviserController::class, 'create'])->name('admin.supervisor.add');
+            Route::post('store', [SuperviserController::class, 'store'])->name('admin.supervisor.store');
+
+            Route::get('edit/{admin_id}', [SuperviserController::class, 'edit'])->name('admin.supervisor.edit');
+            Route::post('update-info', [SuperviserController::class, 'update_info'])->name('admin.supervisor.update.info');
+            Route::post('delete-supervisor', [SuperviserController::class, 'delete_supervisor'])->name('admin.supervisor.delete.supervisor');
+
+            // Route::get('edit/{id}',[UserController::class ,'edit'])->name('admin.language.edit');
+            // Route::post('update/{id}',[UserController::class ,'update'])->name('admin.language.update');
+
+            // Route::post('delete',[UserController::class ,'delete'])->name('admin.language.delete');
+            // Route::post('delete',[LanguageController::class ,'delete'])->name('admin.language.delete');
+        });
+
+
+
+        Route::get('/language', [LanguageController::class, 'index'])->name('admin.language');
+
+        Route::get('language/create', [LanguageController::class, 'create'])->name('admin.language.create');
+        Route::post('language/store', [LanguageController::class, 'store'])->name('admin.language.store');
+
+        Route::get('language/edit/{id}', [LanguageController::class, 'edit'])->name('admin.language.edit');
+        Route::post('language/update/{id}', [LanguageController::class, 'update'])->name('admin.language.update');
+
+
+        ################################### begin roles and permmission  Routes ###################################################
+
+        Route::get('role', [RoleAndPermissionController::class, 'all_role'])->name('admin.setting.role');
+        Route::get('get-permmision', [RoleAndPermissionController::class, 'get_permission'])->name('admin.setting.get.permission');
+        Route::post('new-role', [RoleAndPermissionController::class, 'new_role'])->name('admin.setting.new.role');
+        Route::post('get_permission_for_role/{role_id}', [RoleAndPermissionController::class, 'get_permission_for_role'])->name('admin.setting.get.permission.for.role');
+        Route::post('update_permission_for_role', [RoleAndPermissionController::class, 'update_permission_for_role'])->name('admin.setting.update.permission.for.role');
+        ################################### End of  roles and permmission  Routes ###################################################
 
         ###########################  for grades setting
         Route::get('add_grades', [GradeController::class, 'create'])->name('admin.grades.add');
-        Route::post('grade_store',  [GradeController::class, 'store'])->name('admin.grades.store');
+        Route::post('grade_store', [GradeController::class, 'store'])->name('admin.grades.store');
         Route::post('grade_delete', [GradeController::class, 'delete'])->name('admin.grades.delete');
         Route::post('grade_update', [GradeController::class, 'update'])->name('admin.grades.update');
 
@@ -98,20 +142,19 @@ Route::group([
         // Route::post('grade_delete', [LevelController::class, 'delete'])->name('admin.grades.delete');
         Route::post('level_update', [LevelController::class, 'update'])->name('admin.level.update');
         Route::post('delet', [LevelController::class, 'delete'])->name('admin.level.delet');
-      
+
         ###########################  for Currency setting
-        Route::get('Currency', [CurrencyController::class, 'index'])->middleware(['permission:activate currency'])->name('admin.Currency.get');
-        Route::post('Currency_store', [CurrencyController::class, 'edit'])->name('admin.Currency.active');
+        Route::get('currency', [CurrencyController::class, 'index'])->middleware(['permission:activate_currency'])->name('admin.Currency.get');
+        Route::post('currency_activate', [CurrencyController::class, 'activate'])->name('admin.Currency.active.disactive');
 
         ###########################  for services setting
         Route::get('services', [ServicesController::class, 'create'])->name('admin.Services.add');
-        Route::post('store',  [ServicesController::class, 'store'])->name('admin.Services.store');
-        
+        Route::post('store', [ServicesController::class, 'store'])->name('admin.Services.store');
+
         ###########################  for fee type setting
         Route::get('fee_type', [FeetypeController::class, 'index'])->name('admin.setting.fee');
         Route::post('store_fee_type', [FeetypeController::class, 'store'])->name('admin.setting.fee.store');
         Route::post('delete_fee_type', [FeetypeController::class, 'delete'])->name('admin.setting.fee.delete');
-    
     });
     ################################### End Settings Routes ###################################################
 
@@ -143,11 +186,10 @@ Route::group([
         Route::post('delet_receipt', [PaymentController::class, 'delete_payment_receipt'])->name('admin.students.delete_payment_receipt');
         Route::get('new-registration-order', [AdminNotificationController::class, 'new_register'])->name('admin.new.register.order');
         Route::post('approve-user-register', [RegistartionStudentsController::class, 'approve_user_register'])->name('admin.notification.approve.user');
-        Route::post('approve-edit-register', [RegistartionStudentsController::class, 'approve_edit_register'])->name('admin.notification.approve.edit.register');
-     
-     
-     
-     
+        Route::post('approve-new-register', [RegistartionStudentsController::class, 'approve_edit_register'])->name('admin.notification.approve.edit.register');
+        Route::post('approved', [RegistartionStudentsController::class, 'approved_new_register'])->name('admin.notification.approve.new.register');
+
+
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
         //     ->name('admin.students.get_std_to_payment');
     });
@@ -199,10 +241,6 @@ Route::group([
     });
 
 
-
-
-
-
     Route::group(['prefix' => 'users'], function () {
 
         Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
@@ -216,20 +254,8 @@ Route::group([
         Route::post('delete', [LanguageController::class, 'delete'])->name('admin.language.delete');
     });
     ################################### End Language Routes ###################################################
-    Route::group(['prefix' => 'supervisor'], function () {
 
-        // Route::get('/', [UserController::class, 'index'])->name('admin.users.all');
-        Route::get('add', [SuperviserController::class, 'create'])->name('admin.supervisor.add');
-        Route::post('store', [SuperviserController::class, 'store'])->name('admin.supervisor.store');
-
-        // Route::get('edit/{id}',[UserController::class ,'edit'])->name('admin.language.edit');
-        // Route::post('update/{id}',[UserController::class ,'update'])->name('admin.language.update');
-
-        // Route::post('delete',[UserController::class ,'delete'])->name('admin.language.delete');
-        // Route::post('delete',[LanguageController::class ,'delete'])->name('admin.language.delete');
-    });
     ################################### End Language Routes ###################################################
-
 
 
     Route::group(['prefix' => 'notification'], function () {
@@ -251,11 +277,6 @@ Route::group([
         // Route::post('delete',[LanguageController::class ,'delete'])->name('admin.language.delete');
     });
     ################################### End notification Routes ###################################################
-
-
-
-
-
 
 
 });

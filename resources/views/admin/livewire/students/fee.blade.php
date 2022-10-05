@@ -122,9 +122,9 @@
 <!-- /.box -->
 
 <div class="box">
-    <div class="box-header with-border">
+    {{-- <div class="box-header with-border">
         <h3 class="box-title text-capitalize text-warning text-uppercase "> <span>@lang('site.result')</span></h3>
-    </div>
+    </div> --}}
     <!-- /.box-header -->
     <div class="box-body">
 

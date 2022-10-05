@@ -98,7 +98,7 @@ function delete_by_id(route_, id_, token_, array_of_msg) {
                     // console.log('Row' + id_delet)
                     // console.table(data); // toast.success(data.message);
                     if (data.status == 'success') {
-                        $('.Row' + id_delet).remove();
+                        $('#Row' + id_delet).remove();
 
                         Swal.fire(
                             msg['deleted_msg'],

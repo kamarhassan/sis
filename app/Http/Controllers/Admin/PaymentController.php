@@ -21,7 +21,10 @@ use App\Http\Requests\EditPaymentRequest;
 class PaymentController extends Controller
 {
 
-
+    public function __construct()
+    {
+      
+     }
 
     /****
      *

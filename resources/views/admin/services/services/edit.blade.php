@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <h5>@lang('site.language is active') <span class="text-danger"></span></h5>
+                                            <h5>@lang('site.is active') <span class="text-danger"></span></h5>
                                             <div class="form-group">
                                                 <div class="box-controls pull-left">
                                                     <label class="switch switch-border switch-success">
@@ -71,7 +71,7 @@
                                                             id="active" />
                                                         <span class="switch-indicator"></span>
                                                         <label for="switcheryColor4"
-                                                            class="card-title ml-1">@lang('site.language is active') </label>
+                                                            class="card-title ml-1">@lang('site.is active') </label>
 
                                                         <span class="text-danger" id="active_"> </span>
                                                 </div>

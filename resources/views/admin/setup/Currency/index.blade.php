@@ -2,15 +2,15 @@
 @section('title')
 @endsection
 @section('css')
-<style>
-active:hover {
-    background-color: @lang('site.activate');
-  }
+    <style>
+        active:hover {
+            background-color: @lang('site.activate');
+        }
 
-  active:hover {
-    background-color: @lang('site.disactivate');
-  }
-  </style>
+        active:hover {
+            background-color: @lang('site.disactivate');
+        }
+    </style>
 @endsection
 @section('content')
 
@@ -39,36 +39,32 @@ active:hover {
                         @isset($currency)
                             @foreach ($currency as $currenc)
                                 <tr>
-                                    <form id="activate_currency" action="{{ route('admin.Currency.active') }}" method="POST">
-                                        @csrf
-                                        <td style="display: none"><input class="currecny_id" hidden name="currecny_name"
-                                                type="text" value="{{ $currenc->id }}"></td>
-
-                                        <td>
-                                            @if ($currenc->active == 1)
-                                                <div class="box-body ribbon-box">
-                                                    <div class="ribbon-two ribbon-two-success">
-                                                        <span>{{ $currenc->getactive() }}</span>
-                                                    </div>
-                                                    <p class="mb-0 pt-20">{{ $currenc->currency }}
+                                   
+                                    <td>
+                                        @if ($currenc->active == 1)
+                                            <div class="box-body ribbon-box">
+                                                <div class="ribbon-two ribbon-two-success">
+                                                    <span>{{ $currenc->getactive() }}</span>
                                                 </div>
-                                            @else
-                                                <div class="box-body ribbon-box">
-                                                    <div class="ribbon-two ribbon-two-danger">
-                                                        <span>{{ $currenc->getactive() }}</span>
-                                                    </div>
-                                                    <p class="mb-0 pt-20">{{ $currenc->currency }}
+                                                <p class="mb-0 pt-20">{{ $currenc->currency }}
+                                            </div>
+                                        @else
+                                            <div class="box-body ribbon-box">
+                                                <div class="ribbon-two ribbon-two-danger">
+                                                    <span>{{ $currenc->getactive() }}</span>
                                                 </div>
-                                            @endif
-                                        </td>
-                                        <td>{{ $currenc->abbr }}</td>
-                                        <td>{{ $currenc->Country }}</td>
-                                        <td>{{ $currenc->symbol }}</td>
+                                                <p class="mb-0 pt-20">{{ $currenc->currency }}
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td>{{ $currenc->abbr }}</td>
+                                    <td>{{ $currenc->Country }}</td>
+                                    <td>{{ $currenc->symbol }}</td>
 
-                                        <td>
-                                            {{-- @php  $currenc->active == 1 ? @lang('site.disactivate') : @lang('site.activate')  @endphp --}}
-                                            {{-- @if ($currenc->active == 1) @lang('site.disactivate') @else @lang('site.activate') @endif --}}
-                                            {{-- <div class="btn-group mb-5">
+                                    <td>
+                                        {{-- @php  $currenc->active == 1 ? @lang('site.disactivate') : @lang('site.activate')  @endphp --}}
+                                        {{-- @if ($currenc->active == 1) @lang('site.disactivate') @else @lang('site.activate') @endif --}}
+                                        {{-- <div class="btn-group mb-5">
                                                 <button type="submit" class="">  @if ($currenc->active == 1) @lang('site.disactivate') @else @lang('site.activate') @endif</button>
 
                                                 <button type="submit" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -81,25 +77,24 @@ active:hover {
                                                 </div>
                                               </div> --}}
 
-                                            <div class="text-xs-right">
-                                                @if ($currenc->active == 1)
-                                                    <button type="submit" class="btn btn-rounded btn-info mb-5  btn-danger" title="@lang('site.disactivate')">
-
-                                                             <i class=" fa fa-close"  ></i> </span>
-                                                    </button>
-                                                    {{-- {{-- class="btn btn-rounded btn-info mb-5"
+                                        <div class="text-xs-right">
+                                            @if ($currenc->active == 1)
+                                                <a onclick="activate_cuurency('{{route('admin.Currency.active.disactive')}}', '{{ $currenc->id }}', '{{ csrf_token() }}')" class="btn btn-rounded btn-info mb-5  btn-danger"
+                                                    title="@lang('site.disactivate')">
+                                                    <i class=" fa fa-close"></i> </span>
+                                                </a>
+                                                {{-- {{-- class="btn btn-rounded btn-info mb-5"
                                                     value="@lang('site.')"> --}}
-
-                                                @else
-                                                <button type="submit" class="btn btn-rounded btn-info mb-5  btn-success"  title="@lang('site.activate')" >
-
+                                            @else
+                                                <a onclick="activate_cuurency('{{route('admin.Currency.active.disactive')}}', '{{ $currenc->id }}', '{{ csrf_token() }}')" class="btn btn-rounded btn-info mb-5  btn-success"
+                                                    title="@lang('site.activate')">
                                                     <i class="mdi mdi-check"></i> </span>
-                                           </button>
-                                                @endif
+                                                </a>
+                                            @endif
 
-                                            </div>
-                                        </td>
-                                    </form>
+                                        </div>
+                                    </td>
+
                                 </tr>
                             @endforeach
                         @endisset
@@ -137,6 +132,7 @@ active:hover {
     </script>
 
 
+    <script src="{{ URL::asset('assets/custome_js/activate_currency.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
 @endsection

@@ -2,73 +2,33 @@
 @section('title')
 @endsection
 @section('css')
+    <style>
+        .modal {
+            display: block !important;
+            /* I added this to see the modal, you don't need this */
+        }
 
+        /* Important part */
+        .modal-dialog {
+            overflow-y: initial !important
+        }
+
+        .modal-body {
+            height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
 @endsection
 
 
 @section('content')
-    <div class="col-md-12 col-12">
-
-
-        <!--
-                                    <div class="box-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <form id='services_form'>
-                                                    @csrf
-                                                    <div class="add_item">
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <h5>@lang('site.services') <span class="text-danger">*</span></h5>
-                                                                    <div class="controls">
-                                                                        <input type="text" id="services_0" name="services[]"
-                                                                            class="form-control">
-                                                                        <span class="text-danger" id="services_0_"> </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <h5>@lang('site.fee value') <span class="text-danger">*</span></h5>
-                                                                    <div class="controls">
-                                                                        <input type="text" id="fee_0" name="fee[]" class="form-control">
-                                                                        <span class="text-danger" id="fee_0_"> </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="form-group">
-                                                                    <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
-                                                                    <div class="controls">
-
-                                                                        <span class="text-danger" id="currency_0_"> </span>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-2" style="padding-top: 25px;">
-                                                                <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </form>
-                                                <div class="row">
-                                                    <div class="text-xs-right">
-                                                        <a class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
-                                                            {{-- onclick="services('{{ route('admin.Services.store') }}','services_form')"> --}}> <span class=""> @lang('site.next step')</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            -->
-
+    <div class="row float-right">
+        <a type="button" class="btn btn-rounded btn-info" data-toggle="modal" data-target="#modal-center">
+            {{-- <i class="fa fa-plus-circle"></i> --}}
+            @lang('permission.add new role')
+        </a>
+    </div>
+    
 
         @isset($roles)
             <div class="box-body">
@@ -120,14 +80,14 @@
 
     @section('script')
         <script>
-
-
             $(document).ready(function() {
 
                 var table = $('#example1').DataTable({
                     // order: [
                     //     [0, 'desc']
                     // ],
+                    searching: false,
+                    info: false,
                     scrollY: "400px",
                     // scrollX: true,
                     // scrollCollapse: true,
@@ -136,11 +96,9 @@
 
                 });
             });
-
-
-           
         </script>
-<script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
+        <script src="{{ URL::asset('assets/custome_js/save.js') }}"></script>
+        <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
         <script src="{{ URL::asset('assets/custome_js/role_and_permission.js') }}"></script>
         <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
         <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>

@@ -45,7 +45,7 @@ function set_user_and_cours_info_into_modal(user_info, cours_details, cours_fee,
         html += '<br>';
 
     }
-    console.log(html);
+    // console.log(html);
 
     $('#cours_fee').html(html);
    

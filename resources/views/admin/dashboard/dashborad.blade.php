@@ -3,5 +3,5 @@
 @section('content')
 
 
-{{get_type_notification() }}
+
 @endsection

@@ -15,6 +15,10 @@ use Carbon\Carbon;
 
 class GradeController extends Controller
 {
+    public function __construct()
+    {
+      
+     }
     public function create()
     {
         $grade = Grade::select()->get();

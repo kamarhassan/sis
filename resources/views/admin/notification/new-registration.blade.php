@@ -51,12 +51,12 @@
                         <i class="fa fa-envelope-open-o"></i>
                     </a>
                 </div>
-                <div class="btn-group">
+                {{-- <div class="btn-group">
                     <a type="button" class="btn btn-outline btn-sm hover-success" title="@lang('site.approved')"
                         onclick="submit('{{ route('admin.notification.approve.marked') }}','new_regitration_order');">
                         <i class="ti ti-check"></i>
                     </a>
-                </div>
+                </div> --}}
                 <div class="btn-group">
                     <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.deny')"
                         onclick="submit('{{ route('admin.notification.deny.marked') }}','new_regitration_order');">

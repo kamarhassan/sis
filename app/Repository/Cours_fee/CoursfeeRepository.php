@@ -5,6 +5,7 @@ namespace App\Repository\Cours_fee;
 
 // use App\Models\CoursFee;
 use App\Models\CoursFee;
+use Carbon\Carbon;
 use PhpParser\Node\Stmt\Foreach_;
 use PhpParser\Node\Expr\Cast\Double;
 
@@ -65,5 +66,41 @@ class CoursfeeRepository implements CoursFeeInterface
         if (!$cours)
             return false;
         return  $fee = $cours->fee_with_type_currency;
+    }
+
+    public function get_fee_required_cours($array_id_fee_required)
+    {
+
+
+        //    return CoursFee::whereIn($array_id_fee_required)->with('fee_type')->get();
+
+
+        $cours_fee_required_sum = 0;
+
+        // $fee_requied = string_to_array($id_fee_required);
+
+        $select_fee_required_cours = [];
+        $t = [];
+        try {
+            // dd($this->registration_students);
+            $select_fee_required_cours = [];
+            for ($i = 0; $i < count($array_id_fee_required); $i++) {
+
+                $temp = CoursFee::where(['id' => $array_id_fee_required[$i]])->with('fee_type')->get();
+                $cours_fee_required_sum += $temp[0]->value;
+                $select_fee_required_cours[] = [
+                    'id' => $temp[0]->id,
+                    'fee_value' => $temp[0]->value,
+                    'fee_type_id' => $temp[0]->fee_type['id'],
+                    'fee_type_value' => $temp[0]->fee_type['fee'],
+                    'regitration_date' => Carbon::now(),
+                    // 'cours_fee_required_sum' => $cours_fee_required_sum
+                ];
+            }
+            // dd($select_fee_required_cours);
+            return  $select_fee_required_cours;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

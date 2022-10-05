@@ -118,7 +118,7 @@
                                                             <input type="checkbox" value="1" name="active"
                                                                 @if ($language->active == 1) checked @endif />
                                                             <span class="switch-indicator"></span>
-                                                            <label for="switcheryColor4" class="card-title ml-1">@lang('site.language is active') </label>
+                                                            <label for="switcheryColor4" class="card-title ml-1">@lang('site.is active') </label>
                                                             @error('active')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror

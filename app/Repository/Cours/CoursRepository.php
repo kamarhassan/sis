@@ -122,4 +122,11 @@ class CoursRepository implements CoursInterface
             return $cours_curency;
         return false;
     }
+
+    public function cours_theacher_name($cours){
+        if (!$cours)
+        return false;
+    return  $theacher_name = $cours->teacher_name;
+    }
+
 }// end of class

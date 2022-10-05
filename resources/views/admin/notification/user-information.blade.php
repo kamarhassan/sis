@@ -19,7 +19,7 @@
                                     <img class="avatar avatar-xxl avatar-bordered" id="img_profile"
                                         src="{{ URL::asset('assets/images/users/team-1.jpg') }}" alt="">
                                 </span>
-                                <h4 class="mt-2 mb-0"><a class="text-white"><span  id="full_name"></span></a></h4>
+                                <h4 class="mt-2 mb-0"><a class="text-white"><span id="full_name"></span></a></h4>
                                 <i class="ti ti-email"></i> <span id="user_mail"></span></a> <i
                                     class="ti ti-mobile"></i> <span id="user_Phone"></span></a>
                             </div>
@@ -39,7 +39,7 @@
                                         @lang('site.cours fees') : <br><span id="cours_fee"></span>
                                     </div>
                                     <div class="text-warning"><i class="fa fa-money"></i> @lang('site.cours fee total') : <br>
-                                        <span  id="total_cours_fee" ></span>
+                                        <span id="total_cours_fee"></span>
                                     </div>
                                 </div>
                             </div>
@@ -47,38 +47,42 @@
 
                     </div>
                 </div>
-<form id="user_registration">
-    @csrf
-    <input hidden name="order_id[]" id="order_id" >
-    <input hidden name="user_id" id="user_id" >
-    <input hidden name="cours_id" id="cours_id" >
+                <form id="user_registration" method="POST"
+                    action="{{ route('admin.notification.approve.edit.register') }}">
+                    @csrf
+                
+                    <input hidden name="order_id[]" id="order_id">
+                    <input hidden name="user_id" id="user_id">
+                    <input hidden name="cours_id" id="cours_id">
 
 
-</form>
-          
-            <div class="mailbox-controls ">
-                <div class="btn-group">
-                    <a type="button" class="text-white btn btn-outline btn-sm hover-danger" title="@lang('site.delete all')"
-                        onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','user_registration','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                        <i class="ion ion-trash-a"></i>
-                    </a>
+               
+
+                <div class="mailbox-controls ">
+                    <div class="btn-group">
+                        <a type="button" class="text-white btn btn-outline btn-sm hover-danger"
+                            title="@lang('site.delete all')"
+                            onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','user_registration','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                            <i class="ion ion-trash-a"></i>
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit"
+                            class="text-white btn btn-outline btn-sm hover-success"title="@lang('site.approved')">
+                            <i class="ti ti-check"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <a type="button" class="text-white btn btn-outline btn-sm hover-danger"
+                            title="@lang('site.deny')"
+                            onclick="submit('{{ route('admin.notification.deny.marked') }}','user_registration');">
+                            <i class="ti ti-close"></i>
+                        </a>
+                    </div>
+
+ </form>
                 </div>
-                <div class="btn-group">
-                    <a type="button" class="text-white btn btn-outline btn-sm hover-success" title="@lang('site.approved')"
-                        onclick="submit('{{ route('admin.notification.approve.user') }}','user_registration');">
-                        <i class="ti ti-check"></i>
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a type="button" class="text-white btn btn-outline btn-sm hover-danger" title="@lang('site.deny')"
-                        onclick="submit('{{ route('admin.notification.deny.marked') }}','user_registration');">
-                        <i class="ti ti-close"></i>
-                    </a>
-                </div>
-
-
             </div>
-          </div>
         </div>
     </div>
 </div>

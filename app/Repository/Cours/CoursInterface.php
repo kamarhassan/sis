@@ -19,4 +19,5 @@ interface CoursInterface
     public function store_cours($REQUEST, $teacher_id);
     public function update_cours($request, $teacher_id, $cours_id);
     public function cours_fee_currency($cours_id);
+    public function cours_theacher_name($cours);
 }

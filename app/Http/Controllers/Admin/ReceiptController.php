@@ -18,6 +18,10 @@ use App\Mail\NotifyMailPaymentReceipt;
 class ReceiptController extends Controller
 {
     //
+    public function __construct()
+    {
+      
+     }
 
     public function receipt($user_id, $cours_id, $receipt_id)
     {
@@ -57,7 +61,7 @@ class ReceiptController extends Controller
                     'receipt' => $receipt,
                     'currency' => $currency,
                 ];
-                $contains1 = Str::contains(url()->previous(), 'Payment');
+                $contains1 = Str::contains(url()->previous(), 'payment');
                 $contains2 = Str::contains(url()->previous(), 'edit-old-payment');
                 if ($contains1 ||$contains2)
                   Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));

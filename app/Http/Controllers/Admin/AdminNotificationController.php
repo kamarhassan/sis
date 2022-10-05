@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Repository\User\UserInterface;
 use GrahamCampbell\ResultType\Success;
 use App\Repository\Cours\CoursInterface;
-use App\Repository\Cours_fee\CoursfeeInterface;
+use App\Repository\Cours_fee\CoursFeeInterface;
 use App\Repository\AdminNotification\AdminNotificationInterface;
 
 class AdminNotificationController extends Controller

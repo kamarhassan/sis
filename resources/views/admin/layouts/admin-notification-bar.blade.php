@@ -41,7 +41,7 @@
                 </ul>
             </li>
             <li class="footer">
-                <a href="#">View all</a>
+                <a href="{{route('admin.new.register.order')}}">View all</a>
             </li>
         </ul>
     @else

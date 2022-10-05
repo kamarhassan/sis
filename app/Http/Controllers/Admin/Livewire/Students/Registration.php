@@ -143,6 +143,7 @@ class Registration extends Component
     public function get_fee_required_cours($id_fee_required)
     {
         $this->cours_fee_required_sum = 0;
+        
         $fee_requied = string_to_array($id_fee_required);
 
         $select_fee_required_cours = [];

@@ -13,7 +13,7 @@ use App\Repository\Admin\AdminInterface;
 use App\Repository\Cours\CoursInterface;
 use App\Http\Requests\InsertCoursRequest;
 use App\Repository\Fee_Type\Fee_TypeInterface;
-use App\Repository\Cours_fee\CoursfeeInterface;
+use App\Repository\Cours_fee\CoursFeeInterface;
 
 class CoursController extends Controller
 {
@@ -22,6 +22,7 @@ class CoursController extends Controller
     protected $feetype;
     protected $coursfee;
     protected $teacher;
+
     /**
      * CoursController constructor.
      * @param $cours
@@ -31,11 +32,13 @@ class CoursController extends Controller
         Fee_TypeInterface $feetype,
         CoursFeeInterface $coursfee,
         AdminInterface $teacher
-    ) {
+    )
+    {
         $this->cours = $cours;
         $this->feetype = $feetype;
         $this->coursfee = $coursfee;
         $this->teacher = $teacher;
+        
     }
 
 
@@ -81,7 +84,6 @@ class CoursController extends Controller
             }
 
 
-
             DB::commit();
             if (!$id_cours) {
                 toastr()->error(__('site.please add data in the field'));
@@ -102,16 +104,16 @@ class CoursController extends Controller
 
     public function edit($id)
     {
-         $cours =  $this->cours->is_defined($id);
-       
+        $cours = $this->cours->is_defined($id);
+
         try {
             if (!$cours) {
                 toastr()->error(__('site.cours note defined'));
                 return redirect()->route('admin.cours.all');
             } else {
                 $coursfee_max = $this->coursfee->is_fee_defined($id)->max('fee_types_id');
-                $level_cours =  $cours->level;
-                $grade_cours =  $cours->grade;
+                $level_cours = $cours->level;
+                $grade_cours = $cours->grade;
                 $teacher = Admin::role('teacher')->get(['id', 'name']);
                 $status_od_cours = Statusofcour::select()->get();
                 $grade = Grade::select()->get();
@@ -163,10 +165,6 @@ class CoursController extends Controller
 
         // return $request;
     }
-
-
-
-
 
 
     /****

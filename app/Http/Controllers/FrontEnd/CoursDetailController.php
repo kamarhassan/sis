@@ -5,7 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Repository\Cours\CoursInterface;
-use App\Repository\Cours_fee\CoursfeeInterface;
+use App\Repository\Cours_fee\CoursFeeInterface;
 
 class CoursDetailController extends Controller
 {

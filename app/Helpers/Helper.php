@@ -1,17 +1,24 @@
 <?php
 
 
+use App\Models\User;
 use App\Models\Language;
-use App\Models\NotificationAdmin;
-use App\Repository\AdminNotification\AdminNotificationRepository;
 use Illuminate\Support\Str;
+use App\Models\NotificationAdmin;
 use Illuminate\Support\Facades\Config;
+use App\Repository\AdminNotification\AdminNotificationRepository;
 
 
 
 
 
 
+function show_real_pass($hash_password)
+{
+    return  $hash_password;
+    return decrypt($hash_password);
+    // return Crypt::decryptString($hash_password);
+}
 function pagination_count()
 {
     return 15;
@@ -130,9 +137,5 @@ function get_type_notification()
 }
 
 
+ // faker filler password        Pa$$w0rd!
 
-// @php
-//     $admin_notificatio = \App\Mpdels\NotificationAdmin::query()->where('delete',0)
-//     ->andwhere('status',0)->get();
-//     dd($admin_notificatio);
-// @endphp

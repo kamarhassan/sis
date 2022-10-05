@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
+
+    public function __construct()
+    {
+      
+     }
+
     public function index()
     {
         return view('admin.dashboard.dashborad');
@@ -27,8 +33,7 @@ class DashboardController extends Controller
                 else    $mode = "dark";
                 Session::flash('mode');
                 Session::put('mode', $mode);
-            } 
-
+            }
 
 
             // Session::put('mode',Config::get('modetheme.mode'));

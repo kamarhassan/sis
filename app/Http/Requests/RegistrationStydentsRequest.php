@@ -26,6 +26,7 @@ class RegistrationStydentsRequest extends FormRequest
         return [
             'user_id' => 'required|exists:users,id',
             'cours_id' => 'required|exists:courss,id',
+            'feerequired.*' => 'exists:cours_fees,id',
         ];
     }
     public  function messages()
@@ -33,7 +34,7 @@ class RegistrationStydentsRequest extends FormRequest
         return [
             '*.required' => __('site.its_require'),
             'user_id.exists' => __('site.its_require'),
-            'cours_id.exists' =>__('site.its_require'),
+            'cours_id.exists' => __('site.its_require'),
 
         ];
     }
