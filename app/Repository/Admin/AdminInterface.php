@@ -15,7 +15,7 @@ interface AdminInterface
 
     public function GetTeacherIDbyName($id);
 
-    // public function all_cours();
-    // public function  edit_cours($request, $teacher_id);
+
+    public function  all_teacher_id();
     // public function store_cours($REQUEST, $teacher_id);
 }

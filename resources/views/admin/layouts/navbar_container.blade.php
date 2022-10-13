@@ -29,7 +29,7 @@ $routes = Route::current()->getName();
                 </a>
             </li>
 
-            
+
             {{-- @can('setting') --}}
 
             @include('admin.layouts.nav_bar_layouts.setting')
@@ -48,8 +48,15 @@ $routes = Route::current()->getName();
 
 
             {{-- @can('reports') --}}
-            @include('admin.layouts.nav_bar_layouts.reports')
+            @include('admin.layouts.nav_bar_layouts.service')
             {{-- @endcan --}}
+
+            {{-- @can('reports') --}}
+          
+            @include('admin.layouts.nav_bar_layouts.reports')
+           
+            {{-- @endcan --}}
+        
 
 
 

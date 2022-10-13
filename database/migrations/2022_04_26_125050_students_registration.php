@@ -20,9 +20,9 @@ class StudentsRegistration extends Migration
                 ->comment("0 =>  no, 1 =>  yes");
                 $table->string('notes')->nullable();
                 $table->string('feesRequired')->nullable();
-                $table->foreignId('cours_id')->constrained('courss')->onUpdate('cascade');
-                $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
-                // $table->foreignId('sponsorshipID')->default(-1)->constrained('sposorships')->onUpdate('cascade');;
+                $table->foreignId('cours_id')->constrained('courss');
+                $table->foreignId('user_id')->constrained('users');
+                // $table->foreignId('sponsorshipID')->default(-1)->constrained('sposorships');;
 
                 $table->integer('sponsorshipID')->unsigned()->nullable();
                 $table->double('cours_fee_total')->nullable();

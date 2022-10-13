@@ -29,10 +29,11 @@ class CreateCoursTable extends Migration
             $table->date('act_StartDa');
             $table->date('act_EndDa');
             $table->string('year');
+            $table->foreignId('currencies_id')->constrained('currencies');
             $table->string('deleted')->enum('deleted', [0, 1])->default(1)->comment("0=>delete  1=>is active");
-            $table->foreignId('teacher_id')->constrained('admins')->onUpdate('cascade')->comment('for teacher name');
-            $table->foreignId('grade_id')->constrained('grades')->onUpdate('cascade');
-            $table->foreignId('level_id')->constrained('levels')->onUpdate('cascade');
+            $table->foreignId('teacher_id')->constrained('admins')->comment('for teacher name');
+            $table->foreignId('grade_id')->constrained('grades');
+            $table->foreignId('level_id')->constrained('levels');
 
 
 

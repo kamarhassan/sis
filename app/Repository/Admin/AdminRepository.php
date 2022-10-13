@@ -19,7 +19,11 @@ class AdminRepository implements AdminInterface
 {
     public function  GetTeacherIDbyName($id)
     {
-     return   Admin::GetIdByName($id);
+        return   Admin::GetIdByName($id);
     }
-
+    public function  all_teacher_id()
+    {
+        return   Admin::role('teacher')->get('id');
+    }
+   
 }// end of class

@@ -21,95 +21,104 @@
 
 
                 <!--Basic!-->
-                <div class="col-12 col-lg-5 col-xl-6">
-
-                    <form method="post" action="{{ route('admin.grades.store') }}">
-                        @csrf
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="add_item">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <h5>@lang('site.grade') <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <input type="text" name="grade[]" class="form-control">
+                @can ( 'create grades') 
+                    <div class="col-12 col-lg-5 col-xl-6">
+    
+                        <form method="post" action="{{ route('admin.grades.store') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="add_item">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <h5>@lang('site.grade') <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="text" name="grade[]" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            @error('grades[]')
-                                                <span class="text-danger">{{ $message }} </span>
-                                            @enderror
-                                        </div><!-- End col-md-5 -->
-                                        <div class="col-md-2" style="padding-top: 25px;">
-                                            <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
-                                            </span>
-                                        </div><!-- End col-md-5 -->
-                                    </div> <!-- end Row -->
-                                </div> <!-- // End add_item -->
-                                <div class="text-xs-right">
-                                    <input type="submit" class="btn btn-rounded btn-info mb-5" value="@lang('site.save')">
+                                                @error('grades[]')
+                                                    <span class="text-danger">{{ $message }} </span>
+                                                @enderror
+                                            </div><!-- End col-md-5 -->
+                                            <div class="col-md-2" style="padding-top: 25px;">
+                                                <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
+                                                </span>
+                                            </div><!-- End col-md-5 -->
+                                        </div> <!-- end Row -->
+                                    </div> <!-- // End add_item -->
+                                    <div class="text-xs-right">
+                                        <input type="submit" class="btn btn-rounded btn-info mb-5" value="@lang('site.save')">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="col-12 col-lg-5 col-xl-6">
-
-                    <div class="table-responsive">
-                        <table id="example1" class="table  table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>@lang('site.grade') </th>
-                                    <th>@lang('site.options') </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @isset($grade)
-                                    @foreach ($grade as $key => $grades)
-                                    {{-- <form method="post" id="grade_data" action="{{ route('admin.grades.update') }}"> --}}
-                                        <tr class="Row{{ $grades->id }} " id="Row{{ $grades->id }} ">
-
-                                            @csrf
-                                            <td> {{ $key + 1 }} </td>
-                                            <td>
-                                                <label id="label_{{ $grades->id }}">
-                                                    <span> {{ $grades->grade }}</span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a token="{{ csrf_token() }}"
-                                                    onclick="change_to_update({{ $grades->id }},'{{ $grades->grade }}','{{ route('admin.grades.update') }}', '{{ csrf_token() }}');"
-                                                    class="btn fa fa-edit" title="@lang('site.edit')" id="btn_editable_{{ $grades->id }}">
-                                                    {{-- @lang('site.edit') --}}
-                                                </a>
-
-                                                <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
-                                                    title="@lang('site.delete')"
-                                                    onclick="delete_by_id('{{ route('admin.grades.delete') }}',{{ $grades->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                                                </a>
-                                                {{-- <a token="{{ csrf_token() }}" lang_id="{{ $grades->id }}"
-                                                    class="delete_btn btn btn-close btn-danger btn-round fa fa-times"
-                                                    title="@lang('site.delete')"
-                                                    onclick=" delete_by_id_test('{{ json_encode(swal_fire_msg()) }}');">
-
-
-                                                </a> --}}
-
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-                                @endisset
-
-
-                            </tbody>
-
-                        </table>
+                        </form>
+    
                     </div>
-
-                </div>
+                @endcan
+              
+              @canany (['edit grades','delete grades']) 
+                  <div class="col-12 col-lg-5 col-xl-6">
+  
+                      <div class="table-responsive">
+                          <table id="example1" class="table  table-striped">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>@lang('site.grade') </th>
+                                      <th>@lang('site.options') </th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  @isset($grade)
+                                      @foreach ($grade as $key => $grades)
+                                      {{-- <form method="post" id="grade_data" action="{{ route('admin.grades.update') }}"> --}}
+                                          <tr class="Row{{ $grades->id }} " id="Row{{ $grades->id }} ">
+  
+                                              @csrf
+                                              <td> {{ $key + 1 }} </td>
+                                              <td>
+                                                  <label id="label_{{ $grades->id }}">
+                                                      <span> {{ $grades->grade }}</span>
+                                                  </label>
+                                              </td>
+                                              <td>
+                                                @can ('edit grades') 
+                                                      <a token="{{ csrf_token() }}"
+                                                          onclick="change_to_update({{ $grades->id }},'{{ $grades->grade }}','{{ route('admin.grades.update') }}', '{{ csrf_token() }}');"
+                                                          class="btn fa fa-edit" title="@lang('site.edit')" id="btn_editable_{{ $grades->id }}">
+                                                          {{-- @lang('site.edit') --}}
+                                                      </a>
+                                                @endcan
+                                                  
+                                                @can ('delete grades') 
+                                                      <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
+                                                          title="@lang('site.delete')"
+                                                          onclick="delete_by_id('{{ route('admin.grades.delete') }}',{{ $grades->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                                      </a>
+                                                @endcan
+                                                  {{-- <a token="{{ csrf_token() }}" lang_id="{{ $grades->id }}"
+                                                      class="delete_btn btn btn-close btn-danger btn-round fa fa-times"
+                                                      title="@lang('site.delete')"
+                                                      onclick=" delete_by_id_test('{{ json_encode(swal_fire_msg()) }}');">
+  
+  
+                                                  </a> --}}
+  
+                                              </td>
+  
+                                          </tr>
+                                      @endforeach
+                                  @endisset
+  
+  
+                              </tbody>
+  
+                          </table>
+                      </div>
+  
+                  </div>
+              @endcan
 
             </div>
             <!-- /.row -->
@@ -167,6 +176,17 @@
                 $(this).closest(".delete_whole_extra_item_add").remove();
                 counter -= 1
             });
+
+
+            // var table = $('#example1').DataTable({
+                  
+            //       responsive: true,
+                
+            //       // ajax: '/test/0',
+
+            //   });
+       
+
 
         });
     </script>

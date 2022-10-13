@@ -3,7 +3,7 @@
 
 return [
     ################# general ##################
-    'site name'  => 'نظام ادارة المدارس',
+    'site name'  => 'AIMS',
     'Dashboard'  => 'لوحة التحكم',
     'cancel'  => 'الغاء',
     'edit'  => 'تعديل',
@@ -289,17 +289,26 @@ return [
     'currency disable successful' => 'تم الغاء تفعيل العملة بنجاح',
     'admin create succes' => 'تم تسجيل المستخدم بنجاح',
     'admin create fail' => 'فشل  تسجيل المستخدم حاول من جديد او اتصل بالمشرف',
-   
+
     'account deleted' => 'تم حذف الحساب بنجاح',
     'account not deleted' => 'فشل حذف الحساب حاول من جديد او اتصل بالمشرف',
-    'account can\'t beacuse it has cours' =>  'فشل حذف الحساب لان لديه دورات يمكن الغاء التفعيل فقط' ,
+    'account can\'t beacuse it has cours' =>  'فشل حذف الحساب لان لديه دورات يمكن الغاء التفعيل فقط',
     'show password'  => 'اظهار كلمة المرور',
     'success update password'  => 'تم تعديل كلمة السر',
     'retype same password'  => 'اعد كتابة نفس كلمة السر',
     'your account is inactive'  => 'حسابك غير مفعل يرجى التواصل مع المشرف ان اردت تفعيل الحساب',
-    ''  => '',
-    ''  => '',
-    ''  => '',
+    'error login'  => 'هناك خطاء في البريد الالكتروني او كلمة السر ',
+    'you cant delete this role beacuse it is imporatnt'  => 'لا يمكنك حذف هذه الصلاحية لانها اساسية',
+    'Receipt Report unpaid account details' => 'unpaid account details',
+    'Receipt Report unpaid accounting summary' => 'unpaid accounting summary',
+    'Receipt Report course accounting summary' => 'course accounting summary',
+    'Receipt Report course accounting details' => 'cours accounting details',
+    'attendance students'  => 'حضور الطلاب',
+    'take attendance'  =>'اخذ حضور الطلاب',
+
+
+
+
     ''  => '',
     ''  => '',
     ''  => '',

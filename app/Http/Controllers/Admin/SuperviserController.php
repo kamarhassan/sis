@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Admin;
+use App\Traits\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -10,9 +12,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\UpdateInfoAdminRequest;
 use App\Http\Requests\CreateSuppervisorRequest;
 use App\Http\Requests\ChanePasswordFirstLoggedRequest;
-use App\Traits\Image;
 
 class SuperviserController extends Controller
 {
@@ -154,10 +156,11 @@ class SuperviserController extends Controller
     {
         $roles = Role::all();
         $admin_info = Admin::find($request->admin_id);
-        return view('admin.superviser.edit', compact('roles', 'admin_info'));
+          $admin_role  =   $admin_info->getRoleNames();
+        return view('admin.superviser.edit', compact('roles', 'admin_info','admin_role'));
     }
 
-    public function update_info(Request $request)
+    public function update_info(UpdateInfoAdminRequest $request)
     {
 
         // return $request;
@@ -170,28 +173,32 @@ class SuperviserController extends Controller
                 $message = __('site.you have error');
             } else {
                 if (!$request->has('admin_status')) {
-                    $admin_status = 0;
+                    $admin_logged->admin_status = 0;
                 } else {
-                    $admin_status = 1;
+                    $admin_logged->admin_status = 1;
                 }
                 if ($request->has('photo'))
-                    $file_name = $this->saveImage($request->photo, 'public/images/admin');
-                else $file_name = "";
+                    $admin_logged->photo = $this->saveImage($request->photo, 'public/images/admin');
 
-                $updated =   $admin_logged->update([
-                    'name' => $request->first_name . ' ' . $request->middle_name . ' ' . $request->last_name,
-                    'first_name' => $request->first_name,
-                    'middle_name' => $request->middle_name,
-                    'last_name' => $request->last_name,
-                    'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'photo' => $file_name,
-                    'admin_status' => $admin_status,
-                ]);
-                if ($updated) {
+                if ($request->has('password'))
+                    $admin_logged->password = bcrypt($request->password);
+
+                $admin_logged->name =  $request->first_name . ' ' . $request->middle_name . ' ' . $request->last_name;
+                $admin_logged->first_name =  $request->first_name;
+                $admin_logged->middle_name =  $request->middle_name;
+                $admin_logged->last_name =  $request->last_name;
+                $admin_logged->updated_at =  Carbon::now();
+                $admin_logged->email =  $request->email;
+
+                $updated = $admin_logged->save();
+                $update_role = $admin_logged->syncRoles($request->role);
+                if ($updated && $update_role) {
                     $status = 'success';
                     $message = __('site.success update password');
-                    $route = route('admin.dashborad');
+                    $route = route('admin.supervisor.all');
+                } else {
+                    $status = 'error';
+                    $message = __('site.faild update password');
                 }
             }
             return response()->json(['status' => $status, 'message' => $message, 'route' => $route]);
@@ -204,7 +211,8 @@ class SuperviserController extends Controller
         return view('admin.superviser.edit', compact('roles', 'admin_info'));
     }
 
-    public function acount_inactive(){
+    public function acount_inactive()
+    {
         return view('admin.auth.acount-inactive');
     }
 }

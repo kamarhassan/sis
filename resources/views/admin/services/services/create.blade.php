@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-@lang('site.services')
+    @lang('site.services')
 @endsection
 @section('css')
     @livewireStyles()
@@ -11,93 +11,96 @@
 
 
     <div class="col-md-12 col-12">
-        <div class="box box-slided-up">
-            <div class="box-header with-border">
+        @can('create setting services')
+            <div class="box box-slided-up">
                 <div class="box-header with-border">
-                    <h4 class="box-title">@lang('site.add services')</h4>
+                    <div class="box-header with-border">
+                        <h4 class="box-title">@lang('site.add services')</h4>
+                    </div>
+                    <ul class="box-controls pull-right">
+                        <li><a class="box-btn-close" href="#"></a></li>
+                        <li><a class="box-btn-slide text-warning" href="#"></a></li>
+                        {{-- <li><a class="box-btn-fullscreen" href="#"></a></li> --}}
+                    </ul>
                 </div>
-                <ul class="box-controls pull-right">
-                    <li><a class="box-btn-close" href="#"></a></li>
-                    <li><a class="box-btn-slide text-warning" href="#"></a></li>
-                    {{-- <li><a class="box-btn-fullscreen" href="#"></a></li> --}}
-                </ul>
-            </div>
 
 
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-12">
-                        <form id='services_form'>
-                            @csrf
-                            <div class="add_item">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <h5>@lang('site.services') <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <input type="text" id="services_0" name="services[]"
-                                                    class="form-control">
-                                                <span class="text-danger" id="services_0_"> </span>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form id='services_form'>
+                                @csrf
+                                <div class="add_item">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <h5>@lang('site.services') <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <input type="text" id="services_0" name="services[]"
+                                                        class="form-control">
+                                                    <span class="text-danger" id="services_0_"> </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <h5>@lang('site.fee value') <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <input type="text" id="fee_0" name="fee[]" class="form-control">
-                                                <span class="text-danger" id="fee_0_"> </span>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <h5>@lang('site.fee value') <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <input type="text" id="fee_0" name="fee[]" class="form-control">
+                                                    <span class="text-danger" id="fee_0_"> </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                @isset($currency)
-                                                    <select name="currency[]" id="currency_0" class="form-control select2"
-                                                        style="width: 100%;">
-                                                        <option value="">--------------</option>
-                                                        @foreach ($currency as $currencys)
-                                                            <option value="{{ $currencys->id }}">
-                                                                {{ $currencys->symbol }} <- {{ $currencys->currency }}
-                                                                    </option>
-                                                        @endforeach
-                                                    </select>
-                                                @endisset
-                                                <span class="text-danger" id="currency_0_"> </span>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    @isset($currency)
+                                                        <select name="currency[]" id="currency_0" class="form-control select2"
+                                                            style="width: 100%;">
+                                                            <option value="">--------------</option>
+                                                            @foreach ($currency as $currencys)
+                                                                <option value="{{ $currencys->id }}">
+                                                                    {{ $currencys->symbol }} <- {{ $currencys->currency }} </option>
+                                                            @endforeach
+                                                        </select>
+                                                    @endisset
+                                                    <span class="text-danger" id="currency_0_"> </span>
 
+                                                </div>
                                             </div>
+                                        </div>
+
+                                        <div class="col-md-2" style="padding-top: 25px;">
+                                            <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
+                                            </span>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2" style="padding-top: 25px;">
-                                        <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
-                                        </span>
-                                    </div>
                                 </div>
-
-                            </div>
-                        </form>
-                        <div class="row">
-                            <div class="text-xs-right">
-                                <a class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
-                                    onclick="services('{{ route('admin.Services.store') }}','services_form')">
-                                    <span class=""> @lang('site.next step')</span>
-                                </a>
+                            </form>
+                            <div class="row">
+                                <div class="text-xs-right">
+                                    <a class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
+                                        onclick="services('{{ route('admin.Services.store') }}','services_form')">
+                                        <span class=""> @lang('site.next step')</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endcan
 
+        @canany(['edit setting services', 'delete setting services'])
 
+            @include('admin.services.services.services-data')
 
-        @include('admin.services.services.services-data')
-        @include('admin.services.services.edit')
+            @include('admin.services.services.edit')
 
+        @endcan
 
 
         <div style="visibility: hidden;">
@@ -193,6 +196,7 @@
                     // scrollX: true,
                     scrollCollapse: true,
                     paging: false,
+                    responsive: true,
                     // ajax: '/test/0',
 
                 });

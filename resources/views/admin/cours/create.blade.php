@@ -5,8 +5,7 @@
             <div class="row breadcrumbs-top">
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a
-                                    href="{{ route('admin.dashborad') }}">@lang('site.Dashboard') </a>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashborad') }}">@lang('site.Dashboard') </a>
                         </li>
                         <li class="breadcrumb-item"><a href="{{ route('admin.cours.all') }}"> @lang('site.cours') </a>
                         </li>
@@ -17,8 +16,8 @@
             </div>
         </div>
     </div>
+
     <div class="content-body">
-        <!-- Basic form layout section start -->
         <section id="basic-form-layouts">
             <div class="row match-height">
                 <div class="col-md-12">
@@ -34,7 +33,7 @@
                         <div class="card-content collapse show">
                             <div class="card-body">
                                 <form method="POST" action="{{ route('admin.cours.store') }}" class="form"
-                                      enctype="multipart/form-data">
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class=" col-12">
                                         <div class="box bl-3.border-primary">
@@ -58,17 +57,16 @@
 
                                                                     <div class="form-group">
                                                                         <label>@lang('site.cours') </label>
-                                                                        <select name="grade"
-                                                                                class="form-control select2"
-                                                                                style="width: 100%;">
+                                                                        <select name="grade" class="form-control select2"
+                                                                            style="width: 100%;">
 
                                                                             @if (old('grade') != '')
                                                                                 <option selected="selected"
-                                                                                        value="{{ old('grade') }}">
+                                                                                    value="{{ old('grade') }}">
                                                                                     {{ old('grade') }}</option>
                                                                             @else
                                                                                 <option selected="selected"
-                                                                                        value=" @lang('site.chosse the cours')">
+                                                                                    value=" @lang('site.chosse the cours')">
                                                                                     @lang('site.chosse the cours')</option>
                                                                             @endif
                                                                             @foreach ($grade as $grades)
@@ -80,7 +78,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @error('grade')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         @endisset
@@ -90,16 +88,15 @@
 
                                                                     <div class="form-group">
                                                                         <label>@lang('site.level') </label>
-                                                                        <select name="level"
-                                                                                class="form-control select2"
-                                                                                style="width: 100%;">
+                                                                        <select name="level" class="form-control select2"
+                                                                            style="width: 100%;">
                                                                             @if (old('level') != '')
                                                                                 <option selected="selected"
-                                                                                        value="{{ old('level') }}">
+                                                                                    value="{{ old('level') }}">
                                                                                     {{ old('level') }}</option>
                                                                             @else
                                                                                 <option selected="selected"
-                                                                                        value=" @lang('site.chosse the cours')">
+                                                                                    value=" @lang('site.chosse the cours')">
                                                                                     @lang('site.chosse the cours')</option>
                                                                             @endif
                                                                             @foreach ($level as $levels)
@@ -111,7 +108,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @error('level')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         @endisset
@@ -121,12 +118,11 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.start date') </label>
-                                                                <input name="start_date" class="form-control"
-                                                                       type="date"
-                                                                       value="{{ old('start_date') }}"
-                                                                       id="example-date-input">
+                                                                <input name="start_date" class="form-control" type="date"
+                                                                    value="{{ old('start_date') }}"
+                                                                    id="example-date-input">
                                                                 @error('start_date')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -134,10 +130,9 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.end date') </label>
                                                                 <input name="end_date" class="form-control" type="date"
-                                                                       value="{{ old('end_date') }}"
-                                                                       id="example-date-input">
+                                                                    value="{{ old('end_date') }}" id="example-date-input">
                                                                 @error('end_date')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -148,12 +143,11 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.start time') </label>
-                                                                <input name="start_time" class="form-control"
-                                                                       type="time"
-                                                                       value="{{ old('start_time') }}"
-                                                                       id="example-date-input">
+                                                                <input name="start_time" class="form-control" type="time"
+                                                                    value="{{ old('start_time') }}"
+                                                                    id="example-date-input">
                                                                 @error('start_time')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -161,10 +155,9 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.end time') </label>
                                                                 <input name="end_time" class="form-control" type="time"
-                                                                       value="{{ old('end_time') }}"
-                                                                       id="example-date-input">
+                                                                    value="{{ old('end_time') }}" id="example-date-input">
                                                                 @error('end_time')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -175,10 +168,10 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.actually start date') </label>
                                                                 <input name="ac_start_date" class="form-control"
-                                                                       type="date" value="{{ old('ac_start_date') }}"
-                                                                       id="example-date-input">
+                                                                    type="date" value="{{ old('ac_start_date') }}"
+                                                                    id="example-date-input">
                                                                 @error('ac_start_date')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -186,11 +179,10 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.actually end date') </label>
                                                                 <input name="ac_end_date" class="form-control"
-                                                                       type="date"
-                                                                       value="{{ old('ac_end_date') }}"
-                                                                       id="example-date-input">
+                                                                    type="date" value="{{ old('ac_end_date') }}"
+                                                                    id="example-date-input">
                                                                 @error('ac_end_date')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -200,10 +192,10 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.max number of students') </label>
                                                                 <input name="max_std_number" class="form-control"
-                                                                       type="number" value="{{ old('max_std_number') }}"
-                                                                       id="example-date-input">
+                                                                    type="number" value="{{ old('max_std_number') }}"
+                                                                    id="example-date-input">
                                                                 @error('max_std_number')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
 
                                                             </div>
@@ -213,14 +205,14 @@
                                                                 @isset($status_od_cours)
                                                                     <label>@lang('site.status of cours') </label>
                                                                     <select name="status" class="form-control"
-                                                                            style="width: 100%;">
+                                                                        style="width: 100%;">
                                                                         @if (old('status') != '')
                                                                             <option selected="selected"
-                                                                                    value="{{ old('status') }}">
+                                                                                value="{{ old('status') }}">
                                                                                 {{ old('status') }}</option>
                                                                         @else
                                                                             <option selected="selected"
-                                                                                    value=" @lang('site.chosse the cours')">
+                                                                                value=" @lang('site.chosse the cours')">
                                                                                 @lang('site.chosse the cours')</option>
                                                                         @endif
                                                                         @foreach ($status_od_cours as $status_od_cour)
@@ -230,7 +222,7 @@
                                                                         @endforeach
                                                                     </select>
                                                                     @error('status')
-                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                        <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 @endisset
                                                             </div>
@@ -244,16 +236,15 @@
                                                                     <div class="form-group">
                                                                         <label>@lang('site.teacher name') </label>
                                                                         <select name="teacher_name"
-                                                                                class="form-control select2"
-                                                                                style="width: 100%;">
+                                                                            class="form-control select2" style="width: 100%;">
 
                                                                             @if (old('teacher_name') != '')
                                                                                 <option selected="selected"
-                                                                                        value="{{ old('teacher_name') }}">
+                                                                                    value="{{ old('teacher_name') }}">
                                                                                     {{ old('teacher_name') }}</option>
                                                                             @else
                                                                                 <option selected="selected"
-                                                                                        value=" @lang('site.chosse the teacher name')">
+                                                                                    value=" @lang('site.chosse the teacher name')">
                                                                                     @lang('site.chosse the cours')</option>
                                                                             @endif
                                                                             @foreach ($teacher as $teachers)
@@ -265,7 +256,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @error('teacher_name')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         @endisset
@@ -273,11 +264,11 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.teacher fee') </label>
                                                                 <input name="teacher_fee" class="form-control"
-                                                                       type="number" step="any"
-                                                                       value="{{ old('teacher_fee') }}"
-                                                                       id="example-date-input">
+                                                                    type="number" step="any"
+                                                                    value="{{ old('teacher_fee') }}"
+                                                                    id="example-date-input">
                                                                 @error('teacher_fee')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -290,8 +281,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.level') </label>
                                                                 <select name="days[]" multiple
-                                                                        class="form-control select2"
-                                                                        style="width: 100%;">
+                                                                    class="form-control select2" style="width: 100%;">
 
                                                                     @foreach (days_of_week() as $key => $days)
                                                                         <option selected value={{ $key }}>
@@ -302,17 +292,16 @@
                                                             </div>
                                                         </div>
                                                         @error('days[]')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.description') </label>
-                                                                <textarea name="description" id="description"
-                                                                          class="form-control"></textarea>
+                                                                <textarea name="description" id="description" class="form-control"></textarea>
                                                             </div>
                                                         </div>
                                                         @error('description')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -348,18 +337,17 @@
                                                     <div class="form-group">
                                                         <label>@lang('site.cours currency') </label>
                                                         <select name="cours_currency" class="form-control select2"
-                                                                style="width: 100%;">
+                                                            style="width: 100%;">
                                                             @foreach ($cours_currency as $cours_currencys)
                                                                 <option value="{{ $cours_currencys->id }}">
                                                                     {{ $cours_currencys->symbol }}
-                                                                    <- {{ $cours_currencys->currency }}
-                                                                </option>
+                                                                    <- {{ $cours_currencys->currency }} </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                                 @error('cours_currency')
-                                                <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         @endisset
@@ -378,17 +366,16 @@
                                                     <tr>
                                                         <td>
                                                             <div class="demo-checkbox">
-                                                                <input type="checkbox" name="fee[{{  $feeType->id }}]"
-                                                                       id="md_checkbox_{{ $feeType->id }}"
-                                                                       class="chk-col-primary"
-                                                                       @if ($feeType->sponsored == 1)
-                                                                       checked
-                                                                       @endif
-                                                                       onchange='total_coust(@json($fee_type_id));'/>
-                                                                <label for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
+                                                                <input type="checkbox" name="fee[{{ $feeType->id }}]"
+                                                                    id="md_checkbox_{{ $feeType->id }}"
+                                                                    class="chk-col-primary"
+                                                                    @if ($feeType->sponsored == 1) checked @endif
+                                                                    onchange='total_coust(@json($fee_type_id));' />
+                                                                <label
+                                                                    for="md_checkbox_{{ $feeType->id }}">{{ $feeType->fee }}</label>
                                                                 {{-- @if ($feeType->sponsored == 1) --}}
                                                                 @error('fee.*')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                    <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                                 {{-- @error('fee[]')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -401,11 +388,9 @@
                                                     @enderror --}}
                                                         <td>
 
-                                                            <input
-                                                                    class="form-control fee" type="number" step="any"
-
-                                                                    id="fee_value_{{$feeType->id }}"
-                                                                    onchange='total_coust(@json($fee_type_id));'/>
+                                                            <input class="form-control fee" type="number" step="any"
+                                                                id="fee_value_{{ $feeType->id }}"
+                                                                onchange='total_coust(@json($fee_type_id));' />
 
                                                         </td>
                                                     </tr>
@@ -416,7 +401,7 @@
                                                     <td>
                                                         <div>
                                                             <label for="total_coust"
-                                                                   id="total_coust">@lang('site.total_coust')</label>
+                                                                id="total_coust">@lang('site.total_coust')</label>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -454,12 +439,10 @@
     </div>
     </div>
     </section>
-    <!-- // Basic form layout section end -->
     </div>
 @endsection
 @section('script')
-    <script>
-    </script>
+    <script></script>
     <script src="{{ URL::asset('assets/custome_js/cours_.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">

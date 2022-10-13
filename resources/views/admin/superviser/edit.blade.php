@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <label>@lang('site.password')<span class="text-danger">*</span></label>
                                     <input type="password" id="password" name="password" class="form-control"
-                                        placeholder="@lang('site.password')" value="{{ $admin_info['password'] }}">
+                                        {{-- {{dd(show_real_pass($admin_info['password']))}} --}} placeholder="@lang('site.password')" value=''>
 
                                     <span class="text-danger" id="password_"> </span>
                                 </div>
@@ -77,24 +77,24 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <h5>{{$admin_info->getActive()}} <span class="text-danger"></span></h5>
+                                <h5>{{ $admin_info->getActive() }} <span class="text-danger"></span></h5>
                                 <div class="form-group">
                                     <div class="box-controls pull-left">
                                         <label class="switch switch-border switch-success">
-                                            <input type="checkbox" value="1" name="admin_status"
-                                                id="active" @if ($admin_info['admin_status'] ==1) checked @endif  />
+                                            <input type="checkbox" value="1" name="admin_status" id="active"
+                                                @if ($admin_info['admin_status'] == 1) checked @endif />
                                             <span class="switch-indicator"></span>
                                             <label for="switcheryColor4"
-                                                class="card-title ml-1">{{$admin_info->getActive()}}</label>
+                                                class="card-title ml-1">{{ $admin_info->getActive() }}</label>
 
                                             <span class="text-danger" id="active_"> </span>
                                     </div>
                                 </div>
                             </div>
 
-                              
-                          
-                           
+
+
+
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -103,7 +103,10 @@
                                     <select name="role" class="form-control select2" style="width: 100%;">
 
                                         @foreach ($roles as $key => $role)
-                                            <option selected value="{{ $role['name'] }}">
+                                            <option
+                                                @if ($admin_role->count() > 0) @if ($role['name'] == $admin_role[0]) selected @endif
+                                                @endif
+                                                value="{{ $role['name'] }}">
                                                 {{ $role['name'] }}
                                             </option>
                                         @endforeach
@@ -119,7 +122,8 @@
                             </div>
                             <div class="col-md-4">
 
-                                <img id="admin_image_" src="#" alt="your image" hidden />
+                                <img id="admin_image_" src="{{ photos_dir($admin_info['photo']) }}" alt="your image"
+                                    width="150" height="150" />
                             </div>
                         </div>
 

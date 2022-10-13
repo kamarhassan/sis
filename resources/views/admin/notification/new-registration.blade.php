@@ -32,40 +32,44 @@
         </div> --}}
 
         <div class="box-body">
-            <div class="mailbox-controls">
+            @canany(['register order delete all', 'register order deny all', 'register order read all', 'register order
+                aprrove all'])
+                <div class="mailbox-controls">
 
-                <button type="button" class="btn btn-sm checkbox-toggle btn-outline" id="action_after_select"><i
-                        class="ion ion-android-checkbox-outline-blank"></i>
-                </button>
+                    <button type="button" class="btn btn-sm checkbox-toggle btn-outline" id="action_after_select"><i
+                            class="ion ion-android-checkbox-outline-blank"></i>
+                    </button>
+                    {{-- 'register order aprrove','register order deny','see notification' --}}
+                    @can('register order delete all')
+                        <div class="btn-group">
+                            <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.delete all')"
+                                onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','new_regitration_order','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                <i class="ion ion-trash-a"></i>
+                            </a>
+                        </div>
+                    @endcan
 
-                <div class="btn-group">
-                    <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.delete all')"
-                        onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','new_regitration_order','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                        <i class="ion ion-trash-a"></i>
-                    </a>
+
+                    @can('register order read all')
+                        <div class="btn-group">
+                            <a type="button" class="btn btn-outline btn-sm hover-warning" title="@lang('site.mark all as read')"
+                                onclick="submit('{{ route('admin.notification.read.marked') }}','new_regitration_order');">
+                                <i class="fa fa-envelope-open-o"></i>
+                            </a>
+                        </div>
+                    @endcan
+
+                    @can('register order deny all')
+                        <div class="btn-group">
+                            <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.deny')"
+                                onclick="submit('{{ route('admin.notification.deny.marked') }}','new_regitration_order');">
+                                <i class="ti ti-close"></i>
+                            </a>
+                        </div>
+                    @endcan
+
                 </div>
-
-                <div class="btn-group">
-                    <a type="button" class="btn btn-outline btn-sm hover-warning" title="@lang('site.mark all as read')"
-                        onclick="submit('{{ route('admin.notification.read.marked') }}','new_regitration_order');">
-                        <i class="fa fa-envelope-open-o"></i>
-                    </a>
-                </div>
-                {{-- <div class="btn-group">
-                    <a type="button" class="btn btn-outline btn-sm hover-success" title="@lang('site.approved')"
-                        onclick="submit('{{ route('admin.notification.approve.marked') }}','new_regitration_order');">
-                        <i class="ti ti-check"></i>
-                    </a>
-                </div> --}}
-                <div class="btn-group">
-                    <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.deny')"
-                        onclick="submit('{{ route('admin.notification.deny.marked') }}','new_regitration_order');">
-                        <i class="ti ti-close"></i>
-                    </a>
-                </div>
-
-
-            </div>
+            @endcan
             <div class="mailbox-messages">
                 <div class="table-responsive">
                     <form id='new_regitration_order'>
@@ -74,14 +78,17 @@
                             <tbody>
                                 @isset($new_order_registeration)
                                     @foreach ($new_order_registeration as $new_order)
-                                        <tr class="Row{{ $new_order['id'] }}">
+                                        <tr class="Row{{ $new_order['id'] }}" id="Row{{ $new_order['id'] }}">
                                             <td><input type="checkbox" name="order_id[]" value="{{ $new_order['id'] }}">
                                             </td>
                                             <td class="w-80"><a><img class="avatar" src="../images/avatar/2.jpg"
                                                         alt="..."></a></td>
                                             <td>
                                                 {{-- admin.notification.get.user.info --}}
-                                                <a onclick="get_user_info('{{ route('admin.notification.get.user.info', $new_order['id']) }}','{{ csrf_token() }}');"
+                                                <a @can('read only register order') 
+                                                     onclick="get_user_info('{{ route('admin.notification.get.user.info', $new_order['id']) }}','{{ csrf_token() }}');"
+                                                        
+                                                @endcan
                                                     class="mailbox-name hover-primary" data-toggle="modal"
                                                     data-target="#modal-center">
                                                     {{ $new_order['user']['id'] }} # {{ $new_order['user']['name'] }}</a>
@@ -92,13 +99,13 @@
                                             </td>
                                             <td>
                                                 <div class="box-body ribbon-box">
-                                                    @if (is_null($new_order['status']) )
+                                                    @if (is_null($new_order['status']))
                                                         <div class="ribbon ribbon-warning rounded20" id="pending">
                                                             @lang('site.pending')</div>
                                                     @elseif ($new_order['status'] == 1)
                                                         <div class="ribbon ribbon-success rounded20" id="approved">
                                                             @lang('site.approved')</div>
-                                                        @elseif($new_order['status'] == 0)
+                                                    @elseif($new_order['status'] == 0)
                                                         <div class="ribbon ribbon-danger rounded20" id="deny">
                                                             @lang('site.deny')</div>
                                                     @else

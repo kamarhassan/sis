@@ -13,8 +13,8 @@ class FeeTypeSeeder extends Seeder
     public function run()
     {
         Fee_type::create(['fee' => 'Registration Fee','order' => 1 ]);
-        Fee_type::create(['fee' => 'Course Fees','order' => 1 ]);
-        Fee_type::create(['fee' => 'Book','order' => 1 ]);
-        Fee_type::create(['fee' => 'Exam','order' => 1 ]);
+        Fee_type::create(['fee' => 'Course Fees','order' => 2 ]);
+        Fee_type::create(['fee' => 'Book','order' => 3]);
+        Fee_type::create(['fee' => 'Exam','order' => 4 ]);
     }
 }

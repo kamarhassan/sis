@@ -42,7 +42,7 @@
                                             </tr>
 
                                             @foreach ($user_cours as $key => $user_courss)
-                                                <tr class="Row{{ $user_courss['id'] }} ">
+                                                <tr class="Row{{ $user_courss['id'] }} " id="Row{{ $user_courss['id'] }} ">
                                                     <td>{{ $key }}</td>
                                                     {{-- <td>{{ $user_courss['cours_reserved']['id'] }}</td> --}}
                                                     <td>{{ $user_courss['cours_reserved']['grade']['grade'] }}</td>

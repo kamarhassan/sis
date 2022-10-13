@@ -31,9 +31,8 @@ class LoginRequest extends FormRequest
 
 
     public function messages(){
-       return [ 'email.required'=>__('trans.email required'),
+       return[ 'email.required'=>__('trans.email required'),
         'email.email'=>__('trans.email email'),
-
         'password.required'=>__('trans.password required'),
     ];
     }

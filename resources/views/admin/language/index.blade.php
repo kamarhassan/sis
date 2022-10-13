@@ -26,7 +26,7 @@
                     <tbody>
                         @isset($lang)
                             @foreach ($lang as $key => $language)
-                                <tr class="Row{{ $language->id }} ">
+                                <tr class="Row{{ $language->id }} " id="Row{{ $language->id }} ">
                                     <td> {{ $key + 1 }} </td>
                                     <td> {{ $language->name }} </td>
                                     <td> {{ $language->code }} </td>
@@ -110,7 +110,8 @@
     $(document).ready(function() {
     $('#example1').DataTable( {
         // "order": [ 0, 'asc' ]
-        "order": [ '4', 'desc' ] // nb four is column status
+        "order": [ '4', 'desc' ] // nb four is column status,
+        responsive: true,
     } );
 } );
     </script>

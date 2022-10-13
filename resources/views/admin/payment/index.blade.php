@@ -35,13 +35,14 @@
                     <thead>
 
                         <tr>
-                            <th>@lang('site.options')</th>
-                            <th>@lang('site.students id')</th>
+                          
                             <th>@lang('site.student name')</th>
+                            {{-- <th>@lang('site.students id')</th> --}}
                             <th>@lang('site.E-mail')</th>
                             {{-- <th>@lang('site.id')</th> --}}
                             <th>@lang('site.nbumber of cours')</th>
                             <th>@lang('site.students photo')</th>
+                            <th>@lang('site.options')</th>
                         </tr>
 
                     </thead>
@@ -49,6 +50,14 @@
                         @isset($std_registartion)
                             @foreach ($std_registartion as $stduents)
                                 <tr id="Row{{ $stduents->user_id }}" class="bg-light mb-10 p-10 cursor_pointer hover-success">
+                                   
+                                    <td class="col-sm-2">{{ $stduents['student'][0]['name'] }} # {{ $stduents->user_id }}</td>
+                                    {{-- <td class="col-sm-1"></td> --}}
+                                    <td class="col-md-3">{{ $stduents['student'][0]['email'] }}</td>
+                                    <td class="col-md-3">{{ $stduents->total }}</td>
+                                    <td class="col-md-3">
+                                        <img class="avatar avatar-xl avatar-1" {{-- src="{{ photos_dir($stduents->photo) }}" --}} alt="">
+                                    </td>
                                     <td>
                                         <ul>
                                             <li class="list-unstyled">
@@ -64,13 +73,6 @@
                                      <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light"
                                         title="@lang('site.save')"></a> --}}
 
-                                    </td>
-                                    <td class="col-sm-1">{{ $stduents->user_id }}</td>
-                                    <td class="col-sm-2">{{ $stduents['student'][0]['name'] }} </td>
-                                    <td class="col-md-3">{{ $stduents['student'][0]['email'] }}</td>
-                                    <td class="col-md-3">{{ $stduents->total }}</td>
-                                    <td class="col-md-3">
-                                        <img class="avatar avatar-xl avatar-1" {{-- src="{{ photos_dir($stduents->photo) }}" --}} alt="">
                                     </td>
                                 </tr>
                             @endforeach
@@ -100,6 +102,7 @@
                 // scrollX: true,
                 scrollCollapse: true,
                 paging: false,
+                responsive: true,
                 // ajax: '/test/0',
 
             });

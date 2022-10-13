@@ -9,12 +9,16 @@
 
 namespace App\Repository\Cours;
 
+use App\Models\Admin;
+use App\Models\Cours;
+
 use App\Models\Grade;
 use App\Models\level;
-
-use App\Models\Cours;
 use App\Models\CoursFee;
 use App\Models\Currency;
+use StudentsRegistration;
+use Illuminate\Support\Facades\DB;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class CoursRepository implements CoursInterface
 {
@@ -54,6 +58,7 @@ class CoursRepository implements CoursInterface
             'status' => $request->status,
             'teacher_id' => $teacher_id,
             'teacherFee' => $request->teacher_fee,
+            'currencies_id' => $request->cours_currency,
             'description' => $request->description,
             'startTime' => $request->start_time,
             'endTime' => $request->end_time,
@@ -89,6 +94,7 @@ class CoursRepository implements CoursInterface
             'teacherFee' => $request->teacher_fee,
             'description' => $request->description,
             'startTime' => $request->start_time,
+            'currencies_id' => $request->cours_currency,
             'endTime' => $request->end_time,
             'days' => Cours::save_day_of_week($request->days),
             'act_StartDa' => $request->ac_start_date,
@@ -112,8 +118,9 @@ class CoursRepository implements CoursInterface
 
     public function open_and_postopen_cours()
     {
-        return Cours::where('status', 'open')->orWhere('status', 'postopen')->with('grade', 'level')->get();
+        return Cours::where('status', '1')->orWhere('status', '2')->with('grade', 'level')->get();
     }
+
     public function cours_fee_currency($cours_id)
     {
         $cours_fee = CoursFee::where('cours_id', $cours_id)->first();
@@ -123,10 +130,84 @@ class CoursRepository implements CoursInterface
         return false;
     }
 
-    public function cours_theacher_name($cours){
+    public function cours_theacher_name($cours)
+    {
         if (!$cours)
-        return false;
-    return  $theacher_name = $cours->teacher_name;
+            return false;
+        return  $theacher_name = $cours->teacher_name;
     }
 
+    public function count_students_in_cours($cours_id)
+    {
+        if (is_defined($cours_id) != false) {
+            return StudentsRegistration::find($cours_id)->count();
+        }
+        return false;
+    }
+
+    public function cours_of_teacher($teacher_id)
+    {
+        $array_of_data = [
+            'courss.id',
+            'courss.status',
+            'admins.name as teacher_name',
+            'courss.startDate',
+            'courss.endDate',
+            'courss.act_StartDa',
+            'courss.act_EndDa',
+            'courss.startTime',
+            'courss.endTime',
+            'levels.level',
+            'grades.grade',
+             DB::raw("count(studentsregistrations.id) as count_std")
+        ];
+
+        $cours_of_teacher =  Cours::where('teacher_id', $teacher_id)
+            ->JOIN('studentsregistrations', 'courss.id', '=', 'studentsregistrations.cours_id')
+            ->join('grades', 'grade_id', '=', 'grades.id')
+            ->join('levels', 'level_id', '=', 'levels.id')
+            ->JOIN('admins', 'teacher_id', '=', 'admins.id')
+            ->where('year', current_school_year())
+            ->groupby('courss.id')
+            ->orderBy('courss.id', 'asc')
+            ->select($array_of_data)
+            ->get();
+
+        if ($cours_of_teacher)
+            return   $cours_of_teacher;
+        return false;
+    }
+    public function cours_of_teacher_super_admin_loged(array $teacher_id)
+    {
+        // $teacher_with_cours = Admin::with('cours')->whereIn('teacher_id', $teacher_id)->get();
+        $array_of_data = [
+            'courss.id',
+            'courss.status',
+            'admins.name as teacher_name',
+            'courss.startDate',
+            'courss.endDate',
+            'courss.act_StartDa',
+            'courss.act_EndDa',
+            'courss.startTime',
+            'courss.endTime',
+            'levels.level',
+            'grades.grade',
+             DB::raw("count(studentsregistrations.id) as count_std")
+        ];
+        $cours_of_teacher =  Cours::whereIn('teacher_id', $teacher_id)
+        ->JOIN('studentsregistrations', 'courss.id', '=', 'studentsregistrations.cours_id')
+        ->join('grades', 'grade_id', '=', 'grades.id')
+        ->join('levels', 'level_id', '=', 'levels.id')
+        ->JOIN('admins', 'teacher_id', '=', 'admins.id')
+        ->where('year', current_school_year())
+        ->groupby('courss.id')
+        ->orderBy('courss.id', 'asc')
+        ->select($array_of_data)
+        ->get();
+       
+      if ($cours_of_teacher)
+            return   $cours_of_teacher;
+
+        return false;
+    }
 }// end of class

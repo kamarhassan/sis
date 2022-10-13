@@ -15,7 +15,7 @@ class CreateNotificationAdminsTable extends Migration
     {
         Schema::create('notification_admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users');
             $table->integer('order_id');
             $table->string('order_type');
             $table->text('description');

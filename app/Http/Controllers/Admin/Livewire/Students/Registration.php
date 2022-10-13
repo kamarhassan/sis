@@ -100,7 +100,7 @@ class Registration extends Component
 
     public function render()
     {
-        $cours_ = Cours::where(['year' => current_school_year(), 'status' => 'open'])->with('grade', 'level', 'teacher')->get();
+        $cours_ = Cours::where(['year' => current_school_year(), 'status' => 1])->with('grade', 'level', 'teacher')->get();
         // dd($cours_);
         return view('admin.livewire.students.registration', [
             'cours' => $cours_

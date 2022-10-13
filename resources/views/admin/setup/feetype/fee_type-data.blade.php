@@ -18,37 +18,38 @@
                         <th>@lang('site.fee order')</th>
                         {{-- <th>@lang('site.fee value')</th> --}}
                         <th>@lang('site.options')</th>
-                       
+
                     </tr>
                 </thead>
                 <tbody>
                     @isset($fee_type)
                         @foreach ($fee_type as $key => $fee_types)
-                            <tr class="Row{{ $fee_types['id'] }} ">
-                              <td>{{ $fee_types['id'] }}</td>
-                              <td>{{$fee_types['fee']}}</td>
-                              <td>{{$fee_types['order']}}</td>
-                              {{-- <td>{{$fee_types['primary_price']}}</td> --}}
-                              <td>
-                               
-                                        <a class="btn text-success fa fa-pencil hover  hover-primary"
-                                      
-                                            onclick=""
+                            <tr class="Row{{ $fee_types['id'] }} "id="Row{{ $fee_types['id'] }} ">
+                                <td>{{ $fee_types['id'] }}</td>
+                                <td>{{ $fee_types['fee'] }}</td>
+                                <td>{{ $fee_types['order'] }}</td>
+                                {{-- <td>{{$fee_types['primary_price']}}</td> --}}
+                                <td>
+
+                                    @can('edit fee type')
+                                        <a class="btn text-success fa fa-pencil hover  hover-primary" onclick=""
                                             title="@lang('site.edit')">
                                         </a>
-                             
-                            
-                                <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
-                                    title="@lang('site.delete')"
-                                    onclick="delete_by_id('{{ route('admin.setting.fee.delete') }}',{{ $fee_types['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                                </a>
-                            </td>
+                                    @endcan
+
+                                    @can('delete fee type')
+                                        <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
+                                            title="@lang('site.delete')"
+                                            onclick="delete_by_id('{{ route('admin.setting.fee.delete') }}',{{ $fee_types['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                        </a>
+                                    @endcan
+                                </td>
                             </tr>
                         @endforeach
                     @endisset
                 </tbody>
             </table>
-          
+
         </div>
     </div>
 </div>

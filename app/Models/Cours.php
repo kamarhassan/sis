@@ -56,6 +56,13 @@ class Cours extends Model
     }
 
 
+    public  function getStatusAttribute($value)
+    {
+
+        return Statusofcour::find($value)->name;
+    }
+
+
     public static function save_day_of_week($array)
     {
         $string = implode(";", $array);
@@ -101,6 +108,10 @@ class Cours extends Model
     {
         return $this->belongsToMany(User::class, 'studentsregistrations', 'cours_id', 'user_id', 'id', 'id');
     }
+    public function register_students()
+    {
+        return $this->belongsTo(StudentsRegistration::class, 'id', 'cours_id');
+    }
 
 
     public function  fee()
@@ -118,6 +129,6 @@ class Cours extends Model
     public function  fee_with_type_currency()
     {
         return $this->hasMany(CoursFee::class, 'cours_id', 'id')
-            ->with('fee_type','currency');
+            ->with('fee_type', 'currency');
     }
 }

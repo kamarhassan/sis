@@ -2,12 +2,12 @@
     <div class="modal bs-examplemodal-lg  center-modal  modal-primary" id="modal-center" tabindex="-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-            {{-- <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal">
+            <div class="modal-header">
+                {{-- <h5 class="modal-title">Modal title</h5> --}}
+                <a type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
-                </button>
-            </div> --}}
+                </a>
+            </div>
             <div class="modal-body">
 
                 <p id="cours_details">@lang('site.please wait to load cours')</p>

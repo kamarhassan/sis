@@ -43,21 +43,32 @@ class AdminSeeder extends Seeder
             //'roles_name' => ['super-admin'],
             'password' => bcrypt('1234')
         ])->assignRole('super admin');
+       
+        Admin::create([
+            'name' => 'Hassan Kamar',
+            'first_name' => 'Leila',
+            'middle_name' => '-',
+            'last_name' => 'Bartell',
+            'email' => 'Leila@Bartell.com',
+            'admin_status' => '1',
+            'passwordischanged' => 1,
+            //'roles_name' => ['super-admin'],
+            'password' => bcrypt('1234')
+        ])->assignRole('teacher');
 
 
 
 
 
 
-        // for ($i = 0; $i < 15; $i++) {
+         for ($i = 0; $i < 15; $i++) {
 
-        //     Admin::create([
-        //         'name' => $faker->name(),
-        //         'email' => $faker->email(),
-        //         'admin_status' => '1',
-        //         //'roles_name' => ['super-admin'],
-        //         'password' => bcrypt('123456789')
-        //     ])->assignRole('teacher');
-        // }
+             Admin::create([
+                 'name' => $faker->name(),
+                 'email' => $faker->email(),
+                 'admin_status' => '1',
+                 'password' => bcrypt('12345678')
+             ])->assignRole('teacher');
+         }
     }
 }

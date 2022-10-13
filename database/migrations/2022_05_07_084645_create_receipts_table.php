@@ -15,9 +15,9 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('currencies_id')->constrained('currencies')->onUpdate('cascade')->comment('it is the currency of payment ');
-            $table->foreignId('cours_currency_id')->constrained('currencies')->onUpdate('cascade')->comment('it is the currency of cours');
-           // $table->foreignId('cours_fee_id')->constrained('cours_fees')->onUpdate('cascade')->comment('from cours fees ***id***');
+            $table->foreignId('currencies_id')->constrained('currencies')->comment('it is the currency of payment ');
+            $table->foreignId('cours_currency_id')->constrained('currencies')->comment('it is the currency of cours');
+           // $table->foreignId('cours_fee_id')->constrained('cours_fees')->comment('from cours fees ***id***');
             $table->double('amount')->default(0);
             $table->double('other_amount')->default(0);
             $table->double('rate_exchange')->default(1);
@@ -25,8 +25,8 @@ class CreateReceiptsTable extends Migration
             $table->integer('transaction_id')->nullable()->default(null);
             $table->string('description')->nullable()->default(null)->comment('ma3lomet l cours Level ,grade ,user name');
             $table->string('payType')->nullable()->enum('cash', 'check')->default('cash');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
-            $table->foreignId('studentsRegistration_id')->constrained('studentsRegistrations')->onUpdate('cascade')
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('studentsRegistration_id')->constrained('studentsRegistrations')
             ->comment('from students registration table is it ***id***');
 
             $table->bigInteger('checkNum')->nullable()->default(null);

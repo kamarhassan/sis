@@ -15,8 +15,8 @@ class CreateUserServicesTable extends Migration
     {
         Schema::create('user_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained('services')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
+            $table->foreignId('service_id')->constrained('services');
+            $table->foreignId('user_id')->constrained('users');
             $table->double('amount')->nullable();
             $table->double('paid_amount')->nullable();
             $table->double('remaining')->nullable();

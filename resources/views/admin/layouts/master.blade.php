@@ -14,9 +14,7 @@
 
 
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}">
-
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
-
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}">
 
     @yield('css')
@@ -99,8 +97,9 @@
 
 {{-- @if (get_Default_language() == 'ar') --}}
 
-<body id="body_master"
-    class="hold-transition
+<body id="body_master" 
+{{-- oncontextmenu="return false;" --}}
+    class="hold-transition 
         @if (Session::has('mode')) {{ Session::get('mode') . '-skin' }}
         @else
         dark-skin @endif
@@ -117,11 +116,10 @@
         @include('admin.layouts.header')
         @include('admin.layouts.navbar_container')
         <div class="content-wrapper">
-            <div class="container-full">
+            <div class="container-full" style="padding:top 2%">
               
 
-
-                   
+                <section class="content">
                 @yield('content')
                 {{-- @include('admin.layouts.footer'); --}}
                 </section>

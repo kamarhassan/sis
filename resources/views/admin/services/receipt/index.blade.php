@@ -52,7 +52,7 @@
                 <tbody>
                     @isset($service_repceit)
                         @foreach ($service_repceit as $service_repceits)
-                            <tr class="Row{{ $service_repceits['id'] }}">
+                            <tr class="Row{{ $service_repceits['id'] }}" id="Row{{ $service_repceits['id'] }}">
                                 <td>{{ $service_repceits['id'] }}</td>
                                 <td>
                                    <span class="text-wrap"> {{ $service_repceits['client']['id'] }} # {{ $service_repceits['client']['name'] }}</span>
@@ -73,17 +73,24 @@
                                         {{ $service_repceits['services_currency']['abbr'] }}</span></td>
                                 <td>{{ $service_repceits['created_at']->format('d-m-Y') }}</td>
                                 <td>
-                                    <a href="{{route('admin.service.get_old_payment.edit',$service_repceits['id'])}}"
-                                        class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')">
-                                    </a>
-                                    <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
-                                        title="@lang('site.delete')"
-                                        onclick="delete_by_id('{{ route('admin.service.delete_payment_receipt') }}',{{ $service_repceits['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');"
-                                        >
-                                    </a>
-                                    <a href="{{route('admin.payment.service.receipt',$service_repceits['id'])}}"
-                                        class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')">
-                                    </a>
+                                   
+                                    @can ('edit old services receipt') 
+                                        <a href="{{route('admin.service.get_old_payment.edit',$service_repceits['id'])}}"
+                                            class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')">
+                                        </a>
+                                    @endcan
+                                    @can ('delete old services receipt') 
+                                        <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
+                                            title="@lang('site.delete')"
+                                            onclick="delete_by_id('{{ route('admin.service.delete_payment_receipt') }}',{{ $service_repceits['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');"
+                                            >
+                                        </a>
+                                    @endcan
+                                    @can ('print old services receipt') 
+                                        <a href="{{route('admin.payment.service.receipt',$service_repceits['id'])}}"
+                                            class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')">
+                                        </a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
@@ -113,6 +120,7 @@
                 scrollY: "400px",
                 // scrollX: true,
                 // scrollCollapse: true,
+                responsive: true,
                 paging: false,
                 // ajax: '/test/0',
 

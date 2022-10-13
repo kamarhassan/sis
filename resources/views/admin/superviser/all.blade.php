@@ -66,16 +66,17 @@
                                         @endisset
                                     </td>
                                     <td>
-                                        {{-- admin.supervisor.edit --}}
-                                        <a href="{{route('admin.supervisor.edit',$admin_info['id'])}}" class="btn fa fa-edit" title="@lang('site.edit')">
+                                        @can('edit supervisor')
+                                            <a href="{{ route('admin.supervisor.edit', $admin_info['id']) }}" class="btn fa fa-edit"
+                                                title="@lang('site.edit')">
+                                            </a>
+                                        @endcan
+                                        @can('delete supervisor')
+                                            <a title="@lang('site.delete')" class="btn  glyphicon glyphicon-trash hover-danger"
+                                                onclick="delete_by_id('{{ route('admin.supervisor.delete.supervisor') }}',{{ $admin_info['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
 
-                                        </a>
-                                
-
-                                        <a title="@lang('site.delete')" class="btn  glyphicon glyphicon-trash hover-danger"
-                                            onclick="delete_by_id('{{ route('admin.supervisor.delete.supervisor') }}',{{ $admin_info['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-
-                                        </a>
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
@@ -106,6 +107,7 @@
                 scrollCollapse: true,
                 paging: false,
                 info: false,
+                responsive: true,
                 // ajax: '/test/0',
 
             });

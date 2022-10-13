@@ -32,13 +32,11 @@ class CoursController extends Controller
         Fee_TypeInterface $feetype,
         CoursFeeInterface $coursfee,
         AdminInterface $teacher
-    )
-    {
+    ) {
         $this->cours = $cours;
         $this->feetype = $feetype;
         $this->coursfee = $coursfee;
         $this->teacher = $teacher;
-        
     }
 
 
@@ -156,7 +154,9 @@ class CoursController extends Controller
             // $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
             $teacher_id = Admin::GetIdByName($request->teacher_name);
             $this->cours->update_cours($request, $teacher_id, $id);
-            $cours_fee = $this->coursfee->update_fee_cours($request->fee, $id, $request->cours_currency);
+            if ($request->has('fee')) {
+                $cours_fee = $this->coursfee->update_fee_cours($request->fee, $id, $request->cours_currency);
+            }
             toastr()->success(__('site.Post created successfully!'));
             return redirect()->route('admin.cours.all');
         } catch (\Throwable $th) {

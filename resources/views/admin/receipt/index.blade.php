@@ -52,7 +52,7 @@
                 <tbody>
                     @isset($receipt)
                         @foreach ($receipt as $receipts)
-                            <tr class="Row{{ $receipts['id'] }}">
+                            <tr class="Row{{ $receipts['id'] }}" id="Row{{ $receipts['id'] }}">
                                 <td>{{ $receipts['id'] }}</td>
                                 <td>{{ $receipts['students']['id'] }} # {{ $receipts['students']['name'] }}</td>
                                 <td>
@@ -64,16 +64,24 @@
                                         {{ $receipts['cours_currency']['abbr'] }}</span></td>
                                 <td>{{ $receipts['created_at']->format('d-m-Y') }}</td>
                                 <td>
-                                    <a href="{{ route('admin.students.payment.edit', $receipts['id']) }}"
-                                        class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')">
-                                    </a>
-                                    <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
-                                        title="@lang('site.delete')"
-                                        onclick="delete_by_id('{{ route('admin.students.delete_payment_receipt') }}',{{ $receipts['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                                    </a>
-                                    <a href="{{ route('admin.payment.receipt', [encrypt($receipts['students']['id']), encrypt($receipts['StdRegistration']['cours']['id']), $receipts['id']]) }}"
-                                        class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')">
-                                    </a>
+
+
+                                    @can('edit old payment students')
+                                        <a href="{{ route('admin.students.payment.edit', $receipts['id']) }}"
+                                            class="btn text-success fa fa-pencil hover  hover-primary" title="@lang('site.edit')">
+                                        </a>
+                                    @endcan
+                                    @can('delete old payment students')
+                                        <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
+                                            title="@lang('site.delete')"
+                                            onclick="delete_by_id('{{ route('admin.students.delete_payment_receipt') }}',{{ $receipts['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                        </a>
+                                    @endcan
+                                    @can('print old payment students')
+                                        <a href="{{ route('admin.payment.receipt', [encrypt($receipts['students']['id']), encrypt($receipts['StdRegistration']['cours']['id']), $receipts['id']]) }}"
+                                            class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')">
+                                        </a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
@@ -103,6 +111,7 @@
                 scrollY: "400px",
                 // scrollX: true,
                 // scrollCollapse: true,
+                responsive: true,
                 paging: false,
                 // ajax: '/test/0',
 

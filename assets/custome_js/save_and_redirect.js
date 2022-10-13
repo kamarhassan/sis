@@ -13,7 +13,7 @@ function submit(route_, form_id) {
         contentType: false,
         cache: false,
         success: function (data) {
-            console.log(data)
+            // console.log(data)
             if (data.status == 'success') {
                 toastr.success(data.message)
                 window.location.href = data.route;

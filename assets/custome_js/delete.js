@@ -26,7 +26,7 @@ function delete_notification_admin_selected(route_, form_id, token_, array_of_ms
                     data: formdata,
                     success: function (data) {
                         if (data.status == 'success') {
-                            $('.Row' + id_delet).remove();
+                            $('#Row' + id_delet).remove();
                             Swal.fire(
                                 msg['deleted_msg'],
                                 msg['succes_msj'],

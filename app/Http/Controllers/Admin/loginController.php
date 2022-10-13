@@ -30,7 +30,8 @@ class loginController extends Controller
                 
                 return redirect()->route('admin.dashborad');
             }
-            return redirect()->route('get.admin.login');
+            return redirect()->route('get.admin.login')->with(['error_login'=>__('site.error login')]);
+        
         } catch (\Throwable $th) {
             throw $th;
         }

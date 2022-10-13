@@ -5,9 +5,9 @@
         <div class="modal-content">
             {{-- <div class="modal-header"> --}}
             {{-- <h5 class="modal-title">Modal title</h5> --}}
-            <button type="button" class="close" data-dismiss="modal">
+            <a type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
-            </button>
+            </a>
             {{-- </div> --}}
             <div class="modal-body">
                 <div class="" style="background-image: {{ URL::asset('assets/images/users/team-2.jpg') }};"
@@ -50,39 +50,43 @@
                 <form id="user_registration" method="POST"
                     action="{{ route('admin.notification.approve.edit.register') }}">
                     @csrf
-                
+
                     <input hidden name="order_id[]" id="order_id">
                     <input hidden name="user_id" id="user_id">
                     <input hidden name="cours_id" id="cours_id">
 
 
-               
-
-                <div class="mailbox-controls ">
-                    <div class="btn-group">
-                        <a type="button" class="text-white btn btn-outline btn-sm hover-danger"
-                            title="@lang('site.delete all')"
-                            onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','user_registration','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                            <i class="ion ion-trash-a"></i>
-                        </a>
+                    <div class="mailbox-controls ">
+                        @can('register order delete')
+                            <div class="btn-group">
+                                <a type="button" class="text-white btn btn-outline btn-sm hover-danger"
+                                    title="@lang('site.delete all')"
+                                    onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','user_registration','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                    <i class="ion ion-trash-a"></i>
+                                </a>
+                            </div>
+                        @endcan
+                        @can('register order aprrove')
+                            <div class="btn-group">
+                                <button type="submit"
+                                    class="text-white btn btn-outline btn-sm hover-success"title="@lang('site.approved')">
+                                    <i class="ti ti-check"></i>
+                                </button>
+                            </div>
+                        @endcan
+                        @can('register order deny')
+                            <div class="btn-group">
+                                <a type="button" class="text-white btn btn-outline btn-sm hover-danger"
+                                    title="@lang('site.deny')"
+                                    onclick="submit('{{ route('admin.notification.deny.marked') }}','user_registration');">
+                                    <i class="ti ti-close"></i>
+                                </a>
+                            </div>
+                        @endcan
                     </div>
-                    <div class="btn-group">
-                        <button type="submit"
-                            class="text-white btn btn-outline btn-sm hover-success"title="@lang('site.approved')">
-                            <i class="ti ti-check"></i>
-                        </button>
-                    </div>
-                    <div class="btn-group">
-                        <a type="button" class="text-white btn btn-outline btn-sm hover-danger"
-                            title="@lang('site.deny')"
-                            onclick="submit('{{ route('admin.notification.deny.marked') }}','user_registration');">
-                            <i class="ti ti-close"></i>
-                        </a>
-                    </div>
-
- </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>

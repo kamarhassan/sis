@@ -14,98 +14,107 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-<div class="row">
-  <div class="col-12 col-lg-5 col-xl-6">
-                    <form method="post" action="{{ route('admin.level.store') }}">
-                        @csrf
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="add_item">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <h5>@lang('site.levels') <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <input type="text" name="level[]" class="form-control">
-                                                </div>
-                                            </div>
-                                            @error('levelss[]')
-                                                <span class="text-danger">{{ $message }} </span>
-                                            @enderror
-                                        </div><!-- End col-md-5 -->
-                                        <div class="col-md-2" style="padding-top: 25px;">
-                                            <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
-                                            </span>
-                                        </div><!-- End col-md-5 -->
-                                    </div> <!-- end Row -->
-                                </div> <!-- // End add_item -->
-                                <div class="text-xs-right">
-                                    <input type="submit" class="btn btn-rounded btn-info mb-5" value="@lang('site.save')">
-                                </div>
-                            </div>
+            <div class="row">
+               @can ('create levels') 
+                 <div class="col-12 col-lg-5 col-xl-6">
+                     <form method="post" action="{{ route('admin.level.store') }}">
+                         @csrf
+                         <div class="row">
+                             <div class="col-12">
+                                 <div class="add_item">
+                                     <div class="row">
+                                         <div class="col-md-5">
+                                             <div class="form-group">
+                                                 <h5>@lang('site.levels') <span class="text-danger">*</span></h5>
+                                                 <div class="controls">
+                                                     <input type="text" name="level[]" class="form-control">
+                                                 </div>
+                                             </div>
+                                             @error('levelss[]')
+                                                 <span class="text-danger">{{ $message }} </span>
+                                             @enderror
+                                         </div><!-- End col-md-5 -->
+                                         <div class="col-md-2" style="padding-top: 25px;">
+                                             <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
+                                             </span>
+                                         </div><!-- End col-md-5 -->
+                                     </div> <!-- end Row -->
+                                 </div> <!-- // End add_item -->
+                                 <div class="text-xs-right">
+                                     <input type="submit" class="btn btn-rounded btn-info mb-5" value="@lang('site.save')">
+                                 </div>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+               @endcan
+        
+            @canany(['edit levels','delete levels']) 
+                   <div class="col-12 col-lg-5 col-xl-6">
+                        <div class="table-responsive">
+                            <table id="example1" class="table  table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>@lang('site.level') </th>
+                                        <th>@lang('site.options') </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @isset($level)
+                                        @foreach ($level as $key => $levels)
+                                            {{-- <form method="post" id="levels_data" action="{{ route('admin.levels.update') }}"> --}}
+                                            <tr class="Row{{ $levels->id }} " id="Row{{ $levels->id }} ">
+    
+                                                @csrf
+                                                <td> {{ $key + 1 }} </td>
+                                                <td>
+                                                    <label id="label_{{ $levels->id }}">
+                                                        <span> {{ $levels->level }}</span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                   @can('edit levels')  
+                                                     <a token="{{ csrf_token() }}"
+                                                         onclick="change_to_update_level({{ $levels->id }},'{{ $levels->level }}','{{ route('admin.level.update') }}', '{{ csrf_token() }}');"
+                                                         class="btn fa fa-edit" title="@lang('site.edit')"
+                                                         id="btn_editable_{{ $levels->id }}">
+                                                         {{-- @lang('site.edit') --}}
+                                                     </a>
+                                                   @endcan
+                                                
+                                                   @can ('delete levels') 
+                                                     <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
+                                                         title="@lang('site.delete')"
+                                                         onclick="delete_by_id('{{ route('admin.level.delet') }}',{{ $levels->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+     
+     
+                                                     </a>
+                                                   @endcan
+                                                    {{-- <a token="{{ csrf_token() }}" lang_id="{{ $levels->id }}"
+                                                        class="delete_btn btn btn-close btn-danger btn-round fa fa-times"
+                                                        title="@lang('site.delete')"
+                                                        onclick=" delete_by_id_test('{{ json_encode(swal_fire_msg()) }}');">
+    
+    
+                                                    </a> --}}
+    
+                                                </td>
+    
+                                            </tr>
+                                        @endforeach
+                                    @endisset
+    
+    
+                                </tbody>
+    
+                            </table>
                         </div>
-                    </form>
-                </div>
-                <div class="col-12 col-lg-5 col-xl-6">
-                    <div class="table-responsive">
-                        <table id="example1" class="table  table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>@lang('site.level') </th>
-                                    <th>@lang('site.options') </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @isset($level)
-                                    @foreach ($level as $key => $levels)
-                                        {{-- <form method="post" id="levels_data" action="{{ route('admin.grades.update') }}"> --}}
-                                        <tr class="Row{{ $levels->id }} " id="Row{{ $levels->id }} ">
-
-                                            @csrf
-                                            <td> {{ $key + 1 }} </td>
-                                            <td>
-                                                <label id="label_{{ $levels->id }}">
-                                                    <span> {{ $levels->level }}</span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a token="{{ csrf_token() }}"
-                                                    onclick="change_to_update_level({{ $levels->id }},'{{ $levels->level }}','{{ route('admin.level.update') }}', '{{ csrf_token() }}');"
-                                                    class="btn fa fa-edit" title="@lang('site.edit')"
-                                                    id="btn_editable_{{ $levels->id }}">
-                                                    {{-- @lang('site.edit') --}}
-                                                </a>
-
-                                                <a token="{{ csrf_token() }}" class="btn  glyphicon glyphicon-trash"
-                                                    title="@lang('site.delete')"
-                                                    onclick="delete_by_id('{{ route('admin.level.delet') }}',{{ $levels->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-
-
-                                                </a>
-                                                {{-- <a token="{{ csrf_token() }}" lang_id="{{ $grades->id }}"
-                                                    class="delete_btn btn btn-close btn-danger btn-round fa fa-times"
-                                                    title="@lang('site.delete')"
-                                                    onclick=" delete_by_id_test('{{ json_encode(swal_fire_msg()) }}');">
-
-
-                                                </a> --}}
-
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-                                @endisset
-
-
-                            </tbody>
-
-                        </table>
+    
                     </div>
-
+    
                 </div>
-
-            </div>
+            @endcan
             <!-- /.row -->
         </div>
         <!-- /.box-body -->
@@ -161,7 +170,13 @@
                 $(this).closest(".delete_whole_extra_item_add").remove();
                 counter -= 1
             });
+            // var table = $('#example1').DataTable({
 
+            //       responsive: true,
+
+            //       // ajax: '/test/0',
+
+            //   });
         });
     </script>
 

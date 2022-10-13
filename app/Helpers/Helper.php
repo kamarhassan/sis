@@ -7,17 +7,16 @@ use Illuminate\Support\Str;
 use App\Models\NotificationAdmin;
 use Illuminate\Support\Facades\Config;
 use App\Repository\AdminNotification\AdminNotificationRepository;
-
-
-
-
-
+use Illuminate\Contracts\Encryption\DecryptException;
 
 function show_real_pass($hash_password)
 {
-    return  $hash_password;
-    return decrypt($hash_password);
-    // return Crypt::decryptString($hash_password);
+   
+    try {
+       return  decrypt( $hash_password);
+    } catch (Illuminate\Contracts\Encryption\DecryptException $e) {
+        
+    }
 }
 function pagination_count()
 {
@@ -102,14 +101,13 @@ function  swal_fire_msg()
        'not_any_selection'=> __('site.select_at_least_one_to_delete'),
     ];
 }
+
 function  photos_dir($photoUrl)
 {
     if ($photoUrl != "")
         return  URL::asset($photoUrl);
     else   return URL::asset('assets\images\avatar\avatar-1.png');
 
-
-    // assets\images\avatar\avatar-1.png
 }
 
 function array_to_string($array)

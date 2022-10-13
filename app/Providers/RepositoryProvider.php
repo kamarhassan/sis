@@ -10,7 +10,9 @@ use App\Repository\Cours\CoursInterface;
 use phpDocumentor\Reflection\Types\This;
 use App\Repository\Admin\AdminRepository;
 use App\Repository\Cours\CoursRepository;
+use App\Repository\Reports\ReportInterface;
 use App\Repository\Payment\PaymentInterface;
+use App\Repository\Reports\ReportRepository;
 use App\Repository\Payment\PaymentRepository;
 use App\Repository\Fee_Type\Fee_TypeInterface;
 use App\Repository\Students\StudentsInterface;
@@ -22,6 +24,10 @@ use App\Repository\RegisterCours\RegisterCoursInterface;
 use App\Repository\RegisterCours\RegisterCoursRepository;
 use App\Repository\AdminNotification\AdminNotificationInterface;
 use App\Repository\AdminNotification\AdminNotificationRepository;
+// use App\Repository\Reports\cours_reports\CoursAccountingSummaryInterface;
+// use App\Repository\Reports\cours_reports\CoursAccountingSummaryRepository;
+// use App\Repository\Reports\unpaid_reports\UnpaidAccountingSummaryInterface;
+// use App\Repository\Reports\unpaid_reports\UnpaidAccountingSummaryRepository;
 
 class RepositoryProvider extends ServiceProvider
 {
@@ -41,7 +47,10 @@ class RepositoryProvider extends ServiceProvider
        $this->app->bind(AdminNotificationInterface::class,AdminNotificationRepository::class);
        $this->app->bind(UserInterface::class,UserRepository::class);
        $this->app->bind(PaymentInterface::class,PaymentRepository::class);
-       
+       $this->app->bind(ReportInterface::class,ReportRepository::class);
+    //    $this->app->bind(UnpaidAccountingSummaryInterface::class,UnpaidAccountingSummaryRepository::class);
+    //    $this->app->bind(CoursAccountingSummaryInterface::class,CoursAccountingSummaryRepository::class);
+      
     }
  
     /**

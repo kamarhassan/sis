@@ -7,11 +7,11 @@ function get_permission(route_, token_) {
             // 'id': id,
         },
         success: function (data) {
-            console.log(data['status'])
+            // console.log(data['status'])
             if (data['status'] == 'success') {
                 $('#modal-center').modal('show');
                 // set_tab_name(data.tab_name, data.permission);
-                set_permission_info_into_modal(data['permissions'], data['role_id'], data['role_name'])
+                set_permission_info_into_modal(data['permissions_for_role'], data['role_id'], data['role_name'], data['all_permissions_id'])
                 //    set_services_info_into_modal(data)
                 //    $('#modal-center').modal('show')
             } else {
@@ -26,16 +26,16 @@ function get_permission(route_, token_) {
 }
 
 
-function update_permission_for_role(route_) {
-
-    var formdata = $("#update_permission_for_role").serializeArray();
-    // console.table(formdata);
+function update_permission_for_role(route_, formdata_id) {
+    // alert(1);
+    var formdata = $('#'+formdata_id).serializeArray();
+    console.log(formdata);
+  
     $.ajax({
         type: 'POST',
         url: route_,
         data: formdata,
         success: function (data) {
-
             console.table(data);
             if (data.status == 'success') {
                 toastr.success(data.message)
@@ -58,20 +58,19 @@ function update_permission_for_role(route_) {
 }
 
 
-function set_permission_info_into_modal(data, role_id, role_name) {
-    var permision;
+function set_permission_info_into_modal(data, role_id, role_name, all_permissions_id) {
+
     $("#role_id").val(role_id);
     $("#role_name").val(role_name);
 
     $("#update_role").attr("hidden", false);
     $("#new_role").attr("hidden", true);
 
+    $.each(all_permissions_id, function (key, val) {
+        $('#md_checkbox_' + val['id']).prop('checked', false);
+    })
     $.each(data, function (key, val) {
-
-        permision = val['name'];
-        //  if(permision.indexOf('levels') > 0)
-        $('#' + permision).prop('checked', true);
-        // $('#' + key + '_').text(val[0]).html;
+        $('#md_checkbox_' + val['id']).prop('checked', true);
     })
 
 }

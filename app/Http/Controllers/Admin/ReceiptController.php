@@ -26,7 +26,7 @@ class ReceiptController extends Controller
     public function receipt($user_id, $cours_id, $receipt_id)
     {
         try {
-            //code...
+            //  decrypt($cours_id) ." \n".decrypt($user_id);
             $receipt_id = $receipt_id;
             // $init_amount = $init_amount;
             $std = StudentsRegistration::where([
@@ -64,7 +64,7 @@ class ReceiptController extends Controller
                 $contains1 = Str::contains(url()->previous(), 'payment');
                 $contains2 = Str::contains(url()->previous(), 'edit-old-payment');
                 if ($contains1 ||$contains2)
-                  Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
+                //   Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
 
                 if (Mail::failures()) {
                     // toastr()->error(__('site.eror in sending email'));
@@ -72,13 +72,14 @@ class ReceiptController extends Controller
                 } else {
                     return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
                 }
+
             } else {
-                toastr()->error(__('site.this registration not found'));
+                toastr()->error(__('site.eror in sending email'));
                 return redirect()->route('admin.students.get_std_to_payment');
             }
         } catch (\Throwable $th) {
-            // throw $th;
-            toastr()->error(__('site.you have error'));
+            //  throw $th;
+            toastr()->error(__('site.eror in sending email'));
             return redirect()->route('admin.students.get_std_to_payment');
         }
 
