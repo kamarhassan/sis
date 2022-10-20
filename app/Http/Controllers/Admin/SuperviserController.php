@@ -156,8 +156,8 @@ class SuperviserController extends Controller
     {
         $roles = Role::all();
         $admin_info = Admin::find($request->admin_id);
-          $admin_role  =   $admin_info->getRoleNames();
-        return view('admin.superviser.edit', compact('roles', 'admin_info','admin_role'));
+        $admin_role  =   $admin_info->getRoleNames();
+        return view('admin.superviser.edit', compact('roles', 'admin_info', 'admin_role'));
     }
 
     public function update_info(UpdateInfoAdminRequest $request)
@@ -177,8 +177,10 @@ class SuperviserController extends Controller
                 } else {
                     $admin_logged->admin_status = 1;
                 }
-                if ($request->has('photo'))
+                if ($request->has('photo')) {
+                    $this->removeImagefromfolder($admin_logged->photo);
                     $admin_logged->photo = $this->saveImage($request->photo, 'public/images/admin');
+                }
 
                 if ($request->has('password'))
                     $admin_logged->password = bcrypt($request->password);

@@ -120,11 +120,13 @@
                                     <input type='file' name="photo" onchange="readURL(this);" />
                                 </div>
                             </div>
+                            <span class="text-danger" id="photo_"> </span>
                             <div class="col-md-4">
 
                                 <img id="admin_image_" src="{{ photos_dir($admin_info['photo']) }}" alt="your image"
                                     width="150" height="150" />
                             </div>
+
                         </div>
 
                     </div>

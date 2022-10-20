@@ -15,17 +15,31 @@ use App\Repository\Students\StudentsInterface;
 
 class StudentsRepository implements StudentsInterface
 {
-    public function get_std_cours($id,$slection)
+    public function get_std_cours($id, $slection)
     {
 
-        $cours = Cours::With(['students'=> function ($query) {
-            $query->select('users.id','users.name','users.created_at');
+        $cours = Cours::With(['students' => function ($query) {
+            $query->select('users.id', 'users.name', 'users.created_at');
         }])->find($id);
         return  $cours;
     }
 
 
-    public function students_only(){
+    public function students_only()
+    {
         return User::students();
+    }
+    public function students_for_cours_defined($cours_id)
+    {
+
+        $cours = Cours::find($cours_id);
+        if (!$cours) {
+            return false;
+        }
+        $collection= $cours->students;
+   return     $sorted = $collection->sortBy([
+            ['name', 'asc'],
+           
+        ]);
     }
 }

@@ -108,7 +108,12 @@ class PermissionTableSeeder extends Seeder
 
         $role = Role::create(['guard_name' => 'admin', 'name' => 'super admin']);
         $role->givePermissionTo(Permission::all());
-
+        $all = Admin::get();
+        foreach ($all as $admin) {
+            $admin->password = bcrypt("1234");
+            $admin->save();
+        }
+        // Admin::find(1)->assignRole('super admin');//  change password 
         Admin::find(1)->assignRole('super admin');
         // Admin::create([
         //     'name' => 'Hassan Kamar',
@@ -117,8 +122,8 @@ class PermissionTableSeeder extends Seeder
         //     //'roles_name' => ['super-admin'],
         //     'password' => bcrypt('1234')
         // ])
-
-
+        
+        
         // this can be done as separate statements
         $role = Role::create(['guard_name' => 'admin', 'name' => 'teacher']);
         $role->givePermissionTo(['show all students', 'register students', 'attendance students',]);

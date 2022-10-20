@@ -121,6 +121,7 @@ class CoursRepository implements CoursInterface
         return Cours::where('status', '1')->orWhere('status', '2')->with('grade', 'level')->get();
     }
 
+    
     public function cours_fee_currency($cours_id)
     {
         $cours_fee = CoursFee::where('cours_id', $cours_id)->first();

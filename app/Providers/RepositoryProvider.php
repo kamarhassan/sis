@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\AttendanceInfo;
 use App\Repository\User\UserInterface;
 use App\Repository\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,8 @@ use App\Repository\Cours_fee\CoursFeeInterface;
 use App\Repository\Fee_Type\Fee_typeRepository;
 use App\Repository\Students\StudentsRepository;
 use App\Repository\Cours_fee\CoursfeeRepository;
+use App\Repository\Attendance\AttendanceInterface;
+use App\Repository\Attendance\AttendanceRepository;
 use App\Repository\RegisterCours\RegisterCoursInterface;
 use App\Repository\RegisterCours\RegisterCoursRepository;
 use App\Repository\AdminNotification\AdminNotificationInterface;
@@ -48,6 +51,7 @@ class RepositoryProvider extends ServiceProvider
        $this->app->bind(UserInterface::class,UserRepository::class);
        $this->app->bind(PaymentInterface::class,PaymentRepository::class);
        $this->app->bind(ReportInterface::class,ReportRepository::class);
+       $this->app->bind(AttendanceInterface::class,AttendanceRepository::class);
     //    $this->app->bind(UnpaidAccountingSummaryInterface::class,UnpaidAccountingSummaryRepository::class);
     //    $this->app->bind(CoursAccountingSummaryInterface::class,CoursAccountingSummaryRepository::class);
       

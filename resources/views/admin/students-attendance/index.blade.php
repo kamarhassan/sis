@@ -31,7 +31,7 @@
                     <tbody>
                         @isset($cours)
                             @foreach ($cours as $key => $cour)
-                                <tr id="Row{{  $cour['id']}} " class="hover-success">
+                                <tr id="Row{{ $cour['id'] }} " class="hover-success">
                                     <td onclick='test();'> {{ $cour['id'] }}</td>
                                     <td>{{ $cour['grade'] }} # {{ $cour['level'] }}</td>
                                     {{-- <td>{{ $cour['teacher_name'] }} </td> --}}
@@ -41,18 +41,25 @@
                                     <td> {{ $cour['startTime'] }} </td>
                                     <td> {{ $cour['endTime'] }} </td>
                                     <td> {{ $cour['count_std'] }} </td>
-                                    <td> <a href=""
-                                        class="btn text-warning glyphicon glyphicon-pencil  hover-primary" title="@lang('site.print')">
-                                    </a> </td>
+                                    <td>
+                                        <div class="row">
+                                            <a href="{{ route('admin.attendance.general.info', $cour['id']) }}"
+                                                class="btn text-warning glyphicon glyphicon-pencil  hover-primary"
+                                                title="@lang('site.print')">
+                                            </a>
+                                            @role('super admin')
+                                                <a href="{{ route('admin.report.attendance', $cour['id']) }}"
+                                                    class="btn text-warning glyphicon glyphicon-print hover-report   hover-primary"
+                                                    title="@lang('site.print')">
+                                                </a>
+                                            @endrole
+                                        </div>
 
-
+                                    </td>
                                 </tr>
                             @endforeach
                         @endisset
-
-
                     </tbody>
-
                 </table>
             </div>
         </div>
@@ -62,25 +69,25 @@
 
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        // $('#spinner_loading').css("display", "none");
+    <script>
+        $(document).ready(function() {
+            // $('#spinner_loading').css("display", "none");
 
-        // $('#attendance').removeAttr('hidden');
-        var table = $('#attendance').DataTable({
-            order: [
-                [0, 'desc']
-            ],
-            // scrollY: "400px",
-            // scrollX: true,
-            responsive: true,
-            // scrollCollapse: true,
-            paging: false,
-            // ajax: '/test/0',
+            // $('#attendance').removeAttr('hidden');
+            var table = $('#attendance').DataTable({
+                order: [
+                    [0, 'desc']
+                ],
+                // scrollY: "400px",
+                // scrollX: true,
+                responsive: true,
+                // scrollCollapse: true,
+                paging: false,
+                // ajax: '/test/0',
 
+            });
         });
-    });
-</script>
+    </script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
 @endsection

@@ -11,11 +11,8 @@ function get_report(route_) {
         success: function (data) {
             //   remove_loading_showing_table();
             if (data['notification'].status == 'success') {
-
                 remove_loading_showing_table();
                 set_data_by_mode(data['mode'], JSON.parse(data['dataset']), data['title'])
-
-                // toastr.success(data['notification'].message)
             } else {
                 if (data['notification'].status == 'error') {
                     // toastr.error(data['notification'].message);

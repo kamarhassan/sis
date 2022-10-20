@@ -22,7 +22,7 @@
                             <th>@lang('site.start time') </th>
                             <th>@lang('site.actually end date') </th>
                             <th>@lang('site.end time') </th>
-                            <th>@lang('site.std count') </th>
+                            {{-- <th>@lang('site.std count') </th> --}}
                             <th>@lang('site.options') </th>
                         </tr>
                     </thead>
@@ -32,13 +32,13 @@
                                 <tr id="Row{{ $cour->id }} " class="hover-success">
                                     <td onclick='test();'> {{ $key }}</td>
                                     <td>{{ $cour->grade }}, {{ $cour->level }} </td>
-                                    <td> {{ $cour->status }} </td>
+                                    <td> {{ $cour->status }}</td>
                                     <td> {{ $cour->name }} </td>
                                     <td> {{ $cour->act_StartDa }} </td>
                                     <td> {{ $cour->startTime }} </td>
                                     <td> {{ $cour->act_EndDa }} </td>
                                     <td> {{ $cour->endTime }} </td>
-                                    <td>add students count</td>
+                                    {{-- <td>add students count</td> --}}
                                     {{-- <td> {{ $cour->getActive() }} </td> --}}
                                     <td>
 

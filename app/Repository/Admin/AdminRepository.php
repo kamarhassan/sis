@@ -23,7 +23,7 @@ class AdminRepository implements AdminInterface
     }
     public function  all_teacher_id()
     {
-        return   Admin::role('teacher')->get('id');
+        return   Admin::role('teacher')->get('id')->toArray();
     }
    
 }// end of class

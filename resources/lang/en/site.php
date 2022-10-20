@@ -289,6 +289,6 @@ return [
     'success update password' => 'Password has been modified',
     'retype same password' => 'Retype the same password',
     'your account is inactive'  => 'Your account is not activated, please contact the administrator if you want to activate the account',
-
+    'max number of hours for attendance'  => 'يجب ان لا يتعدى عدد الحصص الاجمالي',
 
 ];

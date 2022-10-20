@@ -305,13 +305,18 @@ return [
     'Receipt Report course accounting details' => 'cours accounting details',
     'attendance students'  => 'حضور الطلاب',
     'take attendance'  =>'اخذ حضور الطلاب',
-
-
-
-
+    'nb of hours total for cours'  => 'عدد الساعات الاجمالي',
+    'max number of hours for attendance'  => 'يجب ان لا يتعدى عدد الحصص الاجمالي',
+    'date'  => 'التاريخ',
+    'date is not valid date should be between start and end date for take attendance'  => 'هذا التاريخ غير صحيح يجب ان يكون بين تاريخ البدء والانتهاء فقط',
+    
+    
     ''  => '',
-    ''  => '',
-    ''  => '',
+
+
+
+
+    
 
 
 ];

@@ -58,8 +58,14 @@ class Cours extends Model
 
     public  function getStatusAttribute($value)
     {
-
-        return Statusofcour::find($value)->name;
+        $status_of_cours = Statusofcour::find($value);
+        return $status_of_cours->name;
+    }
+    public  function setStatusAttribute($value)
+    {
+        $status_of_cours = Statusofcour::where('name',$value)->get();
+        // dd( $status_of_cours[0]->id);
+        $this->attributes['status']=$status_of_cours[0]->id;
     }
 
 
@@ -86,12 +92,10 @@ class Cours extends Model
 
     public function grade()
     {
-
         return $this->belongsTo('App\Models\Grade', 'grade_id', 'id');
     }
     public function level()
     {
-
         return $this->belongsTo('App\Models\Level', 'level_id', 'id');
     }
 
@@ -108,24 +112,23 @@ class Cours extends Model
     {
         return $this->belongsToMany(User::class, 'studentsregistrations', 'cours_id', 'user_id', 'id', 'id');
     }
+
     public function register_students()
     {
         return $this->belongsTo(StudentsRegistration::class, 'id', 'cours_id');
     }
-
 
     public function  fee()
     {
         return $this->hasMany(CoursFee::class, 'cours_id', 'id');
     }
 
-
-
     public function  fee_with_type()
     {
         return $this->hasMany(CoursFee::class, 'cours_id', 'id')
             ->with('fee_type');
     }
+    
     public function  fee_with_type_currency()
     {
         return $this->hasMany(CoursFee::class, 'cours_id', 'id')

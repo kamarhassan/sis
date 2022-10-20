@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\loginController;
 use App\Http\Middleware\Admin\PasswordIsChanged;
 use App\Http\Controllers\Admin\FeetypeController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReceiptController;
 use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\CurrencyController;
@@ -85,15 +86,15 @@ Route::group([
 
 
 
+
+
+        ################################### begin Language  Routes ###################################################
         Route::get('/language', [LanguageController::class, 'index'])->middleware(['permission:edit language'])->name('admin.language');
-        // Route::get('language/create', [LanguageController::class, 'create'])->middleware(['permission:activate_currency'])->name('admin.language.create');
-        // Route::post('language/store', [LanguageController::class, 'store'])->middleware(['permission:activate_currency'])->name('admin.language.store');
         Route::get('language/edit/{id}', [LanguageController::class, 'edit'])->middleware(['permission:edit language'])->name('admin.language.edit');
         Route::post('language/update/{id}', [LanguageController::class, 'update'])->middleware(['permission:edit language'])->name('admin.language.update');
-
+        ################################### End Language  Routes ###################################################
 
         ################################### begin roles and permmission  Routes ###################################################
-
         Route::get('role', [RoleAndPermissionController::class, 'all_role'])->middleware(['permission:create roles|edit roles|delete roles'])->name('admin.setting.role');
         Route::post('delete-role', [RoleAndPermissionController::class, 'delete_role'])->middleware(['permission:delete roles'])->name('admin.setting.delete.role');
         Route::post('new-role', [RoleAndPermissionController::class, 'new_role'])->middleware(['permission:create roles'])->name('admin.setting.new.role');
@@ -160,15 +161,20 @@ Route::group([
         Route::post('approve-new-register', [RegistartionStudentsController::class, 'approve_edit_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.edit.register');
         Route::post('approved', [RegistartionStudentsController::class, 'approved_new_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.new.register');
 
-        Route::get('attendance', [StudentsAttendanceController::class, 'index'])->middleware(['permission:attendance students'])->name('admin.take.attendance.students');
-
-
+        Route::group(['prefix' => 'attendance','middleware'=>'permission:attendance students'], function () {
+            Route::get('/', [StudentsAttendanceController::class, 'index'])->name('admin.take.attendance.students');
+            Route::get('/{cours_id}', [StudentsAttendanceController::class, 'attendance_general_info'])->name('admin.attendance.general.info');
+            Route::post('students_of_cours', [StudentsAttendanceController::class, 'take_students_for_cours'])->name('admin.take.students.for.cours');
+            Route::post('create-or-update-attendance', [StudentsAttendanceController::class, 'create_or_update_attendance'])->name('admin.create.or.update.attendance');
+            Route::get('report-attendance/{cours_id}', [StudentsAttendanceController::class, 'report_attendance'])->name('admin.report.attendance');
+        });
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
         //     
         // ->middleware(['permission:activate_currency'])->name('admin.students.get_std_to_payment');
     });
 
     ################################### Begin Language Routes #################################################
+
     ################################### Begin Payment Routes #################################################
     Route::group(['prefix' => 'payment'], function () {
 
@@ -178,40 +184,24 @@ Route::group([
         Route::post('edit_payment_receipt', [PaymentController::class, 'save_edit_payment'])->name('admin.payment_edit_to_receipt');
         Route::get('receipt/{user_id}/{cours_id}/{receipt_id}', [ReceiptController::class, 'receipt'])->name('admin.payment.receipt');
         Route::get('client/receipt/{user_service_receipt_id}', [ServicesReceiptController::class, 'receipt'])->name('admin.payment.service.receipt');
-        ###########################################################################################
-
     });
 
     ################################### end  Payment Routes #################################################
+
 
 
     ################################### Begin Services  Routes #################################################
 
     Route::group(['prefix' => 'services'], function () {
 
-
-
         Route::view('client', 'admin.livewire.services.services-to-client')->middleware(['permission:register service to client'])->name('admin.Services.to.client');
         Route::get('receipt', [ServicesReceiptController::class, 'All_receipt'])->middleware('permission:edit old services receipt|delete old services receipt|print old services receipt')->name('admin.Services.all-receipt');
 
         Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services'])->middleware(['permission:register service to client'])->name('admin.payment.user_paid_for_services');
         Route::post('save_payment_client', [ClientPaymentController::class, 'savepaymentCient'])->middleware(['permission:register service to client'])->name('admin.payment.payment_client_to_receipt');
-       
         Route::get('edit-old-payment/{receipt_id}', [ClientPaymentController::class, 'get_old_payment'])->middleware(['permission:edit old services receipt|delete old services receipt|print old services receipt'])->name('admin.service.get_old_payment.edit');
         Route::post('delet_receipt', [ServicesReceiptController::class, 'delete_payment_receipt'])->middleware(['permission:delete old services receipt'])->name('admin.service.delete_payment_receipt');
         Route::post('edit-payment', [ClientPaymentController::class, 'edit_payment'])->middleware(['permission:payment client to service'])->name('admin.service.edit.old.payment');
-
-
-
-        // C:\xampp\htdocs\sis\resources\views\admin\livewire\services\servicesclient.blade.php
-
-
-
-
-
-
-
-
     });
     ################################### end  Services Routes #################################################
     Route::group(['prefix' => 'reports'], function () {
@@ -224,6 +214,15 @@ Route::group([
         Route::post('cours-account-summary', [ReportsController::class, 'cours_account_summary'])->middleware(['permission:reports'])->name('admin.cours.account.summary.report');
         Route::post('cours-account-details', [ReportsController::class, 'cours_account_details'])->middleware(['permission:reports'])->name('admin.cours.account.details.report');
     });
+    ################################### end  Services Routes #################################################
+
+    ################################### begin Language  Routes ###################################################
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('admin.profile');
+        Route::post('update-info', [ProfileController::class, 'update_info'])->name('admin.profile.update.info');
+        // Route::post('language/update/{id}', [ProfileController::class, 'update'])->middleware(['permission:edit language'])->name('admin.language.update');
+    });
+    ################################### End Language  Routes ###################################################
 
 
     Route::group(['prefix' => 'users'], function () {
