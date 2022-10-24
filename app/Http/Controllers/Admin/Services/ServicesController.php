@@ -32,7 +32,6 @@ class ServicesController extends Controller
             $temp = [];
             DB::beginTransaction();
             for ($i = 0; $i < $request_count; $i++) {
-
                 $temp[] = [
                     'service'            =>     $services[$i],
                     'fee'                =>     $fee[$i],
@@ -123,7 +122,6 @@ class ServicesController extends Controller
                 $notification = [
                     'message' =>  __('site.services note defined'),
                     'status' => 'error',
-
                 ];
                 return  response()->json($notification);
             }

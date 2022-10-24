@@ -18,14 +18,11 @@
                         <h4 class="box-title">@lang('site.add services')</h4>
                     </div>
                     <ul class="box-controls pull-right">
-                        <li><a class="box-btn-close" href="#"></a></li>
+                        {{-- <li><a class="box-btn-close" href="#"></a></li> --}}
                         <li><a class="box-btn-slide text-warning" href="#"></a></li>
-                        {{-- <li><a class="box-btn-fullscreen" href="#"></a></li> --}}
+                    
                     </ul>
                 </div>
-
-
-                <!-- /.box-header -->
                 <div class="box-body">
                     <div class="row">
                         <div class="col-12">
@@ -155,62 +152,61 @@
                 </div>
             </div>
         </div>
+    </div>
+@endsection
 
-    @endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var counter = 1;
+            $(document).on("click", ".addeventmore", function() {
+                var whole_extra_item_add = $('#whole_extra_item_add').html();
+                $(this).closest(".add_item").append(whole_extra_item_add);
+                $("#services_number").attr("id", "services_" + counter);
+                $("#services_number_error").attr("id", "services_" + counter + "_");
 
-    @section('script')
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var counter = 1;
-                $(document).on("click", ".addeventmore", function() {
-                    var whole_extra_item_add = $('#whole_extra_item_add').html();
-                    $(this).closest(".add_item").append(whole_extra_item_add);
-                    $("#services_number").attr("id", "services_" + counter);
-                    $("#services_number_error").attr("id", "services_" + counter + "_");
+                $("#fee_number").attr("id", "fee_" + counter);
+                $("#fee_number_error").attr("id", "fee_" + counter + "_");
 
-                    $("#fee_number").attr("id", "fee_" + counter);
-                    $("#fee_number_error").attr("id", "fee_" + counter + "_");
+                $("#currency_number").attr("id", "currency_" + counter);
+                $("#currency_number_error").attr("id", "currency_" + counter + "_");
 
-                    $("#currency_number").attr("id", "currency_" + counter);
-                    $("#currency_number_error").attr("id", "currency_" + counter + "_");
+                $("#status_number").attr("id", "status_" + counter);
+                $("#status_number_error").attr("id", "status_" + counter + "_");
+                // $(this).closest(".add_item").attr("id","whole_extra_item_add_"+counter);;
 
-                    $("#status_number").attr("id", "status_" + counter);
-                    $("#status_number_error").attr("id", "status_" + counter + "_");
-                    // $(this).closest(".add_item").attr("id","whole_extra_item_add_"+counter);;
-
-                    counter++;
-                });
-                $(document).on("click", '.removeeventmore', function(event) {
-                    $(this).closest(".delete_whole_extra_item_add").remove();
-                    counter -= 1
-                });
-
-
-
-                $('#spinner_loading').css("display", "none");
-
-                $('#services-table-').removeAttr('hidden');
-
-                var table = $('#services-table').DataTable({
-                    scrollY: "400px",
-                    // scrollX: true,
-                    scrollCollapse: true,
-                    paging: false,
-                    responsive: true,
-                    // ajax: '/test/0',
-
-                });
+                counter++;
             });
-        </script>
+            $(document).on("click", '.removeeventmore', function(event) {
+                $(this).closest(".delete_whole_extra_item_add").remove();
+                counter -= 1
+            });
 
-        <script src="{{ URL::asset('assets/custome_js/services.js') }}"></script>
-        <script src="{{ URL::asset('assets/custome_js/delete.js') }}"></script>
-        <script src="{{ URL::asset('assets/custome_js/update.js') }}"></script>
-        <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
-        <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
-        <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
-        </script>
-        <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
-        <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
-        <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
-    @endsection
+
+            $('#spinner_loading').css("display", "none");
+
+            $('#services-table-').removeAttr('hidden');
+
+            var table = $('#services-table').DataTable({
+                scrollY: "400px",
+                // scrollX: true,
+                scrollCollapse: true,
+                paging: false,
+                responsive: true,
+                // ajax: '/test/0',
+
+            });
+        });
+    </script>
+
+    <script src="{{ URL::asset('assets/custome_js/services.js') }}"></script>
+    <script src="{{ URL::asset('assets/custome_js/delete.js') }}"></script>
+    <script src="{{ URL::asset('assets/custome_js/update.js') }}"></script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
+    </script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
+@endsection

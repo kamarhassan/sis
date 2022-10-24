@@ -11,8 +11,9 @@ class AttendanceInfo extends Model
     protected  $guarded = [];
     protected  $table = 'attendance_infos';
     
-    public function attendance_details(){
-        return $this->belongsTo(AttendanceDetail::class, 'attendance_info_id', 'id');
+    public function attendance_details_with_users(){
+        return $this->hasMany(AttendanceDetail::class, 'attendance_info_id', 'id')
+        ->with('users:id,name');
     }
     // return $this->belongsTo('App\Models\Level', 'level_id', 'id');
 }

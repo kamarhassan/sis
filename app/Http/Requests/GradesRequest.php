@@ -27,18 +27,26 @@ class GradesRequest extends FormRequest
     public function rules()
     {
         return [
-          'grade' => 'required',
-        //   'grade.*' => 'required'
+            'grades.*' => 'required',
+            'total_hours.*' => 'required|numeric',
+            'period_by_mounth.*' => 'required|numeric',
+
+            //   'grade' => 'required',
+            //   'grade.*' => 'required'
         ];
     }
     public  function messages()
     {
         return [
-             'grade.required'=>__('site.its_require'),
+            'grades.*.required' => __('site.its_require'),
+            'total_hours.*.required' => __('site.its_require'),
+            'period_by_mounth.*.required' => __('site.its_require'),
+
+            'grades.*.numeric' => __('site.must be a number'), 
+            'total_hours.*.numeric' => __('site.must be a number'),
+            'period_by_mounth.*.numeric' => __('site.must be a number'),
+
 
         ];
-
     }
-
-
 }

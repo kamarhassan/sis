@@ -161,24 +161,23 @@ class StudentsAttendanceController extends Controller
     public function report_attendance($cours_id)
     {
 
-        $array_of_selection = ['users.name as name', 'users.id as id', 
-        'attendance_details.total_hours as total_hours','attendance_infos.date'
-    ];
+        $array_of_selection = [
+            'users.name as name', 'users.id as id',
+            'attendance_details.total_hours as total_hours', 'attendance_infos.date'
+        ];
+        $goupby = ['name', 'date'];
+        $data_for_attendance_report = $this->attendancerepos->data_for_attendance_report($cours_id, $array_of_selection, $goupby);
 
-        $t=  DB::table('attendance_infos')
-            ->where('attendance_infos.cours_id', $cours_id)
-            ->JOIN('attendance_details', 'attendance_infos.id', '=', 'attendance_details.attendance_info_id')
-            ->JOIN('users', 'users.id', '=', 'attendance_details.user_id')
-            ->select($array_of_selection)
-            ->get();
+        if ($data_for_attendance_report->count() == 0) {
+            toastr()->error(__('site.attendance for this cours not defined'));
+            return redirect()->route('admin.take.attendance.students');
+        } else {
+            $dataset_attendance = $this->attendancerepos->dataset_attendance($data_for_attendance_report);
+            $dataset = $dataset_attendance['dataset'];
+            $header_column = $dataset_attendance['col_header'];
+            $colummns_type = $dataset_attendance['column_type'];
 
-
-        // $t =
-            AttendanceInfo::with('attendance_details')
-            ->where('cours_id', $cours_id)
-            ->get();
-        // return $t;
-        return $t->groupBy('date');
-        // return $cours_id;
+            return view('admin.students-attendance.report-attendance', compact('dataset', 'header_column', 'colummns_type'));
+        }
     }
 }

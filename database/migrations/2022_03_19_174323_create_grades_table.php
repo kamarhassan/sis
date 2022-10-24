@@ -16,6 +16,8 @@ class CreateGradesTable extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->string('grade');
+            $table->integer('total_hours')->comment('total hours of cours ');
+            $table->integer('duration')->comment('modet l dawra');   
             $table->text('Notes')->nullable();
             $table->timestamps();
         });

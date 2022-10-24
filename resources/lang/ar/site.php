@@ -98,8 +98,8 @@ return [
     #################################### end of delet by swal fire translator ###################################
     #################################### begin   grade  translator ###################################
     ' grade note defined'  => 'هذه الدورة غير موجودة',
-    'grade'  => 'الدورة',
-    'add new grade'  => ' اضف دورة جديدة الدورة ',
+    'grade'  => 'الاختصاصات',
+    'add new grade' => 'اضف اختصاص جديدة', 
     'grade succefuly update'  => 'تم تحديث الدورة بنجاح',
     'grade faild to update'  => 'فشل التحديث يرجى المحاولة من جديد',
 
@@ -309,6 +309,8 @@ return [
     'max number of hours for attendance'  => 'يجب ان لا يتعدى عدد الحصص الاجمالي',
     'date'  => 'التاريخ',
     'date is not valid date should be between start and end date for take attendance'  => 'هذا التاريخ غير صحيح يجب ان يكون بين تاريخ البدء والانتهاء فقط',
+    'attendance for this cours not defined'  => 'حضور الطلاب في هذه الدورة غير موجود حتى الان',
+    'duration'  => 'المدة الزمنية',
     
     
     ''  => '',

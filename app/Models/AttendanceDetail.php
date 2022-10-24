@@ -15,4 +15,8 @@ class AttendanceDetail extends Model
     public function attendance_info(){
         return $this->belongsTo(AttendanceInfo::class,  'id','attendance_info_id');
     }
+    public function users(){
+        return $this->belongsTo(User::class,  'user_id','id');
+    }
+
 }

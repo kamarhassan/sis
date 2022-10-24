@@ -17,49 +17,49 @@ class GradeController extends Controller
 {
     public function __construct()
     {
-      
-     }
+    }
     public function create()
     {
         $grade = Grade::select()->get();
         return view('admin.setup.grade.create', compact('grade'));
     }
 
-    public function store(Request $request)
+    public function store(GradesRequest $request)
     {
         try {
-            // return $request;
+            //   return $request;
             DB::beginTransaction();
-            $nb_grade = count($request->grade);
+            $nb_grade = count($request->grades);
 
             $grade = [];
             for ($i = 0; $i < $nb_grade; $i++) {
-                if ($request->grade[$i] != '') {
+                if ($request->grades[$i] != '') {
                     $grade[] = [
-                        'grade' => $request->grade[$i],
+                        'grade' => $request->grades[$i],
+                        'total_hours' => $request->total_hours[$i],
+                        'duration' => $request->period_by_mounth[$i],
                         'created_at' =>  Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ];
                 }
             }
 
-            // return $grade;
-            //  $grade;
-
             $inserted = Grade::insert($grade);
             DB::commit();
             if ($inserted) {
 
-                toastr()->success(__('site.Post created successfully!'));
-                toastr()->warning(__('site.only not empty'));
 
-                return redirect()->route('admin.grades.add');
+                $message = __('site.Post created successfully!');
+                $status = 'success';
             } else {
 
-                toastr()->error(__('site.please add data in the field'));
-                return redirect()->route('admin.grades.add');
+                $message = __('site.you have error');
+                $status = 'error';
             }
-
+            return  response()->json([
+                'message' => $message,
+                'status' => $status
+            ]);
             // print_r( $grade_to_insert[]);
 
         } catch (\Exeption $ex) {
@@ -103,6 +103,7 @@ class GradeController extends Controller
 
     public function update(GradesRequest $request)
     {
+        return $request;
 
         try {
             $grade = Grade::find($request->id);
@@ -110,8 +111,14 @@ class GradeController extends Controller
                 toastr()->error(__('site.grade note defined'));
                 return redirect()->route('admin.grades.add');
             } else {
-
-                $grade_updated = $grade->update(['grade' => $request->grade]);
+                // 'grade' => $request->grades[$i],
+                // ' $request->total_hours[$i],
+                // $request->period_by_mounth[$i],
+ $grade_updated = $grade->update([
+                    'grade' => $request->grade,
+                    'total_hours' =>    $request->total_hours,
+                    'duration' =>       $request->period_by_mounth,
+                ]);
                 $notification = [
                     'message' => __('site.grade succefuly update'),
                     'status' => 'success',
