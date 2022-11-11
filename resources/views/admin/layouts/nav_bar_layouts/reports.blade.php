@@ -1,7 +1,7 @@
 @canany(['reports', 'cours','view report'])
     
  
-    <li class="treeview   {{ $prefix == getprefix('reports') ? 'active' : '' }}     ">
+    <li class="treeview {{ $prefix == getprefix('reports') ? 'active' : '' }}">
         <a href="#">
             <i class="fa fa-user-circle"></i>
             <span>@lang('site.report')</span>

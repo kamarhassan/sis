@@ -25,7 +25,7 @@ class ServicesRequest extends FormRequest
     {
         return [
             'services.*' => 'required',
-            'fee.*' => 'required|numeric',
+            'fee.'. $this->fee_validate()['id']=> $this->fee_validate()['fee_err'],
             'currency.*' => 'required|exists:currencies,id',
             //   'grade.*' => 'required'
         ];
@@ -35,10 +35,19 @@ class ServicesRequest extends FormRequest
         return [
             'services.*.required' => __('site.its_require'),
             'fee.*.required' => __('site.its_require'),
-            'fee.*.numeric' => __('site.must be a number'),
+            'fee.*.numeric' => __('site.must be a number if exist'),
             'currency.*.required' => __('site.its_require'),
             'currency.*.exists' => __('site.its_exists'),
 
         ];
+    }
+
+    private function  fee_validate()
+    {
+        foreach ($this->fee as $key => $fee) {
+            if ($fee != null)
+                return ['fee_err'=>"numeric",'id'=>$key];
+        }
+        return "";
     }
 }

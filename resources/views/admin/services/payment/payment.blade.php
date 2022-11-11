@@ -38,17 +38,50 @@
 
 
         <div class="box">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <input type="hidden">
                 <h4 class=" bb-1  border-danger box-title text-capitalize  text-uppercase" style="color:rgb(255, 153, 0)">
-                    @lang('site.fee of this services is')
-                    @isset($service)
+                {{-- <h4 class=" bb-1  border-danger box-title text-capitalize  text-uppercase" style="color:rgb(255, 153, 0)"> --}}
+                    {{-- @lang('site.fee of this services is') --}}
+                    {{-- @isset($service)
                         {{ $service['currency']['currency'] }} - {{ $service['currency']['abbr'] }} -
                         {{ $service['currency']['symbol'] }}
-                    @endisset
+                    @endisset --}}
                 </h4>
             </div>
             <form id="payment_data">
+
+                <div class="box ">
+                    <div class="row show-grid">
+                        <div class="col-md-3">
+                            <span>
+                                @lang('site.fee primary price') :
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" class='form-control' placeholder="@lang('site.fee amount')"
+                                name="primary_fee" id="primary_fee">
+                            <span class="bb-1 border-success">
+                        </div>
+                    </div>
+                    <span class="text-danger" id="primary_fee_"> </span>
+                </div>
+                <div class="box ">
+                    <div class="row show-grid">
+                        <div class="col-md-3">
+                            <span>
+                                @lang('site.quantity') :
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" class='form-control' placeholder="@lang('site.if empty.by default the quantity is equal 1')"
+                                name="quantity" id="quantity">
+                            <span class="bb-1 border-success">
+                        </div>
+                    </div>
+                    <span class="text-danger" id="quantity_"> </span>
+                </div>
+
                 <div class="box ">
                     <div class="row show-grid">
                         <div class="col-md-3">
@@ -57,10 +90,10 @@
                             </span>
                         </div>
 
-                        <input type="hidden" name="service_id" id="service_id"
-                            value="{{ encript_custome($service['id']) }}">
-                        <input type="hidden" name="user_id" id="user_id" value="{{ encript_custome($user['id']) }}">
-                        <input type="hidden" name="client_services_id" id="client_services_id" value="{{ encript_custome($client_services['id']) }}">
+                        <input type="hidden" name="service_id" id="service_id" value="{{ encrypt($service['id']) }}">
+                        <input type="hidden" name="user_id" id="user_id" value="{{ encrypt($user['id']) }}">
+                        <input type="hidden" name="client_services_id" id="client_services_id"
+                            value="{{ encrypt($client_services['id']) }}">
 
                         <input type="hidden" name="service_currency_abbr" id="service_currency_abbr"
                             value="{{ $service['currency']['abbr'] }}">
@@ -183,7 +216,7 @@
 
 
             </form>
- <div class="row">
+            <div class="row">
                 <div class="col-md-3">
                     <button class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
                         type="submit" onclick="savepayment('{{ route('admin.payment.payment_client_to_receipt') }}');">

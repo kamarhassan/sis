@@ -43,8 +43,14 @@
                                     <td> {{ $cour['count_std'] }} </td>
                                     <td>
                                         <div class="row">
-                                            <a href="{{ route('admin.attendance.general.info', $cour['id']) }}"
-                                                class="btn text-warning glyphicon glyphicon-pencil  hover-primary"
+
+                                            <a 
+                                            @if ($is_teacher == false) href="{{ route('admin.enable.disable.take.attendance', $cour['id']) }}"
+                                            @else
+                                            href="{{ route('admin.attendance.general.info', $cour['id']) }}"
+                                            @endif
+                                              
+                                            class="btn text-warning glyphicon glyphicon-pencil  hover-primary"
                                                 title="@lang('site.print')">
                                             </a>
                                             @role('super admin')

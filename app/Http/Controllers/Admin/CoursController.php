@@ -150,6 +150,7 @@ class CoursController extends Controller
     {
 
         try {
+            // return $request;
             //code...
             // $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
             $teacher_id = Admin::GetIdByName($request->teacher_name);

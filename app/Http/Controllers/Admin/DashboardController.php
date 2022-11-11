@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,8 +15,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-      
-     }
+    }
 
     public function index()
     {
@@ -48,5 +48,18 @@ class DashboardController extends Controller
         }
 
         // return response()->json(Config::get('modetheme.mode'));
+    }
+
+
+    public function artisan()
+    {
+        try {
+            //code...
+
+            $t = Artisan::call('db:seed');
+           
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

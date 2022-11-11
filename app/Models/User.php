@@ -86,4 +86,7 @@ class User extends Authenticatable  implements MustVerifyEmail
         return $this->hasMany(NotificationAdmin::class, 'user_id','id')
         ->with('cours_reserved');
     }
+  
+
+
 }

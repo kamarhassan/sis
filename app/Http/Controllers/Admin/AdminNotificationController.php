@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Admin;
 use App\Traits\Image;
 use Illuminate\Http\Request;
 use App\Models\NotificationAdmin;
-
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
 use App\Repository\User\UserInterface;
-use GrahamCampbell\ResultType\Success;
 use App\Repository\Cours\CoursInterface;
 use App\Repository\Cours_fee\CoursFeeInterface;
 use App\Repository\AdminNotification\AdminNotificationInterface;
@@ -19,9 +15,6 @@ use App\Repository\AdminNotification\AdminNotificationInterface;
 class AdminNotificationController extends Controller
 {
     use Image;
-
-
-
     protected $coursfee;
     protected $adminnotification;
     protected $userrepository;
@@ -29,7 +22,6 @@ class AdminNotificationController extends Controller
     protected $coursfeerepository;
 
     public function __construct(
-
         CoursFeeInterface $coursfee,
         AdminNotificationInterface $adminnotification,
         UserInterface $userInterface,

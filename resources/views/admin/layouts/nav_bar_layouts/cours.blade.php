@@ -1,5 +1,5 @@
 @canany(['cours',  'create cours', 'edit cours', 'delete cours'])
-    <li class="treeview   {{ $prefix == getprefix('cours') ? 'active' : '' }}     ">
+    <li class="treeview {{ $prefix == getprefix('cours') ? 'active' : '' }}">
         <a href="#">
             <i class="fa fa-book "></i>
             <span>@lang('site.cours')</span>

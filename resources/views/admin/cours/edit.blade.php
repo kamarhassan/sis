@@ -103,7 +103,31 @@
                                                             </div>
                                                         @endisset
                                                     </div>{{-- end of row level and grade --}}
-
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>@lang('site.nb of hours total for cours') </label>
+                                                                <input name="total_hours" class="form-control" type="number"
+                                                                    value="{{$cours->total_hours }}" id="total_hours"
+                                                                   >
+                                                                @error('total_hours')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>@lang('site.duration') </label>
+                                                                <input name="duration" class="form-control" type="number" id="duration"
+                                                                    value="{{$cours->duration }}"
+                                                                   >
+                                                                @error('duration')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>{{-- duration and total hours --}}
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">

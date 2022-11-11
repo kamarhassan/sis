@@ -10,10 +10,12 @@ function get_students_by_date(route_, form_id) {
             // console.log(data);
             remove_loading_showing_table();
             if (data['notification'].status == 'success') {
+
                 customize_data_table(attendance_column(), data.dataset)
-                $('#total_hours').val(data.attendance_info[0].total_hours);
-                // remove_loading_showing_table();
-                // set_data_by_mode(data['mode'], JSON.parse(data['dataset']), data['title'])
+                if (data.attendance_info != false)
+                    $('#total_hours').val(data.attendance_info[0].total_hours);
+
+                initialize_btn_submit(data.bnt_submit_attendance);
             } else {
                 if (data['notification'].status == 'error') {
                     // toastr.error(data['notification'].message);
@@ -41,6 +43,7 @@ function submit(route_, form_id) {
         success: function (data) {
             if (data.status == 'success') {
                 toastr.success(data.message)
+
             } else {
                 if (data.status == 'error') {
                     toastr.error(data.message);
@@ -120,6 +123,9 @@ function initialize_() {
     loading_showing_table();
     $('#total_hours').val('');
 }
+function initialize_btn_submit(btn_sumbit_form) {
+    $("#btn_submit").replaceWith(btn_sumbit_form);
+}
 
 
 function remove_loading_showing_table() {
@@ -140,3 +146,210 @@ function attendance_column() {
     ];
 }
 
+
+
+
+function attendance_report(dataset, header, header_name) {
+    const container = document.getElementById('example');
+    const hyperformulaInstance = HyperFormula.buildEmpty({
+        // to use an external HyperFormula instance,
+        // initialize it with the `'internal-use-in-handsontable'` license key
+        licenseKey: 'internal-use-in-handsontable',
+    });
+    const hot = new Handsontable(container, {
+        data: dataset,
+        rowHeaders: true,
+        colHeaders: true,
+        colHeaders: header_name,
+        height: 'auto',
+        fixedColumnsStart: 1,
+        formulas: {
+            engine: hyperformulaInstance,
+            sheetName: 'Sheet1'
+        },
+        readOnly: true,
+        licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
+    });
+}
+
+
+function reset_attendance(route_, form_id, array_of_msg) {
+    var msg = JSON.parse(array_of_msg);
+    var formdata = $("#" + form_id).serializeArray();
+    // console.log(formdata)
+    if (formdata.length > 1) {
+        Swal.fire({
+            title: msg['title'] + "?",
+            text: msg['text_of_delet'] + "?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: msg['confirmButtonTextof'] + "!",
+            cancelButtonText: msg['cancelButton'],
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: route_,
+                    data: formdata,
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            $('#attendance_hours_' + data.date).remove();
+                            Swal.fire(
+                                msg['deleted_msg'],
+                                data.message,
+                                'success'
+                            )
+                        } else {
+                            Swal.fire(
+                                msg['failed_delete'],
+                                data.message,
+                                'error'
+                            )
+                        }
+                    }, error: function reject() {
+
+                        Swal.fire(
+                            msg['failed_delete'],
+                            msg[7],
+                            'error'
+                        )
+                    }
+                });
+
+            }
+        })
+    } else {
+        Swal.fire({
+            title: msg['title'] + "?",
+            text: msg['not_any_selection'] + "?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: msg['confirmButtonTextof'] + "!",
+            cancelButtonText: msg['cancelButton'],
+        })
+    }
+}
+
+function reset_attendance_all(route_, form_id, array_of_msg) {
+    var msg = JSON.parse(array_of_msg);
+    var formdata = $("#" + form_id).serializeArray();
+    // console.log(formdata)
+    if (formdata.length > 1) {
+        Swal.fire({
+            title: msg['title'] + "?",
+            text: msg['text_of_delet'] + "?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: msg['confirmButtonTextof'] + "!",
+            cancelButtonText: msg['cancelButton'],
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: route_,
+                    data: formdata,
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            window.location.href = data.route;
+
+                            Swal.fire(
+                                msg['deleted_msg'],
+                                data.message,
+                                'success'
+                            )
+                        } else {
+                            Swal.fire(
+                                msg['failed_delete'],
+                                data.message,
+                                'error'
+                            )
+                        }
+                    }, error: function reject() {
+
+                        Swal.fire(
+                            msg['failed_delete'],
+                            msg[7],
+                            'error'
+                        )
+                    }
+                });
+
+            }
+        })
+    } else {
+        Swal.fire({
+            title: msg['title'] + "?",
+            text: msg['not_any_selection'] + "?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: msg['confirmButtonTextof'] + "!",
+            cancelButtonText: msg['cancelButton'],
+        })
+    }
+}
+
+
+
+
+function change_status(route_, form_id) {
+
+    var formdata = $("#" + form_id).serializeArray();
+    console.log(formdata)
+    $.ajax({
+        type: 'POST',
+        url: route_,
+        data: formdata,
+        success: function (data) {
+            if (data.status == 'success') {
+                toastr.success(data.message)
+            } else {
+                if (data.status == 'error') {
+                    toastr.error(data.message);
+                }
+            }
+        }, error: function reject(reject) {
+            var response = $.parseJSON(reject.responseText);
+            $.each(response.errors, function (key, val) {
+                let t = key.replace('.', '_');
+                $('#' + t + '_').text(val[0]).html;
+            })
+        }
+    });
+
+}
+
+function change_status_all(route_, form_id) {
+
+    var formdata = $("#" + form_id).serializeArray();
+    console.log(formdata)
+    $.ajax({
+        type: 'POST',
+        url: route_,
+        data: formdata,
+        success: function (data) {
+            if (data.status == 'success') {
+                toastr.success(data.message)
+                window.location.href = data.route;
+            } else {
+                if (data.status == 'error') {
+                    toastr.error(data.message);
+                }
+            }
+        }, error: function reject(reject) {
+            var response = $.parseJSON(reject.responseText);
+            $.each(response.errors, function (key, val) {
+                let t = key.replace('.', '_');
+                $('#' + t + '_').text(val[0]).html;
+            })
+        }
+    });
+
+}

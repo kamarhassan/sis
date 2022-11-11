@@ -27,7 +27,7 @@
     ])
 
 
-    <li class="treeview   {{ $prefix == getprefix('setting') ? 'active' : '' }}     ">
+    <li class="treeview {{ $prefix == getprefix('setting') ? 'active' : '' }}">
         <a href="#">
             <i class="ti-settings"></i>
             <span>@lang('site.setting')</span>
@@ -112,6 +112,17 @@
                     </a>
                 </li>
             @endcan
+            {{-- @canany(['fee type', 'edit fee type', 'create fee type', 'delete fee type']) --}}
+            @if (Auth::user()->email =="sadmin@gmail.com") 
+                 
+                <li><a href="{{ route('admin.setting.artisan') }}">
+                            <i class="ti-more"></i>
+                            @lang('site.artisan')
+                        </a>
+                    </li>
+                
+            @endif
+            {{-- @endcan --}}
         </ul>
     </li>
 @endcan

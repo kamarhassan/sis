@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <h5>@lang('site.fee value') <span class="text-danger">*</span></h5>
+                                                <h5>@lang('site.fee value') </h5>
                                                 <div class="controls">
                                                     <input type="text" id="fee_0" name="fee[]" class="form-control">
                                                     <span class="text-danger" id="fee_0_"> </span>
@@ -117,7 +117,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <h5>@lang('site.fee value') <span class="text-danger">*</span></h5>
+                                <h5>@lang('site.fee value') </h5>
                                 <div class="controls">
                                     <input type="text" id="fee_number" name="fee[]" class="form-control">
                                     <span class="text-danger" id="fee_number_error"> </span>

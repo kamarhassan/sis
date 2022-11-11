@@ -70,6 +70,7 @@ class PermissionTableSeeder extends Seeder
 
 
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'students']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'add students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'show all students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'register students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'attendance students']);
@@ -80,7 +81,7 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'delete old payment students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'print old payment students']);
 
-
+        
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'register order students', 'name' => 'read only register order']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'register order students', 'name' => 'register order delete all']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'register order students', 'name' => 'register order deny all']);
@@ -95,6 +96,7 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'reports', 'name' => 'view report']);
 
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'services', 'name' => 'services']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'services', 'name' => 'payment remaining']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'services', 'name' => 'register service to client']);
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'services', 'name' => 'payment client to service']);
 

@@ -103,7 +103,7 @@ class GradeController extends Controller
 
     public function update(GradesRequest $request)
     {
-        return $request;
+        // return $request;
 
         try {
             $grade = Grade::find($request->id);
@@ -111,29 +111,27 @@ class GradeController extends Controller
                 toastr()->error(__('site.grade note defined'));
                 return redirect()->route('admin.grades.add');
             } else {
-                // 'grade' => $request->grades[$i],
-                // ' $request->total_hours[$i],
-                // $request->period_by_mounth[$i],
- $grade_updated = $grade->update([
-                    'grade' => $request->grade,
-                    'total_hours' =>    $request->total_hours,
-                    'duration' =>       $request->period_by_mounth,
-                ]);
-                $notification = [
-                    'message' => __('site.grade succefuly update'),
-                    'status' => 'success',
 
-                ];
-                if ($grade_updated)
-                    return  response()->json($notification);
-                else {
+                $grade_updated = $grade->update([
+                    'grade' => $request->grades[0],
+                    'total_hours' =>    $request->total_hours[0],
+                    'duration' =>       $request->period_by_mounth[0],
+                ]);
+
+                if ($grade_updated) {
+                    $notification = [
+                        'message' => __('site.grade succefuly update'),
+                        'status' => 'success',
+
+                    ];
+                } else {
                     $notification = [
                         'message' => __('site.grade faild to update'),
                         'status' => 'error',
 
                     ];
-                    return  response()->json($notification);
                 }
+                return  response()->json($notification);
             }
         } catch (\Exception $th) {
 

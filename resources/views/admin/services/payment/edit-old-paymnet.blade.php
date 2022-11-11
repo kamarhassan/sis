@@ -53,6 +53,68 @@
                     <div class="row show-grid">
                         <div class="col-md-3">
                             <span>
+                                @lang('site.fee primary price') :
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" class='form-control' placeholder="@lang('site.fee amount')"
+                                name="primary_fee" id="primary_fee" readonly value="{{$client_services['amount']/$client_services['quantity']}}">
+                            <span class="bb-1 border-success">
+                        </div>
+                    </div>
+                    <span class="text-danger" id="primary_fee_"> </span>
+                </div>
+                <div class="box ">
+                    <div class="row show-grid">
+                        <div class="col-md-3">
+                            <span>
+                                @lang('site.quantity') :
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" class='form-control' placeholder="@lang('site.if empty.by default the quantity is equal 1')"
+                                name="quantity" id="quantity" readonly value="{{$client_services['quantity']}}">
+                            <span class="bb-1 border-success">
+                        </div>
+                    </div>
+                    <span class="text-danger" id="quantity_"> </span>
+                </div>
+                <div class="box ">
+                    <div class="row show-grid">
+                        <div class="col-md-3">
+                            <span>
+                                @lang('site.old fee') :
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class='form-control' placeholder="@lang('site.if empty.by default the quantity is equal 1')"
+                                name="old_payment" id="old_payment" readonly value="{{$client_services['paid_amount']}}">
+                            <span class="bb-1 border-success">
+                        </div>
+                    </div>
+                    <span class="text-danger" id="old_payment_"> </span>
+                </div>
+                <div class="box ">
+                    <div class="row show-grid">
+                        <div class="col-md-3">
+                            <span>
+                                @lang('site.remaining') :
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class='form-control border-danger ' placeholder="@lang('site.if empty.by default the quantity is equal 1')"
+                                name="old_payment" id="old_payment" readonly value="{{$client_services['remaining']}}">
+                            <span class="bb-1 border-success">
+                        </div>
+                    </div>
+                    <span class="text-danger" id="old_payment_"> </span>
+                </div>
+
+
+                <div class="box ">
+                    <div class="row show-grid">
+                        <div class="col-md-3">
+                            <span>
                                 @lang('site.amount') :
                             </span>
                         </div>

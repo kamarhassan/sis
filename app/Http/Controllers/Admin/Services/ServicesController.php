@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServicesEditRequest;
 use App\Http\Requests\ServicesRequest;
+use App\Models\UserService;
 
 class ServicesController extends Controller
 {
@@ -49,7 +50,7 @@ class ServicesController extends Controller
                     'status' => 'success',
 
                 ];
-                return   response()->json([$notification]);
+                return   response()->json($notification);
             } else {
                 $notification = [
                     'message' => __('site.faild to  craete new services'),
@@ -80,7 +81,12 @@ class ServicesController extends Controller
                 //toastr()->error(__('site.services note defined'));
                 // return redirect()->route('admin.grades.add');
             } else {
-                $is_deletet = $service->delete();
+
+                $is_deletet = false;
+                $its_it_used = UserService::where('service_id', $service->id)->get()->count();
+                if (!$its_it_used)
+                    $is_deletet = $service->delete();
+
                 if ($is_deletet)
                     $notification = [
                         'message' => __('site.payment has delete success'),
@@ -88,7 +94,7 @@ class ServicesController extends Controller
                     ];
                 else {
                     $notification = [
-                        'message' => __('site.payment faild '),
+                        'message' => __('site.payment faild to delete because it is used'),
                         'status' => 'error',
                     ];
                 }
@@ -96,7 +102,7 @@ class ServicesController extends Controller
                 return response()->json($notification);
             }
         } catch (\Exception $th) {
-            // throw $th;
+            throw $th;
             $notification = [
                 'message' => __('site.you have error'),
                 'status' => 'error',
@@ -138,8 +144,8 @@ class ServicesController extends Controller
     public function update(ServicesEditRequest $request)
     {
         try {
-             $request;
-             $services =  Service::find($request->service_id);
+            $request;
+            $services =  Service::find($request->service_id);
             //code...
             if (!$services) {
                 $notification = [
@@ -154,7 +160,7 @@ class ServicesController extends Controller
                 $active = 0;
             else $active = 1;
 
-          $updated =  $services->update([
+            $updated =  $services->update([
                 "service" => $request->service,
                 "active" => $active,
                 "fee" => $request->fee,
@@ -178,8 +184,4 @@ class ServicesController extends Controller
             throw $th;
         }
     }
-
-
-
-
 }

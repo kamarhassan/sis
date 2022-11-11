@@ -61,13 +61,26 @@ class Cours extends Model
         $status_of_cours = Statusofcour::find($value);
         return $status_of_cours->name;
     }
-    public  function setStatusAttribute($value)
+
+    public  function getDaysAttribute($string_of_days)
     {
-        $status_of_cours = Statusofcour::where('name',$value)->get();
-        // dd( $status_of_cours[0]->id);
-        $this->attributes['status']=$status_of_cours[0]->id;
+        $array_of_days_of_week = days_of_week();
+        $days_str = explode(";", $string_of_days);
+        $string_of_days = null;
+        foreach ($array_of_days_of_week as $key_days_of_week => $days_of_week) {
+            foreach ($days_str as $key_days => $days) {
+                if ($key_days_of_week == intval($days))
+                    $string_of_days .= "$days_of_week ";
+            }
+        }
+        return $string_of_days;
     }
 
+    public  function setStatusAttribute($value)
+    {
+        $status_of_cours = Statusofcour::where('name', $value)->get();
+        $this->attributes['status'] = $status_of_cours[0]->id;
+    }
 
     public static function save_day_of_week($array)
     {
@@ -92,11 +105,11 @@ class Cours extends Model
 
     public function grade()
     {
-        return $this->belongsTo('App\Models\Grade', 'grade_id', 'id');
+        return $this->belongsTo(Grade::class, 'grade_id', 'id');
     }
     public function level()
     {
-        return $this->belongsTo('App\Models\Level', 'level_id', 'id');
+        return $this->belongsTo(level::class, 'level_id', 'id');
     }
 
     public function teacher()
@@ -128,10 +141,12 @@ class Cours extends Model
         return $this->hasMany(CoursFee::class, 'cours_id', 'id')
             ->with('fee_type');
     }
-    
+
     public function  fee_with_type_currency()
     {
         return $this->hasMany(CoursFee::class, 'cours_id', 'id')
             ->with('fee_type', 'currency');
     }
+
+   
 }

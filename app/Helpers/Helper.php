@@ -5,17 +5,18 @@ use App\Models\User;
 use App\Models\Language;
 use Illuminate\Support\Str;
 use App\Models\NotificationAdmin;
+use App\Models\StudentsRegistration;
 use Illuminate\Support\Facades\Config;
-use App\Repository\AdminNotification\AdminNotificationRepository;
+use App\Repository\Cours\CoursRepository;
 use Illuminate\Contracts\Encryption\DecryptException;
+use App\Repository\AdminNotification\AdminNotificationRepository;
 
 function show_real_pass($hash_password)
 {
-   
+
     try {
-       return  decrypt( $hash_password);
+        return  decrypt($hash_password);
     } catch (Illuminate\Contracts\Encryption\DecryptException $e) {
-        
     }
 }
 function pagination_count()
@@ -91,14 +92,27 @@ function  swal_fire_msg()
 {
 
     return [
-       'title'=> __('site.title_of_delet_swal_fire'),
-       'text_of_delet'=> __('site.text_of_delet_swal_fire'),
-       'confirmButtonTextof'=> __('site.confirmButtonTextof_delet_swal_fire'),
-       'cancelButton'=> __('site.cancelButtonTextof_delet_swal_fire'),
-       'deleted_msg'=> __('site.deleted_msg_swal_fire'),
-       'succes_msj'=> __('site.succes_msj_swal_fire'),
-       'failed_delete'=> __('site.failed_delete'),
-       'not_any_selection'=> __('site.select_at_least_one_to_delete'),
+        'title' => __('site.title_of_delet_swal_fire'),
+        'text_of_delet' => __('site.text_of_delet_swal_fire'),
+        'confirmButtonTextof' => __('site.confirmButtonTextof_delet_swal_fire'),
+        'cancelButton' => __('site.cancelButtonTextof_delet_swal_fire'),
+        'deleted_msg' => __('site.deleted_msg_swal_fire'),
+        'succes_msj' => __('site.succes_msj_swal_fire'),
+        'failed_delete' => __('site.failed_delete'),
+        'not_any_selection' => __('site.select_at_least_one_to_delete'),
+    ];
+}
+function  attendance_swal_fire_msg()
+{
+    return [
+        'title' => __('site.title_of_delet_swal_fire_attendance'),
+        'text_of_delet' => __('site.text_of_delet_swal_fire'),
+        'confirmButtonTextof' => __('site.confirmButtonTextof_delet_swal_fire'),
+        'cancelButton' => __('site.cancelButtonTextof_delet_swal_fire'),
+        'deleted_msg' => __('site.deleted_msg_swal_fire'),
+        'succes_msj' => __('site.succes_msj_swal_fire'),
+        'failed_delete' => __('site.failed_delete'),
+        'not_any_selection' => __('site.select_at_least_one_to_delete'),  
     ];
 }
 
@@ -107,7 +121,6 @@ function  photos_dir($photoUrl)
     if ($photoUrl != "")
         return  URL::asset($photoUrl);
     else   return URL::asset('assets\images\avatar\avatar-1.png');
-
 }
 
 function array_to_string($array)
@@ -136,4 +149,3 @@ function get_type_notification()
 
 
  // faker filler password        Pa$$w0rd!
-

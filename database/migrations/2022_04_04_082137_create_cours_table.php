@@ -20,6 +20,8 @@ class CreateCoursTable extends Migration
             $table->date('startDate');
             $table->date('endDate');
             $table->integer('maxStd')->nullable();
+            $table->integer('duration')->nullable();
+            $table->integer('total_hours')->nullable();
             $table->string('days');
             $table->string('status', 50);
             $table->text('description');

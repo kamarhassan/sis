@@ -95,9 +95,9 @@
                                         </div>
                                         <input id="phonenumber" type="tel"
                                             class="form-control @error('phonenumber') is-invalid @enderror" name="phonenumber" placeholder="@lang('site.phone ')"
-                                            value="12345678"
+                                            
                                             {{-- value="{{ old('phonenumber') }}" --}}
-                                            autocomplete="phonenumber" readonly >
+                                            autocomplete="phonenumber"  >
 
                                         @error('phonenumber')
                                             <span class="invalid-feedback" role="alert">

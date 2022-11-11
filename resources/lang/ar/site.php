@@ -26,12 +26,22 @@ return [
     'monday'  => 'الاثنين',
     'tuesday'  => 'الثلاثاء',
     'wednesday'  => 'الاربعاء',
-    'thirsday'  => 'الخميس',
+    'thursday'  => 'الخميس',
     'friday'  => 'الجمعة',
     'saturday'  => 'السبت',
+    'sunday'  => 'الاحد',
+    
+    'Monday'  => 'الاثنين',
+    'Tuesday'  => 'الثلاثاء',
+    'Wednesday'  => 'الاربعاء',
+    'Thursday'  => 'الخميس',
+    'Friday'  => 'الجمعة',
+    'Saturday'  => 'السبت',
+    'Sunday'  => 'الاحد',
     #######################end of general ####################################
     'its_require'  => 'هذا الحقل مطلوب',
     'personal information'  => 'المعلومات الشخصية للمستخدم',
+    'personal information for student'  => 'المعلومات الشخصية للطالب / المستخدم',
     'First Name'  => 'الاسم',
     'Middle Name'   => 'اسم الاب',
     'Last Name'  => 'الشهرة',
@@ -95,11 +105,22 @@ return [
     'failed_delete'         => 'لم يتم الحذف',
     'failed_msj_swal_fire'         => 'لم يتم الحذف هناك مشكلة حاول من جديد او اتصل بالمشرف',
     'select_at_least_one_to_delete'         => 'اختر طلب واحد على الاقل',
+   
+   
+    'title_of_delet_swal_fire_attendance'         => 'هل انت متاكد من الحذف سجل الحضور لهذا اليوم يجب اعادة تسجيله من قبل الاستاذ' ,
+    'text_of_delet_swal_fire'         => 'الحذف نهائيا',
+    'confirmButtonTextof_delet_swal_fire'         => 'نعم حذف',
+    'cancelButtonTextof_delet_swal_fire'         => 'كلا',
+    'deleted_msg_swal_fire'         => 'حذفت',
+    'succes_msj_swal_fire'         => 'تم الحذف بنجاح',
+    'failed_delete'         => 'لم يتم الحذف',
+    'failed_msj_swal_fire'         => 'لم يتم الحذف هناك مشكلة حاول من جديد او اتصل بالمشرف',
+    'select_at_least_one_to_delete'         => 'اختر طلب واحد على الاقل',
     #################################### end of delet by swal fire translator ###################################
     #################################### begin   grade  translator ###################################
     ' grade note defined'  => 'هذه الدورة غير موجودة',
     'grade'  => 'الاختصاصات',
-    'add new grade' => 'اضف اختصاص جديدة', 
+    'add new grade' => 'اضف اختصاص جديدة',
     'grade succefuly update'  => 'تم تحديث الدورة بنجاح',
     'grade faild to update'  => 'فشل التحديث يرجى المحاولة من جديد',
 
@@ -147,6 +168,7 @@ return [
     'only select'  => 'حدد ما تريداحتسابه فقط وادخل القيمة',
     'cours note defined'  => 'هذه الدورة غير موجودة',
     'must be a number'  => 'يجب ان تكون ارقام',
+    'must be a number if exist'  => 'يجب ان تكون ارقام ان وجدت',
     'its_exists_in_cours_list'  => 'يجب ان يكون ضمن لائحة الدورات',
     'fee of this cours is'  => 'رسوم هذه الدورة تحتسب ب',
     'cours fee total'  => 'مجموع قيمة رسوم هذه الدورة',
@@ -208,6 +230,7 @@ return [
     'payment type'  => 'طريقة الدفع',
     'payment has been success'  => 'تم الدفع بنجاح',
     'payment faild'  => 'فشل الدفع اعد المحاولة',
+    'payment faild to delete because it is used'  => 'فشل الحذف لانها مستخدمة مسبقا',
     // معرف تسجيل
     'registration id'  => 'id تسجيل',
     'other payment'  => 'طريقة دفع اخرى',
@@ -282,7 +305,7 @@ return [
     'delete all' => 'حذف جميع المحدد',
     'mark all as read' => 'وضع على انه مقروء',
 
-    ' mark all as read' => 'تم تحديد حميع الرسائل على انه مقروء',
+    // ' mark all as read' => 'تم تحديد حميع الرسائل على انه مقروء',
     'fail mark all as read' => 'فشل تحديد حميع الرسائل على انه مقروء',
 
     'currency activate successful' => 'تم تفعيل العملة بنجاح',
@@ -304,21 +327,26 @@ return [
     'Receipt Report course accounting summary' => 'course accounting summary',
     'Receipt Report course accounting details' => 'cours accounting details',
     'attendance students'  => 'حضور الطلاب',
-    'take attendance'  =>'اخذ حضور الطلاب',
+    'take attendance'  => 'اخذ حضور الطلاب',
     'nb of hours total for cours'  => 'عدد الساعات الاجمالي',
     'max number of hours for attendance'  => 'يجب ان لا يتعدى عدد الحصص الاجمالي',
+    'min number of hours for attendance'  => 'يجب ان لا تقل عدد الحصص 1',
     'date'  => 'التاريخ',
     'date is not valid date should be between start and end date for take attendance'  => 'هذا التاريخ غير صحيح يجب ان يكون بين تاريخ البدء والانتهاء فقط',
     'attendance for this cours not defined'  => 'حضور الطلاب في هذه الدورة غير موجود حتى الان',
-    'duration'  => 'المدة الزمنية',
-    
-    
+    'duration'  => 'المدة الزمنية بالاشهر',
+    'rate exchange'  => 'سعر الصرف',
+    'quantity'  => 'الكمية',
+    'if empty.by default the quantity is equal 1'  => 'تركها فارغة تكون الكمية = 1',
+    'total days attendance'  => 'مجموع ايام الحضور',
+    'total hours attendance'  => 'مجموع ساعات الحضور',
+    'download file to import new students'  => 'تصدير ملف اكسل لادخال اللطلاب',
+    'insert student by fill form' => 'اضف طالب',
+    'insert student by import' => 'استيراد طلاب من خلال ملف Excel',
+    'attendance hour'  => 'ساعات الحضور',
+    'fail reset attendance for this date'  => 'فشل حذف سجل الحضور لهذا اليوم',
+    'fail reset attendance for this date. it is not attendance'  => 'فشل حذف سجل الحضور لهذا اليوم لانه غير موجود',
     ''  => '',
-
-
-
-
-    
 
 
 ];

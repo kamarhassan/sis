@@ -65,9 +65,10 @@
                         </tbody>
                         <tfoot>
                             <div id="btn_submit">
-                                <a onclick="submit('{{ route('admin.create.or.update.attendance') }}','update_or_new_attendance')"
+                                <a id="submit_btn" onclick="submit('{{ route('admin.create.or.update.attendance') }}','update_or_new_attendance')"
                                     class="btn text-success fa fa-pencil hover  hover-primary">
-                                    <span>@lang('site.save')</span></a>
+                                    <span>@lang('site.save')</span>
+                                </a>
 
                             </div>
                         </tfoot>

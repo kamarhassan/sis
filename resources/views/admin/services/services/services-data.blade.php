@@ -25,7 +25,7 @@
                     @isset($services)
 
                         @foreach ($services as $key => $servicess)
-                            <tr class="Row{{ $servicess['id'] }} " id="Row{{ $servicess['id'] }} ">
+                            <tr class="Row{{ $servicess['id'] }}" id="Row{{ $servicess['id'] }}">
                                 <td>{{ $key + 1 }}
 
                                 </td>
@@ -47,22 +47,24 @@
                                 <td>{{ $servicess['currency']['currency'] }} - {{ $servicess['currency']['abbr'] }} -
                                     {{ $servicess['currency']['symbol'] }}</td>
                                 <td>
+                                    <div class="row">
 
-                                    @can('edit setting services')
-                                        <ul>
-                                            <li class="list-unstyled">
-                                                <a class="btn text-success fa fa-pencil hover  hover-primary"
-                                                    onclick="get_service('{{ route('admin.services.to-update', $servicess['id']) }}','{{ csrf_token() }}');"
-                                                    title="@lang('site.edit')">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    @endcan
-                                    @can('delete setting services')
-                                        <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
-                                            title="@lang('site.delete')"
-                                            onclick="delete_by_id('{{ route('admin.services.delete') }}',{{ $servicess['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
-                                        </a>
+                                        @can('edit setting services')
+                                            <ul>
+                                                <li class="list-unstyled">
+                                                    <a class="btn text-success fa fa-pencil hover  hover-primary"
+                                                        onclick="get_service('{{ route('admin.services.to-update', $servicess['id']) }}','{{ csrf_token() }}');"
+                                                        title="@lang('site.edit')">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        @endcan
+                                        @can('delete setting services')
+                                            <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"
+                                                title="@lang('site.delete')"
+                                                onclick="delete_by_id('{{ route('admin.services.delete') }}',{{ $servicess['id'] }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                            </a>
+                                        </div>
                                     @endcan
                                 </td>
                             </tr>
@@ -70,7 +72,7 @@
                     @endisset
                 </tbody>
             </table>
-            {{ $services->links() }}
+            {{-- {{ $services->links() }} --}}
         </div>
     </div>
 </div>

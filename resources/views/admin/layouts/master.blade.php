@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/handsontable/handsontable.full.min.css') }}">
+  
 
     @yield('css')
 
@@ -115,7 +115,7 @@
         <div class="content-wrapper">
             <div class="container-full">
                 <section class="content">
-                    {{-- <div id="example"></div> --}}
+
                     @yield('content')
 
                     {{-- @include('admin.layouts.footer'); --}}
@@ -135,9 +135,9 @@
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">
     </script>
-    <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script>
-    <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
-    </script>
+    {{-- <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script> --}}
+    {{-- <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}"> --}}
+    {{-- </script> --}}
     {{-- C:\xampp\htdocs\sis/assets/app-assets/js/jquery-3.6.0.min.js --}}
     <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -148,34 +148,20 @@
 
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/dashboard.js') }}"></script>
-    <script src="{{ URL::asset('assets/handsontable/handsontable.full.min.js') }}"></script>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
     {{-- @jquery --}}
     <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
     @toastr_js
     @toastr_render
-    
-    @method('scripts')
+
+    {{-- @method('scripts') --}}
     @yield('script')
     <script>
-        // const data = [
-        //     ['', 'Tesla', 'Volvo', 'Toyota', 'Ford'],
-        //     ['2019', 10, 11, 12, 13],
-        //     ['2020', 20, 11, 14, 13],
-        //     ['2021', 30, 15, 12, 13]
-        // ];
-
-        // const container = document.getElementById('example');
-        // const hot = new Handsontable(container, {
-        //     data: data,
-        //     rowHeaders: true,
-        //     colHeaders: true,
-        //     height: 'auto',
-        //     licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
-        // });
-
-
+        $(document).ready(function() {
+            // console.log( "ready!" );
+            // console.clear();
+        });
         // Enable pusher logging - don't include this in production
         // Pusher.logToConsole = true;
 

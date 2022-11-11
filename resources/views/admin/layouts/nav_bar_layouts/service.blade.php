@@ -1,6 +1,6 @@
 @canany(['register service to client', 'old services receipt', 'edit old services receipt', 'delete old services
     receipt', 'print old services receipt'])
-    <li class="treeview   {{ $prefix == getprefix('services') ? 'active' : '' }}     ">
+    <li class="treeview {{ $prefix == getprefix('services') ? 'active' : '' }}">
         <a href="#">
             <i class="fa fa-user-circle"></i>
             <span>@lang('site.services')</span>
@@ -9,6 +9,13 @@
             </span>
         </a>
         <ul class="treeview-menu">
+            @can('payment remaining')
+                <li><a href="{{ route('admin.get.remaining.for.services') }}">
+                        <i class="ti-more"></i>
+                        @lang('site.register Student pay fee')
+                    </a>
+                </li>
+            @endcan
             @can('register service to client')
                 <li><a href="{{ route('admin.Services.to.client') }}">
                         <i class="ti-more"></i>

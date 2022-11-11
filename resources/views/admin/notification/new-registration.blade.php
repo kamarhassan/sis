@@ -36,9 +36,9 @@
                 aprrove all'])
                 <div class="mailbox-controls">
 
-                    <button type="button" class="btn btn-sm checkbox-toggle btn-outline" id="action_after_select"><i
+                    <a type="button" class="btn btn-sm checkbox-toggle btn-outline" id="action_after_select"><i
                             class="ion ion-android-checkbox-outline-blank"></i>
-                    </button>
+                    </a>
                     {{-- 'register order aprrove','register order deny','see notification' --}}
                     @can('register order delete all')
                         <div class="btn-group">
@@ -74,7 +74,18 @@
                 <div class="table-responsive">
                     <form id='new_regitration_order'>
                         @csrf
-                        <table class="table no-border" id="cours_fee_datatable">
+                        <table class="table responsive no-border" id="cours_fee_datatable">
+                           
+                           <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                           </thead>
                             <tbody>
                                 @isset($new_order_registeration)
                                     @foreach ($new_order_registeration as $new_order)
@@ -139,12 +150,28 @@
 @include('admin.notification.user-information')
 
 @section('script')
+<script>
+  $(document).ready(function() {
+ var table = $('#cours_fee_datatable').DataTable({
+               
+                scrollY: "400px",
+                // scrollX: true,
+                // scrollCollapse: true,
+                responsive: true,
+                paging: false,
+                // ajax: '/test/0',
+
+            });
+        });
+</script>
     <script src="{{ URL::asset('assets/custome_js/save.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/delete.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
     </script>
-
+  <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
+  <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/mailbox.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/get_info_user.js') }}"></script>
+
 @endsection

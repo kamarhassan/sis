@@ -1,5 +1,5 @@
-function services(route_,form_id) {
-    var formdata = $("#"+form_id).serializeArray();
+function services(route_, form_id) {
+    var formdata = $("#" + form_id).serializeArray();
     // console.table(formdata);
     $.ajax({
         type: 'POST',
@@ -8,6 +8,7 @@ function services(route_,form_id) {
         success: function (data) {
 
             if (data.status == 'success') {
+                console.log(1);
                 toastr.success(data.message)
                 $('#modal-center').modal('hide')
             } else {
@@ -36,10 +37,10 @@ function get_service(route_, token_) {
             // 'id': id,
         },
         success: function (data) {
-           if(data){
+            if (data) {
 
-               set_services_info_into_modal(data)
-               $('#modal-center').modal('show')
+                set_services_info_into_modal(data)
+                $('#modal-center').modal('show')
             }
         }, error: function reject() {
 
@@ -51,9 +52,9 @@ function set_services_info_into_modal(data) {
     $('#service_id').val(data['id']);
     $('#service').val(data['service']);
     $('#fee').val(data['fee']);
-    if (data['active'] ==1) {
+    if (data['active'] == 1) {
         $('#active').attr('checked', true);
-    }else {
+    } else {
         $('#active').attr('checked', false);
     }
     $('#active').val(data['active']);

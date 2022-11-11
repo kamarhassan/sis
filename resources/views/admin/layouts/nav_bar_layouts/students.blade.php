@@ -13,7 +13,7 @@
     'register order deny',
     ])
 
-    <li class="treeview   {{ $prefix == getprefix('students') ? 'active' : '' }}     ">
+    <li class="treeview {{ $prefix == getprefix('students') ? 'active' : '' }}">
         <a href="#">
             <i class="fa fa-user-circle"></i>
             <span>@lang('site.students')</span>
@@ -23,8 +23,18 @@
         </a>
 
         <ul class="treeview-menu">
+            {{-- @can('add students')
+                <li>
+                    <a href="{{ route('admin.students.add') }}">
+                        <i class="ti-more">
+                        </i>
+                        @lang('site.add students')
+                    </a>
+                </li>
+            @endcan --}}
             @can('show all students')
-                <li><a href="{{ route('admin.students.all') }}">
+                <li>
+                    <a href="{{ route('admin.students.all') }}">
                         <i class="ti-more">
                         </i>
                         @lang('site.all students')

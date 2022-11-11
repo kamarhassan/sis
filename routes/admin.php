@@ -68,7 +68,7 @@ Route::group([
 ], function () {
 
     Route::get('logout', [loginController::class, 'logout'])->name('get.admin.logout');;
-    Route::get('/', 'DashboardController@index')->name('admin.dashborad');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashborad');
 
     Route::get('changemode', [DashboardController::class, 'change_mode'])->name('admin.dashborad.changemode');
     ################################### Begin Language Routes #################################################
@@ -89,6 +89,7 @@ Route::group([
 
 
         ################################### begin Language  Routes ###################################################
+        Route::get('/artisan', [DashboardController::class, 'artisan'])->name('admin.setting.artisan');
         Route::get('/language', [LanguageController::class, 'index'])->middleware(['permission:edit language'])->name('admin.language');
         Route::get('language/edit/{id}', [LanguageController::class, 'edit'])->middleware(['permission:edit language'])->name('admin.language.edit');
         Route::post('language/update/{id}', [LanguageController::class, 'update'])->middleware(['permission:edit language'])->name('admin.language.update');
@@ -149,6 +150,10 @@ Route::group([
     ################################### Begin Students Routes #################################################
     Route::group(['prefix' => 'students'], function () {
         Route::get('/', [StudentsController::class, 'students'])->middleware(['permission:show all students'])->name('admin.students.all');
+        Route::get('add-students', [StudentsController::class, 'add_students'])->middleware(['permission:add students'])->name('admin.students.add');
+        Route::get('export-file-to-import', [StudentsController::class, 'export_file_to_import'])->middleware(['permission:add students'])->name('admin.export.file.to.import.students');
+        Route::post('import-std-excel', [StudentsController::class, 'import_std_excel'])->middleware(['permission:add students'])->name('admin.import.file.students');
+
         Route::view('Registration', 'admin.livewire.students.std_registration')->middleware(['permission:register students'])->name('admin.students.Registration-1');
         Route::get('payment', [StudentsController::class, 'get_std_to_payment'])->middleware(['permission:payment students'])->name('admin.students.get_std_to_payment');
         Route::post('get_cours_std/{id}', [StudentsController::class, 'get_cours_std'])->middleware(['permission:payment students'])->name('admin.students.get_cours_std');
@@ -161,18 +166,28 @@ Route::group([
         Route::post('approve-new-register', [RegistartionStudentsController::class, 'approve_edit_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.edit.register');
         Route::post('approved', [RegistartionStudentsController::class, 'approved_new_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.new.register');
 
-        Route::group(['prefix' => 'attendance','middleware'=>'permission:attendance students'], function () {
-            Route::get('/', [StudentsAttendanceController::class, 'index'])->name('admin.take.attendance.students');
-            Route::get('/{cours_id}', [StudentsAttendanceController::class, 'attendance_general_info'])->name('admin.attendance.general.info');
-            Route::post('students_of_cours', [StudentsAttendanceController::class, 'take_students_for_cours'])->name('admin.take.students.for.cours');
-            Route::post('create-or-update-attendance', [StudentsAttendanceController::class, 'create_or_update_attendance'])->name('admin.create.or.update.attendance');
-            Route::get('report-attendance/{cours_id}', [StudentsAttendanceController::class, 'report_attendance'])->name('admin.report.attendance');
-        });
+
         // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
         //     
         // ->middleware(['permission:activate_currency'])->name('admin.students.get_std_to_payment');
     });
 
+    Route::group(['prefix' => 'students/attendance', 'middleware' => 'permission:attendance students'], function () {
+        Route::get('/', [StudentsAttendanceController::class, 'index'])->name('admin.take.attendance.students');
+        Route::get('{cours_id}', [StudentsAttendanceController::class, 'attendance_general_info'])->name('admin.attendance.general.info');
+        Route::post('students_of_cours', [StudentsAttendanceController::class, 'take_students_for_cours'])->name('admin.take.students.for.cours');
+        Route::post('create-or-update-attendance', [StudentsAttendanceController::class, 'create_or_update_attendance'])->name('admin.create.or.update.attendance');
+        Route::get('report-attendance/{cours_id}', [StudentsAttendanceController::class, 'report_attendance'])->name('admin.report.attendance');
+        
+        Route::get('status/{cours_id}', [StudentsAttendanceController::class, 'enable_disable_reset_take_attendance'])->name('admin.enable.disable.take.attendance');
+        // Route::post('edit-status/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'edit_status_attendance'])->name('admin.edit.status.attendance');
+        Route::post('reset-old-attendance/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'reset_old_attendance'])->name('admin.reset.old.attendance');
+        // Route::post('edit-status', [StudentsAttendanceController::class, 'edit_status_attendance'])->name('admin.edit.status.attendance');
+        Route::post('edit-status/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'edit_status_attendance'])->name('admin.edit.status.attendance');
+        Route::post('enable-all/{cours_id}', [StudentsAttendanceController::class, 'enable_all'])->name('admin.enable.all.status.attendance');
+        Route::post('disable-all/{cours_id}', [StudentsAttendanceController::class, 'disable_all'])->name('admin.disable.all.status.attendance');
+        Route::post('reset-all/{cours_id}', [StudentsAttendanceController::class, 'reset_all'])->name('admin.reset.all.status.attendance');
+    });
     ################################### Begin Language Routes #################################################
 
     ################################### Begin Payment Routes #################################################
@@ -197,11 +212,15 @@ Route::group([
         Route::view('client', 'admin.livewire.services.services-to-client')->middleware(['permission:register service to client'])->name('admin.Services.to.client');
         Route::get('receipt', [ServicesReceiptController::class, 'All_receipt'])->middleware('permission:edit old services receipt|delete old services receipt|print old services receipt')->name('admin.Services.all-receipt');
 
+        Route::get('payment', [ClientPaymentController::class, 'get_remaining_for_services'])->middleware(['permission:payment remaining'])->name('admin.get.remaining.for.services');
         Route::get('services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services'])->middleware(['permission:register service to client'])->name('admin.payment.user_paid_for_services');
+        Route::get('paid-services/{user_service_id}', [ClientPaymentController::class, 'user_paid_for_services_for_remaining'])/*->middleware(['permission:payment for client services'])*/->name('admin.payment.user_paid_for_services_for_remaining');
+
+        Route::post('save_payment_client-for-remaining', [ClientPaymentController::class, 'savepaymentCientRemainig'])/*->middleware(['permission:payment for client services'])*/->name('admin.payment.payment_client_remaining_to_receipt');
         Route::post('save_payment_client', [ClientPaymentController::class, 'savepaymentCient'])->middleware(['permission:register service to client'])->name('admin.payment.payment_client_to_receipt');
         Route::get('edit-old-payment/{receipt_id}', [ClientPaymentController::class, 'get_old_payment'])->middleware(['permission:edit old services receipt|delete old services receipt|print old services receipt'])->name('admin.service.get_old_payment.edit');
         Route::post('delet_receipt', [ServicesReceiptController::class, 'delete_payment_receipt'])->middleware(['permission:delete old services receipt'])->name('admin.service.delete_payment_receipt');
-        Route::post('edit-payment', [ClientPaymentController::class, 'edit_payment'])->middleware(['permission:payment client to service'])->name('admin.service.edit.old.payment');
+        Route::post('edit-payment', [ClientPaymentController::class, 'edit_payment'])->middleware(['permission:edit old services receipt'])->name('admin.service.edit.old.payment');
     });
     ################################### end  Services Routes #################################################
     Route::group(['prefix' => 'reports'], function () {

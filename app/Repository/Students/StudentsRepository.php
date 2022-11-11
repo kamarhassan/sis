@@ -29,6 +29,7 @@ class StudentsRepository implements StudentsInterface
     {
         return User::students();
     }
+    
     public function students_for_cours_defined($cours_id)
     {
 

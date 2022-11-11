@@ -79,15 +79,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    {{-- <div class="col-6">
                                         <div class="checkbox text-white">
                                             <input type="checkbox" id="basic_checkbox_1" name="remember" id="remember"
                                                 {{ old('remember') ? 'checked' : '' }}>
                                             <label for="basic_checkbox_1">{{ __('schoolms.Remember Me') }}</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- /.col -->
-                                    <div class="col-6">
+                                    {{-- <div class="col-6">
                                         <div class="fog-pwd text-right">
                                             @if (Route::has('password.request'))
                                                 <a class="text-white hover-info"
@@ -96,7 +96,7 @@
                                                 </a>
                                             @endif
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- /.col -->
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary">

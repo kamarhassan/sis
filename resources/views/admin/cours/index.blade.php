@@ -22,7 +22,7 @@
                             <th>@lang('site.start time') </th>
                             <th>@lang('site.actually end date') </th>
                             <th>@lang('site.end time') </th>
-                            {{-- <th>@lang('site.std count') </th> --}}
+                            <th>@lang('site.std count') </th>
                             <th>@lang('site.options') </th>
                         </tr>
                     </thead>
@@ -38,13 +38,17 @@
                                     <td> {{ $cour->startTime }} </td>
                                     <td> {{ $cour->act_EndDa }} </td>
                                     <td> {{ $cour->endTime }} </td>
-                                    {{-- <td>add students count</td> --}}
+                                    <td> @php
+                                        
+                                 $std = new App\Repository\Cours\CoursRepository();
+                                  echo  $std->count_students_in_cours($cour->id);     @endphp </td>
+
                                     {{-- <td> {{ $cour->getActive() }} </td> --}}
                                     <td>
 
                                         @can('edit cours')
                                             <a href="{{ route('admin.cours.edit', $cour->id) }}" {{-- onclick="" --}}
-                                                class="btn fa fa-edit" title="@lang('site.edit')"">
+                                                class="btn fa fa-edit" title="@lang('site.edit')">
 
                                             </a>
                                         @endcan
@@ -87,8 +91,13 @@
         $(document).ready(function() {
             $('#example1').DataTable({
                 // "order": [ 0, 'asc' ]
-                "order": ['0', 'desc'] // nb four is column status,
+                "order": ['0', 'desc'], // nb four is column status,
                 responsive: true,
+                scrollY: "400px",
+                // searching: false,
+                // scrollX: true,
+                scrollCollapse: true,
+                paging: false,
             });
         });
     </script>

@@ -16,7 +16,6 @@
             </div>
         </div>
     </div>
-
     <div class="content-body">
         <section id="basic-form-layouts">
             <div class="row match-height">
@@ -57,8 +56,8 @@
 
                                                                     <div class="form-group">
                                                                         <label>@lang('site.cours') </label>
-                                                                        <select name="grade" class="form-control select2"
-                                                                            style="width: 100%;">
+                                                                        <select name="grade" class="form-control select2" id="garde_select"
+                                                                            style="width: 100%;" onchange="set_hours_and_duration({{$grade}});">
 
                                                                             @if (old('grade') != '')
                                                                                 <option selected="selected"
@@ -117,10 +116,36 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
+                                                                <label>@lang('site.nb of hours total for cours') </label>
+                                                                <input name="total_hours" class="form-control" type="number"
+                                                                    value="{{ old('total_hours') }}" id="total_hours"
+                                                                   >
+                                                                @error('total_hours')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>@lang('site.duration') </label>
+                                                                <input name="duration" class="form-control" type="number" id="duration"
+                                                                    value="{{ old('duration') }}"
+                                                                   >
+                                                                @error('duration')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>{{-- duration and total hours --}}
+                                                
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
                                                                 <label>@lang('site.start date') </label>
                                                                 <input name="start_date" class="form-control" type="date"
                                                                     value="{{ old('start_date') }}"
-                                                                    id="example-date-input">
+                                                                    id="start_date" onchange="set_mount();">
                                                                 @error('start_date')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -130,7 +155,7 @@
                                                             <div class="form-group">
                                                                 <label>@lang('site.end date') </label>
                                                                 <input name="end_date" class="form-control" type="date"
-                                                                    value="{{ old('end_date') }}" id="example-date-input">
+                                                                    value="{{ old('end_date') }}" id="end_date">
                                                                 @error('end_date')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -297,7 +322,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.description') </label>
-                                                                <textarea name="description" id="description" class="form-control"></textarea>
+                                                                <textarea name="description" id="description" class="form-control"   value="{{ old('description') }}"></textarea>
                                                             </div>
                                                         </div>
                                                         @error('description')

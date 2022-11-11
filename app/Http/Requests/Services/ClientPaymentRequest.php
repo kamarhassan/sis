@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace  App\Http\Requests\Services;
 
 use App\Models\Currency;
 use App\Models\UserService;
@@ -26,11 +26,13 @@ class ClientPaymentRequest extends FormRequest
     public function rules()
     {
 
-        $max_amount_to_paid =  $this->get_max_amount( decrypt($this->client_services_id));
+        $max_amount_to_paid =  $this->get_max_amount(decrypt($this->client_services_id));
         // $t = ['user-id'=>decrypt($this->user_id),'service-id'=>decrypt($this->service_id)];
         //             dd($t);
         return [
+            'primary_fee' => 'required|numeric',
             'amount_to_paid' => $this->amount_to_paid($max_amount_to_paid),
+            'quantity' => $this->quantity_validate(),
             'check_number' => $this->checkNum(),
             'other_amount_to_paid' => $this->other_amount($max_amount_to_paid),
             'service_currency_id' => 'required|exists:currencies,id',
@@ -52,15 +54,17 @@ class ClientPaymentRequest extends FormRequest
     }
 
 
-    private function get_max_amount( $service_client_id)
+    private function get_max_amount($service_client_id)
     {
         // dd($service_client_id);
         try {
-            $client_services = UserService::where('id',$service_client_id)->get();
-
+            $client_services = UserService::where('id', $service_client_id)->get();
+            if ($this->quantity == null)
+                $quantity = 1;
+            else  $quantity = $this->quantity;
             // dd($client_services);
             if ($client_services->count() > 0) {
-                return $client_services[0]['remaining'];
+                return $quantity * $this->primary_fee;
                 // return $client_services->remaining;
             } else {
                 return 0;
@@ -78,7 +82,7 @@ class ClientPaymentRequest extends FormRequest
             return 'required|numeric|min:1|max:' . $max_amount_to_paid;
         else return "";
     }
- //
+    //
     public function checkNum()
     {
         if ($this->pay_type == 'pay_check_')
@@ -106,8 +110,8 @@ class ClientPaymentRequest extends FormRequest
                 if (
                     strcmp($service_curency_abbr['abbr'], "L.L") == 0
                     && (strcmp($this->service_currency_abbr, "USD") == 0 || strcmp($this->service_currency_abbr, "EUR") == 0)
-               &&$this->rate >0
-                    ) {
+                    && $this->rate > 0
+                ) {
                     $amount_to_paid = $this->other_amount_to_paid / $this->rate;
                     // dd($amount_to_paid);
                 } else {
@@ -125,6 +129,12 @@ class ClientPaymentRequest extends FormRequest
     public function rate()
     {
         if ($this->request->has('payment_methode'))
+            return 'required|numeric|min:1';
+        else return "";
+    }
+    public function quantity_validate()
+    {
+        if ($this->quantity != null)
             return 'required|numeric|min:1';
         else return "";
     }

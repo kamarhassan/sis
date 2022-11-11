@@ -32,7 +32,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5>@lang('site.fee value') <span class="text-danger">*</span></h5>
+                                                <h5>@lang('site.fee value') </h5>
                                                 <div class="controls">
                                                     <input type="text" id="fee" name="fee"
                                                         class="form-control">

@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
+
 use App\Models\User;
-use App\Models\Cours;
-use App\Models\level;
-use App\Models\Payment;
-use App\Models\Receipt;
-use App\Models\CoursFee;
+
+
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Yoeunes\Toastr\Facades\Toastr;
+use Maatwebsite\Excel\Excel;
+
+use App\Exports\StudentExport;
+
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
-use App\Http\Requests\PaymentRequest;
+use Illuminate\Support\Facades\Response;
 use App\Repository\Students\StudentsInterface;
 
 class StudentsController extends Controller
 {
 
-   
+
     protected $students;
 
     /**
@@ -33,7 +34,7 @@ class StudentsController extends Controller
 
     ) {
         $this->students = $students;
- }
+    }
 
 
 
@@ -97,5 +98,24 @@ class StudentsController extends Controller
         }
 
         // return response()->json(Config::get('modetheme.mode'));
+    }
+
+
+    public function add_students()
+    {
+        return view('admin.students.students-profile.create');
+    }
+    public function   export_file_to_import()
+    {
+
+        try {
+            $filepath = public_path('File_to_export/Fillstdnew.xlsx');
+            if (file_exists($filepath))
+                return response()->download($filepath);
+                toastr()->error(__('site.file not found please call the administartor'));
+                return redirect()->back();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

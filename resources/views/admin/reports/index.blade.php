@@ -106,6 +106,8 @@
 @endsection
 
 @section('script')
+{{-- assets\custome_js\test_\report.js --}}
+{{-- <script src="{{ URL::asset('assets/custome_js/test_/report.js') }}"></script> --}}
     <script src="{{ URL::asset('assets/custome_js/reports.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
