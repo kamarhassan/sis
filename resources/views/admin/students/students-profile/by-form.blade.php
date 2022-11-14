@@ -2,7 +2,7 @@
     <div class="col-lg-12 col-12">
         <div class="box">
             
-            <form class="form">
+            <form class="form" id="add_students_by_profile">
                 <div class="box-body">
                     <h4 class="box-title text-info"><i class="ti-user mr-15"></i>
                         @lang('site.personal information for student')</h4>
@@ -101,12 +101,12 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-rounded btn-warning btn-outline mr-1">
+                    {{-- <button type="button" class="btn btn-rounded btn-warning btn-outline mr-1">
                         <i class="ti-trash"></i> Cancel
-                    </button>
-                    <button type="submit" class="btn btn-rounded btn-primary btn-outline">
+                    </button> --}}
+                    <a onclick="submit(route_,'add_students_by_profile') ;"   class="btn btn-rounded btn-primary btn-outline">
                         <i class="ti-save-alt"></i> Save
-                    </button>
+                    </a>
                 </div>
             </form>
         </div>

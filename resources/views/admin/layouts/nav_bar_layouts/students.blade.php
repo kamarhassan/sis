@@ -12,8 +12,11 @@
     'register order delete',
     'register order deny',
     ])
-
-    <li class="treeview {{ $prefix == getprefix('students') ? 'active' : '' }}">
+@php
+    $is_active =  Str::of($prefix)->contains('students') ? 'active' : '';
+@endphp
+    <li class="treeview {{ $is_active }}">
+      {{-- {{dd($prefix)}} --}}
         <a href="#">
             <i class="fa fa-user-circle"></i>
             <span>@lang('site.students')</span>
@@ -23,7 +26,7 @@
         </a>
 
         <ul class="treeview-menu">
-            {{-- @can('add students')
+            @can('add students')
                 <li>
                     <a href="{{ route('admin.students.add') }}">
                         <i class="ti-more">
@@ -31,7 +34,7 @@
                         @lang('site.add students')
                     </a>
                 </li>
-            @endcan --}}
+            @endcan
             @can('show all students')
                 <li>
                     <a href="{{ route('admin.students.all') }}">
@@ -66,7 +69,7 @@
                 </li>
             @endcan
 
-            @canany([   'register order delete all',
+            @canany([ 'register order delete all',
             'register order deny all',
             'register order aprrove',
             'register order delete',
@@ -78,7 +81,7 @@
                     </a>
                 </li>
             @endcan
-            @can('attendance students')
+            @canany(['attendance students','attendance students','report attendance','reset','enable or disable'])
                 <li><a href="{{ route('admin.take.attendance.students') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
                         <i class="ti-more">
                         </i>

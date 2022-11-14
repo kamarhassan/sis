@@ -127,11 +127,15 @@ class AttendanceRepository implements AttendanceInterface
 
     function header_column($cours_id)
     {
-        $data = AttendanceInfo::where('cours_id', $cours_id)->select('date as data')->get()->toArray();
-        $col_header_name = ['name'];
-        foreach ($data as $key => $ttendance_date) {
-            $col_header_name[] = $ttendance_date['data'];
+        $data = AttendanceInfo::where('cours_id', $cours_id)
+            ->select('date as data')->get();
+        //   return $data->sort();
+        // $col_header_name = ['name'];
+        foreach ($data as $key => $attendance_date) {
+            $col_header_name[] = $attendance_date['data'];
         }
+        sort($col_header_name);
+        array_unshift($col_header_name, 'name');
         return  ['data' => $data, 'header_name' =>  $col_header_name];
     }
 

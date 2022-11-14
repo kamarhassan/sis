@@ -153,6 +153,7 @@ Route::group([
         Route::get('add-students', [StudentsController::class, 'add_students'])->middleware(['permission:add students'])->name('admin.students.add');
         Route::get('export-file-to-import', [StudentsController::class, 'export_file_to_import'])->middleware(['permission:add students'])->name('admin.export.file.to.import.students');
         Route::post('import-std-excel', [StudentsController::class, 'import_std_excel'])->middleware(['permission:add students'])->name('admin.import.file.students');
+        Route::post('save-by-form', [StudentsController::class, 'save_by_form'])->middleware(['permission:add students'])->name('admin.add.students.form');
 
         Route::view('Registration', 'admin.livewire.students.std_registration')->middleware(['permission:register students'])->name('admin.students.Registration-1');
         Route::get('payment', [StudentsController::class, 'get_std_to_payment'])->middleware(['permission:payment students'])->name('admin.students.get_std_to_payment');
@@ -165,29 +166,22 @@ Route::group([
         Route::post('approve-user-register', [RegistartionStudentsController::class, 'approve_user_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.user');
         Route::post('approve-new-register', [RegistartionStudentsController::class, 'approve_edit_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.edit.register');
         Route::post('approved', [RegistartionStudentsController::class, 'approved_new_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.new.register');
+  }); 
 
-
-        // Route::get('Payment/edit/{user_id}/{cours_id}/{receipt_id}', [StudentsController::class, 'get_std_to_payment'])
-        //     
-        // ->middleware(['permission:activate_currency'])->name('admin.students.get_std_to_payment');
-    });
-
-    Route::group(['prefix' => 'students/attendance', 'middleware' => 'permission:attendance students'], function () {
-        Route::get('/', [StudentsAttendanceController::class, 'index'])->name('admin.take.attendance.students');
-        Route::get('{cours_id}', [StudentsAttendanceController::class, 'attendance_general_info'])->name('admin.attendance.general.info');
-        Route::post('students_of_cours', [StudentsAttendanceController::class, 'take_students_for_cours'])->name('admin.take.students.for.cours');
-        Route::post('create-or-update-attendance', [StudentsAttendanceController::class, 'create_or_update_attendance'])->name('admin.create.or.update.attendance');
-        Route::get('report-attendance/{cours_id}', [StudentsAttendanceController::class, 'report_attendance'])->name('admin.report.attendance');
-        
-        Route::get('status/{cours_id}', [StudentsAttendanceController::class, 'enable_disable_reset_take_attendance'])->name('admin.enable.disable.take.attendance');
-        // Route::post('edit-status/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'edit_status_attendance'])->name('admin.edit.status.attendance');
-        Route::post('reset-old-attendance/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'reset_old_attendance'])->name('admin.reset.old.attendance');
-        // Route::post('edit-status', [StudentsAttendanceController::class, 'edit_status_attendance'])->name('admin.edit.status.attendance');
-        Route::post('edit-status/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'edit_status_attendance'])->name('admin.edit.status.attendance');
-        Route::post('enable-all/{cours_id}', [StudentsAttendanceController::class, 'enable_all'])->name('admin.enable.all.status.attendance');
-        Route::post('disable-all/{cours_id}', [StudentsAttendanceController::class, 'disable_all'])->name('admin.disable.all.status.attendance');
-        Route::post('reset-all/{cours_id}', [StudentsAttendanceController::class, 'reset_all'])->name('admin.reset.all.status.attendance');
-    });
+    Route::group(['prefix' => 'students/attendance', 'middleware' => 'permission:attendance students|report attendance|reset|enable or disable'], function () {
+        Route::get('/', [StudentsAttendanceController::class, 'index'])->middleware(['permission:attendance students'])->name('admin.take.attendance.students');
+        Route::get('{cours_id}', [StudentsAttendanceController::class, 'attendance_general_info'])->middleware(['permission:attendance students'])->name('admin.attendance.general.info');
+        Route::post('students_of_cours', [StudentsAttendanceController::class, 'take_students_for_cours'])->middleware(['permission:attendance students'])->name('admin.take.students.for.cours');
+        Route::post('create-or-update-attendance', [StudentsAttendanceController::class, 'create_or_update_attendance'])->middleware(['permission:attendance students'])->name('admin.create.or.update.attendance');
+        Route::get('report-attendance/{cours_id}', [StudentsAttendanceController::class, 'report_attendance'])->middleware(['permission:report attendance'])->name('admin.report.attendance');
+        Route::get('status/{cours_id}', [StudentsAttendanceController::class, 'enable_disable_reset_take_attendance'])->middleware(['permission:reset|enable or disable'])->name('admin.enable.disable.take.attendance');
+        Route::post('reset-old-attendance/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'reset_old_attendance'])->middleware(['permission:reset'])->name('admin.reset.old.attendance');
+        Route::post('edit-status/{cours_id}/{attendance_date}', [StudentsAttendanceController::class, 'edit_status_attendance'])->middleware(['permission:enable or disable'])->name('admin.edit.status.attendance');
+        Route::post('enable-all/{cours_id}', [StudentsAttendanceController::class, 'enable_all'])->middleware(['permission:enable or disable'])->name('admin.enable.all.status.attendance');
+        Route::post('disable-all/{cours_id}', [StudentsAttendanceController::class, 'disable_all'])->middleware(['permission:enable or disable'])->name('admin.disable.all.status.attendance');
+        Route::post('reset-all/{cours_id}', [StudentsAttendanceController::class, 'reset_all'])->middleware(['permission:reset'])->name('admin.reset.all.status.attendance');
+  
+   });
     ################################### Begin Language Routes #################################################
 
     ################################### Begin Payment Routes #################################################

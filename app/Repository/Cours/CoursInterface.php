@@ -22,5 +22,6 @@ interface CoursInterface
     public function cours_theacher_name($cours);
     public function cours_of_teacher( $teacher_id);
     public function cours_of_teacher_super_admin_loged(array $teacher_id);
+    public function cours_for_export();
     
 }

@@ -73,8 +73,20 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'add students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'show all students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'register students']);
-        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'attendance students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'payment students']);
+        
+        
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'attendance students']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'report attendance']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'reset']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'enable or disable']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'disabel']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
+
+
+
 
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'old payment students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'edit old payment students']);

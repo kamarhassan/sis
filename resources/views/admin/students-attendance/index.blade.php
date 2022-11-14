@@ -44,23 +44,27 @@
                                     <td>
                                         <div class="row">
 
-                                            <a 
+                                            <a @can('enable or disable')
                                             @if ($is_teacher == false) href="{{ route('admin.enable.disable.take.attendance', $cour['id']) }}"
+                                            @endcan
                                             @else
+                                                @can('attendance students')
                                             href="{{ route('admin.attendance.general.info', $cour['id']) }}"
-                                            @endif
-                                              
-                                            class="btn text-warning glyphicon glyphicon-pencil  hover-primary"
+                                            @endcan
+                                                @endif
+
+                                                class="btn text-warning glyphicon glyphicon-pencil  hover-primary"
                                                 title="@lang('site.print')">
                                             </a>
-                                            @role('super admin')
-                                                <a href="{{ route('admin.report.attendance', $cour['id']) }}"
-                                                    class="btn text-warning glyphicon glyphicon-print hover-report   hover-primary"
-                                                    title="@lang('site.print')">
-                                                </a>
-                                            @endrole
+                                            @can('report attendance')
+                                                {{-- @role('super admin') --}}
+                                                    <a href="{{ route('admin.report.attendance', $cour['id']) }}"
+                                                        class="btn text-warning glyphicon glyphicon-print hover-report   hover-primary"
+                                                        title="@lang('site.print')">
+                                                    </a>
+                                                {{-- @endrole --}}
+                                            @endcan
                                         </div>
-
                                     </td>
                                 </tr>
                             @endforeach

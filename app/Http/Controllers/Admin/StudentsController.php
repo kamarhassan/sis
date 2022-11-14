@@ -4,22 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Models\User;
-
-
-
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
-
-use App\Exports\StudentExport;
-
-use Illuminate\Support\Facades\URL;
+use App\Exports\FillNewExport;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
-use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Repository\Cours\CoursInterface;
 use App\Repository\Students\StudentsInterface;
 
 class StudentsController extends Controller
 {
+
+    protected $cours;
+
 
 
     protected $students;
@@ -29,10 +25,11 @@ class StudentsController extends Controller
      * @param $cours
      */
     public function __construct(
-
+        CoursInterface $cours,
         StudentsInterface $students
 
     ) {
+        $this->cours = $cours;
         $this->students = $students;
     }
 
@@ -109,11 +106,15 @@ class StudentsController extends Controller
     {
 
         try {
-            $filepath = public_path('File_to_export/Fillstdnew.xlsx');
-            if (file_exists($filepath))
-                return response()->download($filepath);
-                toastr()->error(__('site.file not found please call the administartor'));
-                return redirect()->back();
+          return  $cours = $this->cours->cours_for_export();
+
+            return Excel::download(new FillNewExport($cours), 'FillStdNew.xlsx');
+
+            // $filepath = public_path('File_to_export/Fillstdnew.xlsx');
+            // if (file_exists($filepath))
+            //     return response()->download($filepath);
+            //     toastr()->error(__('site.file not found please call the administartor'));
+            //     return redirect()->back();
         } catch (\Throwable $th) {
             throw $th;
         }

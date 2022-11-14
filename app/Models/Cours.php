@@ -95,14 +95,6 @@ class Cours extends Model
     }
 
 
-
-
-
-    //    public function grade(){
-    //        return $this->hasMany('App\Models\Grade','grade_id','id');
-    //    }
-
-
     public function grade()
     {
         return $this->belongsTo(Grade::class, 'grade_id', 'id');

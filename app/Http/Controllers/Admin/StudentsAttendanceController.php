@@ -206,11 +206,9 @@ class StudentsAttendanceController extends Controller
                 $header_column = null;
                 $header_name = null;
                 toastr()->error(__('site.attendance for this cours not defined'));
-                // return view('admin.students-attendance.report-attendance', compact('dataset', 'header_column', 'header_name'));
-                // return redirect()->route('admin.take.attendance.students');
+           
             } else {
                 $dataset =  $this->attendancerepos->dataset_attendance($data_for_attendance_report);
-
                 $header =  $this->attendancerepos->header_column($cours_id);
                 $header_column = $header['data'];
                 $header_name = $header['header_name'];
@@ -380,6 +378,8 @@ class StudentsAttendanceController extends Controller
     {
         DB::beginTransaction();
         try {
+            $cours = Cours::find($cours_id);
+
             $teacher_id = $cours['teacher_id'];
             $dates = $this->get_days_between_two_date($cours->act_StartDa, $cours->act_EndDa);
             $attendance_info_between_dates = AttendanceInfo::where('cours_id', $cours_id)->whereIN('date', $dates['dates'])->get();
@@ -391,9 +391,9 @@ class StudentsAttendanceController extends Controller
                 foreach ($dates['days'] as $key => $date) {
                     $attendance_by_date = $attendance_info_between_dates->where('date', $key)->first();
                     $count_attendance_detail_of_attendance_date =  $this->attendancerepos->attendance_info_has_attendance_details($cours_id, $key)->count();
-                    if ($count_attendance_detail_of_attendance_date == 0)
-                        $attendance_enabled =  $attendance_by_date->delete();
-                    else $attendance_enabled =  $attendance_by_date->update(['status' => '1']);
+                        if ($count_attendance_detail_of_attendance_date == 0)
+                            $attendance_enabled =  $attendance_by_date->delete();
+                        else $attendance_enabled =  $attendance_by_date->update(['status' => '1']);
                 }
             }
             if ($attendance_enabled) {
