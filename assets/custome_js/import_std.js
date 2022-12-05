@@ -30,15 +30,18 @@ function submit(route_, form_id, error_id, msg_you_have_error_in_line) {
                         html += '<div class="row">';
                         html += '<p><span class="text-danger">' + arry_of_user_have_error.index + ' => </span>';
                         $.each(arry_of_user_have_error.error, function (key, val) {
-                        //  console.log(val);
+                            //  console.log(val);
                             // if (val === null)
-                                html += '<span class="text-danger"><br>' +'-> '+ val + ' </span>';
+                            html += '<span class="text-danger"><br>' + '-> ' + val + ' </span>';
                         })
                         html += '</p></div><br><br>';
 
                     })
                     html += '</div>';
                     $("#" + error_id).replaceWith(html);
+                    // console.log(data.user_erro_file_name);
+                    $("#error_std_file_name").val(data.user_erro_file_name);
+                    $("#btn_erro_list").attr('hidden', false);
 
                     break;
                 case 'success':

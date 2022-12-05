@@ -164,6 +164,7 @@ Route::group([
         Route::get('/', [StudentsController::class, 'students'])->middleware(['permission:show all students'])->name('admin.students.all');
         Route::get('add-students', [StudentsController::class, 'add_students'])->middleware(['permission:add students'])->name('admin.students.add');
         Route::Post('export-file-to-import', [StudentsController::class, 'export_file_to_import'])->middleware(['permission:add students'])->name('admin.export.file.to.import.students');
+        Route::Post('export-file-have-error', [StudentsController::class, 'export_file_have_error'])->middleware(['permission:add students'])->name('admin.export.file.have.error.students');
         Route::post('import-std-excel', [StudentsController::class, 'import_std_excel'])->middleware(['permission:add students'])->name('admin.import.file.students');
         Route::post('save-by-form', [StudentsController::class, 'save_by_form'])->middleware(['permission:add students'])->name('admin.add.students.form');
 

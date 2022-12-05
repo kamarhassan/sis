@@ -14,16 +14,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StdNews\FillNewStudent;
+use Illuminate\Support\Facades\Storage;
 use App\Repository\Cours\CoursInterface;
 use App\Exports\StdNews\FillStudentError;
+use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Repository\Students\StudentsInterface;
 use App\Repository\Cours_fee\CoursFeeInterface;
 use App\Http\Requests\ImportStudentsFromExcelRequest;
-use Illuminate\Database\Eloquent\Collection;
 
 class StudentsController extends Controller
 {
@@ -116,15 +118,53 @@ class StudentsController extends Controller
             throw $th;
         }
     }
+    public function save_by_form(UserRegistrationRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+            if ($request->has('photo'))
+                $image = $this->saveImage($request->photo, 'public/images/admin');
+            else $image = "";
 
+            $user = User::create([
+                'name' => $request['firstname'] . ' ' . $request['midname'] . ' ' . $request['lastname'],
+                'firstname' => $request['firstname'],
+                'midname' => $request['midname'],
+                'lastname' => $request['lastname'],
+                'phonenumber' => $request['phonenumber'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'birthday' => $request['birthday'],
+                'birthday_place' => $request['born_place'],
+                'photo' => $image,
+                'email_verified_at' => Carbon::now(),
+            ]);
+
+            DB::commit();
+            if ($user) {
+                $message = __('site.import studens to register success');
+                $status = 'success';
+                $route = route('admin.students.add');
+            } else {
+                $message = __('site.import studens to register success fail');
+                $status = 'error';
+                $route = "#";
+            }
+            return response()->json([
+                'message' => $message,
+                'status' => $status,
+                'route' => $route
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+            DB::rollback();
+        }
+    }
     public function import_std_excel(ImportStudentsFromExcelRequest $request)
     {
         try {
 
-
-
-
-            DB::beginTransaction();
+  DB::beginTransaction();
             $cours_id = $request->cours_id;
             $cours_info = $this->cours->is_defined($cours_id);
 
@@ -156,8 +196,29 @@ class StudentsController extends Controller
             $cours_fee = $this->cours_fee_repo->cours_fee_with_type($cours_info);
             $total_cours_fee = $cours_fee->sum('value');
             //    $feerequired = $this->cours_fee_repo->get_fee_required_cours($request->feerequired);
-            $feerequired = CoursFee::where('cours_id', $cours_id)->get('id')->toArray(); //;->collapse();
-            $fee_required = array_to_string(array_column($feerequired, 'id'), ";");
+              $feerequired = CoursFee::where('cours_id', $cours_id)->get('id')->toArray(); //;->collapse();
+          
+          if(  count($cours_fee) ==0){
+            $message = __('site.fee of this cours note defined');
+            $status = 'error';
+            $route = "#";
+            return response()->json([
+                'message' => $message,
+                'status' => $status,
+                'route' => $route,
+                'user_erro_file_name' => '',
+                'user_data_error' =>'',
+                'header_user_data' => ''
+            ]);
+          }
+              $fee_required = array_to_string(array_column($feerequired, 'id'), ";");
+          /**
+           * 
+           * return error if fee of cours not exist make it  because in db the result is 0
+           * 
+           */
+          
+          
             //    array_to_string(array_column($feerequired, 'id'), ",");
             $std_register = [];
 
@@ -201,8 +262,6 @@ class StudentsController extends Controller
             $std_registartion_import =   StudentsRegistration::insert($std_register);
             DB::commit();
             if ($std_registartion_import) {
-
-
                 count($user_data_error) != 0 ? $status = 'success_have_error' : $status = 'success';
                 $message = __('site.import studens to register success');
                 $route = "#";
@@ -213,23 +272,22 @@ class StudentsController extends Controller
                 $route = "#";
             }
 
-
-            $user_erro_path = '';
+            $file_name='';
+            // $user_erro_path = '';
             if (count($user_data_error) > 0) {
                 $file_name = 'user_error_' . Carbon::now()->format('m-d-y') . '_cours_nb_' . $cours_id . '.xlsx';
                 $user_error =  $this->students->traitement_user_error_to_export($user_data_error);
-                $execl_error =  Excel::store(new FillStudentError($user_error),  $file_name);
+                Excel::store(new FillStudentError($user_error),  $file_name);
                 // $user_erro_path=URL::asset($execl_error);
-                $user_erro_path = storage_path($file_name);
-                // return  $user_erro_path;
-                // $user_erro_path = 'storage/app/'. $file_name;// storage_path($execl_error);
+                // $user_erro_path = storage_path($file_name);
+              
             }
-           
+
             return response()->json([
                 'message' => $message,
                 'status' => $status,
                 'route' => $route,
-                'user_erro_path '=>$user_erro_path,
+                'user_erro_file_name' => $file_name,
                 'user_data_error' => $user_data_error,
                 'header_user_data' => $header_user_data
             ]);
@@ -239,46 +297,17 @@ class StudentsController extends Controller
         }
     }
 
-    public function save_by_form(UserRegistrationRequest $request)
-    {
+   
+
+
+    public function export_file_have_error(Request $request){
+   
         try {
-            DB::beginTransaction();
-            if ($request->has('photo'))
-                $image = $this->saveImage($request->photo, 'public/images/admin');
-            else $image = "";
-
-            $user = User::create([
-                'name' => $request['firstname'] . ' ' . $request['midname'] . ' ' . $request['lastname'],
-                'firstname' => $request['firstname'],
-                'midname' => $request['midname'],
-                'lastname' => $request['lastname'],
-                'phonenumber' => $request['phonenumber'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-                'birthday' => $request['birthday'],
-                'birthday_place' => $request['born_place'],
-                'photo' => $image,
-                'email_verified_at' => Carbon::now(),
-            ]);
-
-            DB::commit();
-            if ($user) {
-                $message = __('site.import studens to register success');
-                $status = 'success';
-                $route = route('admin.students.add');
-            } else {
-                $message = __('site.import studens to register success fail');
-                $status = 'error';
-                $route = "#";
-            }
-            return response()->json([
-                'message' => $message,
-                'status' => $status,
-                'route' => $route
-            ]);
+     
+          return Storage::download($request->error_std_file_name);
+       
         } catch (\Throwable $th) {
             throw $th;
-            DB::rollback();
         }
     }
 }

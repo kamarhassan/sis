@@ -89,6 +89,24 @@
             </div>
 
         </form>
+        <div id="btn_dowload_error">
+            <div class="row">
+
+                <form action="{{ route('admin.export.file.have.error.students') }}" method="POST" id="FillStderror">
+                    {{-- <form action="{{ route('admin.add.students.form1', 14) }}" method="POST" id="FillStdNew"> --}}
+                    @csrf
+                   <input type="text" name="error_std_file_name" id='error_std_file_name' hidden> 
+    
+                    <div class="text-xs-right" id='btn_erro_list' hidden>
+                        <button class="btn  fa fa-download hover-success" title="@lang('site.save')" type="submit">
+                            @lang('site.download file have error after import')
+                        </button>
+                    </div>
+                </form>
+            </div>
+    
+        </div>
+        </div>
         <div id="user_have_error"></div>
     </div>
 </div>
