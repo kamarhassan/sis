@@ -39,7 +39,7 @@ class RegisterCoursRepository implements RegisterCoursInterface
                 'user_id' => $request->user_id,
                 'cours_id' => $request->cours_id,
                 'notes' => $request->fee_note,
-                'feesRequired' => array_to_string($request->feerequired),
+                'feesRequired' => array_to_string($request->feerequired,";"),
                 'cours_fee_total' => $cours_fee_total,
                 'remaining' => $cours_fee_total,
             ]);

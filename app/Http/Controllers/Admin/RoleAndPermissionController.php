@@ -49,7 +49,9 @@ class RoleAndPermissionController extends Controller
                 'role_name' => $roles['name'],
             ]);
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th
+            return response()->json(['status' => 'error', 'message' => __('site.you site.you have error')]);
+            ;
         }
     }
     public function update_permission_for_role(Request $request)
@@ -120,7 +122,11 @@ class RoleAndPermissionController extends Controller
             }
             return response()->json(['status' => $status, 'message' => $message, 'roles' => $roles]);
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            $message = __('site.you site.you have error');
+            $status = 'error';
+            return response()->json(['status' => $status, 'message' => $message, 'roles' => $roles]);
+
         }
     }
 

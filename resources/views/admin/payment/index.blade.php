@@ -7,7 +7,6 @@
             left: 50%;
             margin-left: -4em;
         }
-
     </style>
 @endsection
 
@@ -15,11 +14,11 @@
 @section('content')
 
     <div class="box" id="spinner_loading">
-        <div class="d-flex justify-content-center text-primary" >
+        <div class="d-flex justify-content-center text-primary">
             <div class="spinner-border" role="status">
-              <span class="sr-only">Loading...</span>
+                <span class="sr-only">Loading...</span>
             </div>
-          </div>
+        </div>
     </div>
 
     <div class="box" id="table_std" hidden>
@@ -35,13 +34,11 @@
                     <thead>
 
                         <tr>
-                          
+
                             <th>@lang('site.student name')</th>
-                            {{-- <th>@lang('site.students id')</th> --}}
-                            <th>@lang('site.E-mail')</th>
-                            {{-- <th>@lang('site.id')</th> --}}
-                            <th>@lang('site.nbumber of cours')</th>
-                            <th>@lang('site.students photo')</th>
+                            <th>@lang('site.cours info')</th>
+                            <th>@lang('site.cours fees')</th>
+                            <th>@lang('site.remaining')</th>
                             <th>@lang('site.options')</th>
                         </tr>
 
@@ -50,24 +47,31 @@
                         @isset($std_registartion)
                             @foreach ($std_registartion as $stduents)
                                 <tr id="Row{{ $stduents->user_id }}" class="bg-light mb-10 p-10 cursor_pointer hover-success">
-                                   
+
                                     <td class="col-sm-2">{{ $stduents['student'][0]['name'] }} # {{ $stduents->user_id }}</td>
-                                    {{-- <td class="col-sm-1"></td> --}}
-                                    <td class="col-md-3">{{ $stduents['student'][0]['email'] }}</td>
-                                    <td class="col-md-3">{{ $stduents->total }}</td>
-                                    <td class="col-md-3">
-                                        <img class="avatar avatar-xl avatar-1" {{-- src="{{ photos_dir($stduents->photo) }}" --}} alt="">
-                                    </td>
+
+                                    <td>{{ $stduents['cours']['grade']['grade'] }} # {{ $stduents['cours']['level']['level'] }}
+                                        # {{ $stduents['cours']['teacher_name']['name'] }}</td>
+                                    <td>{{ $stduents['cours_fee_total'] }} <span
+                                            class="text-warning">{{ $stduents['cours']['cours_currency']['abbr'] }}</span></td>
+                                    <td>{{ $stduents['remaining'] }} <span
+                                            class="text-warning">{{ $stduents['cours']['cours_currency']['abbr'] }}</span></td>
                                     <td>
-                                        <ul>
+
+                                        <a href="{{ route('admin.payment.user_paid_for_cours', [$stduents->cours_id, $stduents->user_id]) }}"
+                                            class="btn fa fa-credit-card hover-warning text-light" title="@lang('site.save')">
+                                            @lang('site.pay')</a>
+
+
+                                        {{-- <ul>
                                             <li class="list-unstyled">
                                                 <a data-toggle="modal" data-target="#modal-center"
-                                                    onclick="get_cours_of_std({{ $stduents->user_id }},'{{ route('admin.students.get_cours_std', $stduents->user_id) }}','{{ csrf_token() }}');"
+                                                   href=""
                                                     class="btn fa fa-credit-card hover-warning text-light"
                                                     title="@lang('site.save')"> @lang('site.pay')</a>
                                             </li>
 
-                                        </ul>
+                                        </ul> --}}
                                         {{-- <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light"
                                         title="@lang('site.save')"></a>
                                      <a class="btn glyphicon glyphicon-arrow-left hover-danger text-danger text-light"
@@ -91,7 +95,6 @@
 @include('admin.payment.cours_std')
 @section('script')
     <script>
-
         $(document).ready(function() {
             $('#spinner_loading').css("display", "none");
 

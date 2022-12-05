@@ -30,7 +30,7 @@ return [
     'friday'  => 'الجمعة',
     'saturday'  => 'السبت',
     'sunday'  => 'الاحد',
-    
+
     'Monday'  => 'الاثنين',
     'Tuesday'  => 'الثلاثاء',
     'Wednesday'  => 'الاربعاء',
@@ -50,6 +50,7 @@ return [
     'retype password'  => 'اعد كتابة  كلمة السر ',
     'supervisor add'  => 'اضافة مشرف',
     'Post created successfully!'  => 'تم الحفظ بنجاح ',
+    'Post created unsuccessfully!'  => 'فشل الحفظ حاول من جديد',
     'language note defined'  => 'اللغة غير موجودة ',
     'language delete successfully'  => ' تم حذف اللغة بنجاح',
     'website language'  => 'لغات الموقع',
@@ -105,9 +106,9 @@ return [
     'failed_delete'         => 'لم يتم الحذف',
     'failed_msj_swal_fire'         => 'لم يتم الحذف هناك مشكلة حاول من جديد او اتصل بالمشرف',
     'select_at_least_one_to_delete'         => 'اختر طلب واحد على الاقل',
-   
-   
-    'title_of_delet_swal_fire_attendance'         => 'هل انت متاكد من الحذف سجل الحضور لهذا اليوم يجب اعادة تسجيله من قبل الاستاذ' ,
+
+
+    'title_of_delet_swal_fire_attendance'         => 'هل انت متاكد من الحذف سجل الحضور لهذا اليوم يجب اعادة تسجيله من قبل الاستاذ',
     'text_of_delet_swal_fire'         => 'الحذف نهائيا',
     'confirmButtonTextof_delet_swal_fire'         => 'نعم حذف',
     'cancelButtonTextof_delet_swal_fire'         => 'كلا',
@@ -346,7 +347,56 @@ return [
     'attendance hour'  => 'ساعات الحضور',
     'fail reset attendance for this date'  => 'فشل حذف سجل الحضور لهذا اليوم',
     'fail reset attendance for this date. it is not attendance'  => 'فشل حذف سجل الحضور لهذا اليوم لانه غير موجود',
-    ''  => '',
+    'phone number'  => 'رقم الهاتف',
+    'phone'  => 'رقم الهاتف',
+    'location born'  => 'مكان الولادة',
+    'sejel number'  => 'رقم السجل',
+    'sejel location'  => 'البلدة/مكان السجل',
+    'must be xlsx or csv file' => 'يجب ان يكون الملف Excel من نوع  \'.xlsx او .csv\' ',
+    'you can\'t edit this cours because it have students' => 'لا يمكن التعديل على رسوم الدورة لان هناك طلاب مسجلين فيها ',
+    'fee corevered by sponsor' => ' تغطية الرسوم من قبل',
+    'please wait until import students' => 'يرجى الانتظار حتى يتم استيراد البيانات',
+    'import studens to register success' => 'تم استيراد وتسجيل الطلاب بنجاح',
+    'import studens to register success fail' => 'فشل استيراد وتسجيل الطلاب',
+
+    'The password must be at least 8 characters.' => 'يجب أن تتكون كلمة المرور من 8 أحرف او ارقام على الأقل.',
+    'phone number must be 8' => 'يجب أن يكون رقم الهاتف من 8 ارقام',
+    'you can\'t delete this sponsore it have students' => 'لا يمكن حف لان لديه طلاب قد كفلهم في السابق',
+    'delete this sponsore success' => 'تم حذف هذا الكفيل بنجاح',
+    'this sponsore is not defined' => 'الكفيل غير موجود',
+    'must be a number positive min 1' => '1%' . 'يجب ات تكون القيمة اكبر من',
+    'must be under 100 percent' => '100%' . 'يجب ات تكون القيمة اقل من',
+    'sponsor' => 'الكفيل',
+    'add sponsor' => 'اضافة كفيل',
+    'sponsor name' => 'اسم الكفيل',
+    'sponsor type' => 'نوع الكفيل:جمعية،مؤسسة ...',
+    'sponsor limit budget' => 'الحد الاقصى للكفالة',
+    'sponsor limit students' => 'عدد الطلاب المسموح به',
+    'sponsor default %' => 'النسبة المئوية للكفالة',
+
+    'you can\'t delete this cours it have students or not defined' => 'لا يمكن حذف هذه الدورة لان فيها طلاب مسجلين  مسبقا او غير موجودة',
+    'cours delete successfully' => 'تم حذف الدورة بنجاح',
+    'cours not deleted' => 'لم يتم حذف الدورة اعد المحاولة',
+    'you have error in line when import excel' => 'لديك خطاء في السطر رقم: ',
+
+    'students birthday day' => 'اليوم',
+    'students birthday month' => 'الشهر',
+    'students birthday years' => 'السنة',
+
+
+    'import sejel is not valid' => 'رقم السجل غير صحيح',
+    'import sejel place is not valid' => 'البلدة / مكان السجل غير صحيح',
+    'import birthday place is not valid'   => 'مكان الولادة غير صحيح',
+    'import date not valide' => 'تاريخ الميلاد غير صحيح',
+    'import firstname is not valid' => 'الاسم الاول غير صحيح',
+    'import midname is not valid' =>  'الاسم الاب غير صحيح',
+    'import lastname is not valid' =>  'الشهرة غير صحيح',
+    'import phonenumber is not valid' =>  'رقم الهاتف غير صحيح',
+    'import email is not valid'     => 'البريد الالكتروني غير صحيح',
+ 
+
+
+    '' => '',
 
 
 ];

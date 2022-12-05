@@ -32,7 +32,8 @@ class ClientPaymentController extends Controller
             $service = Service::with('currency')->find($client_services['service_id']);
             return view('admin.services.payment.payment', compact('service_currency', 'user', 'service', 'client_services'));
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            toastr()->error(__('site.you have error'));
         }
     }
     public  function user_paid_for_services_for_remaining($service_id)
@@ -45,7 +46,8 @@ class ClientPaymentController extends Controller
             $service = Service::with('currency')->find($client_services['service_id']);
             return view('admin.services.payment.payment-for-remaining', compact('service_currency', 'user', 'service', 'client_services'));
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            toastr()->error(__('site.you have error'));
         }
     }
     public function savepaymentCient(ClientPaymentRequest $request)
@@ -129,7 +131,7 @@ class ClientPaymentController extends Controller
             // return $t;
             return response()->json([route('admin.payment.service.receipt', $receipt_information->id), $notification]);
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
             DB::rollBack();
             $notification = [
                 'message' => __('site.you have error'),
@@ -222,7 +224,7 @@ class ClientPaymentController extends Controller
 
             return response()->json([route('admin.payment.service.receipt', $receipt_information->id), $notification]);
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
             DB::rollBack();
             $notification = [
                 'message' => __('site.you have error'),
@@ -257,7 +259,9 @@ class ClientPaymentController extends Controller
                 return view('admin.services.payment.edit-old-paymnet', compact('client_receipt', 'client_services', 'user', 'service', 'currency'));
             }
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            toastr()->error(__('site.you have error'));
+            return redirect()->route('admin.Services.all-receipt');
         }
     }
 
@@ -357,7 +361,12 @@ class ClientPaymentController extends Controller
                 return response()->json([route('admin.payment.service.receipt', $receipt_id), $notification]);
             }
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            $notification = [
+                'message' => __('site.you have error'),
+                'status' => 'error',
+            ];
+            return response()->json(['#', $notification]);
         }
     }
     private function is_last_receipt($receipt_id)
@@ -395,6 +404,8 @@ class ClientPaymentController extends Controller
                 ->get($array_of_data);
             return view('admin.services.payment.remainig', compact('data'));
         } catch (\Throwable $th) {
+            toastr()->error(__('site.you have error'));
+           return redirect()->back();
             throw $th;
         }
     }

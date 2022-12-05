@@ -41,16 +41,21 @@ class CoursfeeRepository implements CoursFeeInterface
     public function update_fee_cours($request, $cours_id, $currency)
     {
         $cours_fee =  CoursFee::Where('cours_id', $cours_id)->getOrFail();
-        if (!$cours_fee) {
-            $saved = $this->create($request, $cours_id, $currency);
-            return $saved;
-        } else {
-            //
+        if ($request == 0) {
             foreach ($cours_fee as $key => $cours_fees) {
-                $cours_fee[$key]->delete();
+                $cours_fees->delete();
             }
-            $saved = $this->create($request, $cours_id, $currency);
-            return $saved;
+        } else {
+            if (!$cours_fee) {
+                $saved = $this->create($request, $cours_id, $currency);
+                return $saved;
+            } else {
+                foreach ($cours_fee as $key => $cours_fees) {
+                    $cours_fees->delete();
+                }
+                $saved = $this->create($request, $cours_id, $currency);
+                return $saved;
+            }
         }
     }
 
@@ -73,7 +78,6 @@ class CoursfeeRepository implements CoursFeeInterface
 
 
         //    return CoursFee::whereIn($array_id_fee_required)->with('fee_type')->get();
-
 
         $cours_fee_required_sum = 0;
 
@@ -102,5 +106,16 @@ class CoursfeeRepository implements CoursFeeInterface
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+    public function delete_fee_cours($cours_id)
+    {
+        $cours_fee = CoursFee::where('cours_id', $cours_id)->get();
+        if($cours_fee->count()==0) return true;
+        $cours_fee = CoursFee::where('cours_id', $cours_id)->delete();
+        // if (!$cours_fee)
+        //     return false;
+        if ( $cours_fee)
+            return true;
+        return false;
     }
 }

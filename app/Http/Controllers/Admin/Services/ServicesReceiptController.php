@@ -101,7 +101,12 @@ class ServicesReceiptController extends Controller
             }
         } catch (\Throwable $th) {
             DB::rollback();
-            throw $th;
+            $notification = [
+                'message' => __('site.you site.you have error'),
+                'status' => 'error',
+            ];
+            return response()->json($notification);
+            // throw $th;
         }
     }
 

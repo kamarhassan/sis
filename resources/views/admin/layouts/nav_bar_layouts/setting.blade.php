@@ -24,10 +24,22 @@
     'edit supervisor',
     'delete supervisor',
     'add supervisor',
+    'edit sponsor',
+    'delete sponsor',
+    'add sponsor',
     ])
 
-
-    <li class="treeview {{ $prefix == getprefix('setting') ? 'active' : '' }}">
+    @php
+        $class_setting = '';
+        if (Str::contains($prefix, 'setting')) {
+            $class_setting = 'active';
+        }
+        $class_supervisor_menu = '';
+        if (Str::contains($prefix, 'supervisor')) {
+            $class_supervisor_menu = 'active';
+        }
+    @endphp
+    <li class="treeview {{ $class_setting }}">
         <a href="#">
             <i class="ti-settings"></i>
             <span>@lang('site.setting')</span>
@@ -37,7 +49,7 @@
         </a>
         <ul class="treeview-menu">
             @canany(['edit supervisor', 'delete supervisor', 'add supervisor'])
-                <li class="treeview   {{ $prefix == getprefix('supervisor') ? 'active' : '' }}     ">
+                <li class="treeview   {{ $class_supervisor_menu }}     ">
                     <a href="#">
                         <i class="si si-people"></i>
                         <span>@lang('site.supervisor')</span>
@@ -90,7 +102,7 @@
                         <i class="ti-more"></i>@lang('site.add new Currency')</a></li>
             @endcan
 
-            @canany([ 'create setting services', 'edit setting services', 'delete setting services'])
+            @canany(['create setting services', 'edit setting services', 'delete setting services'])
                 <li><a href="{{ route('admin.Services.add') }}">
                         <i class="ti-more"></i>
                         @lang('site.add and edit services')
@@ -112,15 +124,20 @@
                     </a>
                 </li>
             @endcan
+            @canany(['edit sponsor', 'delete sponsor', 'add sponsor'])
+                <li><a href="{{ route('admin.sponsor.all') }}">
+                        <i class="ti-more"></i>
+                        @lang('site.sponsor')
+                    </a>
+                </li>
+            @endcan
             {{-- @canany(['fee type', 'edit fee type', 'create fee type', 'delete fee type']) --}}
-            @if (Auth::user()->email =="sadmin@gmail.com") 
-                 
+            @if (Auth::user()->email == 'sadmin@gmail.com')
                 <li><a href="{{ route('admin.setting.artisan') }}">
-                            <i class="ti-more"></i>
-                            @lang('site.artisan')
-                        </a>
-                    </li>
-                
+                        <i class="ti-more"></i>
+                        @lang('site.artisan')
+                    </a>
+                </li>
             @endif
             {{-- @endcan --}}
         </ul>

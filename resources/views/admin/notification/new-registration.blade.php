@@ -169,8 +169,10 @@
     <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
     </script>
+ {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script> --}}
+
   <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
-  <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
+  {{-- <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script> --}}
     <script src="{{ URL::asset('assets/app-assets/js/pages/mailbox.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/get_info_user.js') }}"></script>
 

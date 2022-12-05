@@ -139,6 +139,11 @@ class Cours extends Model
         return $this->hasMany(CoursFee::class, 'cours_id', 'id')
             ->with('fee_type', 'currency');
     }
+    public function  cours_currency()
+    {
+        return $this->hasone(Currency::class,'id', 'currencies_id', );
+           
+    }
 
    
 }

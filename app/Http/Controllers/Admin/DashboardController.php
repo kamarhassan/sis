@@ -62,4 +62,14 @@ class DashboardController extends Controller
             throw $th;
         }
     }
+    public function clearcache()
+    {
+        try {
+
+            $t = Artisan::call('optimize:clear');
+           
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

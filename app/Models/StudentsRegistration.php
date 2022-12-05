@@ -25,6 +25,7 @@ class StudentsRegistration extends Model
         return $this->hasone(Cours::class, 'id', 'cours_id')
             ->with('grade:id,grade')
             ->with('level:id,level')
+            ->with('cours_currency')
             ->with('teacher_name');
     }
 

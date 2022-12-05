@@ -35,7 +35,7 @@ function days_of_week()
         1 => __('site.monday'),
         2 => __('site.tuesday'),
         3 => __('site.wednesday'),
-        4 => __('site.thirsday'),
+        4 => __('site.thursday'),
         5 => __('site.friday'),
         6 => __('site.saturday'),
     ];
@@ -123,9 +123,9 @@ function  photos_dir($photoUrl)
     else   return URL::asset('assets\images\avatar\avatar-1.png');
 }
 
-function array_to_string($array)
+function array_to_string($array,$caratcter_implode)
 {
-    $string = implode(";", $array);
+    $string = implode($caratcter_implode, $array);
     return $string;
 }
 

@@ -12,8 +12,10 @@ use App\Http\Controllers\Controller;
 use App\Repository\Admin\AdminInterface;
 use App\Repository\Cours\CoursInterface;
 use App\Http\Requests\InsertCoursRequest;
+use App\Models\CoursFee;
 use App\Repository\Fee_Type\Fee_TypeInterface;
 use App\Repository\Cours_fee\CoursFeeInterface;
+use Illuminate\Http\Request;
 
 class CoursController extends Controller
 {
@@ -81,13 +83,11 @@ class CoursController extends Controller
                 $cours_fee = $this->coursfee->create($request->fee, $id_cours, $request->cours_currency);
             }
 
-
             DB::commit();
             if (!$id_cours) {
                 toastr()->error(__('site.please add data in the field'));
                 return redirect()->route('admin.cours.add');
             } else {
-
                 toastr()->success(__('site.Post created successfully!'));
                 return redirect()->route('admin.cours.all');
             }
@@ -150,24 +150,80 @@ class CoursController extends Controller
     {
 
         try {
-            // return $request;
+            //   return $request;
             //code...
             // $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
             $teacher_id = Admin::GetIdByName($request->teacher_name);
             $this->cours->update_cours($request, $teacher_id, $id);
+            // return $request->has('fee');
             if ($request->has('fee')) {
                 $cours_fee = $this->coursfee->update_fee_cours($request->fee, $id, $request->cours_currency);
+            } else {
+                if ($this->cours->count_students_in_cours($id) == 0) {
+                    $cours_fee = $this->coursfee->update_fee_cours(0, $id, $request->cours_currency);
+                }
+                toastr()->error(__('site.you can\'t edit this cours because it have students'));
+                return redirect()->route('admin.cours.all');
             }
+
             toastr()->success(__('site.Post created successfully!'));
             return redirect()->route('admin.cours.all');
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            toastr()->error(__('site.you site.you have error'));
+            return redirect()->route('admin.cours.all');
         }
 
         // return $request;
     }
 
+    public function delete(Request $request)
+    {
 
+        $cours = $this->cours->is_defined($request->id);
+        $count_std =   $this->cours->count_students_in_cours($request->id);
+        $message ='';
+        $status = '';
+        $route = "#";
+        try {
+            DB::beginTransaction();
+            if ($cours == false || $count_std > 0) {
+                $message = __('site.you can\'t delete this cours it have students or not defined');
+                $status = 'error';
+                $route = "#";
+                
+                return response()->json(['message' => $message, 'status' => $status, 'route' => $route]);
+            }
+             $is_cours_fee_deleted = $this->coursfee->delete_fee_cours($request->id);
+        //    return response()->json($is_cours_fee_deleted);
+           
+           if ($is_cours_fee_deleted) {
+                $is_cours_deleted =  $cours->delete();
+                if ($is_cours_deleted) {
+                    $message = __('site.cours delete successfully');
+                    $status = 'success';
+                    $route = "#";
+                } else {
+                    $message = __('site.cours not deleted');
+                    $status = 'success';
+                    $route = "#";
+                }
+            }
+            DB::commit();
+            return response()->json(['message' => $message, 'status' => $status, 'route' => $route]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            // throw $th;
+             $message = __('site.you have error');
+                     $status = 'success';
+                     $route = "#";
+             return response()->json(['message' => $message, 'status' => $status, 'route' => $route]);
+        }
+
+
+        // return $request;
+        // if()
+    }
     /****
      * end of Class
      */

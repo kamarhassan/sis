@@ -189,7 +189,7 @@ class Registration extends Component
                 'user_id' => $user_id,
                 'cours_id' => $this->cours_id,
                 'notes' => $this->fee_note,
-                'feesRequired' => array_to_string($this->feerequired),
+                'feesRequired' => array_to_string($this->feerequired,";"),
                 'cours_fee_total' => $cours_fee_total,
                 'remaining' => $remaining,
             ]);

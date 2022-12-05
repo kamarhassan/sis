@@ -65,9 +65,9 @@ class PaymentController extends Controller
                 return redirect()->route('admin.students.get_std_to_payment');
             }
         } catch (\Throwable $th) {
-            throw $th;
-            // toastr()->error(__('site.you have error'));
-            // return redirect()->route('admin.students.get_std_to_payment');
+            // throw $th;
+            toastr()->error(__('site.you have error'));
+            return redirect()->route('admin.students.get_std_to_payment');
         }
 
 
@@ -262,7 +262,7 @@ class PaymentController extends Controller
                 // DB::commit();
             }
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
             DB::rollBack();
             $notification = [
                 'message' => __('site.you have error'),
@@ -324,6 +324,8 @@ class PaymentController extends Controller
             ));
         } catch (\Throwable $th) {
             //throw $th;
+            toastr()->error(__('site.you have error'));
+            return redirect()->back();
         }
     }
 
@@ -463,7 +465,12 @@ class PaymentController extends Controller
             } else {
             }
         } catch (\Throwable $th) {
-            throw $th;
+            $notification = [
+                'message' => __('site.you have error'),
+                'status' => 'error',
+            ];
+            return response()->json(["#", $notification]);
+            // throw $th;
         }
     }
 
@@ -505,7 +512,12 @@ class PaymentController extends Controller
 
             //code...
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            $notification = [
+                'message' => __('site.you site.you have error'),
+                'status' => 'error',
+            ];
+            return response()->json($notification);
         }
     }
     /*

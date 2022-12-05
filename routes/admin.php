@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\StudentsAttendanceController;
 use App\Http\Controllers\Admin\RegistartionStudentsController;
 use App\Http\Controllers\Admin\Services\ClientPaymentController;
 use App\Http\Controllers\Admin\Services\ServicesReceiptController;
+use App\Http\Controllers\Admin\SponsorController;
 
 // use App\Http\Livewire\P;
 
@@ -74,6 +75,9 @@ Route::group([
     ################################### Begin Language Routes #################################################
 
     ################################### Begin Settings Routes #################################################
+   
+    Route::get('/artisan', [DashboardController::class, 'artisan'])->name('admin.setting.artisan');
+    Route::get('/clearcache', [DashboardController::class, 'clearcache']);
     Route::group(['prefix' => 'setting'], function () {
         Route::group(['prefix' => 'supervisor'], function () {
             Route::get('all', [SuperviserController::class, 'all'])->middleware(['permission:edit supervisor|delete supervisor'])->name('admin.supervisor.all');
@@ -84,12 +88,18 @@ Route::group([
             Route::post('delete-supervisor', [SuperviserController::class, 'delete_supervisor'])->middleware(['permission:delete supervisor'])->name('admin.supervisor.delete.supervisor');
         });
 
+        Route::group(['prefix' => 'sponsor'], function () {
+            Route::get('/', [SponsorController::class, 'index'])->middleware(['permission:edit sponsor|delete sponsor|add sponsor'])->name('admin.sponsor.all');
+            Route::post('store-sponsor', [SponsorController::class, 'store_sponsor'])->middleware(['permission:add sponsor'])->name('admin.sponsor.store.sponsor');
+            Route::post('delete-sponsor', [SponsorController::class, 'delete_sponsor'])->middleware(['permission:delete sponsor'])->name('admin.sponsor.delete.sponsor');
+        });
+
 
 
 
 
         ################################### begin Language  Routes ###################################################
-        Route::get('/artisan', [DashboardController::class, 'artisan'])->name('admin.setting.artisan');
+
         Route::get('/language', [LanguageController::class, 'index'])->middleware(['permission:edit language'])->name('admin.language');
         Route::get('language/edit/{id}', [LanguageController::class, 'edit'])->middleware(['permission:edit language'])->name('admin.language.edit');
         Route::post('language/update/{id}', [LanguageController::class, 'update'])->middleware(['permission:edit language'])->name('admin.language.update');
@@ -141,17 +151,19 @@ Route::group([
         Route::post('store', [CoursController::class, 'store'])->middleware(['permission:create cours'])->name('admin.cours.store');
         Route::get('edit/{id}', [CoursController::class, 'edit'])->middleware(['permission:edit cours'])->name('admin.cours.edit');
         Route::post('update/{id}', [CoursController::class, 'update'])->middleware(['permission:edit cours'])->name('admin.cours.update');
-        // Route::post('delete', [CoursController::class, 'update'])->middleware(['permission:delete cours'])->name('admin.cours.update');
+        Route::post('delete', [CoursController::class, 'delete'])->middleware(['permission:delete cours'])->name('admin.cours.delete');
     });
 
     ################################### End Cours Routes ###################################################
 
 
     ################################### Begin Students Routes #################################################
+    
+  
     Route::group(['prefix' => 'students'], function () {
         Route::get('/', [StudentsController::class, 'students'])->middleware(['permission:show all students'])->name('admin.students.all');
         Route::get('add-students', [StudentsController::class, 'add_students'])->middleware(['permission:add students'])->name('admin.students.add');
-        Route::get('export-file-to-import', [StudentsController::class, 'export_file_to_import'])->middleware(['permission:add students'])->name('admin.export.file.to.import.students');
+        Route::Post('export-file-to-import', [StudentsController::class, 'export_file_to_import'])->middleware(['permission:add students'])->name('admin.export.file.to.import.students');
         Route::post('import-std-excel', [StudentsController::class, 'import_std_excel'])->middleware(['permission:add students'])->name('admin.import.file.students');
         Route::post('save-by-form', [StudentsController::class, 'save_by_form'])->middleware(['permission:add students'])->name('admin.add.students.form');
 
@@ -166,7 +178,7 @@ Route::group([
         Route::post('approve-user-register', [RegistartionStudentsController::class, 'approve_user_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.user');
         Route::post('approve-new-register', [RegistartionStudentsController::class, 'approve_edit_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.edit.register');
         Route::post('approved', [RegistartionStudentsController::class, 'approved_new_register'])->middleware(['permission:register order aprrove'])->name('admin.notification.approve.new.register');
-  }); 
+    });
 
     Route::group(['prefix' => 'students/attendance', 'middleware' => 'permission:attendance students|report attendance|reset|enable or disable'], function () {
         Route::get('/', [StudentsAttendanceController::class, 'index'])->middleware(['permission:attendance students'])->name('admin.take.attendance.students');
@@ -180,8 +192,7 @@ Route::group([
         Route::post('enable-all/{cours_id}', [StudentsAttendanceController::class, 'enable_all'])->middleware(['permission:enable or disable'])->name('admin.enable.all.status.attendance');
         Route::post('disable-all/{cours_id}', [StudentsAttendanceController::class, 'disable_all'])->middleware(['permission:enable or disable'])->name('admin.disable.all.status.attendance');
         Route::post('reset-all/{cours_id}', [StudentsAttendanceController::class, 'reset_all'])->middleware(['permission:reset'])->name('admin.reset.all.status.attendance');
-  
-   });
+    });
     ################################### Begin Language Routes #################################################
 
     ################################### Begin Payment Routes #################################################

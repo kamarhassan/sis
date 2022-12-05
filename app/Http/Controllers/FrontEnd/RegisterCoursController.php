@@ -36,9 +36,10 @@ class RegisterCoursController extends Controller
         } else {
             
             return  response()->json(['status' => 'error','message' => __('site.cours failed registered')]);
-        }
+         }
       } catch (\Throwable $th) {
-         throw $th;
+         return  response()->json(['status' => 'error','message' => __('site.you have error')]);
+         // throw $th;
       }
    }
    public function delete_cours_reserved(Request $request)
@@ -60,7 +61,12 @@ class RegisterCoursController extends Controller
          }
          return response()->json($notification);
       } catch (\Throwable $th) {
-         throw $th;
+         $notification = [
+            'message' => __('site.you site.you have error'),
+            'status' => 'error',
+         ];
+         return response()->json($notification);
+         // throw $th;
       }
    }
 }

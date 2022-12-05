@@ -59,8 +59,14 @@ class ServicesController extends Controller
                 return  response()->json($notification);
             }
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
             DB::rollback();
+            $notification = [
+                'message' =>  __('site.you site.you have error'),
+                'status' => 'error',
+            ];
+            return  response()->json($notification);
+
         }
 
         // return $request;
@@ -102,7 +108,7 @@ class ServicesController extends Controller
                 return response()->json($notification);
             }
         } catch (\Exception $th) {
-            throw $th;
+            // throw $th;
             $notification = [
                 'message' => __('site.you have error'),
                 'status' => 'error',
@@ -133,7 +139,12 @@ class ServicesController extends Controller
             }
             return $services;
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            $notification = [
+                'message' =>  __('site.you site.you have error'),
+                'status' => 'error',
+            ];
+            return  response()->json($notification);
         }
     }
 
@@ -178,10 +189,16 @@ class ServicesController extends Controller
                     'status' => 'success',
                 ];
             }
-
+            
             return  response()->json($notification);
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            $notification = [
+                'message' =>  __('site.you site.you have error'),
+                'status' => 'error',
+            ];
+            return  response()->json($notification);
         }
     }
 }
+

@@ -68,10 +68,17 @@
                         @endcan
                         @can('register order aprrove')
                             <div class="btn-group">
-                                <button type="submit"
-                                    class="text-white btn btn-outline btn-sm hover-success"title="@lang('site.approved')">
-                                    <i class="ti ti-check"></i>
-                                </button>
+
+                                {{-- it conflicted when use datatable need resolve error --}}
+{{--                             
+                                <input type="submit" value="approve"
+                                    class="btn btn-outline btn-sm hover-success text-white "title="@lang('site.approved')"> --}}
+                                    {{-- <i class="ti ti-check"></i> --}}
+                                    <div class="btn-group">
+                                        <button type="submit" class="text-white btn btn-outline btn-sm hover-success"title="@lang('site.approved')">
+                                      <i class="ti ti-check"></i>
+                                       </button>
+                                  </div>                       
                             </div>
                         @endcan
                         @can('register order deny')

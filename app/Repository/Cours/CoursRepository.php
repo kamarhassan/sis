@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\StudentsRegistration;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
+use function PHPUnit\Framework\isNull;
+
 class CoursRepository implements CoursInterface
 {
 
@@ -116,14 +118,18 @@ class CoursRepository implements CoursInterface
 
     public function open_and_postopen_cours()
     {
-        return Cours::where('status', '1')->orWhere('status', '2')->with('grade', 'level')->get();
+        return Cours::where('status', '1')->orWhere('status', '2')->with('grade', 'level', 'teacher_name')->get();
     }
 
 
-    public function cours_fee_currency($cours_id)
+    public function cours_fee_currency($cours_currency_id)
     {
-        $cours_fee = CoursFee::where('cours_id', $cours_id)->first();
-        $cours_curency = Currency::find($cours_fee['currencies_id']);
+
+        //  $cours_fee = CoursFee::where('cours_id', $cours_id)->get();
+        //   $cours_fee->count();
+        //  if ($cours_fee->count()==0)
+        //     return false;
+        $cours_curency = Currency::find($cours_currency_id);
         if ($cours_curency)
             return $cours_curency;
         return false;
@@ -220,37 +226,38 @@ class CoursRepository implements CoursInterface
         // return $this->   cours_fee_currency(13);
 
 
-        //     $array_of_data = [
-        //         'courss.id as  id',
-        //         'courss.status   as status',
-        //         'admins.name  as teacher',
-        //         'courss.act_StartDa as  start_date',
-        //         'courss.act_EndDa  as end_date',
-        //         'levels.level as level',
-        //         'grades.grade as grade',
-        //         'cours_fees.id as cours_fees_id',
-        //         'fee_types.fee as fee_type',
-        //         'currencies.id as currencies_id',
-        //         'currencies.symbol as currencies_symbol',
-        //         'currencies.abbr as currencies_abbr',
-        //         'cours_fees.id as cours_fees_id',
+        $array_of_data = [
+            'courss.id as  id',
+            'courss.status   as status',
+            'admins.name  as teacher',
+            'courss.act_StartDa as  start_date',
+            'courss.act_EndDa  as end_date',
+            'levels.level as level',
+            'grades.grade as grade',
+            'cours_fees.id as cours_fees_id',
+            'fee_types.fee as fee_type',
+            'currencies.id as currencies_id',
+            'currencies.symbol as currencies_symbol',
+            'currencies.abbr as currencies_abbr',
+            'cours_fees.id as cours_fees_id',
 
-        //     ];
-        //    $collect =   Cours::join('grades', 'grade_id', '=', 'grades.id')
-        //         ->join('levels', 'level_id', '=', 'levels.id')
-        //         ->JOIN('admins', 'teacher_id', '=', 'admins.id')
-        //         ->JOIN('cours_fees', 'courss.id', '=', 'cours_fees.cours_id')
-        //         ->JOIN('fee_types', 'fee_types_id', '=', 'fee_types.id')
-        //         ->JOIN('currencies', 'cours_fees.currencies_id', '=', 'currencies.id')
-        //         ->where('year', current_school_year())
-        //         ->where('courss.status', '1')
-        //         ->orWhere('courss.status', '2')
-        //         ->orderBy('courss.id', 'asc')
-        //         ->get($array_of_data);
+        ];
+        return   $collect =   Cours::join('grades', 'grade_id', '=', 'grades.id')
+            ->join('levels', 'level_id', '=', 'levels.id')
+            ->JOIN('admins', 'teacher_id', '=', 'admins.id')
+            ->JOIN('cours_fees', 'courss.id', '=', 'cours_fees.cours_id')
+            ->JOIN('fee_types', 'fee_types_id', '=', 'fee_types.id')
+            ->JOIN('currencies', 'cours_fees.currencies_id', '=', 'currencies.id')
+            ->where('year', current_school_year())
+            ->where('courss.status', '1')
+            ->orWhere('courss.status', '2')
+            ->orderBy('courss.id', 'asc')
+            ->get($array_of_data);
 
 
 
-        //   return  array_values ($collect->groupBy('id')->all());
+        return  array_values($collect);
+        //  return  array_values ($collect->groupBy('id')->all());
 
 
 

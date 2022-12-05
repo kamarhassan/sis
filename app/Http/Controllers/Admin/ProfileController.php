@@ -58,7 +58,11 @@ class ProfileController extends Controller
             }
             return response()->json(['status' => $status, 'message' => $message, 'route' => $route]);
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            $status = 'error';
+            $message = __('site.you site.you have error');
+            $route = "#";
+            return response()->json(['status' => $status, 'message' => $message, 'route' => $route]);
         }
 
         // $roles = Role::all();

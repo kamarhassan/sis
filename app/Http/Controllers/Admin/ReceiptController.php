@@ -20,8 +20,7 @@ class ReceiptController extends Controller
     //
     public function __construct()
     {
-      
-     }
+    }
 
     public function receipt($user_id, $cours_id, $receipt_id)
     {
@@ -41,7 +40,7 @@ class ReceiptController extends Controller
                 $cours = Cours::where('id', decrypt($cours_id))
                     ->with('grade:id,grade', 'level:id,level', 'teacher:id,name')
                     ->get();
-                                  $fee_required =  string_to_array($std[0]['feesRequired']);
+                $fee_required =  string_to_array($std[0]['feesRequired']);
                 $fees  = CoursFee::wherein('id', $fee_required)
                     ->with('fee_type', 'currency', 'payment:id,amount,paid_amount,remaining,cours_fee_id,created_at')
                     ->get();
@@ -63,16 +62,15 @@ class ReceiptController extends Controller
                 ];
                 $contains1 = Str::contains(url()->previous(), 'payment');
                 $contains2 = Str::contains(url()->previous(), 'edit-old-payment');
-                if ($contains1 ||$contains2)
-                //   Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
+                if ($contains1 || $contains2)
+                    //   Mail::to($user['email'])->send(new NotifyMailPaymentReceipt($data));
 
-                if (Mail::failures()) {
-                    // toastr()->error(__('site.eror in sending email'));
-                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
-                } else {
-                    return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
-                }
-
+                    if (Mail::failures()) {
+                        // toastr()->error(__('site.eror in sending email'));
+                        return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
+                    } else {
+                        return  view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
+                    }
             } else {
                 toastr()->error(__('site.eror in sending email'));
                 return redirect()->route('admin.students.get_std_to_payment');
@@ -92,15 +90,40 @@ class ReceiptController extends Controller
     {
 
         try {
-            $receipt =  Receipt::orderBy('id', 'DESC')->where('deleted',1) // 1 is not delete
+            $receipt =  Receipt::orderBy('id', 'DESC')->where('deleted', 1) // 1 is not delete
                 ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email', 'cours_currency'])
-                ->paginate(1000);
+                ->get();
+            //     $t=[1];
+            //   return $receipt[5]; 
+            //     for ($i=0; $i < $receipt->count(); $i++) { 
+           
+            //     print_r($i.'<br>');
+            //     print_r($receipt[$i]['StdRegistration']['cours']['grade '].'<br>');
+            //     }
+            
+            
+            
+            
+                // foreach ($receipt as $key => $value) {
+                // print_r($key." => ".$value['StdRegistration']['cours']['grade']['grade'].'<br>');
+                // // return $value;
+                // if (
+                //     $value['StdRegistration']['cours']['grade']['grade'] == '' ||
+                //     $value['StdRegistration']['cours']['level']['level'] == ''
+                // ){
 
+                //     $t[] = $key;
+                // }
+                // $t[] =   $value['StdRegistration']['cours']['grade']['grade'] . " # " .  $value['StdRegistration']['cours']['level']['level'];
+            // }
 
+            // return $t;
             return view('admin.receipt.index', compact('receipt'));
             //code...
         } catch (\Throwable $th) {
-            throw $th;
+            toastr()->error(__('site.you site.you have error'));
+            return redirect()->back();
+            // throw $th;
         }
     }
 }

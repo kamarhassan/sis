@@ -2,12 +2,11 @@ function submit(route_, form_id) {
     // var formdata = $("#" + form_id).serializeArray();
     var formdata = new FormData($("#" + form_id)[0]);
 
-    console.log(formdata);
+    // console.log(formdata);
     $.ajax({
         enctype: 'multipart/form-data',
         type: 'POST',
         url: route_,
-    
         data: formdata,
         processData: false,
         contentType: false,
@@ -25,10 +24,15 @@ function submit(route_, form_id) {
         }, error: function reject(reject) {
             var response = $.parseJSON(reject.responseText);
             $.each(response.errors, function (key, val) {
+               
                 let t = key.replace('.', '_');
-                // console.log(t);
+                // console.log(t + '_');
                 $('#' + t + '_').text(val[0]).html;
             })
         }
     });
 }
+
+
+
+

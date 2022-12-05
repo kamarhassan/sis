@@ -24,7 +24,7 @@ class StudentsRegistration extends Migration
                 $table->foreignId('user_id')->constrained('users');
                 // $table->foreignId('sponsorshipID')->default(-1)->constrained('sposorships');;
 
-                $table->integer('sponsorshipID')->unsigned()->nullable();
+                $table->integer('sponsor_id')->unsigned()->nullable();
                 $table->double('cours_fee_total')->nullable();
                 $table->double('remaining')->nullable();
                 // $table->foreign('sponsorshipID')->references('id')->on('sposorships');

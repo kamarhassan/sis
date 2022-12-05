@@ -56,15 +56,18 @@
                                 <td>{{ $receipts['id'] }}</td>
                                 <td>{{ $receipts['students']['id'] }} # {{ $receipts['students']['name'] }}</td>
                                 <td>
+                                
+                                    {{-- @isset($receipts['std_registration']) --}}
+                                        
                                     {{ $receipts['StdRegistration']['cours']['grade']['grade'] }} #
                                     {{ $receipts['StdRegistration']['cours']['level']['level'] }}
+                                    {{-- @endisset --}}
                                 </td>
                                 <td>{{ $receipts['amount_total'] }} <span class="text-warning">
                                         {{ $receipts['cours_currency']['symbol'] }} -
                                         {{ $receipts['cours_currency']['abbr'] }}</span></td>
                                 <td>{{ $receipts['created_at']->format('d-m-Y') }}</td>
                                 <td>
-
 
                                     @can('edit old payment students')
                                         <a href="{{ route('admin.students.payment.edit', $receipts['id']) }}"
@@ -78,9 +81,11 @@
                                         </a>
                                     @endcan
                                     @can('print old payment students')
-                                        <a href="{{ route('admin.payment.receipt', [encrypt($receipts['students']['id']), encrypt($receipts['StdRegistration']['cours']['id']), $receipts['id']]) }}"
-                                            class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')">
-                                        </a>
+                                    @isset($receipts['StdRegistration'])                                       
+                                    <a href="{{ route('admin.payment.receipt', [encrypt($receipts['students']['id']), encrypt($receipts['StdRegistration']['cours']['id']), $receipts['id']]) }}"
+                                    class="btn text-warning fa fa-print hover  hover-primary" title="@lang('site.print')">
+                                </a>
+                                @endisset
                                     @endcan
                                 </td>
                             </tr>
@@ -88,9 +93,9 @@
                     @endisset
                 </tbody>
             </table>
-            @isset($receipt)
-                {{ $receipt->links() }}
-            @endisset
+            {{-- @isset($receipt) --}}
+                {{-- {{ $receipt->links() }} --}}
+            {{-- @endisset --}}
         </div>
     </div>
     </div>

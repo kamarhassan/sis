@@ -55,8 +55,10 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'fee type', 'name' => 'create fee type']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'fee type', 'name' => 'delete fee type']);
 
-
-
+         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'sponsore', 'name' =>'edit sponsor']);
+         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'sponsore', 'name' =>'delete sponsor']);
+         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'sponsore', 'name' =>'add sponsor']);
+                                                                                                                                                                                                   
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'supervisor', 'name' => 'edit supervisor']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'supervisor', 'name' => 'delete supervisor']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'supervisor', 'name' => 'add supervisor']);
@@ -123,21 +125,10 @@ class PermissionTableSeeder extends Seeder
         $role = Role::create(['guard_name' => 'admin', 'name' => 'super admin']);
         $role->givePermissionTo(Permission::all());
         $all = Admin::get();
-        foreach ($all as $admin) {
-            $admin->password = bcrypt("1234");
-            $admin->save();
-        }
+    
         // Admin::find(1)->assignRole('super admin');//  change password 
         Admin::find(1)->assignRole('super admin');
-        // Admin::create([
-        //     'name' => 'Hassan Kamar',
-        //     'email' => 'samin@gmail.com',
-        //     'admin_status' => '1',
-        //     //'roles_name' => ['super-admin'],
-        //     'password' => bcrypt('1234')
-        // ])
-        
-        
+
         // this can be done as separate statements
         $role = Role::create(['guard_name' => 'admin', 'name' => 'teacher']);
         $role->givePermissionTo(['show all students', 'register students', 'attendance students',]);

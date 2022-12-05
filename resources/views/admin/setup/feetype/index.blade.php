@@ -62,7 +62,6 @@
                                             </span>
                                         </div>
                                     </div>
-
                                 </div>
                             </form>
                             <div class="row">
@@ -148,13 +147,6 @@
                     $("#order_number").attr("id", "order_" + counter);
                     $("#order_number_error").attr("id", "order_" + counter + "_");
 
-
-                    // $("#primary_price_number").attr("id", "primary_price_" + counter);
-                    // $("#primary_price_number_error").attr("id", "primary_price_" + counter + "_");
-
-                    // $("#status_number").attr("id", "status_" + counter);
-                    // $("#status_number_error").attr("id", "status_" + counter + "_");
-                    // $(this).closest(".add_item").attr("id","whole_extra_item_add_"+counter);;
 
                     counter++;
                 });

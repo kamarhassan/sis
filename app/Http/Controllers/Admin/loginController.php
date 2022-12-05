@@ -34,6 +34,7 @@ class loginController extends Controller
         
         } catch (\Throwable $th) {
             throw $th;
+            
         }
     
         // notify()->error('خطا في البيانات  برجاء المجاولة مجدا ');

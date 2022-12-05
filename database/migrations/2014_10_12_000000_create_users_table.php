@@ -25,12 +25,12 @@ class CreateUsersTable extends Migration
             $table->string('MotherName');
             $table->string('salut')->enum("Mrs","Mr","Ms");
             $table->Date('birthday');
-            $table->string('birthday_id_place')->comment('place of birthday');
+            $table->string('birthday_place')->comment('place of birthday');
             $table->string('gender')->enum('male','female');
             $table->bigInteger('identity_number')->nullable()->comment('rakem lhawiye');
             $table->string('identity_type')->nullable();
             $table->integer('segel')->nullable()->comment('segel number');
-            $table->integer('segel_place_id')->nullable()->comment('place of segel');
+            $table->string('segel_place')->nullable()->comment('place of segel');
             $table->string('nationality')->nullable()->comment('nationality of user');
             $table->integer('address_id')->nullable();
             $table->string('photo')->nullable();

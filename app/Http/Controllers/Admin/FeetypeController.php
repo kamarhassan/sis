@@ -36,7 +36,8 @@ class FeetypeController extends Controller
                 return response()->json(['status' => 'error', 'message' => __('site.failed to create fee type')]);
             }
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json(['status' => 'error', 'message' => __('site.you have error')]);
+            // throw $th;
         }
     }
 
@@ -56,6 +57,8 @@ class FeetypeController extends Controller
             // can't delete it 
         } catch (\Throwable $th) {
             //throw $th;
+            return response()->json(['status' => 'error', 'message' => __('site.you have error')]);
+
         }
     }
 }

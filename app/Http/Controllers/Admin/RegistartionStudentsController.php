@@ -9,6 +9,7 @@ use App\Repository\User\UserInterface;
 use App\Repository\Cours\CoursInterface;
 use App\Repository\Cours_fee\CoursFeeInterface;
 use App\Http\Requests\RegistrationStydentsRequest;
+use App\Models\NotificationAdmin;
 use App\Repository\AdminNotification\AdminNotificationInterface;
 use App\Repository\RegisterCours\RegisterCoursInterface;
 
@@ -30,51 +31,69 @@ class RegistartionStudentsController extends Controller
         $this->coursrepository = $coursinterface;
         $this->coursfeerepository = $coursfee;
         $this->registerCoursrepository = $registerCours;
-        $this->adminnotoficationrepository = $adminnotofication; 
-     }
+        $this->adminnotoficationrepository = $adminnotofication;
+    }
 
     public function approve_user_register(Request $request)
     {
 
+        try {
+            //code...
+            DB::beginTransaction();
 
-
-        $user_info = $this->userrepository->get_user_by_id($request->user_id);
-        $cours_fee_currency = $this->coursrepository->cours_fee_currency($request->cours_id);
-        $cours_info = $this->coursrepository->is_defined($request->cours_id);
-        $grade = $cours_info->grade;
-        $level = $cours_info->level;
-        $cours_fee = $this->coursfeerepository->cours_fee_with_type($cours_info);
-        $total_cours_fee = $cours_fee->sum('value');
-        $route = route('admin.notification.approve.edit.register');
+            $user_info = $this->userrepository->get_user_by_id($request->user_id);
+            $cours_fee_currency = $this->coursrepository->cours_fee_currency($request->cours_id);
+            $cours_info = $this->coursrepository->is_defined($request->cours_id);
+            $grade = $cours_info->grade;
+            $level = $cours_info->level;
+            $cours_fee = $this->coursfeerepository->cours_fee_with_type($cours_info);
+            $total_cours_fee = $cours_fee->sum('value');
+            $route = route('admin.notification.approve.edit.register');
+            DB::commit();
+            return response()->json([
+                'status' => 'success',
+                'user_info' => $user_info,
+                'cours_details' => $cours_info,
+                'cours_fee' => $cours_fee,
+                'total_cours_fee' => $total_cours_fee,
+                'cours_fee_currency' => $cours_fee_currency,
+                'route' => $route,
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            // throw $th;
+        
         return response()->json([
-            'status' => 'success',
-            'user_info' => $user_info,
-            'cours_details' => $cours_info,
-            'cours_fee' => $cours_fee,
-            'total_cours_fee' => $total_cours_fee,
-            'cours_fee_currency' => $cours_fee_currency,
-            'route' => $route,
+            'status' => 'error',
+            // 'user_info' => $user_info,
+            // 'cours_details' => $cours_info,
+            // 'cours_fee' => $cours_fee,
+            // 'total_cours_fee' => $total_cours_fee,         
         ]);
-        // return response()->json([
-        //     'status' => 'success',
-        //     'user_info' => $user_info,
-        //     'cours_details' => $cours_info,
-        //     'cours_fee' => $cours_fee,
-        //     'total_cours_fee' => $total_cours_fee,         
-        // ]);
+    }
     }
     public function approve_edit_register(RegistrationStydentsRequest $request)
     {
-      
+
+        //  $request;
         $user_info = $this->userrepository->get_user_by_id($request->user_id);
-        $cours_info = $this->coursrepository->is_defined($request->cours_id);
-        $cours_fee_currency = $this->coursrepository->cours_fee_currency($request->cours_id);
+        $notification =NotificationAdmin::find($request->cours_id);
+
+        $cours_info = $this->coursrepository->is_defined($notification->order_id);
+
+        $cours_fee_currency = $this->coursrepository->cours_fee_currency($cours_info->currencies_id);
+        if ($cours_fee_currency == false) {
+            toastr()->error(__('site.fee of this cours note defined'));
+            return redirect()->back();
+        }
         $grade = $cours_info->grade;
         $level = $cours_info->level;
         $cours_fee = $this->coursfeerepository->cours_fee_with_type($cours_info);
         $teachear_name = $this->coursrepository->cours_theacher_name($cours_info);
         $total_cours_fee = $cours_fee->sum('value');
+     
         $this->adminnotoficationrepository->approve_all_notification($request->order_id);
+
         return view(
             'admin.students.approve-registration.approve-registration',
             compact([
@@ -85,10 +104,11 @@ class RegistartionStudentsController extends Controller
 
     public function approved_new_register(RegistrationStydentsRequest $request)
     {
-         
+
         try {
             //code...
             DB::beginTransaction();
+            
             $feerequired = $this->coursfeerepository->get_fee_required_cours($request->feerequired);
             $cours_fee_total = array_sum(array_column($feerequired, 'fee_value'));
 
@@ -106,10 +126,13 @@ class RegistartionStudentsController extends Controller
                 $status = 'error';
                 $message = __('site.fail created successfully!');
             }
-            return response()->json(['status' => $status, 'message' => $message,'route'=>$route]);
+            return response()->json(['status' => $status, 'message' => $message, 'route' => $route]);
         } catch (\Throwable $th) {
             DB::rollback();
-            throw $th;
+            $status = 'error';
+            $message = __('site.you site.you have error');
+            return response()->json(['status' => $status, 'message' => $message, 'route' => $route]);
+            // throw $th;
         }
     }
 }

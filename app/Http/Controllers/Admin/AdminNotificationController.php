@@ -46,7 +46,9 @@ class AdminNotificationController extends Controller
             $new_order_registeration =   $this->adminnotification->get_register_notification();
             return view('admin.notification.new-registration', compact('new_order_registeration'));
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            toastr()->error(__('site.you have error'));
+            return redirect()->back();
         }
     }
 
@@ -93,7 +95,15 @@ class AdminNotificationController extends Controller
                 ]);
             }
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            return response()->json([
+                'status' => 'error',
+                'user_info'          =>"",
+                'cours_details'      =>"",
+                'cours_fee'          =>"",
+                'total_cours_fee'    =>"",
+                'order_id'           =>"",
+            ]);
         }
     }
 
@@ -115,7 +125,10 @@ class AdminNotificationController extends Controller
             return response()->json(['status' => $status, 'message' => $message]);
         } catch (\Throwable $th) {
             DB::rollback();
-            throw $th;
+            // throw $th;
+            $status = 'error';
+            $message = __('site.you site.you have error');
+            return response()->json(['status' => $status, 'message' => $message]);
         }
     }
 
@@ -135,7 +148,10 @@ class AdminNotificationController extends Controller
             return response()->json(['status' => $status, 'message' => $message]);
         } catch (\Throwable $th) {
             DB::rollback();
-            throw $th;
+            // throw $th;
+            $status = 'error';
+            $message = __('site.you site.you have error');
+            return response()->json(['status' => $status, 'message' => $message]);
         }
     }
 
@@ -158,7 +174,10 @@ class AdminNotificationController extends Controller
             return response()->json(['status' => $status, 'message' => $message]);
         } catch (\Throwable $th) {
             DB::rollback();
-            throw $th;
+            // throw $th;
+            $status = 'error';
+            $message = __('site.you site.you have error');
+            return response()->json(['status' => $status, 'message' => $message]);
         }
     }
 

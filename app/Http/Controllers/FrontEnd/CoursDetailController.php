@@ -40,7 +40,8 @@ class CoursDetailController extends Controller
                 return  view('frontend.cours.cours-detail', compact('cours', 'level', 'grade', 'teacher_name','fee'));
             }
         } catch (\Throwable $th) {
-            throw $th;
+            toastr()->warning(__('site.you site.you have error'));
+                return redirect()->route('web.index');
         }
     }
 }

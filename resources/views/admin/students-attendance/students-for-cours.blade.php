@@ -84,21 +84,7 @@
 
 @section('script')
     <script>
-        // $(document).ready(function() {
-        //     // $('#spinner_loading').css("display", "none");
-
-        //     // $('#attendance').removeAttr('hidden');
-        //     var table = $('#attendance').DataTable({
-        //         // order: [
-        //         //     [0, 'desc']
-        //         // ],
-        //         "ordering": false,
-        //         "info": false,
-        //          
-        //         paging: false,
-
-        //     });
-        // });
+     
     </script>
     <script src="{{ URL::asset('assets/custome_js/attendance.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
