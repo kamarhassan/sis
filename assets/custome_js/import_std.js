@@ -1,7 +1,7 @@
 function submit(route_, form_id, error_id, msg_you_have_error_in_line) {
     // var formdata = $("#" + form_id).serializeArray();
     var formdata = new FormData($("#" + form_id)[0]);
-    // spinner_show();
+    spinner_show();
     // console.log(formdata);
     $.ajax({
         enctype: 'multipart/form-data',
@@ -59,8 +59,8 @@ function submit(route_, form_id, error_id, msg_you_have_error_in_line) {
 
         }, error: function reject(reject) {
             var response = $.parseJSON(reject.responseText);
+            spinner_hide();
             $.each(response.errors, function (key, val) {
-                spinner_hide();
                 let t = key.replace('.', '_');
                 // console.log(key);
                 $('#' + t + '_').text(val[0]).html;
@@ -73,10 +73,12 @@ function submit(route_, form_id, error_id, msg_you_have_error_in_line) {
 
 
 function spinner_show() {
-    $("#overlay").fadeIn(300);
+    // $("#overlay").fadeIn(300);
+    $("div.spanner").addClass("show");
+    $("div.overlay").addClass("show");
 }
 function spinner_hide() {
-    setTimeout(function () {
-        $("#overlay").fadeOut(300);
-    }, 100);
+    $("div.spanner").removeClass("show");
+    $("div.overlay").removeClass("show");
+   
 }

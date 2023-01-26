@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\URL;
+
 trait Image
 {
     function  photos_dir($photoUrl)
@@ -9,10 +11,8 @@ trait Image
 
         if ($photoUrl != "")
             return  URL::asset($photoUrl);
-        else   return URL::asset('assets\images\avatar\avatar-1.png');
+        else   return ''; //URL::asset('assets\images\avatar\avatar-1.png');
 
-
-        // assets\images\avatar\avatar-1.png
     }
 
     function saveImage($photo, $folder)
@@ -26,11 +26,28 @@ trait Image
 
         return $file_name;
     }
+
     function removeImagefromfolder($photo_dir)
     {
         if ($photo_dir != '') {
 
             unlink($photo_dir);
         }
+    }
+
+    function saveMultiImage($imagefile, $folder)
+    {
+        $image_array = [];
+        foreach ($imagefile as $photo) {
+
+            // $file_extension = $photo->getClientOriginalExtension();
+     
+            $file_name =     $folder . '/' . preg_replace("/\s+/", "", $photo->getClientOriginalName()) ;
+            $path = $folder;
+            $photo->move($path, $file_name);
+            $image_array[] = $file_name;
+            // return $file_name;
+        }
+        return  $image_array;
     }
 }

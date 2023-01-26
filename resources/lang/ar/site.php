@@ -91,6 +91,7 @@ return [
     'add new level'  => 'اضف مستويات جديدة',
     'level'  => ' المستويات او الاختصاصات ',
     'level note defined'  => 'هذا المستوى او الشعبة غير موجودة',
+    'levels'  => 'المستويات',
     'level'  => 'المستويات',
     'add new level'  => ' اضف مستوى جديدة الدورة ',
     'level succefuly update'  => 'تم تحديث المستوى بنجاح',
@@ -207,7 +208,7 @@ return [
     'receipt description'  => 'الوصف',
     'payment'  => 'الدفعة',
     'payments and report'  => 'الدفع و التقارير',
-    'must be a number positive'  => 'يجب ات تكون القيمة اكبر من 0',
+    'must be a number positive'  => 'يجب ان تكون القيمة اكبر من 0',
     'paid fee here'  => 'ادخل الرسم المدفوع هنا',
     'description'  => 'ادخل الوصف هنا',
     'next step'  => 'التالي',
@@ -393,9 +394,18 @@ return [
     'import lastname is not valid' =>  'الشهرة غير صحيح',
     'import phonenumber is not valid' =>  'رقم الهاتف غير صحيح',
     'import email is not valid'     => 'البريد الالكتروني غير صحيح',
- 
+    'download file have error after import' => 'تحميل ملف الاخطاء',
+    'please wait to valdate the data' => 'الرجاء الانتظار يتم التحقق من صحة البيانات',
+    'this sponsore not defined' => 'هذا الكفيل / الراعي غير موجود او انه تم التعديل عليه سابقا ان اردت التعديل عليك الدخول الى خانة التعديل',
 
-
+    'same discount for all'=>'الحسم نفسه للجميع',
+    'different discount for all'=>'حسم مختلف حسب الطالب',
+    'sponsored' => 'كفالات الطلاب',
+    'min 0' => 'يجب ان تكون اكبر من 0',
+    'update link' => ' رابط التعديل ',
+    'discount' => 'الحسم',
+    'percent' => 'النسبة المئوية',
+    'max discount' => 'يجب ان لا يتعدى الخصم',
     '' => '',
 
 

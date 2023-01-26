@@ -30,7 +30,7 @@
                         @isset($cours)
                             @foreach ($cours as $key => $cour)
                                 <tr id="Row{{ $cour->id }}" class="hover-success">
-                                    <td onclick='test();'> {{ $cour->id }}</td>
+                                    <td> {{ $cour->id }}</td>
                                     <td>{{ $cour->grade }}, {{ $cour->level }} </td>
                                     <td> {{ $cour->status }}</td>
                                     <td> {{ $cour->name }} </td>

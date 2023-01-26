@@ -100,9 +100,11 @@
 
 <body id="body_master" {{-- oncontextmenu="return false;" --}}
     class="hold-transition 
-        @if (Session::has('mode')) {{ Session::get('mode') . '-skin' }}
+        {{-- @if (Session::has('mode')) {{ Session::get('mode') . '-skin' }}
         @else
-        dark-skin @endif
+        dark-skin 
+        @endif --}}
+        light -skin 
          sidebar-mini theme-primary fixed @if (get_Default_language() == 'ar') rtl @endif">
     {{-- @else
 
@@ -142,16 +144,17 @@
     <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ URL::asset('assets/custome_js/open_new_tab.js') }}"></script>
-    <script src="{{ URL::asset('assets/assets/vendor_components/dropzone/dropzone.js') }}"></script>
+    {{-- <script src="{{ URL::asset('assets/assets/vendor_components/dropzone/dropzone.js') }}"></script> --}}
 
     <script src="{{ URL::asset('assets/custome_js/chanethememode.js') }}"></script>
 
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    <script src="{{ URL::asset('assets/app-assets/js/pages/dashboard.js') }}"></script>
-
+    
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
     {{-- @jquery --}}
     <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
+   
+    <script src="{{ URL::asset('assets/app-assets/js/pages/dashboard.js') }}"></script>
     @toastr_js
     @toastr_render
 

@@ -196,7 +196,7 @@
                                                                     type="date" value="{{ old('ac_start_date') }}"
                                                                     id="example-date-input">
                                                                 @error('ac_start_date')
-                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                   <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -324,10 +324,10 @@
                                                                 <label>@lang('site.description') </label>
                                                                 <textarea name="description" id="description" class="form-control"   value="{{ old('description') }}"></textarea>
                                                             </div>
-                                                        </div>
-                                                        @error('description')
+                                                            @error('description')
                                                             <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
+                                                            @enderror
+                                                        </div>
                                                     </div>
                                                 </div>
 

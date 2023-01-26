@@ -48,7 +48,7 @@ class InsertCoursRequest extends FormRequest
             'cours_currency' => 'required|exists:currencies,id',
 
             'fee' => 'array',
-            'fee.*' => 'numeric',
+            'fee.*' => 'numeric|min:0',
             'fee_id.*' => 'integer|exists:fee_types,id',
         ];
     }
@@ -68,6 +68,7 @@ class InsertCoursRequest extends FormRequest
             'teacher_fee.numeric' => __('site.teacher fee must be number'),
             'days.*.numeric' => __('site.its_exists'),
             'fee.*.numeric' => __('site.must be a number'),
+            'fee.*.min' => __('site.must be a number positive'),
 
             'fee_id' => __('site.only select'),
             'fee_id.*' => __('site.its_exists'),

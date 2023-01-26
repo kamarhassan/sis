@@ -26,7 +26,7 @@
 @endsection
 
 @section('content')
-    <section id="hero">
+    {{-- <section id="hero">
         <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
             <div class="carousel-inner" role="listbox">
@@ -85,7 +85,10 @@
             <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
         </div>
-    </section>
+    </section> --}}
+
+
+@include('frontend.layouts.slider')
 
     <main id="main">
 

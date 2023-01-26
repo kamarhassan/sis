@@ -23,6 +23,8 @@ use App\Repository\Students\StudentsRepository;
 use App\Repository\Cours_fee\CoursfeeRepository;
 use App\Repository\Attendance\AttendanceInterface;
 use App\Repository\Attendance\AttendanceRepository;
+use App\Repository\Certeficate\CertificateInterface;
+use App\Repository\Certeficate\CertificateRepository;
 use App\Repository\RegisterCours\RegisterCoursInterface;
 use App\Repository\RegisterCours\RegisterCoursRepository;
 use App\Repository\AdminNotification\AdminNotificationInterface;
@@ -52,7 +54,7 @@ class RepositoryProvider extends ServiceProvider
        $this->app->bind(PaymentInterface::class,PaymentRepository::class);
        $this->app->bind(ReportInterface::class,ReportRepository::class);
        $this->app->bind(AttendanceInterface::class,AttendanceRepository::class);
-    //    $this->app->bind(UnpaidAccountingSummaryInterface::class,UnpaidAccountingSummaryRepository::class);
+       $this->app->bind(CertificateInterface::class,CertificateRepository::class);
     //    $this->app->bind(CoursAccountingSummaryInterface::class,CoursAccountingSummaryRepository::class);
       
     }

@@ -56,7 +56,7 @@ class SuperviserController extends Controller
 
             //  return $request;
             if ($request->has('photo'))
-                $file_name = $this->saveImage($request->photo, 'public/images/admin');
+                $file_name = $this->saveImage($request->photo, 'public/files/images/admin');
             else $file_name = "";
             $admin_create =   Admin::create([
                 'name' => $request->first_name . ' ' . $request->middle_name . ' ' . $request->last_name,
@@ -179,7 +179,7 @@ class SuperviserController extends Controller
                 }
                 if ($request->has('photo')) {
                     $this->removeImagefromfolder($admin_logged->photo);
-                    $admin_logged->photo = $this->saveImage($request->photo, 'public/images/admin');
+                    $admin_logged->photo = $this->saveImage($request->photo, 'public/files/images/admin');
                 }
 
                 if ($request->has('password'))

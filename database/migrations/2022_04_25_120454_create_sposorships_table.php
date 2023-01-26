@@ -13,17 +13,19 @@ class CreateSposorshipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sposorships', function (Blueprint $table) {
+        Schema::create('sponsorships', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('sponsorID')->constrained('sponsors') ;
+            $table->foreignId('sponsor_id')->constrained('sponsors');
+            $table->integer('cours_id');
             $table->integer('type');
-            $table->float('amount');
-            $table->float('percent')->default(000);
-            $table->string  ('note') ;
+            $table->double('discount')->comment('cours fee total')->nullable();
+            $table->double('percent')->nullable();
+            $table->int('is_updated')->comment('null is new ')->nullable();
+            $table->string('fee_sponsored')->comment('fee sponsored exam,....')->nullable();
+            $table->string('note');
 
             $table->timestamps();
-
         });
     }
 

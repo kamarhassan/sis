@@ -44,7 +44,7 @@
                     <tbody>
                         @isset($admin_with_role)
                             @foreach ($admin_with_role as $admin_info)
-                                <tr id="Row{{ $admin_info['id'] }}" class="bg-light mb-10 p-10 cursor_pointer hover-success">
+                                <tr id="Row{{ $admin_info['id'] }}" class="mb-10 p-10 cursor_pointer hover-success">
                                     <td>{{ $admin_info['name'] }}</td>
                                     <td>{{ $admin_info['email'] }}</td>
                                     <td>

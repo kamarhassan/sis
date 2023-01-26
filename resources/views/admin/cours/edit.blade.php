@@ -262,7 +262,7 @@
                                                                 @enderror
                                                             </div>
                                                         @endisset
-                                                        <div class="col-md-6">
+                                                        {{-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>@lang('site.teacher fee') </label>
                                                                 <input name="teacher_fee" class="form-control"
@@ -273,7 +273,7 @@
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>{{-- end of row teacher name and fee --}}
                                                     <div class="row">
                                                         {{-- <div class="box-body">
@@ -462,7 +462,7 @@
 <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}">
 </script>
 <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
-<script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.js') }}"></script>
+{{-- <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.js') }}"></script>
 <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
-<script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+<script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js') }}"></script> --}}
 @endsection

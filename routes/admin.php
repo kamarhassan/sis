@@ -15,7 +15,10 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\SuperviserController;
+use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Admin\SponsorShipController;
 use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Services\ServicesController;
@@ -23,7 +26,7 @@ use App\Http\Controllers\Admin\StudentsAttendanceController;
 use App\Http\Controllers\Admin\RegistartionStudentsController;
 use App\Http\Controllers\Admin\Services\ClientPaymentController;
 use App\Http\Controllers\Admin\Services\ServicesReceiptController;
-use App\Http\Controllers\Admin\SponsorController;
+
 
 // use App\Http\Livewire\P;
 
@@ -75,7 +78,7 @@ Route::group([
     ################################### Begin Language Routes #################################################
 
     ################################### Begin Settings Routes #################################################
-   
+
     Route::get('/artisan', [DashboardController::class, 'artisan'])->name('admin.setting.artisan');
     Route::get('/clearcache', [DashboardController::class, 'clearcache']);
     Route::group(['prefix' => 'setting'], function () {
@@ -92,6 +95,27 @@ Route::group([
             Route::get('/', [SponsorController::class, 'index'])->middleware(['permission:edit sponsor|delete sponsor|add sponsor'])->name('admin.sponsor.all');
             Route::post('store-sponsor', [SponsorController::class, 'store_sponsor'])->middleware(['permission:add sponsor'])->name('admin.sponsor.store.sponsor');
             Route::post('delete-sponsor', [SponsorController::class, 'delete_sponsor'])->middleware(['permission:delete sponsor'])->name('admin.sponsor.delete.sponsor');
+        });
+
+        Route::group(['prefix' => 'certificate'], function () {
+
+            Route::get('/', [CertificateController::class, 'index'])->middleware(['permission:edit certificate |create certificate |delete certificate'])->name('admin.certificate.all');
+            Route::get('/new', [CertificateController::class, 'create'])->middleware(['permission:create certificate'])->name('admin.certificate.new');
+            Route::post('store-certificate', [CertificateController::class, 'store_certificate'])->middleware(['permission:create certificate'])->name('admin.certificate.store.certificate');
+            Route::post('delete-certificate', [CertificateController::class, 'delete_certificate'])->middleware(['permission:delete certificate'])->name('admin.certificate.delete.certificate');
+            Route::get('edit/{id}', [CertificateController::class, 'edit_certificate'])->middleware(['permission:edit certificate'])->name('admin.certificate.edit.certificate');
+            Route::post('store-edit-certificate', [CertificateController::class, 'save_edit_certificate'])->middleware(['permission:edit certificate'])->name('admin.certificate.save.edit.certificate');
+        });
+        Route::group(['prefix' => 'cours'], function () {
+            Route::get('/', [CategoriesController::class, 'index'])/*->middleware(['permission:edit certificate|delete certificate|add certificate'])*/->name('admin.categories.all');
+            Route::get('/new', [CategoriesController::class, 'create'])/*->middleware(['permission:edit certificate|delete certificate|add certificate'])*/->name('admin.categories.new');
+            Route::post('store-categories', [CategoriesController::class, 'store_categories'])/*->middleware(['permission:add sponsor'])*/->name('admin.categories.store.categories');
+            Route::post('delete-categories', [CategoriesController::class, 'delete_categories'])/*->middleware(['permission:delete sponsor'])*/->name('admin.categories.delete.categories');
+            Route::get('edit/{id}', [CategoriesController::class, 'edit_categories'])/*->middleware(['permission:delete sponsor'])*/->name('admin.categories.edit.categories');
+            Route::post('post-edit', [CategoriesController::class, 'save_edit_category'])/*->middleware(['permission:delete sponsor'])*/->name('admin.categories.post.edit.categories');
+            Route::post('delete-categories-image', [CategoriesController::class, 'delete_image_categories'])/*->middleware(['permission:delete sponsor'])*/->name('admin.categories.delete.image');
+            Route::post('delete-categories-image-from-callery', [CategoriesController::class, 'delete_image_categories_from_callery'])/*->middleware(['permission:delete sponsor'])*/->name('admin.categories.delete.image_from_callery');
+            // Route::post('store-edit-certificate', [CertificateController::class, 'save_edit_certificate'])/*->middleware(['permission:delete sponsor'])*/->name('admin.certificate.save.edit.certificate');
         });
 
 
@@ -158,8 +182,8 @@ Route::group([
 
 
     ################################### Begin Students Routes #################################################
-    
-  
+
+
     Route::group(['prefix' => 'students'], function () {
         Route::get('/', [StudentsController::class, 'students'])->middleware(['permission:show all students'])->name('admin.students.all');
         Route::get('add-students', [StudentsController::class, 'add_students'])->middleware(['permission:add students'])->name('admin.students.add');
@@ -193,6 +217,17 @@ Route::group([
         Route::post('enable-all/{cours_id}', [StudentsAttendanceController::class, 'enable_all'])->middleware(['permission:enable or disable'])->name('admin.enable.all.status.attendance');
         Route::post('disable-all/{cours_id}', [StudentsAttendanceController::class, 'disable_all'])->middleware(['permission:enable or disable'])->name('admin.disable.all.status.attendance');
         Route::post('reset-all/{cours_id}', [StudentsAttendanceController::class, 'reset_all'])->middleware(['permission:reset'])->name('admin.reset.all.status.attendance');
+    });
+    Route::group(['prefix' => 'students/sponsored', 'middleware' => 'permission:edit students sponsore'], function () {
+        Route::get('/', [SponsorShipController::class, 'index'])/*->*/->name('admin.cours.sponsore.index');
+        Route::post('get-sponsor-ship', [SponsorShipController::class, 'get_sponsor_ships_to_get_students'])/*->*/->name('admin.cours.sponsore.ships');
+        Route::post('get-students-for-sponsor', [SponsorShipController::class, 'get_students_for_sponsor'])/*->*/->name('admin.cours.sponsore.student');
+        Route::post('create-sponsor-for-students', [SponsorShipController::class, 'create_sponsor_fee_for_students'])/*->*/->name('admin.create.sponsor.fee.for.students');
+        Route::post('create-same-sponsor-for-students', [SponsorShipController::class, 'create_same_sponsore_fee_for_students'])/*->*/->name('admin.create.same.sponsor.fee.for.students');
+
+        Route::get('edit-sponsor-for-students', [SponsorShipController::class, 'edit_sponsor_fee_for_students'])/*->*/->name('admin.edit.sponsor.fee.for.students');
+        // Route::get('get_test', [SponsoprShipController::class,'get_test'])/*->*/->name('admin1.cours.sponsore.ships');
+
     });
     ################################### Begin Language Routes #################################################
 

@@ -112,7 +112,7 @@
                         data-toggle="dropdown" title="User">
                         <img src="{{ URL::asset(Auth::user()->photo)}}" alt="">
                         {{-- {{Session::get('admin_name')}} --}}
-                        {{ Auth::user()->name }}
+                     <span class="text-white">   {{ Auth::user()->name }} </span>
                     </a>
                     <ul class="dropdown-menu animated flipInX">
                         <li class="user-body">

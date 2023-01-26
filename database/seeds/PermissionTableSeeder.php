@@ -37,6 +37,10 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'levels', 'name' => 'edit levels']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'levels', 'name' => 'create levels']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'levels', 'name' => 'delete levels']);
+    
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'certificate', 'name' => 'edit certificate']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'certificate', 'name' => 'create certificate']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'certificate', 'name' => 'delete certificate']);
 
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'activate_currency', 'name' => 'activate_currency']);
 
@@ -82,6 +86,7 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'report attendance']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'reset']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'enable or disable']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'sponsore', 'name' => 'edit students sponsore']);
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'disabel']);
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
@@ -133,6 +138,9 @@ class PermissionTableSeeder extends Seeder
         $role = Role::create(['guard_name' => 'admin', 'name' => 'teacher']);
         $role->givePermissionTo(['show all students', 'register students', 'attendance students',]);
         Admin::find(9)->assignRole('teacher');
+        Admin::find(10)->assignRole('teacher');
+        Admin::find(11)->assignRole('teacher');
+        Admin::find(18)->assignRole('teacher');
         // $role = Role::create(['guard_name' => 'admin','tab_name'=>'','name' => 'writer']);
         // $role->givePermissionTo('add user ');
         // $role = Role::create(['guard_name' => 'admin','tab_name'=>'', 'name' => 'edit_currency']);

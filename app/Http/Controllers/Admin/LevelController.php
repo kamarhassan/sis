@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LevelRequest;
-use App\Models\level;
+use App\Models\Level;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yoeunes\Toastr\Facades\Toastr;
@@ -17,7 +17,7 @@ class LevelController extends Controller
      }
     public function create()
     {
-        $level = level::select()->get();
+        $level = Level::select()->get();
 
         return view('admin.setup.level.create', compact('level'));
     }
@@ -87,7 +87,7 @@ class LevelController extends Controller
     {
         // return $request;
         try {
-             $level = level::find($request->id);
+             $level = Level::find($request->id);
             if (!$level) {
                 toastr()->error(__('site.grade note defined'));
                 return redirect()->route('admin.level.add');

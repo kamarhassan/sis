@@ -10,7 +10,7 @@
 namespace App\Repository\Admin;
 
 use App\Models\Grade;
-use App\Models\level;
+use App\Models\Level;
 
 use App\Models\Admin;
 use App\Repository\Admin\AdminInterface;

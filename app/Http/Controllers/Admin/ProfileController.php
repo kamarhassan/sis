@@ -32,7 +32,7 @@ class ProfileController extends Controller
 
                 if ($request->has('photo')) {
                     $this->removeImagefromfolder($admin_logged->photo);
-                    $admin_logged->photo = $this->saveImage($request->photo, 'public/images/admin');
+                    $admin_logged->photo = $this->saveImage($request->photo, 'public/files/images/admin');
                 }
 
                 if ($request->has('password'))

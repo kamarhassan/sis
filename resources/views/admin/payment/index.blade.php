@@ -20,8 +20,64 @@
             </div>
         </div>
     </div>
+    <div class="box box-slided-up">
+        <div class="box-header with-border">
+            <div class="box-header with-border">
+                <h4 class="box-title">@lang('site.add fee type')</h4>
+            </div>
+            <ul class="box-controls pull-right">
+                <li><a class="box-btn-close" href="#"></a></li>
+                <li><a class="box-btn-slide text-warning" href="#"></a></li>
+              
+            </ul>
+        </div>
 
-    <div class="box" id="table_std" hidden>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-12">
+                    <form id='fee_type_form'>
+                        @csrf
+                        <div class="add_item">
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <h5>@lang('site.fee type') <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <input type="text" id="fee_0" name="fee[]" class="form-control">
+                                            <span class="text-danger" id="fee_0_"> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <h5>@lang('site.fee order') <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <input type="text" id="order_0" name="order[]" class="form-control">
+                                            <span class="text-danger" id="order_0_"> </span>
+                                        </div>
+                                    </div>
+                                </div>                               
+                                <div class="col-md-2" style="padding-top: 25px;">
+                                    <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="text-xs-right">
+                            <a class="btn  glyphicon glyphicon-arrow-left hover-success " title="@lang('site.save')"
+                                onclick="submit('{{ route('admin.setting.fee.store') }}','fee_type_form')">
+                                <span class=""> @lang('site.next step')</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="box" id="table_std" hidden>
+        {{-- <button class="btn">hgjgj</button> --}}
 
         {{-- @if ((new \Jenssegers\Agent\Agent())->isDesktop()) --}}
         <div class="box-body">
@@ -46,7 +102,7 @@
                     <tbody>
                         @isset($std_registartion)
                             @foreach ($std_registartion as $stduents)
-                                <tr id="Row{{ $stduents->user_id }}" class="bg-light mb-10 p-10 cursor_pointer hover-success">
+                                <tr id="Row{{ $stduents->user_id }}" class=" mb-10 p-10 cursor_pointer hover-success">
 
                                     <td class="col-sm-2">{{ $stduents['student'][0]['name'] }} # {{ $stduents->user_id }}</td>
 
@@ -87,9 +143,6 @@
             </div>
         </div>
 
-
-
-
     </div>
 @endsection
 @include('admin.payment.cours_std')
@@ -112,7 +165,7 @@
         });
     </script>
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
+    {{-- <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script> --}}
     <script src="{{ URL::asset('assets/app-assets/js/fixed_column_datatable.js') }}"></script>
     <script src="{{ URL::asset('assets\custome_js\get_cours_cours_std.js') }}"></script>
 @endsection

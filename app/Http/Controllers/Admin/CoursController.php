@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use App\Models\Grade;
-use App\Models\level;
+use App\Models\Level;
 use App\Models\Currency;
 use App\Models\Statusofcour;
 use Illuminate\Support\Facades\DB;
@@ -54,7 +54,7 @@ class CoursController extends Controller
         $fee_type_id = $this->feetype->fee_type_id();
         $teacher = Admin::role('teacher')->get();
         $grade = Grade::select()->get();
-        $level = level::select()->get();
+        $level = Level::select()->get();
         $status_od_cours = Statusofcour::select()->get();
         $cours_currency = Currency::active()->get();
         // $id_fee_type = $fee_type->id;
@@ -71,7 +71,7 @@ class CoursController extends Controller
 
     public function store(InsertCoursRequest $request)
     {
-        // return $request;
+        //  return $request;
         try {
             DB::beginTransaction();
             $teacher_id = Admin::GetIdByName($request->teacher_name);
@@ -115,7 +115,7 @@ class CoursController extends Controller
                 $teacher = Admin::role('teacher')->get(['id', 'name']);
                 $status_od_cours = Statusofcour::select()->get();
                 $grade = Grade::select()->get();
-                $level = level::select()->get();
+                $level = Level::select()->get();
                 $cours_currency = Currency::active()->get();
                 $coursfee = $this->coursfee->is_fee_defined($id);
                 $fee_type = $this->feetype->get_all();

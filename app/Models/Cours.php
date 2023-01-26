@@ -101,7 +101,7 @@ class Cours extends Model
     }
     public function level()
     {
-        return $this->belongsTo(level::class, 'level_id', 'id');
+        return $this->belongsTo(Level::class, 'level_id', 'id');
     }
 
     public function teacher()

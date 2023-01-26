@@ -2,7 +2,7 @@
 
 
 
-use App\Models\level;
+use App\Models\Level;
 use Illuminate\Database\Seeder;
 
 class levelseeder extends Seeder
@@ -16,20 +16,20 @@ class levelseeder extends Seeder
     {
 
         // DB::table('levels')->delete();
-        level::create(['level' => 'level 1']);
-        level::create(['level' => 'level 2']);
-        level::create(['level' => 'level 3']);
-        level::create(['level' => 'level 4']);
-        level::create(['level' => 'level 5']);
-        level::create(['level' => 'level 6']);
-        level::create(['level' => 'level 7']);
-        level::create(['level' => 'level 8']);
-        level::create(['level' => 'level 9']);
-        level::create(['level' => 'level 10']);
-        level::create(['level' => 'level 11']);
-        level::create(['level' => 'level 12']);
-        level::create(['level' => 'level 13']);
-        level::create(['level' => 'level 14']);
-        level::create(['level' => 'level 15']);
+        Level::create(['level' => 'level 1']);
+        Level::create(['level' => 'level 2']);
+        Level::create(['level' => 'level 3']);
+        Level::create(['level' => 'level 4']);
+        Level::create(['level' => 'level 5']);
+        Level::create(['level' => 'level 6']);
+        Level::create(['level' => 'level 7']);
+        Level::create(['level' => 'level 8']);
+        Level::create(['level' => 'level 9']);
+        Level::create(['level' => 'level 10']);
+        Level::create(['level' => 'level 11']);
+        Level::create(['level' => 'level 12']);
+        Level::create(['level' => 'level 13']);
+        Level::create(['level' => 'level 14']);
+        Level::create(['level' => 'level 15']);
     }
 }

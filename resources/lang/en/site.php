@@ -2,7 +2,7 @@
 
 
 return [
-    'site name' => 'school management system',
+    'site name' => 'AIMS',
     'Dashboard' =>  'control Board',
     'cancel' =>  'Cancellation',
     'edit' =>  'Modify',

@@ -21,7 +21,7 @@ function show_real_pass($hash_password)
 }
 function pagination_count()
 {
-    return 15;
+    return 1000;
 }
 
 function encript_custome($id)

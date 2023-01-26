@@ -30,7 +30,7 @@
                 <tbody>
                     @isset($sponsor)
                         @foreach ($sponsor as $sponsors)
-                            <tr id="Row{{ $sponsors['id'] }}" class="bg-light mb-10 p-10 cursor_pointer hover-success">
+                            <tr id="Row{{ $sponsors['id'] }}" class="mb-10 p-10 cursor_pointer hover-success">
                                 <td>{{ $sponsors['type'] }}</td>
                                 <td>{{ $sponsors['name'] }}</td>
                                 {{-- <td>{{ $sponsors['blocked'] }}</td> --}}

@@ -5,7 +5,7 @@ use App\Models\Admin;
 use App\Models\Cours;
 use App\Models\Currency;
 use App\Models\Grade;
-use App\Models\level;
+use App\Models\Level;
 use Illuminate\Database\Seeder;
 
 class CoursSedeer extends Seeder
@@ -30,7 +30,7 @@ class CoursSedeer extends Seeder
                 'days' =>'1;2;5;6',
                 'status' => $status,
                 'description' =>$faker->text(),
-                'teacherFee' =>random_int(1000, 60000),
+                // 'teacherFee' =>random_int(1000, 60000),
                 'currencies_id'=>Currency::inRandomOrder()->first()->id,
                 'startTime' =>$faker->time('H:i:s', now()),
                 'endTime' =>$faker->time('H:i:s', now()),

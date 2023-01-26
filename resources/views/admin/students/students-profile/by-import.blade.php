@@ -95,8 +95,8 @@
                 <form action="{{ route('admin.export.file.have.error.students') }}" method="POST" id="FillStderror">
                     {{-- <form action="{{ route('admin.add.students.form1', 14) }}" method="POST" id="FillStdNew"> --}}
                     @csrf
-                   <input type="text" name="error_std_file_name" id='error_std_file_name' hidden> 
-    
+                    <input type="text" name="error_std_file_name" id='error_std_file_name' hidden>
+
                     <div class="text-xs-right" id='btn_erro_list' hidden>
                         <button class="btn  fa fa-download hover-success" title="@lang('site.save')" type="submit">
                             @lang('site.download file have error after import')
@@ -104,14 +104,21 @@
                     </div>
                 </form>
             </div>
-    
+
         </div>
-        </div>
-        <div id="user_have_error"></div>
     </div>
+    <div id="user_have_error"></div>
 </div>
-<div id="overlay">
+</div>
+{{-- <div id="overlay">
     <div class="cv-spinner">
-        <span class="spinner"></span>
+        <span class="spinner">
+        </span>
     </div>
+</div> --}}
+<div class="overlay"></div>
+<div class="spanner">
+    <div class="loader"></div>
+    {{-- <p>Uploading music file, please be patient.</p> --}}
+    <h1 class="text-danger">@lang('site.please wait to valdate the data')</h1>
 </div>

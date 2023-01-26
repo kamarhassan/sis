@@ -137,6 +137,7 @@ function loading_showing_table() {
     $('#spinner_loading').removeAttr('hidden');
     $('#data_attendance').attr("hidden", true);
 }
+
 function attendance_column() {
     return [
         { data: 'id', title: 'id', "defaultContent": "", "width": "5%", 'visible': false },
