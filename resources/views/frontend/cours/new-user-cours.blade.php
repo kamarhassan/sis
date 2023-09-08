@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.layouts.User.user-daschoard-master')
 @section('title')
 @endsection
 @section('css')
@@ -20,11 +20,7 @@
                         <div class="box">
                             <div class="box-header with-border">
                                 <h4 class="box-title">@lang('site.fee amount')</h4>
-                                {{-- <div class="box-controls pull-right">
-                                <div class="lookup lookup-circle lookup-right">
-                                    <input type="text" name="s">
-                                </div>
-                            </div> --}}
+                    
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body no-padding">
@@ -35,7 +31,6 @@
                                                 <th>#</th>
                                                 <th>@lang('site.grade')</th>
                                                 <th>@lang('site.level')</th>
-                                                {{-- <th>@lang('site.description cours')</th> --}}
                                                 <th>@lang('site.actually start date')</th>
                                                 <th>@lang('site.actually end date')</th>
                                                 <th>@lang('site.options')</th>
@@ -45,11 +40,11 @@
                                                 <tr class="Row{{ $user_courss['id'] }} " id="Row{{ $user_courss['id'] }} ">
                                                     <td>{{ $key }}</td>
                                                     {{-- <td>{{ $user_courss['cours_reserved']['id'] }}</td> --}}
-                                                    <td>{{ $user_courss['cours_reserved']['grade']['grade'] }}</td>
-                                                    <td>{{ $user_courss['cours_reserved']['level']['level'] }}</td>
-                                                    {{-- <td>{{ $user_courss['cours_reserved']['description'] }}</td> --}}
-                                                    <td>{{ $user_courss['cours_reserved']['act_StartDa'] }}</td>
-                                                    <td>{{ $user_courss['cours_reserved']['act_EndDa'] }}</td>
+                                                    <td>{{ $user_courss['category']['grade']['grade'] }}</td>
+                                                    <td>{{ $user_courss['category']['level']['level'] }}</td>
+                                                    {{-- <td>{{ $user_courss['category']['description'] }}</td> --}}
+                                                    <td>{{ $user_courss['category']['act_StartDa'] }}</td>
+                                                    <td>{{ $user_courss['category']['act_EndDa'] }}</td>
                                                     {{-- <td>{{ $fee_cours['value'] }} # {{ $fee_cours['currency']['symbol'] }} - {{ $fee_cours['currency']['abbr'] }}</td> --}}
                                                     <td>
                                                         <a class="btn text-danger  glyphicon glyphicon-trash hover  hover-primary"

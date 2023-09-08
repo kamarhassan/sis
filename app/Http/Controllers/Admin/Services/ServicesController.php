@@ -139,7 +139,7 @@ class ServicesController extends Controller
             }
             return $services;
         } catch (\Throwable $th) {
-            // throw $th;
+             throw $th;
             $notification = [
                 'message' =>  __('site.you site.you have error'),
                 'status' => 'error',

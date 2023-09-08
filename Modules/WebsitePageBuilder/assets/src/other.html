@@ -1,0 +1,342 @@
+<div class="showPreview">
+    <div id="modal-preview-desktop" class="modal preview-modal ng-scope ng-isolate-scope in" style="">
+        <div class="modal-dialog" style="width: 100%;max-width: 100%;margin: 0;height: 100%;position: fixed;">
+            <div class="modal-content" uib-modal-transclude="" style="width: 100%;border-radius: 0;height: 100%;">
+                <div class="modal-header row ng-scope" style="border-bottom: 1px solid #e5e5e5;background: #fff;padding: 10px 24px !important;">
+                    <div class="col-lg-6 col-md-6">
+                        <h3 class="ng-binding" style="font-size: 16px;margin: 0;padding: 0;line-height: 38px;color: #505659;font-weight: 700;float: left;font-style: normal;">{language.wpanel.others.preview_mode.title}</h3>
+                        <div ng-model="conditions" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 text-right">
+                        <div class="btn-group switch-preview ng-pristine ng-untouched ng-valid ng-not-empty active-desktop" data-toggle="buttons" ng-model="previewStyle" ng-class="{'active-desktop': previewStyle==='desktop', 'active-mobile': previewStyle==='mobile'}">
+                            <div class="pr-desktop click-active-preview">
+                                <label class="preview-desktop ng-pristine ng-untouched ng-valid ng-binding ng-not-empty active" ng-model="previewStyle" uib-btn-radio="'desktop'">
+                                    <i class="{builder-icon-laptop}"></i>
+                                    {language.wpanel.others.desktop.title}
+                                </label>
+                            </div>
+                            <div class="pr-mobile click-active-preview">
+                                <label class="preview-mobile ng-pristine ng-untouched ng-valid ng-binding ng-not-empty" ng-model="previewStyle" uib-btn-radio="'mobile'">
+                                    <i class="{builder-icon-mobile}"></i>
+                                    {language.wpanel.others.mobile.title}
+                                </label>
+                            </div>
+                            <div class="switch-preview__active"></div>
+                        </div>
+                        <button type="button" class="btn btn-primary close-preview" ng-click="cancel()"><i class="{builder-icon-times-circle}"></i></button>
+                    </div>
+                </div>
+                <!--modal load content desktop-->
+                <div class="modal-body-preview ng-scope" style="">
+                    <div class="desktop ng-not-empty" style="">
+                        <div ng-transclude="" mailup-common-scrollbar="" class="ng-isolate-scope" style="height: 100%;width: 100%; position: relative;">
+                            <div class="containter-preview ng-scope mailup-common-scrollable-container ps-container ps-theme-default ps-active-y" style="width: 100%;overflow-y: auto;">
+                                <iframe id="previewIframeDesktop" src="" scrolling="no" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" style="width: 100%;margin: 0 auto;border: none;">
+
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--modal load content mobile-->
+                <div class="modal-body-preview-mobile ng-scope bananaphone" style="">
+                    <div class="mobile ng-not-empty-mobile" style="">
+                        <div ng-transclude="" mailup-common-scrollbar="" class="ng-isolate-scope" style="height: 100%;width: 100%; position: relative;">
+                            <div class="containter-preview ng-scope mailup-common-scrollable-container ps-container ps-theme-default ps-active-y" style="width: 100%;overflow-y: auto;">
+                                <iframe id="previewIframeMobile" src="" scrolling="no" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" style="width: 100%;margin: 0 auto;border: none;height: 2000px;">
+
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-bg-preview-desktop" class="modal-backdrop ng-scope in" style="z-index: 1040;background-color: #000085; "></div>
+</div>
+
+<div class="modal" id="builderModal">
+    <div class="default-popup">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100" id="popupTitle">{language.wpanel.others.change_image.title}</h4>
+                    <button type="button" class="close PopUpCloseButton" data-dismiss="modal">&times;</button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body PopUpContent">
+                    {language.wpanel.others.loading.title}
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div class="right-popup">
+        <div class="right-box">
+            <div class="show-box-popup">
+                <ul class="box-mode">
+                    <li id="box-mode-mobile" class="box-mode-mobile box-device" title="Mobile" data-mode="mode-mobile">
+                        <div class="group">
+                            <span class="material-icons-outlined icon">smartphone</span>
+                            <span>{language.wpanel.others.mobile.title}</span>
+                        </div>
+                        <ul class="group-device group-mobile">
+                            <li class="device-screen _320">{language.wpanel.others.mobile.320.title}</li>
+                            <li class="device-screen _360">{language.wpanel.others.mobile.360.title}</li>
+                            <li class="device-screen _375">{language.wpanel.others.mobile.375.title}</li>
+                            <li class="device-screen _414">{language.wpanel.others.mobile.414.title}</li>
+                        </ul>
+                    </li>
+                    <li id="box-mode-tablet" class="box-mode-tablet box-device" title="Tablet" data-mode="mode-tablet">
+                        <div class="group">
+                            <span class="material-icons-outlined icon">tablet_android</span>
+                            <span>{language.wpanel.others.tablet.title}</span>
+                        </div>
+                        <ul class="group-device group-tablet">
+                            <li class="device-screen _768">{language.wpanel.others.tablet.768.title}</li>
+                            <li class="device-screen _1024">{language.wpanel.others.tablet.1024.title}</li>
+                        </ul>
+                    </li>
+                    <li id="box-mode-desktop" class="box-mode-desktop box-device background-active active" title="Desktop" data-mode="mode-desktop"> 
+                        <div class="group">
+                            <span class="material-icons-outlined icon">computer</span>
+                            <span>{language.wpanel.others.desktop.title}</span>
+                        </div>
+                        <ul class="group-device group-desktop">
+                            <li class="device-screen _1280">{language.wpanel.others.desktop.1280.title}</li>
+                            <li class="device-screen _1360">{language.wpanel.others.desktop.1360.title}</li>
+                            <li class="device-screen _1920">{language.wpanel.others.desktop.1920.title}</li>
+                        </ul>
+                    </li>
+                    <li id="background-option" class="change-background device" title="Change background">
+                        <div class="group">
+                            <span class="material-icons-outlined icon">wallpaper</span>
+                            <span>{language.wpanel.others.background.title}</span>
+                        </div>
+                        <ul class="group-background builder-backgrounds">
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Image Toolbox -->
+<div class="modal" id="ImageToolbox">
+    <div class="container">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="home nav-link active nav-tab" data-toggle="tab" href="#home">{language.wpanel.others.upload.title}</a>
+            </li>
+            <li class="nav-item">
+                <a class="menu1 nav-link nav-tab" data-toggle="tab" href="#menu1">{language.wpanel.others.url.title}</a>
+            </li>
+            <li class="nav-item">
+                <a class="menu2 nav-link nav-tab" data-toggle="tab" href="#menu2">{language.wpanel.others.base64.title}</a>
+            </li>
+            <li class="nav-item filemanager-item">
+                <a class="menu3 nav-link nav-tab" data-toggle="tab" href="#menu3">{language.wpanel.others.filemanager.title}</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active nav-content active">
+                <p class="margin-bottom--lv4 py-2">{language.wpanel.others.des_upload_image.title}</p>
+                <label class="mb-2">{language.wpanel.others.file.title}</label>
+                <input type="file" name="file_upload_image" class="file-upload-image" multiple="" accept="image/*">
+                <p class="file-upload-input-title"><i class="{builder-icon-arrow-to-bottom}" style="display: block;position: absolute;top: 33px;left: 50%;z-index: 2;font-size: 30px;color: #267e88;transform: translateX(-50%);"></i><span class="des-upload">{language.wpanel.others.des_drag_image.title}</span></p>
+                <div class="text-center mt-3"><button tabindex="0" type="" class="buttonSaveUpload btn btn-default">{language.wpanel.others.upload.title}</button></div>
+            </div>
+            <div id="menu1" class="container tab-pane fade nav-content">
+                <p class="margin-bottom--lv4 py-2">{language.wpanel.others.des_url_image.title}</p>
+                <label class="mb-2">{language.wpanel.others.url.title}</label>
+                <input placeholder="https://sample.com/images/example.png" type="text" name="url_image" class="url-image">
+                <div class="text-center">
+                    <button tabindex="0" type="" class="buttonSaveUrl btn btn-default">{language.wpanel.others.save.title}</button>
+                </div>
+            </div>
+            <div id="menu2" class="container tab-pane fade nav-content">
+                <p class="margin-bottom--lv4 py-2">{language.wpanel.others.des_base64_image.title}</p>
+                <label class="mb-2">{language.wpanel.others.base64.title}</label>
+                <textarea rows="5" placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUh...." name="base64_image" class="base64-image"></textarea>
+                <div class="text-center mt-3">
+                    <button tabindex="0" type="" class="buttonSaveBase64 btn btn-default">{language.wpanel.others.save.title}</button>
+                </div>
+            </div>
+            <div id="menu3" class="container tab-pane fade nav-content filemanager-item" style="margin-bottom: -42px;">
+                <iframe style="height: calc(100vh - 255px);width: 100%; border:solid 1px #ddd;" class="filemanager-iframe"></iframe>
+                <div class="mt-3 text-center">
+                    <a href="javascript:;" class="btn btn-primary mr-1 filemanager-ok">{language.wpanel.others.filemanager.ok}</a>
+                    <a href="javascript:;" class="btn btn-secondary filemanager-cancel">{language.wpanel.others.filemanager.cancel}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="VideoToolbox">
+    <div class="container">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="home nav-link active nav-tab" data-toggle="tab" href="#home">{language.wpanel.others.upload.title}</a>
+            </li>
+            <li class="nav-item">
+                <a class="menu1 nav-link nav-tab" data-toggle="tab" href="#menu1">{language.wpanel.others.url.title}</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active nav-content">
+                <p class="margin-bottom--lv4 py-2">{language.wpanel.others.des_upload_video.title}</p>
+                <label>{language.wpanel.others.file.title}</label>
+                <input type="file" name="file_upload_video" class="file-upload-video" multiple="" accept="video/*">
+                <p class="file-upload-input-title"><i class="{builder-icon-arrow-to-bottom}" style="display: block;position: absolute;top: 25px;left: 50%;z-index: 2;font-size: 30px;color: #267e88;transform: translateX(-50%);"></i><span class="des-upload">Drag your files here or click in this area.</span></p>
+                <button tabindex="0" type="" class="buttonSaveUpload btn btn-default">{language.wpanel.others.upload.title}</button>
+            </div>
+            <div id="menu1" class="container tab-pane fade nav-content">
+                <p class="margin-bottom--lv4 py-2">{language.wpanel.others.des_url_video.title}</p>
+                <label>{language.wpanel.others.url.title}</label>
+                <input type="text" name="url_video" class="url-video">
+                <button tabindex="0" type="" class="buttonSaveUrl btn btn-default">{language.wpanel.others.save.title}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Image Toolbox -->
+<div class="modal" id="WidgetNameToolbox">
+    <div class="container" style="padding: 0 60px 30px;">
+        <div class="form-group">
+            <!--<p class="title-widget">Name your custom widget</p>-->
+            <p class="margin-bottom--lv4">{language.wpanel.others.des_widget_name.title}</p>
+            <input type="text" class="form-control" value="My Custom Widget" id="CustomWidgetName" aria-describedby="" placeholder="Enter widget name">
+        </div>
+        <button type="submit" id="buttonCustomWidget" class="btn btn-primary btn-add-custom-widget-[ID]">{language.wpanel.others.add.title}</button>
+    </div>
+</div>
+
+<!-- The Template Toolbox -->
+<div class="modal" id="templateToolbox">
+    <div class="container" style="margin-top: -8px">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active nav-content">
+                <p class="margin-bottom--lv4 py-2">{language.wpanel.others.des_template_toolbox.title}</p>
+            </div>
+        </div>
+        <div class="new-templates unit size1of1 tab-container" style="margin-top: 30px;">
+            <!--noi hien thi danh sach template-->
+            <ul class="c-templateSelection list-new-template" style="justify-content: left;padding-left: 0;">
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--The modal help builder-->
+<div class="helpPopUp front-door c-interstitial position--relative topsliderpane-base" style="display: none; z-index: 999;">
+    <div class="flex justify-content--center position--fixed top-bottom--0 left-right--0 align-items--flex-start">
+        <div class="bg-white border-radius--lv1 bg-popup" style="">
+            <div id="header-modal" class="full-width textcolor zin-lv2 position--static selfclear" data-dojo-attach-point="topBarActions">
+                <div class="flex flex-between">
+                    <ul class="close-overlay close-right absolute cursor-pointer">
+                        <li class="noborder">
+                            <a href="javascript:" data-dojo-attach-point="closeLink" class="helpPopUpCloseButton closeLink c-interstitial_button nolink" tabindex="0">
+                                <i class="{builder-icon-times}"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div data-dojo-attach-point="content" class="helpPopUpContent position--static flex justify-content--center overflow--auto margin--lv0" style="">
+                <!--load content list acticle-->
+                <iframe id="iframeLoad" class="" src=""></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--The modal upload template by builder-->
+<div class="modal" id="uploadTemplate">
+    <div class="container" style="padding: 0 60px 30px;">
+        <form class="form-upload" action="upload.php" enctype="multipart/form-data">
+            <div class="form-group">
+                <p class="margin-bottom--lv4">{language.wpanel.others.des_upload_template.title}</p>
+                <div data-dojo-attach-point="formInputs">
+                    <fieldset class="field-wrapper" id="dijit__TemplatedMixin_43" widgetid="dijit__TemplatedMixin_43">
+                        <label>File</label>
+                        <div class="input-group file-upload" id="drag-file-upload" style="width: 100%;height: auto;">
+                            <input type="file" name="file" class="file-upload-template" multiple="" style="width: 100%;height: 150px;position: relative;opacity: 0;z-index: 4;">
+                            <p class="file-upload-input-title" style="position: absolute;top: 0px;left: 50%;z-index: 3;transform: translateX(-50%);width: 100%;height: 100%;border: 1px dashed #007c89;background: #e5f7ff;display: flex;justify-content: center;align-items: center;">
+                                <span class="material-icons-outlined icon" style="font-size: 40px;
+                                margin-top: -30px;
+                                color: rgba(0,0,0,0.4);">upload</span>
+                                <span class="des-upload" style="position: absolute;top: 80px;left: 50%;transform: translateX(-50%);white-space: nowrap;">Drag your files here or click in this area.</span>
+                            </p>
+                        </div>              
+                    </fieldset>
+                </div>
+            </div>
+            <button type="submit" id="buttonUploadTemplate" class="btn btn-primary btn-upload-template-[ID]" style="position: relative;top: 0;left: 50%;z-index: 2;transform: translateX(-50%);background: gray;outline: none;border: none;">Upload</button>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;">
+    <div class="builder-tool builder-outline-selected-controls">
+        <ul>
+            <li class="builder-action-selected-button builder-select-parent-button" data-toggle="tooltip" title="{language.wpanel.others.select_parent.title}">
+                <span class="material-icons-outlined" style="font-size: 22px">arrow_upward</span>
+            </li>
+            <!-- <li class="builder-action-selected-button builder-add-widget-button" data-toggle="tooltip" title="{language.wpanel.others.add_widget.title}"><i class="{builder-icon-layer-plus}"></i></li> -->
+            <li class="builder-action-selected-button builder-remove-selected-button" data-toggle="tooltip" title="{language.wpanel.others.delete.title}">
+                <span class="material-icons-outlined" style="font-size: 22px">delete</span>
+            </li>
+            <li class="builder-action-selected-button builder-duplicate-selected-button" data-toggle="tooltip" title="{language.wpanel.others.duplicate.title}">
+                <span class="material-icons-outlined" style="font-size: 17px">filter_none</span>
+            </li>
+            <li class="builder-action-selected-button builder-code-selected-button" data-toggle="tooltip" title="{language.wpanel.others.code.title}">
+                <span class="material-icons-outlined" style="font-size: 22px">code</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="builder-tool builder-outline-move-hook" title="{language.wpanel.others.move.title}">
+        <span class="material-icons-outlined" style="font-size: 18px;
+        margin: 7px 6px;transform: rotate(45deg);">zoom_out_map</span>
+    </div>
+</div>
+
+<!--loading-->
+<div class="loadding-indicator" style="display: none;z-index: 999;">
+    <div id="spinningSquaresG">
+        <div id="spinningSquaresG_1" class="spinningSquaresG"></div>
+        <div id="spinningSquaresG_2" class="spinningSquaresG"></div>
+        <div id="spinningSquaresG_3" class="spinningSquaresG"></div>
+        <div id="spinningSquaresG_4" class="spinningSquaresG"></div>
+        <div id="spinningSquaresG_5" class="spinningSquaresG"></div>
+        <div id="spinningSquaresG_6" class="spinningSquaresG"></div>
+        <div id="spinningSquaresG_7" class="spinningSquaresG"></div>
+        <div id="spinningSquaresG_8" class="spinningSquaresG"></div>
+    </div>
+</div>
+
+<!-- The Image Toolbox -->
+<div class="modal" id="EditHtmlModal">
+    <div class="mb-4">
+        <h2 class="mb-2">{language.edit_html_code}</h2>
+        
+        <textarea id="EditHtml"></textarea>
+        
+        <button tabindex="0" type="" class="btn btn-secondary edit-html-save-button">Save</button>
+    </div>
+</div>

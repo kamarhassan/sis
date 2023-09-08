@@ -1,0 +1,6 @@
+{
+    "Cms": true,
+    "WebsitePageBuilder": true,
+    "Migrate": true,
+    "BlogPost": true
+}

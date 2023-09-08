@@ -1,0 +1,1558 @@
+<div style="display: none">
+     <!--ButtonControl-->
+     <div id="ButtonControl">
+        <div class="widget-section font-family pr-3 control-[ID]" style="position: relative;">
+            <div class="label">[TITLE]</div>
+            <div class="button-styles-select">
+                <button class="button-preview">Abc</button>
+                <div class="button_styles" style="display: none;">
+                    <div style="display: flex;justify-content: space-between;">
+                        <button class="" data-style="style_1">Abc</button>
+                        <button class="" data-style="style_2">Abc</button>
+                        <button class="" data-style="style_3">Abc</button>
+                        <button class="" data-style="style_4">Abc</button>
+                        <button class="" data-style="style_5">Abc</button>
+                        <button class="" data-style="style_6">Abc</button>
+                        <button class="" data-style="style_7">Abc</button>
+                    </div>
+                    <div style="display: flex;justify-content: space-between;">
+                        <button class="" data-style="style_8">Abc</button>
+                        <button class="" data-style="style_9">Abc</button>
+                        <button class="" data-style="style_10">Abc</button>
+                        <button class="" data-style="style_11">Abc</button>
+                        <button class="" data-style="style_12">Abc</button>
+                        <button class="" data-style="style_13">Abc</button>
+                        <button class="" data-style="style_14">Abc</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--YoutubeControl-->
+    <div id="YoutubeControl">
+        <div class="control-[ID]">
+            <div class="widget-row px-3 py-2">
+                <h4>{language.youtube}</h4>
+                <p class="mb-2">{language.youtube.enter_youtube_url}</p>
+                <div class="place-value">
+                    <span class="">
+                        <input type="text" class="youtube_url" value="[CODE]" style="width:100%" />
+                    </span>
+                </div>
+            </div>
+            <div class="widget-row px-3 py-2 d-flex align-items-center">
+                <div class="label mr-auto">{language.youtube.width}</div>
+                <div class="place-value">
+                    <span class="">
+                        <input type="text" class="youtube_width" value="[WIDTH]" />
+                    </span>
+                </div>
+            </div>
+            <div class="widget-row px-3 py-2 d-flex align-items-center">
+                <div class="label mr-auto">{language.youtube.height}</div>
+                <div class="place-value">
+                    <span class="">
+                        <input type="text" class="youtube_height" value="[HEIGHT]" />
+                    </span>
+                </div>
+            </div>
+            <div class="widget-row px-3 py-2 d-flex align-items-center">
+                <div class="label mr-auto">{language.youtube.alignment}</div>
+                <div class="place-value">
+                    <span class="">
+                        <select class="form-control alignment">
+                            <option value="">{language.youtube.default}</option>
+                            <option value="left">{language.youtube.left}</option>
+                            <option value="right">{language.youtube.right}</option>
+                            <option value="center">{language.youtube.center}</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--TableBlockControl-->
+    <div id="TableBlockControl">
+        <div class="widget-section font-family pr-3 control-[ID]">
+            <div class="label">[TITLE]</div>
+            <select class="form-control theme">
+                <option value="">Default</option>
+                <option value="table-striped">Striped</option>
+                <option value="table-dark">Dark</option>
+                <option value="table-dark table-striped">Dark - Striped</option>
+                <option value="table-bordered">Bordered</option>
+                <option value="table-dark table-bordered">Dark - Bordered</option>
+            </select>
+        </div>
+    </div>
+
+    <!--PricingTableControl-->
+    <div id="PricingTableControl">
+        <div class="widget-section font-family pr-3 control-[ID]" style="position: relative;">
+            <div class="label">[TITLE]</div>
+            <div class="pricing-styles-select">
+                <button class="pricing-preview">Abc</button>
+                <div class="pricing_styles" style="display: none;">
+                    <div style="display: flex;justify-content: space-between;">
+                        <button class="" data-style="">Abc</button>
+                        <button class="" data-style="dark">Abc</button>
+                        <button class="" data-style="light">Abc</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Background Image Control-->
+    <div id="BackgroundImageControl">
+        <div class="control-[ID]">
+            <div class="atts-groupx">
+                <div class="atts-group-containerx">
+                    <div class="widget-row px-3 py-2">
+                        <div class="d-flex align-items-center">
+                            <div class="label mr-auto">
+                                {language.background_image.image}
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="Basic example">
+                                <button class="btn btn-default btn-icon change-image"><span class="material-icons-outlined">create</span></button>
+                                <button class="btn btn-danger btn-icon clear-image"><span class="material-icons-outlined">clear</span></button>
+                            </div>
+                            <div class="">
+                                <div class="background-image-preview">
+                                    <img class="background-image" src="image/image-placeholder.svg" />
+                                </div>
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="widget-row px-3 py-2 d-flex align-items-center">
+                        <div class="label mr-auto">{language.background_image.color}</div>
+                        <div class="place-value">
+                            <span class="color-picker">
+                                <input type="color" class="background-color" value="#ffffff" />
+                                <input class="background-color" type="text" value=""/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="widget-row px-3 py-2 d-flex align-items-center">
+                        <div class="label mr-auto">{language.background_image.repeat}</div>
+                        <div class="place-value">
+                            <select class="background-repeat form-control enctype">
+                                <option value="inherit">inherit</option>
+                                <option value="initial">initial</option>
+                                <option value="no-repeat">no-repeat</option>
+                                <option value="repeat">repeat</option>
+                                <option value="repeat-x">repeat-x</option>
+                                <option value="repeat-y">repeat-y</option>
+                                <option value="revert">revert</option>
+                                <option value="round">round</option>
+                                <option value="space">space</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="widget-row px-3 py-2 d-flex align-items-center">
+                        <div class="label mr-auto">{language.background_image.size}</div>
+                        <div class="place-value">
+                            <input type="text" value="100" class="form-control background-size" />
+                        </div>
+                    </div>
+                    <div class="widget-row px-3 py-2 d-flex align-items-center">
+                        <div class="label mr-auto">{language.background_image.position}</div>
+                        <div class="place-value">
+                            <input type="text" value="100" class="form-control background-position" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Image link Control-->
+    <div id="FieldListHeaderControl">
+        <div class="control-[ID]">
+            <div class="widget-section link-image">
+                <div class="p-3">
+                    <p class="d-block mb-2">
+                        This is an <strong>[TITLE]</strong> field is associated with the following mail list
+                    </p>
+                    <div class="form-disabled">
+                        <select class="form-control disabled" disabled>
+                            <option>[LIST_NAME]</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Image link Control-->
+    <div id="ImageLinkControl">
+        <div class="control-[ID]">
+            <div class="widget-section link-image">
+                <div class="wg-info w-url-container d-flex align-items-center">
+                    <div class="tren">
+                         <div class="trai">
+                            <span>{language.image_link}</span>
+                         </div>
+                    </div>
+                    <div class="pr-3">
+                        <input type="text" class="image-link link" value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Image size Control-->
+    <div id="ImageSizeControl">
+        <div class="control-[ID]">
+            <div class="widget-section d-flex align-items-center pr-3">
+                <div class="label mr-auto">[TITLE]</div>
+                <select class="image-sizes form-control">
+                    <option value="100%xauto">Default - 100% width</option>
+                    <option value="150x150">Thumbnail - 150 x 150</option>
+                    <option value="300x300">Medium - 300 x 300</option>
+                    <option value="768xauto">Medium Large - 768 x 0</option>
+                    <option value="300x300">Woocommerce Thumbnail - 300 x 300</option>
+                    <option value="600xauto">Woocommerce Single - 600 x 0</option>
+                    <option value="100x100">Woocommerce Gallery Thumbnail - 100 x 100</option>
+                    <option value="300x300">Shop Catalog - 300 x 300</option>
+                    <option value="600xauto">Shop Single - 600 x 0</option>
+                    <option value="100x100">Shop Thumbnail - 100 x 100</option>                    
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+            <div class="image-size custom-size" style="display:none;">
+                <div class="widget-section d-flex align-items-center px-3">
+                    <div class="mr-auto control-label">{language.image_size.width}</div>
+                    <div>
+                        <input type="text" value="100" class="custom-width form-control" />
+                    </div>
+                </div>
+                <div class="widget-section d-flex align-items-center px-3">
+                    <span class="mr-auto control-label">{language.image_size.height}</span>
+                    <div>
+                        <input type="text" value="100" class="custom-height form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Field Options Control-->
+    <div id="FieldOptionsControl">
+        <div class="control-[ID]">
+            <div class="field-options-container px-3">
+                [OPTIONS]
+            </div>
+        </div>
+    </div>
+
+    <!--Form Control-->
+    <div id="FormControl">
+        <div class="control-[ID]">
+            <div class="widget-section d-flex align-items-center">
+                <div class="label mr-auto">{language.field.control.form.method}</div>
+                <div class="pr-3">
+                    <!-- <input class="method" type="text" value="[METHOD]"/> -->
+                    <select name="method" class="form-control method">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                    </select>
+                </div>
+            </div>    
+            <div class="widget-section d-flex align-items-center pr-3">
+                <div class="label mr-auto">{language.field.control.autocomplete}</div>
+                <div class="">
+                    <span class="mswitch autocomplete-switch" data-checked="true">
+                        <span class="material-icons text-primary">toggle_on</span>
+                    </span>
+                </div>
+            </div>     
+            <div class="widget-section d-flex align-items-center">
+                <div class="label mr-auto">{language.field.control.form.enctype}</div>
+                <div class="place-value">
+                    <select name="enctype" class="form-control enctype">
+                        <option value="application/x-www-form-urlencoded">application/x-www-form-urlencoded</option>
+                        <option value="multipart/form-data">multipart/form-data</option>
+                        <option value="text/plain">text/plain</option>
+                    </select>
+                </div>
+            </div>
+            <div class="widget-section d-flex align-items-center">
+                <div class="label mr-auto">{language.field.control.form.accept_charset}</div>
+                <div class="place-value">
+                    <select name="accept_charset" class="form-control accept_charset">
+                        <option value="UTF-8">UTF-8</option>
+                        <option value="ISO-8859-1">ISO-8859-1</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Captcha toggle Control-->
+    <div id="CaptchaToggleControl">
+        <div class="control-[ID]">
+            <div class="widget-section d-flex align-items-center pr-3">
+                <div class="label mr-auto">{language.field.control.captcha}</div>
+                <div class="">
+                    <span class="mswitch captcha-switch" data-checked="true">
+                        <span class="material-icons text-primary">toggle_on</span>
+                    </span>
+                </div>
+            </div>      
+        </div>
+    </div>
+
+    <!--Common Field Control-->
+    <div id="SectionTitleControl">
+        <div class="jumbotron jumbotron-fluid jumb-title">
+            <h3 class="title">[TITLE]</h3>
+        </div>
+    </div>
+    
+    <!--Common Field Control-->
+    <div id="CommonFieldControl">
+        <div class="control-[ID]">
+            <div class="widget-section d-flex align-items-center">
+                <div class="label mr-auto">{language.field.control.field_name}</div>
+                <div class="place-value pr-3">
+                    <input class="field-name disabled" type="text" value="[FIELD_NAME]" disabled/>
+                </div>
+            </div>
+            <div class="widget-section d-flex align-items-center">
+                <div class="label mr-auto">{language.field.control.field_id}</div>
+                <div class="place-value pr-3">
+                    <div class="form-element-widget m-0">
+                        <input type="hidden" class="field-id" name="[FIELD_ID]" />
+                        <span class="icon">
+                            <i class="material-icons-outlined" style="font-size:25px;display:inline-block">[ICON]</i>
+                        </span>
+                        <span class="field-label-box mb-0"><span class="label">[FIELD_NAME]</span><span class="small text-muted hide">[FIELD_NAME]</span></span>
+                    </div>
+                    <!-- <input class="field-id" type="text" value="[FIELD_NAME]"/> -->
+                </div>
+            </div>
+            <div class="widget-section d-flex align-items-center pr-3">
+                <div class="label mr-auto">{language.field.control.show_label}</div>
+                <div class="">
+                    <span class="mswitch label-switch" data-checked="true">
+                        <span class="material-icons text-primary">toggle_on</span>
+                    </span>
+                </div>
+            </div>
+            <div class="widget-section d-flex align-items-center field-label-line">
+                <div class="label mr-auto">{language.field.control.label}</div>
+                <div class="place-value pr-3">
+                    <input class="field-label" type="text" value="[LABEL]"/>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+    <!--Validation on/off Control-->
+    <div id="ValidationControl">
+        <div class="control-[ID]">
+            <div class="widget-section d-flex align-items-center pr-3">
+                <div class="label mr-auto font-weight-normal">{language.field.control.validation.required}</div>
+                <div class="">
+                    <span class="mswitch required-switch" data-checked="true">
+                        <span class="material-icons text-primary">toggle_on</span>
+                    </span>
+                </div>
+            </div>
+            <div class="validation-rules">
+                <div class="widget-section d-flex align-items-center">
+                    <div class="label mr-auto">{language.field.control.validation.min_length}</div>
+                    <div class="place-value pr-3">
+                        <input class="min-length" type="text" value="[MIN_LENGTH]"/>
+                    </div>
+                </div>
+                <div class="widget-section d-flex align-items-center">
+                    <div class="label mr-auto">{language.field.control.validation.max_length}</div>
+                    <div class="place-value pr-3">
+                        <input class="max-length" type="text" value="[MAX_LENGTH]"/>
+                    </div>
+                </div>
+                <div class="widget-section d-flex align-items-center">
+                    <div class="label mr-auto">{language.field.control.validation.regexp}</div>
+                    <div class="place-value pr-3">
+                        <input class="regexp" type="text" value="[REGEXP]"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Icon Select Control-->
+    <div id="HeadingControl">
+        <div class="widget-section control-[ID] d-flex align-items-center pr-3">
+            <div class="label mr-auto">[TITLE]</div>
+            <select class="form-control" style="width: 180px">
+                <option value="h1">H1</option>     
+                <option value="h2">H2</option>     
+                <option value="h3">H3</option>     
+                <option value="h4">H4</option>     
+                <option value="h5">H5</option>     
+                <option value="h6">H6</option>     
+            </select>
+        </div>
+    </div>
+
+    <!--Text style-->
+    <div id="TextControl">
+        <div class="control-[ID] px-3 py-2">
+            <textarea class="text-content text-editor-[ID]">[TEXT]</textarea>
+        </div>
+    </div>
+
+    <!--Background color-->
+    <div id="BackgroundControl">
+        <div class="widget-section link-color-element">
+            <div class="label">[TITLE]</div>
+            <div class="thongso">
+                <span class="click-color">
+                    <input type="color" class="link-color" value="#0056b3" id="[AINPUT_ID]" />
+                </span>
+                <span class="value">
+                    <input class="link-color-input" type="text" value="" id="A-bg-color-[AINPUT_ID]"/>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!--Icon Select Control-->
+    <div id="IconSelectControl">
+        <div class="control-[ID]">
+            <div class="widget-section d-flex align-items-center pr-3">
+                <div class="label mr-auto">[TITLE]</div>
+                <div class="icon mr-2" style="
+                    height: 32px;
+                    text-align: right;
+                    width: 100px;
+                "></div>
+                <select class="form-control" style="width: 180px">
+                    <option value="{{root}}image/icon-none.png">
+                        --</option>
+                    <option value="{{root}}image/facebook.png">
+                        Facebook</option>
+                    <option value="{{root}}image/twitter.png">
+                        Twitter</option>
+                    <option value="{{root}}image/instagram.png">
+                        Instagram</option>
+                    <option value="{{root}}image/linkedin.png">
+                        Linkedin</option>
+                    <option value="{{root}}image/tumblr.png">
+                        Tumblr</option>
+                    <option value="{{root}}image/google-plus.png">
+                        Google Plus</option> 
+                    <option value="{{root}}image/youtube.png">
+                        YouTube
+                    </option>       
+                    <option value="{{root}}image/line.png">
+                        LINE
+                    </option> 
+                    <option value="{{root}}image/wechat.png">
+                        WeChat
+                    </option>  
+                    <option value="{{root}}image/weibo.png">
+                        Weibo
+                    </option>
+                    <option value="{{root}}image/tiktok.png">
+                        TikTok
+                    </option>
+                </select>
+            </div>
+            <div class="widget-section d-flex align-items-center pr-3">
+                <div class="label mr-auto">{language.link}</div>
+                <div class="">
+                    <input style="width: 220px;" type="text" name="url" class="form-control url" />
+                </div>
+            </div>
+            <div class="widget-section d-flex align-items-center px-2">
+                <button class="btn btn-secondary mr-2 but-dup">{language.widget.duplicate}</button>
+                <button class="btn btn-warning but-remove">{language.widget.remove}</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Font family-->
+    <div id="FontFamilyControl">
+        <div class="widget-section font-family pr-3 control-[ID]">
+            <div class="label">[TITLE]</div>
+            <select class="form-control">
+                <option value="times">Times</option>
+                <option value="serif">Serif</option>
+                <option value="arial">Arial</option>
+                <option value="tahoma">Tahoma</option>
+                <option value="roboto">Roboto</option>
+                <option value="segoe ui">Segoe UI</option>                
+            </select>
+        </div>
+    </div>
+    
+    <!--Text size-->
+    <div id="TextSizeControl">
+        <div class="widget-section text-size control-[ID]">
+            <div class="label">[TITLE]</div>
+            <select class="form-control">
+                <option value="8px">8px</option>
+                <option value="9px">9px</option>
+                <option value="10px">10px</option>
+                <option value="11px" selected>11px</option>
+                <option value="12px">12px</option>
+                <option value="14px">14px</option>
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+                <option value="22px">22px</option>
+                <option value="24px">24px</option>
+                <option value="30px">30px</option>
+                <option value="38px">38px</option>
+                <option value="46px">46px</option>
+                <option value="60px">60px</option>
+                <option value="72px">72px</option>
+            </select>
+        </div>
+    </div>
+    
+    <!--Text style-->
+    <div id="TextStyleControl">
+        <div class="widget-section text-style control-[ID]">
+            <div class="label">[TITLE]</div>
+            <div class="icons-group">
+                <ul>
+                    <li>
+                        <button class="text-style-bold">
+                            <i class="{builder-icon-bold}"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="text-style-italic">
+                            <i class="{builder-icon-italic}"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="text-style-underline">
+                            <i class="{builder-icon-underline}"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="text-style-strikethrough">
+                            <i class="{builder-icon-strikethrough}"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!--Text color-->
+    <div id="ColorPickerControl">
+        <div class="widget-section text-color-element">
+            <div class="label">[TITLE]</div>
+            <div class="thongso">
+                <span class="click-color">
+                    <input type="color" id="[PINPUT_ID]" class="color" value="#555555" />
+                </span>
+                <span class="value">
+                    <input class="text-color-input" type="text" value="" id="P-text-color"/>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <!--link color-->
+    <div id="LinkColorControl">
+        <div class="widget-section link-color-element">
+            <div class="label">[TITLE]</div>
+            <div class="thongso">
+                <span class="click-color">
+                    <input type="color" class="link-color" value="#0056b3" id="[AINPUT_ID]" />
+                </span>
+                <span class="value">
+                    <input class="link-color-input" type="text" value="" id="A-link-color-[AINPUT_ID]"/>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!--Associate with tag-->
+    <div id="DropdownAssociateControl">
+        <div class="widget-section widget-associate">
+            <div class="label">[TITLE]</div>
+            <div class="right-value">
+                <select class="associate-dropdown" id="[dropdown_ID]" name="{GENDER}">
+                    <option class="placeholder-option" style="display: none;">-- Select option --</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!--Associate with text-->
+    <div id="TextAssociateControl">
+        <div class="widget-section widget-associate">
+            <div class="label">[TITLE]</div>
+            <div class="right-value right-value-text">
+                <select class="associate-text" name="" id="">
+                <!--tag-->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!--Associate with checkbox-->
+    <div id="CheckboxAssociateControl">
+        <div class="widget-section widget-associate">
+            <div class="label">[TITLE]</div>
+            <div class="right-value right-value-checbox">
+                <select class="associate-checkbox" name="" id="">
+                    <!--option-->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!--Placeholder-->
+    <div id="PlaceholderControl">
+        <div class="widget-section placeholder placeholder-input-control">
+            <div class="label">[TITLE]</div>
+            <div class="place-value">
+                <input class="placeholder placeholder-input" type="text" value="" name=""/>
+            </div>
+        </div>
+    </div>
+
+    <!--line height-->
+    <div id="LineHeightControl">
+        <div class="widget-section">
+            <div class="label">[TITLE]</div>
+            <div class="thongso">
+                <ul>
+                    <li><img class="icon-left icon-line-height active" src="image/lh1.svg" line-height="1" /></li>
+                    <li><img class="icon-center icon-line-height" src="image/lh2.svg" line-height="1.5" /></li>
+                    <li><img class="icon-justify icon-line-height" src="image/lh3.svg" line-height="2" /></li>
+                    <li><img class="icon-right icon-line-height" src="image/lh4.svg"  line-height="2.5" /></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--Action-->
+    <div id="ActionControl">
+        <div class="widget-action">
+            <div class="wg-info">
+                <div class="tren">
+                    <div class="trai">
+                       <span>{language.wpanel.controls.image_link.title}</span>
+                    </div>
+                </div>
+                <div class="giua">
+                    <div class="url-link">
+                        <div class="thongso">
+                            <span class="url">{language.wpanel.controls.url.title}</span>
+                            <span class="value">
+                                <input type="text" value="[HREF]">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="duoi">
+                    <a class="" href="">{language.wpanel.controls.special_link.title}</a>
+                    <a class="" href="">{language.wpanel.controls.link_file.title}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Block option-->
+    <div id="BlockOptionControl">
+        <div class="widget-section2 block-option-control control-[ID]">
+            <div class="section-option">
+                <div class="widget">
+                    <div class="row">
+                        <div class="col-md-7 left">
+                            <div class="widget-label">[TITLE]</div>
+                        </div>
+                        <div class="col-md-5 right">
+                            <div class="widget-value right">
+                                <div class="toggle">
+                                    <div class="toggle__status toggle__status--off">{language.wpanel.controls.more_option.title}</div>
+                                    <label class="switch check-all-padding">
+                                        <input type="checkbox">
+                                        <span class="slider all-padding" id=""></span>
+                                    </label>
+                                    <label class="switch check-4-padding" style="display: none;">
+                                        <input type="checkbox">
+                                        <span class="slider _4-padding" id=""></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr--cs" />
+                <div class="widget detail-padding">
+                    <div class="container">
+                        <div class="">
+                            <div class="d-flex align-items-center" style="width:100%">
+                                <div class="all-padding-section">
+                                    <div class="_1_minus-plus _1_minus-plus-block">
+                                        <span class="label">{language.wpanel.controls.all_side.title}</span>
+                                        <div class="minus-plus">
+                                            <span class="minus">
+                                                <button class="minus-all" id="">-</button>
+                                            </span>
+                                            <input type="text" value="[PADDING]" id="giatri" class="value-padding"/>
+                                            <span class="plus">
+                                                <button class="plus-all" id="">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four-padding-section">
+                                    <div class="left padding" id="padding">
+                                        <div class="tren mr-3">
+                                            <span class="label">{language.wpanel.controls.top.title}</span>
+                                            <div class="minus-plus">
+                                                <span class="minus">
+                                                    <button class="minus-top" id="">-</button>
+                                                </span>
+                                                <input type="text" value="[TOP]" id="value-top" class="value-top"/>
+                                                <span class="plus">
+                                                    <button class="plus-top" id="">+</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="tren">
+                                            <span class="label">{language.wpanel.controls.bottom.title}</span>
+                                            <div class="minus-plus minus-bottom-right">
+                                                <span class="minus" style="">
+                                                    <button class="minus-bottom" id="">-</button>
+                                                </span>
+                                                <input type="text" value="[BOTTOM]" id="value-bottom" class="value-bottom"/>
+                                                <span class="plus" style="">
+                                                    <button class="plus-bottom" id="">+</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="left padding" style="" id="padding">
+                                        <div class="tren mr-3">
+                                            <span class="label">{language.wpanel.controls.left.title}</span>
+                                            <div class="minus-plus">
+                                                <span class="minus">
+                                                    <button class="minus-left" id="">-</button>
+                                                </span>
+                                                <input type="text" value="[LEFT]" id="value-left" class="value-left"/>
+                                                <span class="plus">
+                                                    <button class="plus-left" id="">+</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="tren">
+                                            <span class="label">{language.wpanel.controls.right.title}</span>
+                                            <div class="minus-plus minus-bottom-right" style="">
+                                                <span class="minus" style="">
+                                                    <button class="minus-right" id="">-</button>
+                                                </span>
+                                                <input type="text" value="[RIGHT]" id="value-right" class="value-right"/>
+                                                <span class="plus" style="">
+                                                    <button class="plus-right" id="">+</button>
+                                                </span>
+                                            </div>
+                                        </div>                                        
+                                    </div>                                
+                                </div>
+                                <div class="right ml-auto">
+                                    <div class="square" id="square-block">
+                                        <img title="Padding preview" src="image/square-fc.svg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageControl">
+        <div class="control-[ID]">
+            <div class="widget image-name">
+                <div class="image-selected">
+                    <img id="[image_selected_ID]" class="image-select" src="https://tinyjpg.com/images/social/website.jpg" />
+                </div>
+                <div class="tren">
+                    <div class="d-flex align-items-canter justify-content-center">
+                        <!-- <div class="label">{language.wpanel.controls.image_name.title}</div> -->
+                        <span id="name-image">{language.wpanel.controls.logo_name.title}</span>
+                    </div>
+                    <div class="button">
+                        <button class="btn btn-info change" id="[uploadImage-ID]" type="submit">{language.wpanel.controls.change_image.title}</button>
+                        <!-- <button class="btn btn-secondary" style="pointer-events: none;">{language.wpanel.controls.effect.title}</button> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="widget alternate-text">
+                <div class="row">
+                    <div class="col-md-3 left">
+                        <div class="widget-label">{language.wpanel.controls.alternate.title}</div>
+                    </div>
+                    <div class="col-md-9 right">
+                        <input type="text" value="" id="[img_alt_ID]" class="name-img"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="widget range" id="image-control-ID">
+                <div class="row">
+                    <div class="col-md-8 left">
+                        <div class="widget-label">{language.image.width}</div>
+                    </div>
+                </div>
+                <div class="tren">
+                    <input type="range" min="0" max="100" step="1" value="0" class="image-width">
+                    <div class="thongso image-width-text">{language.wpanel.controls.value.title}</div>
+                </div>
+            </div>
+            <hr class="hr--cs" />
+            <div class="widget range" id="image-control-ID">
+                <div class="row">
+                    <div class="col-md-8 left">
+                        <div class="widget-label">
+                            <div class="d-flex align-items-center">
+                                <div>{language.image.height}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right">
+                        <div class="d-flex align-items-center">
+                            <div class="mr-2 small">{language.image.auto_height}</div>
+                            <div class="d-flex align-items-center">
+                                <label style="position: relative;">
+                                    <input type="checkbox" class="styled3 image-height-auto" />
+                                    <span class="check-symbol"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tren">
+                    <input type="range" min="0" max="2000" step="1" value="0" class="image-height">
+                    <div class="thongso image-height-text">{language.wpanel.controls.value.title}</div>
+                </div>
+            </div>
+            <hr class="hr--cs" />
+            <div class="widget align">
+                <div class="label">[TITLE]</div>
+                <div class="thongso">
+                    <ul>
+                        <li><i class="{builder-icon-align-left} icon-left-img icon-align" align="left" id="[icon-left-ID]"></i></li>
+                        <li><i class="{builder-icon-align-justify} icon-center-img icon-align" align="center" id="[icon-center-ID]"></i></li>
+                        <li><i class="{builder-icon-align-right} icon-right-img icon-align" align="right" id="[icon-right-ID]"></i></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="widget-section link-image">
+                <div class="wg-info">
+                    <div class="tren">
+                        <div class="trai">
+                            <span>{language.image_url}</span>
+                        </div>
+                    </div>
+                    <div class="giua">
+                        <div class="url-link">
+                            <div class="thongso">
+                                <span class="url">{language.wpanel.controls.url.title}</span>
+                                <span class="value">
+                                    <input type="text" class="url-image" id="[img_url_ID]" value="">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="duoi">
+                        <a class="copy-url" href="">{language.wpanel.controls.copy_url.title}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Button option-->
+    <div id="ButtonOptionControl">
+        <div class="widget-section2 button-option-control">
+            <div class="widget range" style="border-bottom: 1px solid #e1e4e7;height: auto !important;padding-bottom: 15px !important;">
+                <div class="row">
+                    <div class="col-md-8 left">
+                        <div class="widget-label">{language.wpanel.controls.auto_width.title}</div>
+                    </div>
+                    <div class="col-md-4 right" style="padding-right: 6px !important;">
+                        <div class="widget-value right">
+                            <div class="toggle">
+                                <label class="switch">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="slider auto-width-plus"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr--cs hr--cs-button hide" style="border-top: 1px solid rgba(0, 0, 0, 0.04) !important;">
+                <div class="tren auto-width-button hide">
+                    <input type="range" min="50" max="500" step="5" value="" style="" id="" class="color-default color-default-button">
+                    <div class="thongso width-button" id="thongsos">[WIDTH_BUTTON]</div>
+                </div>
+            </div>
+            <div class="widget-section bg-color" style="height: 60px !important;">
+                <div class="label">{language.wpanel.controls.background_color.title}</div>
+                <div class="thongso background">
+                    <span class="click-color">
+                        <input type="color" class="color background-color" value="#cccccc" id="[BACKINPUT_ID]"/>
+                    </span>
+                    <span class="value">
+                        <input class="background-color-input" type="text" value="[BACKGROUNDVALUE]" id="background-color"/>
+                    </span>
+                </div>
+            </div>
+            <div class="widget-section text-color" style="height: 60px !important;">
+                <div class="label">{language.wpanel.controls.text_color.title}</div>
+                <div class="thongso background">
+                    <span class="click-color">
+                        <input type="color" class="text-color" value="#555555" id=""/>
+                    </span>
+                    <span class="value">
+                        <input class="input-text-color" type="text" value="" id="text_color_input"/>
+                    </span>
+                </div>
+            </div>
+            <div class="widget-section align" style="height: 60px !important;">
+                <div class="label">{language.wpanel.controls.align.title}</div>
+                <div class="thongso background">
+                    <div class="item_1-2 right" >
+                        <div mailup-common-alignment-selector="" ng-model="style['text-align']" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty">
+                            <div class="alignment-container">
+                                <button type="button" class="align btn btn-default align-left ng-pristine ng-valid ng-not-empty ng-touched" float="left" ng-model="value" uib-btn-radio="'left'" style="">
+                                </button>
+                                <button type="button" class="align btn btn-default align-center ng-pristine ng-untouched ng-valid ng-not-empty active" float="center" ng-model="value" uib-btn-radio="'center'">
+                                </button>
+                                <button type="button" class="align btn btn-default align-right ng-pristine ng-untouched ng-valid ng-not-empty" float="right" ng-model="value" uib-btn-radio="'right'">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-section line-height" style="height: 60px !important;">
+                <div class="label">{language.wpanel.controls.line_height.title}</div>
+                <div class="thongso">
+                    <ul>
+                        <li><img class="icon-left icon-line-height active" src="image/lh1.svg" line-height="1" style="width: 70%;height: 100%;cursor: pointer;" /></li>
+                        <li><img class="icon-center icon-line-height" src="image/lh2.svg" line-height="1.5" style="width: 70%;height: 100%;cursor: pointer;" /></li>
+                        <li><img class="icon-justify icon-line-height" src="image/lh3.svg" line-height="2" style="width: 68%;height: 100%;cursor: pointer;" /></li>
+                        <li><img class="icon-right icon-line-height" src="image/lh4.svg"  line-height="2.5" style="width: 68%;height: 100%;cursor: pointer;" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-section border-radius" style="height: 60px !important;">
+                <div class="label">{language.wpanel.controls.border_radius.title}</div>
+                <div class="thongso">
+                    <div class="minus-plus border-radius">
+                        <span class="minus">
+                            <button class="minus" id="minus-border">-</button>
+                        </span>
+                        <input class="border-button" type="text" value="" id="border-radius"/>
+                        <span class="plus">
+                            <button class="plus" id="plus-border">+</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="section-option borders" style="margin-bottom: 40px;">
+                <div class="widget more-options">
+                    <div class="row">
+                        <div class="col-md-7 left">
+                            <div class="widget-label">{language.wpanel.controls.border.title}</div>
+                        </div>
+                        <div class="col-md-5 right">
+                            <div class="widget-value right">
+                                <div class="toggle">
+                                    <div class="toggle__status toggle__status--off">{language.wpanel.controls.more_option.title}</div>
+                                    <label class="switch check-all-border">
+                                        <input type="checkbox">
+                                        <span class="slider padding_border all-border" id=""></span>
+                                    </label>
+                                    <label class="switch check-four-border" style="display: none;">
+                                        <input type="checkbox">
+                                        <span class="slider padding_border four-border" id=""></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget all-sides">
+                    <div class="container">
+                        <div class="row">
+                            <div class="_1_minus-plus _1_minus-plus-border" style="">
+                                <span class="label" style="">{language.wpanel.controls.all_side.title}</span>
+                                <div class="btn-group dropdown-custom dropdown-custom--cs dropdown" uib-dropdown="" ng-click="toggleDropdown($event)" ng-show="styleEnabled" style="">
+                                    <button uib-dropdown-toggle="" is-open="isOpen" type="button" class="btn btn-default dropdown-toggle dropdown-toggle-style" aria-haspopup="true" aria-expanded="false">
+                                        <span class="ng-binding border-style"></span>
+                                        <div class="arrows">
+                                            <span class="caret up"></span>
+                                            <span class="caret down"></span>
+                                            <div class="clear-fix"></div>
+                                        </div>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-style" role="menu">
+                                        <!-- ngRepeat: style in styles -->
+                                        <li ng-repeat="style in styles" class="ng-scope">
+                                            <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="solid" class="ng-binding ng-binding-solid">{language.wpanel.controls.solid.title}</a>
+                                        </li>
+                                        <!-- end ngRepeat: style in styles -->
+                                        <li ng-repeat="style in styles" class="ng-scope">
+                                            <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dotted" class="ng-binding ng-binding-dotted">{language.wpanel.controls.dotted.title}</a>
+                                        </li>
+                                        <!-- end ngRepeat: style in styles -->
+                                        <li ng-repeat="style in styles" class="ng-scope">
+                                            <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dashed" class="ng-binding ng-binding-dashed">{language.wpanel.controls.dashed.title}</a>
+                                        </li>
+                                        <!-- end ngRepeat: style in styles -->
+                                    </ul>
+                                </div>
+                                <div class="minus-plus minus-plus-border">
+                                    <span class="minus minus-border">
+                                        <button class="minus" id="minus-border-width">-</button>
+                                    </span>
+                                    <input class="border-width-input" type="text" value="" id="giatriborder"/>
+                                    <span class="plus plus-border">
+                                        <button class="plus" id="plus-border-width">+</button>
+                                    </span>
+                                </div>
+
+                                <div class="widget-section-border">
+                                    <div class="thongso">
+                                        <span class="click-color">
+                                            <input type="color" id="" class="border-color" value="#000000" style="padding: 3px;border: none;width: 28px;position: absolute;cursor: pointer;"/>
+                                        </span>
+                                        <span class="value">
+                                            <input class="border_color_input" type="text" value="" id="border-color"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="left padding-border" id="padding-border">
+                                <div class="_1_minus-plus-top _1_minus-plus-border-top" style="">
+                                    <span class="label" style="width: 100% !important;">{language.wpanel.controls.top.title}</span>
+                                    <div class="btn-group dropdown-custom dropdown-custom--cs dropdown" uib-dropdown="" ng-click="toggleDropdown($event)" ng-show="styleEnabled" style="">
+                                        <button uib-dropdown-toggle="" is-open="isOpen" type="button" class="btn btn-default dropdown-toggle dropdown-toggle-style-top" aria-haspopup="true" aria-expanded="false">
+                                            <span class="ng-binding border-style-top">{language.wpanel.controls.solid.title}</span>
+                                            <div class="arrows">
+                                                <span class="caret up"></span>
+                                                <span class="caret down"></span>
+                                                <div class="clear-fix"></div>
+                                            </div>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-style-top" role="menu">
+                                            <!-- ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="solid" class="ng-binding ng-binding-solid-top">{language.wpanel.controls.solid.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dotted" class="ng-binding ng-binding-dotted-top">{language.wpanel.controls.dotted.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-cborder-colorlick="changeStyle(style)" id="" data-value="dashed" class="ng-binding ng-binding-dashed-top">{language.wpanel.controls.dashed.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                        </ul>
+                                    </div>
+                                    <div class="minus-plus minus-plus-border">
+                                        <span class="minus minus-border">
+                                            <button class="minus" id="minus-border-top">-</button>
+                                        </span>
+                                        <input class="border-input border-top-width-input" type="text" value="0" id="giatribordertop"/>
+                                        <span class="plus plus-border">
+                                            <button class="plus" id="plus-border-top">+</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="widget-section-border">
+                                        <div class="thongso">
+                                            <span class="click-color">
+                                                <input type="color" id="" class="border-color-top" value="#000000" style="padding: 3px;border: none;width: 28px;position: absolute;top: 2px;cursor: pointer;left: -57px;"/>
+                                            </span>
+                                            <span class="value">
+                                                <input class="border_top_color_input" type="text" value="" id="border-top-color"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="_1_minus-plus-right _1_minus-plus-border-right" style="">
+                                    <span class="label" style="width: 100% !important;">{language.wpanel.controls.right.title}</span>
+                                    <div class="btn-group dropdown-custom dropdown-custom--cs dropdown" uib-dropdown="" ng-click="toggleDropdown($event)" ng-show="styleEnabled" style="">
+                                        <button uib-dropdown-toggle="" is-open="isOpen" type="button" class="btn btn-default dropdown-toggle dropdown-toggle-style-right" aria-haspopup="true" aria-expanded="false">
+                                            <span class="ng-binding border-style-right">{language.wpanel.controls.solid.title}</span>
+                                            <div class="arrows">
+                                                <span class="caret up"></span>
+                                                <span class="caret down"></span>
+                                                <div class="clear-fix"></div>
+                                            </div>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-style-right" role="menu">
+                                            <!-- ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="solid" class="ng-binding ng-binding-solid-right">{language.wpanel.controls.solid.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dotted" class="ng-binding ng-binding-dotted-right">{language.wpanel.controls.dotted.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dashed" class="ng-binding ng-binding-dashed-right">{language.wpanel.controls.dashed.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                        </ul>
+                                    </div>
+                                    <div class="minus-plus minus-plus-border">
+                                        <span class="minus minus-border">
+                                            <button class="minus" id="minus-border-right">-</button>
+                                        </span>
+                                        <input class="border-input border-right-width-input" type="text" value="0" id="giatriborderright"/>
+                                        <span class="plus plus-border">
+                                            <button class="plus" id="plus-border-right">+</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="widget-section-border">
+                                        <div class="thongso">
+                                            <span class="click-color">
+                                                <input type="color" id="" class="border-color-right" value="#000000" style="padding: 3px;border: none;width: 28px;position: absolute;top: 2px;cursor: pointer;left: -57px;"/>
+                                            </span>
+                                            <span class="value">
+                                                <input class="border_right_color_input" type="text" value="" id="border-right-color"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="_1_minus-plus-bottom _1_minus-plus-border-bottom" style="">
+                                    <span class="label" style="width: 100% !important;">{language.wpanel.controls.bottom.title}</span>
+                                    <div class="btn-group dropdown-custom dropdown-custom--cs dropdown" uib-dropdown="" ng-click="toggleDropdown($event)" ng-show="styleEnabled" style="">
+                                        <button uib-dropdown-toggle="" is-open="isOpen" type="button" class="btn btn-default dropdown-toggle dropdown-toggle-style-bottom" aria-haspopup="true" aria-expanded="false">
+                                            <span class="ng-binding border-style-bottom">{language.wpanel.controls.solid.title}</span>
+                                            <div class="arrows">
+                                                <span class="caret up"></span>
+                                                <span class="caret down"></span>
+                                                <div class="clear-fix"></div>
+                                            </div>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-style-bottom" role="menu">
+                                            <!-- ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="solid" class="ng-binding ng-binding-solid-bottom">{language.wpanel.controls.solid.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dotted" class="ng-binding ng-binding-dotted-bottom">{language.wpanel.controls.dotted.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dashed" class="ng-binding ng-binding-dashed-bottom">{language.wpanel.controls.dashed.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                        </ul>
+                                    </div>
+                                    <div class="minus-plus minus-plus-border">
+                                        <span class="minus minus-border">
+                                            <button class="minus" id="minus-border-bottom">-</button>
+                                        </span>
+                                        <input class="border-input border-bottom-width-input" type="text" value="0" id="giatriborderbottom"/>
+                                        <span class="plus plus-border">
+                                            <button class="plus" id="plus-border-bottom">+</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="widget-section-border">
+                                        <div class="thongso">
+                                            <span class="click-color">
+                                                <input type="color" id="" class="border-color-bottom" value="#000000" style="padding: 3px;border: none;width: 28px;position: absolute;top: 2px;cursor: pointer;left: -62px;"/>
+                                            </span>
+                                            <span class="value">
+                                                <input class="border_bottom_color_input" type="text" value="" id="border-bottom-color"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="_1_minus-plus-left _1_minus-plus-border-left" style="">
+                                    <span class="label" style="width: 100% !important;">{language.wpanel.controls.left.title}</span>
+                                    <div class="btn-group dropdown-custom dropdown-custom--cs dropdown" uib-dropdown="" ng-click="toggleDropdown($event)" ng-show="styleEnabled" style="">
+                                        <button uib-dropdown-toggle="" is-open="isOpen" type="button" class="btn btn-default dropdown-toggle dropdown-toggle-style-left" aria-haspopup="true" aria-expanded="false">
+                                            <span class="ng-binding border-style-left">{language.wpanel.controls.solid.title}</span>
+                                            <div class="arrows">
+                                                <span class="caret up"></span>
+                                                <span class="caret down"></span>
+                                                <div class="clear-fix"></div>
+                                            </div>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-style-left" role="menu">
+                                            <!-- ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="solid" class="ng-binding ng-binding-solid-left">{language.wpanel.controls.solid.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dotted" class="ng-binding ng-binding-dotted-left">{language.wpanel.controls.dotted.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                            <li ng-repeat="style in styles" class="ng-scope">
+                                                <a href="javascript:;" ng-click="changeStyle(style)" id="" data-value="dashed" class="ng-binding ng-binding-dashed-left">{language.wpanel.controls.dashed.title}</a>
+                                            </li>
+                                            <!-- end ngRepeat: style in styles -->
+                                        </ul>
+                                    </div>
+                                    <div class="minus-plus minus-plus-border">
+                                        <span class="minus minus-border">
+                                            <button class="minus" id="minus-border-left">-</button>
+                                        </span>
+                                        <input class="border-input border-left-width-input" type="text" value="0" id="giatriborderleft"/>
+                                        <span class="plus plus-border">
+                                            <button class="plus" id="plus-border-left">+</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="widget-section-border">
+                                        <div class="thongso">
+                                            <span class="click-color">
+                                                <input type="color" id="" class="border-color-left" value="#000000" style="padding: 3px;border: none;width: 28px;position: absolute;top: 2px;cursor: pointer;left: -57px;"/>
+                                            </span>
+                                            <span class="value">
+                                                <input class="border_left_color_input" type="text" value="" id="border-left-color"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 right" style="top: 12px !important;">
+                                <div class="square-border" id="square-border">
+                                    <img title="Padding preview" src="image/square-fc.svg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //js hien dropdown padding in block option
+        $(document).on('click', 'span.slider.content_padding', function() {
+            $('.content-padding').toggleClass('hienlen');
+            $('._1_minus-plus-content').toggleClass('andi');
+        });
+
+        //js click hien border all
+        $(document).on('click', 'span.all-border', function() {
+            $('label.check-all-border').addClass('andi');
+            $('label.check-four-border').addClass('hienthi');
+            $('._1_minus-plus-border').addClass('andi');
+            $('.left.padding-border').addClass('hienlen');
+        });
+
+        $(document).on('click', 'span.four-border', function() {
+            $('label.check-all-border').removeClass('andi');
+            $('label.check-four-border').removeClass('hienthi');
+            $('._1_minus-plus-border').removeClass('andi');
+            $('.left.padding-border').removeClass('hienlen');
+        });
+
+        $(document).on('click', 'span.auto-width-plus', function() {
+            $('.auto-width-button').toggleClass('hide');
+            $('.hr--cs-button').toggleClass('hide');
+        });
+
+        // Dropdown actions
+        $(document).on('click', '.dropdown-toggle', function() {
+            var but = $(this);
+            var box = but.closest('.dropdown-custom');
+            var dropdown_content = box.find('.dropdown-menu');
+
+            //fixDropdownPos();
+
+            if (dropdown_content.is(":visible")) {
+                dropdown_content.hide();
+            } else {
+                $('.dropdown-menu:visible').hide();
+                dropdown_content.show();
+            }
+
+            $(this).closest('.dropdown-custom').addClass('visible');
+            $('.dropdown-toggle').removeClass('change-bg');
+            $(this).addClass('change-bg');
+        });
+
+        $(document).click(function(event) {
+            if ($(event.target).closest('.dropdown-menu').length == 0 && $(event.target).closest('.dropdown-toggle').length == 0) {
+                $('.dropdown-menu:visible').hide();
+                $('.dropdown-custom').removeClass('visible');
+                $('.dropdown-toggle').removeClass('change-bg');
+            }
+        });
+
+    </script>
+
+    <!--Action button-->
+    <div id="ActionButtonControl">
+        <div class="widget-action action-button">
+            <div class="wg-info">
+                <div class="tren" id="link-redirect-page" style="">
+                    <div class="trai">
+                        <input type="radio" class="check-link-page" name="redirect-page" style="margin-right: 5px;"/>
+                        <span>{language.wpanel.controls.link_to.title}</span>
+                    </div>
+                    <div class="phai">
+                        <button type="" value="" class="owp-button" id=""></button>
+                        <div class="arrows arrows-button">
+                            <span class="caret up"></span>
+                            <span class="caret down"></span>
+                            <div class="clear-fix"></div>
+                        </div>
+                        <ul class="down-menu down-menu-button" id="">
+                            <!--li-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="input-url input-url-hide">
+                    <div class="giua">
+                        <div class="url-link">
+                            <div class="thongso">
+                                <span class="url">{language.wpanel.controls.url.title}</span>
+                                <span class="value">
+                                    <input type="text" value="" class="input-external">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="tren" id="action-redirect-page" style="border-top: 1px solid #eee;">
+                    <div class="trai">
+                        <input type="radio" class="check-action-page" name="redirect-page" style="margin-right: 5px;"/>
+                        <span>{language.wpanel.controls.actions.title}</span>
+                    </div>
+                    <div class="phai">
+                        <button type="" value="" class="action-button-link" id=""></button>
+                        <div class="arrows arrows-button">
+                            <span class="caret up"></span>
+                            <span class="caret down"></span>
+                            <div class="clear-fix"></div>
+                        </div>
+                        <ul class="down-menu-action-button" id="">
+                        </ul>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on('click', '.owp-button', function() {
+            $('ul.down-menu-button').toggleClass('hienlen');
+        });
+        $(document).on('click', '.arrows-button', function() {
+            $('ul.down-menu-button').toggleClass('hienlen');
+        });
+        $(document).on('click', '.external-url', function() {
+            $('.input-url').removeClass('input-url-hide');
+        });
+        $(document).on('click', '.link-page', function() {
+            $('.input-url').addClass('input-url-hide');
+        });
+
+        $(document).on('click', '.action-button-link', function() {
+            $('ul.down-menu-action-button').toggleClass('hienlen');
+        });
+
+    </script>
+
+    <!--Video action-->
+    <div id="VideoOptionControl">
+        <div class="widget-action action-video">
+            <div class="video-content-container">
+                <div class="wg-info">
+                    <div class="widget-label">
+                        [TITLE]
+                    </div>
+                    <div class="item_1 basic-spacer">
+                        <input type="text" value="" class="input-url-link-video">
+                    </div>
+                    <div class="item_1">
+                        <p class="widget__label widget__label--cs">{language.wpanel.controls.widget_label.title}</p>
+                    </div>
+                </div>
+                <hr class="hr--cs">
+                <div class="widget-info bottom">
+                    <div class="item_2-4">
+                        <div class="widget__box">
+                            <span class="box__label">{language.wpanel.controls.play_icon.title}</span>
+                            <div class="box__action">
+                                <div class="dropdown--custom">
+                                    <button class="type dropdown--toggle">
+                                        <span>{language.wpanel.controls.round_solid.title}</span>
+                                        <div class="arrows">
+                                            <span class="caret up"></span>
+                                            <span class="caret down"></span>
+                                            <div class="clear-fix"></div>
+                                        </div>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-type">
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.round_solid.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.round_outline.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.rectangle_solid.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.rectangle_outline.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.square_solid.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.square_outline.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.arrow_only.title}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget__box">
+                            <span class="box__label">{language.wpanel.controls.play_icon_color.title}</span>
+                            <div class="box__action">
+                                <div class="dropdown--custom">
+                                    <button class="color dropdown--toggle">
+                                        <span>{language.wpanel.controls.light.title}</span>
+                                        <div class="arrows">
+                                            <span class="caret up"></span>
+                                            <span class="caret down"></span>
+                                            <div class="clear-fix"></div>
+                                        </div>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-color">
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.light.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.dark.title}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget__box" style="margin-bottom: 40px;">
+                            <span class="box__label">{language.wpanel.controls.play_icon_size.title}</span>
+                            <div class="box__action">
+                                <div class="dropdown--custom">
+                                    <button class="size dropdown--toggle">
+                                        <span>{language.wpanel.controls.value.title}</span>
+                                        <div class="arrows">
+                                            <span class="caret up"></span>
+                                            <span class="caret down"></span>
+                                            <div class="clear-fix"></div>
+                                        </div>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-size">
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.value.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.value_55.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.value_60.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.value_65.title}</a>
+                                        </li>
+                                        <li class="item-drop">
+                                            <a>{language.wpanel.controls.value_70.title}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item_2-4">
+                        <div class="video-square">
+                            <img title="Play icon preview" src="image/type-01.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).on('click', '.dropdown--toggle', function() {
+            var but = $(this);
+            var box = but.closest('.dropdown--custom');
+            var dropdown_content = box.find('.dropdown-menu');
+
+            //fixDropdownPos();
+
+            if (dropdown_content.is(":visible")) {
+                dropdown_content.show();
+            } else {
+                $('.dropdown-menu:visible').hide();
+                dropdown_content.hide();
+            }
+
+            $(this).closest('.dropdown--custom').addClass('visible');
+            $('.dropdown--toggle').removeClass('change-bg');
+            $(this).addClass('change-bg');
+        });
+
+        $(document).click(function(event) {
+            if ($(event.target).closest('.dropdown-menu').length == 0 && $(event.target).closest('.dropdown--toggle').length == 0) {
+                $('.dropdown-menu:visible').show();
+                $('.dropdown--custom').removeClass('visible');
+                $('.dropdown--toggle').removeClass('change-bg');
+            }
+        });
+
+    </script>
+
+    <!--html-->
+    <div id="HtmlOptionControl">
+        <div class="widget-section action-html align-items-top control-[ID]">
+            <div>
+                <div class="widget-section-1 _1khoi">
+                    <textarea class="p-2 html-input" style="margin: 12px;
+                    width: calc(100% - 24px);
+                    height: calc(100% - 24px);height:150px;">[HTML]</textarea>
+                </div>
+                <!-- end _1khoi-->
+                <div class="widget-section-2 _1khoi">
+                    <div class="widget-desc">
+                        <h3 class="widget-label">{language.wpanel.controls.des_label.title}</h3>
+                        <p class="widget-label-des">{language.wpanel.controls.des_widget_label.title}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

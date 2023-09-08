@@ -25,7 +25,7 @@ class AdminSeeder extends Seeder
             'first_name' => 'Hassan Kamar',
             'middle_name' => 'Hassan Kamar',
             'last_name' => 'Hassan Kamar',
-            'email' => 'hassankamar795@gmail.com',
+            'email' => 'sadmin@gmail.com',
             'admin_status' => 1,
             'passwordischanged' => 1,
             //'roles_name' => ['super-admin'],

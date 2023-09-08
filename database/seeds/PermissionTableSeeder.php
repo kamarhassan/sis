@@ -15,7 +15,7 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
 
-
+/*
         DB::table('permissions')->delete();
         DB::table('role_has_permissions')->delete();
         DB::table('roles')->delete();
@@ -26,6 +26,8 @@ class PermissionTableSeeder extends Seeder
 
 
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'setting', 'name' => 'setting']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'teacher', 'parent' => 'teacher', 'name' => 'teacher']);
+
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'language', 'name' => 'edit language']);
 
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'grades', 'name' => 'grades']);
@@ -67,14 +69,23 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'supervisor', 'name' => 'delete supervisor']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'supervisor', 'name' => 'add supervisor']);
 
+        
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'slider', 'name' =>'edit slider']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'slider', 'name' =>'delete slider']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'slider', 'name' =>'add slider']);
+     
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'institue information', 'name' =>'edit institue information']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'institue information', 'name' =>'delete institue information']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'institue information', 'name' =>'add institue information']);
+
 
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'cours', 'parent' => 'cours', 'name' => 'cours']);
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'cours', 'parent' => 'cours', 'name' => 'show all cours']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'cours', 'parent' => 'cours', 'name' => 'create cours']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'cours', 'parent' => 'cours', 'name' => 'edit cours']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'cours', 'parent' => 'cours', 'name' => 'delete cours']);
-
-
+        
+        
         // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'add students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'students', 'name' => 'show all students']);
@@ -87,15 +98,7 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'reset']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'enable or disable']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'sponsore', 'name' => 'edit students sponsore']);
-        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => 'disabel']);
-        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
-        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
-        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'attendance', 'name' => '']);
-
-
-
-
-        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'old payment students']);
+       
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'edit old payment students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'delete old payment students']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'old payment students', 'name' => 'print old payment students']);
@@ -109,7 +112,8 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'register order students', 'name' => 'register order aprrove']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'register order students', 'name' => 'register order delete']);
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'register order students', 'name' => 'register order deny']);
-
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'certificate', 'name' => 'generate certificate']);
+        
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'reports', 'name' => 'reports']);
 
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'reports', 'name' => 'view report']);
@@ -125,30 +129,32 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'old services payment', 'name' => 'print old services receipt']);
 
         Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'notification', 'name' => 'see notification']);
-
-
+      
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular cours', 'name' => 'add popular cours']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular cours', 'name' => 'edit popular cours']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular cours', 'name' => 'delete popular cours']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'add popular class']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'edit popular class']);
+        // Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'delete popular class']);
+        
+        
         $role = Role::create(['guard_name' => 'admin', 'name' => 'super admin']);
         $role->givePermissionTo(Permission::all());
-        $all = Admin::get();
-    
-        // Admin::find(1)->assignRole('super admin');//  change password 
-        Admin::find(1)->assignRole('super admin');
-
-        // this can be done as separate statements
-        $role = Role::create(['guard_name' => 'admin', 'name' => 'teacher']);
-        $role->givePermissionTo(['show all students', 'register students', 'attendance students',]);
-        Admin::find(9)->assignRole('teacher');
-        Admin::find(10)->assignRole('teacher');
-        Admin::find(11)->assignRole('teacher');
-        Admin::find(18)->assignRole('teacher');
-        // $role = Role::create(['guard_name' => 'admin','tab_name'=>'','name' => 'writer']);
-        // $role->givePermissionTo('add user ');
-        // $role = Role::create(['guard_name' => 'admin','tab_name'=>'', 'name' => 'edit_currency']);
-        // $role->givePermissionTo('activate currency');
-        // or may be done by chaining
-        // $role = Role::create(['name' => 'moderator'])
-        // ->givePermissionTo(['publish articles', 'unpublish articles']);
-
-
-    }
+        
+        
+       
+        
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'Blogs', 'parent' => 'Blogs', 'name' => 'create post']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'Blogs', 'parent' => 'Blogs', 'name' => 'edit post']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'Blogs', 'parent' => 'Blogs', 'name' => 'delete post']);
+        */
+        
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'add school year']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'edit school year']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'delete school year']);
+       
+      
+      $role = Role::find(7);
+        $role->syncPermissions(Permission::all());
+      }
 }

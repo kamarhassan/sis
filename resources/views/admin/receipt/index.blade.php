@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.receipt')
 @endsection
 @section('css')
     <style>
@@ -20,18 +21,19 @@
 @endsection
 @section('content')
     {{-- <div class="row"> --}}
-    <div class="box-body" id="spinner_loading">
-        <div class="d-flex justify-content-center text-primary ">
-            <div class="spinner-border " role="status">
+{{--    <div class="box-body" id="spinner_loading">--}}
+{{--        <div class="d-flex justify-content-center text-primary ">--}}
+{{--            <div class="spinner-border " role="status">--}}
 
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-    </div>
+{{--                <span class="sr-only">Loading...</span>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
-
+<div class="box">
+   
     {{-- @if ((new \Jenssegers\Agent\Agent())->isDesktop()) --}}
-    <div class="box-body" id="table_std" hidden>
+    <div class="box-body" id="table_std" >
         <div class="table-responsive">
             <table id="example1" class="table table-hover">
                 <thead>
@@ -58,9 +60,9 @@
                                 <td>
                                 
                                     {{-- @isset($receipts['std_registration']) --}}
-                                        
-                                    {{ $receipts['StdRegistration']['cours']['grade']['grade'] }} #
-                                    {{ $receipts['StdRegistration']['cours']['level']['level'] }}
+                                   {{ $receipts['StdRegistration']['cours']['category_grade_level']['name']}}
+                               [ {{ $receipts['StdRegistration']['cours']['category_grade_level']['grade']['grade'] }} #
+                                    {{ $receipts['StdRegistration']['cours']['category_grade_level']['level']['level'] }} ]
                                     {{-- @endisset --}}
                                 </td>
                                 <td>{{ $receipts['amount_total'] }} <span class="text-warning">
@@ -99,6 +101,8 @@
         </div>
     </div>
     </div>
+    </div>
+
 @endsection
 
 

@@ -20,7 +20,7 @@ class CoursSedeer extends Seeder
         $faker = \Faker\Factory::create();
         for ($i = 0; $i < 15; $i++) {
             $delete = $faker->randomElement([0, 1]);
-            $status = $faker->randomElement(['open','closed','postopen','canceled']);
+            $status = $faker->randomElement([1,2,3,4,5]);
           $date  =Carbon::now();
         //   $teacher = Admin::role('teacher')->get();
          $this_cours =   Cours::create([
@@ -36,7 +36,7 @@ class CoursSedeer extends Seeder
                 'endTime' =>$faker->time('H:i:s', now()),
                 'act_StartDa' =>$date,
                 'act_EndDa' =>$date,
-                'year' =>current_school_year(),
+                'year' =>current_school_year()['year'],
                 'teacher_id' => Admin::inRandomOrder()->first()->id,
                 'grade_id' =>Grade::inRandomOrder()->first()->id,
                 'level_id' =>Level::inRandomOrder()->first()->id,

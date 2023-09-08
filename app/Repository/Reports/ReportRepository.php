@@ -166,11 +166,12 @@ class ReportRepository implements ReportInterface
         return $dataSet;
     }
 
-    // public function dataset_distrubion_reports()
-    // {
-    // }
+    public function dataset_distrubion_reports()
+    {
+    }
 
 
+    
     public function unpaid_account_summary_and_details($request)
     {
         try {
@@ -181,8 +182,10 @@ class ReportRepository implements ReportInterface
                 'users.email as user_email',
                 'users.phonenumber as user_phone',
 
-                'levels.level as level',
+                'categories.grade_id as grade_id',
+                'categories.level_id as level_id',
                 'grades.grade as grade',
+                'levels.level as level',
                 'courss.id as cours_id',
                 'courss.startTime as cours_start_time',
                 'courss.endTime as cours_end_time',
@@ -580,8 +583,13 @@ class ReportRepository implements ReportInterface
     private function unpaid_and_cours_account_summary_and_details($request, array $select_data)
     {
         $data = DB::table('courss')
-            ->join('grades', 'grade_id', '=', 'grades.id')
-            ->join('levels', 'level_id', '=', 'levels.id')
+           
+            ->join('categories', 'courss.categorie_id', '=', 'categories.id')
+            ->join('grades', 'categories.grade_id', '=', 'grades.id')
+            ->join('levels', 'categories.level_id', '=', 'levels.id')
+          
+            
+            
             ->join('currencies', 'currencies_id', '=', 'currencies.id')
             ->join('admins as teacher', 'teacher_id', '=', 'teacher.id')
             ->join('studentsregistrations', 'courss.id', '=', 'studentsregistrations.cours_id')

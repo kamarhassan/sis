@@ -17,6 +17,7 @@ function delete_notification_admin_selected(route_, form_id, token_, array_of_ms
             cancelButtonColor: '#d33',
             confirmButtonText: msg['confirmButtonTextof'] + "!",
             cancelButtonText: msg['cancelButton'],
+            
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -27,13 +28,14 @@ function delete_notification_admin_selected(route_, form_id, token_, array_of_ms
                     success: function (data) {
                         if (data.status == 'success') {
                             // var myTable = $('#admin_table').DataTable();
-                            $('#Row' + id_delet).remove();
+                     
                             // myTable.row( this ).delete();
                             Swal.fire(
                                 msg['deleted_msg'],
                                 msg['succes_msj'],
                                 'success'
-                            )
+                            );
+                           $('#Row' + id_delet).remove();
                         } else {
                             Swal.fire(
                                 msg['failed_delete'],
@@ -97,9 +99,11 @@ function delete_by_id(route_, id_, token_, array_of_msg) {
                     'id': id_delet
                 },
                 success: function (data) {
-                    // console.log('Row' + id_delet)
-                    // console.table(data); // toast.success(data.message);
+                  
                     if (data.status == 'success') {
+                       if (data.hasOwnProperty("id_delete")) {
+                          id_delet = data.id_delete;
+                       }
                         $('#Row' + id_delet).remove();
 
                         Swal.fire(
@@ -130,6 +134,204 @@ function delete_by_id(route_, id_, token_, array_of_msg) {
 }
 
 
+function delete_category_img(route_, id_, token_, array_of_msg) {
+    var msg = JSON.parse(array_of_msg);
+   showloading();
+    Swal.fire({
+        //    showCloseButton: true,
+        title: msg['title'] + "?",
+        text: msg['text_of_delet'] + "?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: msg['confirmButtonTextof'] + "!",
+        cancelButtonText: msg['cancelButton'],
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            var id_delet = id_;
+            var token = token_;
+            $.ajax({
+                type: 'POST',
+                url: route_,
+                data: {
+                    '_token': token,
+                    'id': id_delet
+                },
+                success: function (data) {
+                  
+                    if (data.status == 'success') {
+                       if (data.hasOwnProperty("id_delete")) {
+                          id_delet = data.id_delete;
+                       }
+                      
+
+                        Swal.fire(
+                            msg['deleted_msg'],
+                            msg['succes_msj'],
+                            'success'
+                        )
+                       window.location.href = data.route;
+                    } else {
+                        Swal.fire(
+                            msg['failed_delete'],
+                            data.message,
+                            'error'
+                        )
+                    }
+                   pauseloading();
+                }, error: function reject() {
+                  pauseloading();
+                    Swal.fire(
+                        msg['failed_delete'],
+                        msg[7],
+                        'error'
+                    )
+                }
+            });
+
+        }else {
+           pauseloading();
+        }
+    })
+}
 
 
 
+function reset_marks_by_id(route_, id_, token_, array_of_msg) {
+   var msg = JSON.parse(array_of_msg);
+   // console.table(msg);
+   Swal.fire({
+       //    showCloseButton: true,
+       title: msg['title'] + "?",
+       text: msg['text_of_delet'] + "?",
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: msg['confirmButtonTextof'] + "!",
+       cancelButtonText: msg['cancelButton'],
+   }).then((result) => {
+       if (result.isConfirmed) {
+
+           var id_delet = id_;
+           var token = token_;
+           $.ajax({
+               type: 'POST',
+               url: route_,
+               data: {
+                   '_token': token,
+                   'id': id_delet
+               },
+               success: function (data) {
+                   // console.log('Row' + id_delet)
+                   // console.table(data); // toast.success(data.message);
+                   if (data.status == 'success') {
+                      
+
+                       Swal.fire(
+                           msg['deleted_msg'],
+                           msg['succes_msj'],
+                           'success'
+                       )
+                       window.location.href = data.route;
+                   } else {
+                       Swal.fire(
+                           msg['failed_delete'],
+                           data.message,
+                           'error'
+                       )
+                   }
+
+               }, error: function reject() {
+
+                   Swal.fire(
+                       msg['failed_delete'],
+                       msg[7],
+                       'error'
+                   )
+               }
+           });
+
+       }
+   })
+}
+
+
+
+function delete_from_callery_by_id(route_, id_,img, img_id_to_delete,token_, array_of_msg) {
+    var msg = JSON.parse(array_of_msg);
+     showloading();
+
+    
+
+    Swal.fire({
+        //    showCloseButton: true,
+        title: msg['title'] + "?",
+        text: msg['text_of_delet'] + "?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: msg['confirmButtonTextof'] + "!",
+        cancelButtonText: msg['cancelButton'],
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            var id_delet = id_;
+            var token = token_;
+            var img_ = img;
+            $.ajax({
+                type: 'POST',
+                url: route_,
+                data: {
+                    '_token': token,
+                    'id': id_delet,
+                    'img': img_,
+                },
+                success: function (data) {
+                    // console.log('Row' + id_delet)
+                    // console.table(data); // toast.success(data.message);
+                    if (data.status == 'success') {
+                        $('#' + category_image_div).remove();
+                       
+                        Swal.fire(
+                            msg['deleted_msg'],
+                            msg['succes_msj'],
+                            'success'
+                        )
+
+                    
+                       
+                    } else {
+                        Swal.fire(
+                            msg['failed_delete'],
+                            data.message,
+                            'error'
+                        )
+                    }
+                    pauseloading();
+                }, error: function reject() {
+                   pauseloading();
+                    Swal.fire(
+                        msg['failed_delete'],
+                        msg[7],
+                        'error'
+                    )
+                }
+            });
+
+        }else {
+            pauseloading();
+        }
+    })
+}
+
+
+function showloading(){
+    $('#all_img_callery_').prop('hidden',true);
+}
+function pauseloading(){
+    $('#all_img_callery_').prop('hidden',false);
+}

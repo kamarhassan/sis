@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.attendance reports')
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ URL::asset('assets/handsontable/handsontable.full.min.css') }}">

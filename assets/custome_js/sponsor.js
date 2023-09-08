@@ -1,3 +1,4 @@
+
 function get_sponsor_shipe(route, form_id) {
     var formdata = $("#" + form_id).serializeArray();
     // console.log(formdata);
@@ -51,11 +52,11 @@ function get_students_sponsor(route, form_id) {
 
                 remove_loading_showing_table();
                 customize_data_table(discount_column(), data.dataset);
-            
+
                 $('#cours_fee_total').text(data.cours_fee_total);
                 $('#cours_id').val(data.cours_id);
                 $('#sponsor_id').val(data.sponsor_id);
-             
+
                 $('#first_row').replaceWith(data.first_row);
                 $('#btn_submit').replaceWith(data.button);
 
@@ -188,50 +189,53 @@ function get_fee_selected(array_cours_fees) {
 
     var t = 0;
     array_cours_fees.forEach(element => {
-        // console.table(element)
-        
-        if ($('#cours_fee' + element.id).prop('checked'))
-        //  var id_checkbox  = element.val().split("_")[0];
-        t += parseInt($('#cours_fee' +element.id).val());
+
+
+        if ($('#cours_fee' + element.id).prop('checked')) {
+
+            t += parseInt($('#cours_fee_value_' + element.id).val());
+        }
     });
     return t;
 
 }
 
-function calculate_discount(input_id, cours_fees) {
-    var fee_selected = get_fee_selected(cours_fees);
-    var cours_fee_total_ =cours_fee_total(cours_fees);
-    if(fee_selected ===0 ){
-        // select_one_of_fee
-        $('#select_one_of_fee_' + input_id).prop('hidden', false);
+function calculate_discount(input_id, cours_fees, cours_fees_id_dicounted, total_fee) {
+    fee_selected = parseInt($('#cours_fee_value_' + cours_fees_id_dicounted).val());
+    var cours_fee_total_ = total_fee;
+    if (fee_selected === 0) {
+
     }
     if (validate($('#percent_' + input_id), $('#remaining_' + input_id), 0, 100, 'error') == true) {
 
         var percent = $('#percent_' + input_id).val();
         var discount_calcuated = fee_selected * (percent / 100);
         $('#discount_' + input_id).val(discount_calcuated.toFixed(2));
+        // round_percentage_discount(discount, percent_calcuated, input_id, input_id, fee_selected);
         $('#remaining_' + input_id).text((cours_fee_total_ - discount_calcuated).toFixed(2));
         $('#discount_' + input_id).css("border", " solid green");
+        get_total_discount_and_percent(cours_fees, total_fee)
     }
-    //   var discount_calcuate = 
-    // percent_
-    // discount_
+
 }
 
-function calculate_percent(input_id, cours_fees) {
-    var fee_selected = get_fee_selected(cours_fees);
-   var cours_fee_total_ =cours_fee_total(cours_fees);
-    if(fee_selected ===0 ){
-        // select_one_of_fee
-        $('#select_one_of_fee_' + input_id).prop('hidden', false);
+function calculate_percent(input_id, cours_fees, cours_fees_id_dicounted, total_fee) {
+    var fee_selected = parseInt($('#cours_fee_value_' + cours_fees_id_dicounted).val())//get_fee_selected(cours_fees);
+    var cours_fee_total_ = total_fee;
+    if (fee_selected === 0) {
+
     }
+
     if (validate($('#discount_' + input_id), $('#remaining_' + input_id), 0, fee_selected, 'error') == true) {
         var discount = $('#discount_' + input_id).val();
         //  = $("#userInputID").val();
         var percent_calcuated = (discount * 100) / fee_selected;
         $('#percent_' + input_id).val(percent_calcuated.toFixed(2));
+        // round_percentage_discount(discount, percent_calcuated, input_id, input_id, fee_selected);
         $('#remaining_' + input_id).text((cours_fee_total_ - discount).toFixed(2));
         $('#percent_' + input_id).css("border", " solid green");
+
+        get_total_discount_and_percent(cours_fees, total_fee)
     }
 }
 
@@ -268,17 +272,101 @@ function set_edit_link(msg, route) {
 }
 
 // function cours_fee_total
-function cours_fee_total(array_cours_fees) {
 
-    var t = 0;
+
+
+function get_total_discount_and_percent(array_cours_fees, total_fee) {
+
+    var discount = percent = 0;
+    var total_fee =parseFloat($('#total_coust').text());
     array_cours_fees.forEach(element => {
-        // console.table(element)
-        
-       
-        //  var id_checkbox  = element.val().split("_")[0];
-        t += parseInt($('#cours_fee' +element.id).val());
+        if ($('#discount_' + element.id).val() != '') {
+            discount += parseInt($('#discount_' + element.id).val());
+        }
     });
-    return t;
+    percent = (discount * 100) / total_fee;
+    $('#discount_total').text(discount);
+    $('#percent_total').text(percent + " % ");
+}
+
+
+function reset_percent_discount_input(input_id, select_fee,array_cours_fees) {
+    $('#discount_' + input_id).val('');
+    $('#percent_' + input_id).val('');
+  
+    if (!$('#cours_fee' + input_id).prop('checked')){    
+        $('#discount_' + input_id).prop('disabled',true);
+        $('#percent_' + input_id).prop('disabled',true);
+       
+    }else {
+        $('#discount_' + input_id).prop('disabled',false);
+        $('#percent_' + input_id).prop('disabled',false);
+      
+    }
+    
+    $('#total_coust').text(get_fee_selected(array_cours_fees));
+
+    // get_fee_selected(array_cours_fees)
+        $(select_fee).attr('hidden', true);
+}
+
+function show_covered_by_sponsore(cours_fee) { 
+   
+    $("#tr_sponsore_selected_percent").attr('hidden', false);
+    $("#tr_sponsore_selected_discount").attr('hidden', false);
+    
+    $("#td_discount_total").attr('hidden', false);
+    $("#td_percent_total").attr('hidden', false);
+  
+    cours_fee.forEach(element => {
+  
+        $("#td_sponsore_selected_percentage_" + element.id).attr('hidden', false);
+        $("#td_sponsore_selected_discount_" + element.id).attr('hidden', false);
+    });
+}
+
+function hide_covered_by_sponsore(cours_fee) {
+   
+    $("#tr_sponsore_selected_percent").attr('hidden', true);
+    $("#tr_sponsore_selected_discount").attr('hidden', true);
+    $("#td_discount_total").attr('hidden', true);
+    $("#td_percent_total").attr('hidden', true);
+  
+    cours_fee.forEach(element => {
+ 
+        $("#td_sponsore_selected_percentage_" + element.id).attr('hidden', true);
+        $("#td_sponsore_selected_discount_" + element.id).attr('hidden', true);
+        // $("#td_sponsore_selected_" + element.id).attr('hidden', true);
+    });
+}
+
+
+
+
+function Issponsored(fee_no_discount, fee_with_discount) {
+    if ($("#" + fee_no_discount).hasClass("active"))
+        $("#it_has_discount").val('no_discount')
+    if ($("#" + fee_with_discount).hasClass("active"))
+        $("#it_has_discount").val('with_discount')
+
 
 }
 
+
+
+function round_percentage_discount(discount, percentage, input_discount, input_percentage, fee_selected) {
+    var discount_rounded = Math.round(discount);
+    var new_percentage = (discount_rounded * 100) / fee_selected;
+    $('#percent_' + input_percentage).val(new_percentage);
+    $('#percent_' + input_discount).val(discount_rounded);
+}
+
+
+
+
+function without_discount(cours_id) {
+
+}
+function with_discount(cours_id) {
+
+} 

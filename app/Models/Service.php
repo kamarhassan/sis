@@ -32,7 +32,7 @@ class Service extends Model
   
     public function currency()
     {
-        return $this->hasOne(currency::class, 'id', 'currencies_id');
+        return $this->hasOne(Currency::class, 'id', 'currencies_id');
     }
     public function getActive(){
         return $this->active == 1 ? __('site.is active'):__('site.is not active');

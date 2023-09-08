@@ -29,7 +29,7 @@ class CreateGategoriesTable extends Migration
             $table->tinyInteger ('status')->enum('status', [0, 1])->default(1)
             ->comment("0 =>  disabled, 1 =>  enabled");
             $table->text('target_students')->nullable();
-            $table->integer('duration')->nullable()->comment('nb of hours');
+            $table->integer('duration')->nullable()->comment('nb of mounth');
             $table->timestamps();
         });
     }

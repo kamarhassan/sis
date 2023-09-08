@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="41px" viewBox="0 0 46 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons---Module-02" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Modules-properties-" sketch:type="MSArtboardGroup" transform="translate(-920.000000, -856.000000)" stroke="#BFC7C9">
+            <g id="Rectangle-113-+-Rectangle-116-+-Group" sketch:type="MSLayerGroup" transform="translate(905.000000, 838.000000)">
+                <g id="Group" transform="translate(16.000000, 18.000000)" sketch:type="MSShapeGroup">
+                    <path d="M15.8888889,0.41 L0.677800638,15.7178861" id="Line" stroke-linecap="square"></path>
+                    <path d="M0.407407407,0.41 L15.6184957,15.7178861" id="Line" stroke-linecap="square"></path>
+                    <rect id="Rectangle-69" x="0" y="0" width="16.2962963" height="16.4"></rect>
+                    <path d="M21.5925926,1.23 L43.5925926,1.23" id="Line-3" stroke-linecap="square"></path>
+                    <path d="M21.5925926,8.61 L43.5925926,8.61" id="Line-4" stroke-linecap="square"></path>
+                    <path d="M21.5925926,15.99 L43.5925926,15.99" id="Line-5" stroke-linecap="square"></path>
+                    <path d="M0.407407407,23.37 L43.5925926,23.37" id="Line-6" stroke-linecap="square"></path>
+                    <path d="M0.407407407,30.75 L43.5925926,30.75" id="Line-7" stroke-linecap="square"></path>
+                    <path d="M0.407407407,39.77 L43.5925926,39.77" id="Line-8" stroke-linecap="square"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

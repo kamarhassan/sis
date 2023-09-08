@@ -1,7 +1,7 @@
 @php
-$prefix = Request::route()->getprefix();
-$routes = Route::current()->getName();
-// dd($prefix);
+    $prefix = Request::route()->getprefix();
+    $routes = Route::current()->getName();
+    // dd($prefix);
 @endphp
 <aside class="main-sidebar">
     <!-- sidebar-->
@@ -30,6 +30,7 @@ $routes = Route::current()->getName();
             </li>
 
 
+            @include('cms::admin.layouts.cms-nav-bar')
             {{-- @can('setting') --}}
 
             @include('admin.layouts.nav_bar_layouts.setting')
@@ -40,7 +41,7 @@ $routes = Route::current()->getName();
             @include('admin.layouts.nav_bar_layouts.cours')
 
             {{-- @endcan --}}
-
+            @include('admin.layouts.nav_bar_layouts.accounting')
             {{-- @can('students') --}}
 
             @include('admin.layouts.nav_bar_layouts.students')
@@ -52,11 +53,11 @@ $routes = Route::current()->getName();
             {{-- @endcan --}}
 
             {{-- @can('reports') --}}
-          
+
             @include('admin.layouts.nav_bar_layouts.reports')
-           
+
             {{-- @endcan --}}
-        
+
 
 
 
@@ -72,7 +73,7 @@ $routes = Route::current()->getName();
 
     </section>
 
-    <div class="sidebar-footer">
+    {{-- <div class="sidebar-footer">
         <!-- item-->
         <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
             aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
@@ -82,5 +83,5 @@ $routes = Route::current()->getName();
         <!-- item-->
         <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
                 class="ti-lock"></i></a>
-    </div>
+    </div> --}}
 </aside>

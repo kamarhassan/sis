@@ -9,13 +9,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            @can('payment remaining')
-                <li><a href="{{ route('admin.get.remaining.for.services') }}">
-                        <i class="ti-more"></i>
-                        @lang('site.register Student pay fee')
-                    </a>
-                </li>
-            @endcan
+            
             @can('register service to client')
                 <li><a href="{{ route('admin.Services.to.client') }}">
                         <i class="ti-more"></i>

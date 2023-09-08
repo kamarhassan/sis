@@ -1,68 +1,76 @@
-<header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
+<header id="header" class="transparent-header">
+    <div id="header-wrap">
+        <div class="container">
+            <div class="header-row">
 
-        <h1 class="logo me-auto"><a href="index.html">Mentor</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+           
+                <div id="logo" class="me-lg-5">
+                    <a href="{{ route('web.index') }}">
+                        Aims
+                        {{-- <img class="logo-default" srcset="images/logo.png, images/logo@2x.png 2x" src="images/logo@2x.png"
+                            alt="Canvas Logo">
+                        <img class="logo-dark" srcset="images/logo-dark.png, images/logo-dark@2x.png 2x"
+                            src="images/logo-dark@2x.png" alt="Canvas Logo"> --}}
+                    </a>
+                </div><!-- #logo end -->
 
-        <nav id="navbar" class="navbar order-last order-lg-0">
-            <ul>
-                <li><a class="active" href="{{ route('web.index') }}">Home</a></li>
-                {{-- <li><a href="about.html">About</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="trainers.html">Trainers</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="pricing.html">Pricing</a></li> --}}
-                @guest
-                    <li>
-                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li>
-                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else  <li><a href="{{ route('web.user.cours', Auth::user()->id ) }}">Reserved cours</a></li>
-                <li class="drop-down"><a href="">{{ Auth::user()->name }}</a>
-                    <ul>
-                        <li>
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }} </a>
+                <div class="header-misc ms-auto ms-xl-0">
+                    <div class="header-buttons me-3">
+                        @guest
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-                </li>
+                            <a class="button button-rounded button-border button-small m-0"
+                                href="{{ route('login') }}">{{ __('Login') }}</a>
 
-            @endguest
-                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
+                            @if (Route::has('register'))
+                                <a class="button button-rounded button-small m-0 ms-2"
+                                    href="{{ route('register') }}">{{ __('Register') }}</a>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown" style="list-style: none;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('web.user.dashboard') }}">@lang('site.Dashboard')</a>
+                                    <a class="dropdown-item" href="{{ route('web.student.profile') }}">@lang('site.personal information')</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }} </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
                             </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
+                        @endguest
 
-            <a href="courses.html" class="get-started-btn">Get Started</a>
 
+                    </div>
+
+
+              
+                    {{-- @include('frontend.layouts.Header-sub-view.top-search') --}}
+
+                 
+                    {{-- @include('frontend.layouts.Header-sub-view.top-cart') --}}
+                </div>
+
+                <div class="primary-menu-trigger">
+                    <button class="cnvs-hamburger" type="button" title="Open Mobile Menu">
+                        <span class="cnvs-hamburger-box"><span class="cnvs-hamburger-inner"></span></span>
+                    </button>
+
+                </div>
+
+              
+                @include('frontend.layouts.Header-sub-view.nav-bar')
+
+
+            </div>
         </div>
-    </header>
+    </div>
+{{--    <div class="header-wrap-clone"></div>--}}
+   {{-- {{dd  ( Modules\Cms\Entities\HeaderMenu::menu(null))}} --}}
+</header><!-- #header end -->

@@ -1,5 +1,5 @@
 {{-- <div class="modal center-modal fade bs-example-modal-lg" id="modal-center" tabindex="-1"> --}}
-<div class="modal bs-examplemodal-lg  center-modal  " id="modal-center" tabindex="-1" tabindex="-1" role="dialog"
+<div class="modal bs-examplemodal-lg  center-modal" id="modal-center" tabindex="-1" tabindex="-1" role="dialog"
     aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -12,8 +12,8 @@
                     @error('role_name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <a onclick="reset_input();" type="button" class="close text-warning" data-dismiss="modal"
-                        aria-hidden="true">×</a>
+                    <a onclick="reset_permission({{ $all_permisssion}});" type="button" class="close text-warning"
+                        data-dismiss="modal" aria-hidden="true">×</a>
                 </div>
 
 
@@ -79,7 +79,7 @@
                             <div class="row">
                                 <div class="text-xs-right" id="update_role" hidden>
                                     <a class="btn  glyphicon glyphicon-ok hover-success " title="@lang('site.edit')"
-                                        onclick="update_permission_for_role('{{ route('admin.setting.update.permission.for.role') }}','permission_for_role');"><span
+                                        onclick="update_permission_for_role('{{ route('admin.setting.update.permission.for.role') }}','permission_for_role','{{$all_permisssion}}');"><span
                                             class=""> @lang('site.next step')</span>
                                     </a>
                                 </div>
@@ -90,11 +90,10 @@
                                     </a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 
-</div>
-</div>
-</div>
-</div>

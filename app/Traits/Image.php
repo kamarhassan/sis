@@ -19,8 +19,8 @@ trait Image
     {
 
         //save photo in folder
-        $file_extension = $photo->getClientOriginalExtension();
-        $file_name = $folder . '/' . time() . '.' . $file_extension;
+//        $file_extension = $photo->getClientOriginalExtension();
+        $file_name = $folder . '/' . time() . '.' . preg_replace("/\s+/", "", $photo->getClientOriginalName());
         $path = $folder;
         $photo->move($path, $file_name);
 

@@ -74,11 +74,20 @@ class Registration extends Component
 
         $this->validatedData_std =  $this->validate($rules, $messages);
         // $coursinfo = Cours::with(['grade', 'level'])->find($this->cours_id);
-        $this->coursinfo =  Cours::with(['grade', 'level', 'teacher'])->find($this->cours_id);
+        $this->coursinfo =  Cours::with(['category_grade_level', 'teacher'])->find($this->cours_id);
         $this->sponsor = $this->get_sponsor();
 
         $this->current_step = 2;
         $this->all_std_as_std_name = [];
+        $user_id = User::GetIdByName($this->std_name);
+      
+        return redirect()->route('admin.students.Registration-2', [encrypt($this->cours_id),encrypt($user_id)]);
+        // return response()->json('true');
+
+
+
+
+
     }
 
 
@@ -100,8 +109,10 @@ class Registration extends Component
 
     public function render()
     {
-        $cours_ = Cours::where(['year' => current_school_year(), 'status' => 1])->with('grade', 'level', 'teacher')->get();
-        // dd($cours_);
+       $cours_ = Cours::where('year', current_school_year()['year'])
+            ->whereIn('status', [1, 2, 5])
+            ->with('category_grade_level', 'teacher')->get();
+//         dd($cours_);
         return view('admin.livewire.students.registration', [
             'cours' => $cours_
         ]);
@@ -143,7 +154,7 @@ class Registration extends Component
     public function get_fee_required_cours($id_fee_required)
     {
         $this->cours_fee_required_sum = 0;
-        
+
         $fee_requied = string_to_array($id_fee_required);
 
         $select_fee_required_cours = [];
@@ -177,7 +188,7 @@ class Registration extends Component
      */
     public function save_std_regitration($cours_fee_total, $remaining)
     {
-        //    dd($this->feerequired);
+          
         try {
             $user_id = User::GetIdByName($this->std_name);
             $succes_std_regi = null;
@@ -189,7 +200,7 @@ class Registration extends Component
                 'user_id' => $user_id,
                 'cours_id' => $this->cours_id,
                 'notes' => $this->fee_note,
-                'feesRequired' => array_to_string($this->feerequired,";"),
+                'feesRequired' => array_to_string($this->feerequired, ";"),
                 'cours_fee_total' => $cours_fee_total,
                 'remaining' => $remaining,
             ]);
@@ -225,7 +236,6 @@ class Registration extends Component
 
                 // dd(  $fee_cours_and_reaminning);
                 $this->save_std_regitration($fee_cours_and_reaminning, $fee_cours_and_reaminning);
-                //return redirect()->route('admin.students.Registration-2/{id}', $this->registration_students->id);
 
                 DB::commit();
                 return redirect()->route(
@@ -428,7 +438,8 @@ class Registration extends Component
 
 
     public function init_model()
-    {$this->cours_fee = null;
+    {
+        $this->cours_fee = null;
         $this->registration_students = 0;
         $this->coursinfo = "";
         $this->select_cours = null;

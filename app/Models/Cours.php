@@ -7,143 +7,169 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cours extends Model
 {
-    use HasFactory;
+   use HasFactory;
 
 
-    protected $table = 'courss';
+   protected $table = 'courss';
 
-    protected  $guarded = [];
-    protected $hidden = [
-        'level_id', 'grade_id',
-        'created_at', 'updated_at'
-    ];
+   protected $guarded = [];
+   protected $hidden = [
 
-    public function scopeGetIdByName($query, $name)
-    {
-        return $query->where('grade', $name)->first()->id;
-    }
-
-    public function scopeSelection_with_grad_and_level_teacher()
-    {
-        return  Cours::join('grades', 'grade_id', '=', 'grades.id')
-            ->join('levels', 'level_id', '=', 'levels.id')
-            ->JOIN('admins', 'teacher_id', '=', 'admins.id')
-            ->where('year', current_school_year())
-            ->orderBy('courss.id', 'asc')
-            ->get();
-    }
-    public function scopeSelection_with_grade_level($query)
-    {
-        $array_of_data = [
-            'courss.id',
-            'courss.status',
-            'admins.name',
-            'courss.startDate',
-            'courss.endDate',
-            'courss.act_StartDa',
-            'courss.act_EndDa',
-            'courss.startTime',
-            'courss.endTime',
-            'levels.level',
-            'grades.grade'
-        ];
-        return  Cours::join('grades', 'grade_id', '=', 'grades.id')
-            ->join('levels', 'level_id', '=', 'levels.id')
-            ->JOIN('admins', 'teacher_id', '=', 'admins.id')
-            ->where('year', current_school_year())
-            ->orderBy('courss.id', 'asc')
-            ->get($array_of_data);
-    }
+      'created_at', 'updated_at'
+   ];
 
 
-    public  function getStatusAttribute($value)
-    {
-        $status_of_cours = Statusofcour::find($value);
-        return $status_of_cours->name;
-    }
-
-    public  function getDaysAttribute($string_of_days)
-    {
-        $array_of_days_of_week = days_of_week();
-        $days_str = explode(";", $string_of_days);
-        $string_of_days = null;
-        foreach ($array_of_days_of_week as $key_days_of_week => $days_of_week) {
-            foreach ($days_str as $key_days => $days) {
-                if ($key_days_of_week == intval($days))
-                    $string_of_days .= "$days_of_week ";
-            }
-        }
-        return $string_of_days;
-    }
-
-    public  function setStatusAttribute($value)
-    {
-        $status_of_cours = Statusofcour::where('name', $value)->get();
-        $this->attributes['status'] = $status_of_cours[0]->id;
-    }
-
-    public static function save_day_of_week($array)
-    {
-        $string = implode(";", $array);
-        return $string;
-    }
-
-    public function select_day_of_week()
-    {
-        return Cours::select('days')->get();
-        return explode(";", $array);
-    }
+   protected $casts = [
+      // 'days' => 'array',
+      'categories_id' => 'array',
+      'institue_information_id' => 'array',
+   ];
 
 
-    public function grade()
-    {
-        return $this->belongsTo(Grade::class, 'grade_id', 'id');
-    }
-    public function level()
-    {
-        return $this->belongsTo(Level::class, 'level_id', 'id');
-    }
+   public function scopeGetIdByName($query, $name)
+   {
+      return $query->where('grade', $name)->first()->id;
+   }
 
-    public function teacher()
-    {
-        return $this->hasOne(Admin::class, 'id', 'teacher_id');
-    }
-    public function teacher_name()
-    {
-        return $this->hasOne(Admin::class, 'id', 'teacher_id')->select('id', 'name');
-    }
+   public function scopeSelection_with_grad_and_level_teacher()
+   {
+      return Cours::join('grades', 'grade_id', '=', 'grades.id')
+         ->join('levels', 'level_id', '=', 'levels.id')
+         ->JOIN('admins', 'teacher_id', '=', 'admins.id')
+         ->where('year', current_school_year()['year'])
+         ->orderBy('courss.id', 'asc')
+         ->get();
+   }
 
-    public function students()
-    {
-        return $this->belongsToMany(User::class, 'studentsregistrations', 'cours_id', 'user_id', 'id', 'id');
-    }
+   public function scopeSelection_with_grade_level($query)
+   {
+      $array_of_data = [
+         'courss.id',
+         'courss.status',
+         'admins.name',
+         'courss.startDate',
+         'courss.endDate',
+         'courss.act_StartDa',
+         'courss.act_EndDa',
+         'courss.startTime',
+         'courss.endTime',
+         'levels.level',
+         'grades.grade'
+      ];
+      return Cours::join('grades', 'grade_id', '=', 'grades.id')
+         ->join('levels', 'level_id', '=', 'levels.id')
+         ->JOIN('admins', 'teacher_id', '=', 'admins.id')
+         ->where('year', current_school_year()['year'])
+         ->orderBy('courss.id', 'asc')
+         ->get($array_of_data);
+   }
 
-    public function register_students()
-    {
-        return $this->belongsTo(StudentsRegistration::class, 'id', 'cours_id');
-    }
 
-    public function  fee()
-    {
-        return $this->hasMany(CoursFee::class, 'cours_id', 'id');
-    }
+   public function getStatusAttribute($value)
+   {
+      $status_of_cours = Statusofcour::find($value);
 
-    public function  fee_with_type()
-    {
-        return $this->hasMany(CoursFee::class, 'cours_id', 'id')
-            ->with('fee_type');
-    }
+      return $status_of_cours->name;
+   }
 
-    public function  fee_with_type_currency()
-    {
-        return $this->hasMany(CoursFee::class, 'cours_id', 'id')
-            ->with('fee_type', 'currency');
-    }
-    public function  cours_currency()
-    {
-        return $this->hasone(Currency::class,'id', 'currencies_id', );
-           
-    }
+   public function getDaysAttribute($string_of_days)
+   {
+      $array_of_days_of_week = days_of_week();
+      $days_str = explode(";", $string_of_days);
+      $string_of_days = null;
+      foreach ($array_of_days_of_week as $key_days_of_week => $days_of_week) {
+         foreach ($days_str as $key_days => $days) {
+            if ($key_days_of_week == intval($days))
+               $string_of_days .= "$days_of_week ";
+         }
+      }
+      return $string_of_days;
+   }
+
+   public function setStatusAttribute($value)
+   {
+      $status_of_cours = Statusofcour::where('name', $value)->get();
+      $this->attributes['status'] = $status_of_cours[0]->id;
+   }
+
+   public static function save_day_of_week($array)
+   {
+      $string = implode(";", $array);
+      return $string;
+   }
+
+   public function select_day_of_week()
+   {
+      return Cours::select('days')->get();
+      //   return explode(";", $array);
+   }
+
 
    
+
+   public function level()
+   {
+      return $this->hasOne(Categorie::class, 'id', 'categorie_id')->
+      with('level');
+   }
+
+   public function teacher()
+   {
+      return $this->hasOne(Admin::class, 'id', 'teacher_id');
+   }
+
+   public function teacher_name()
+   {
+      return $this->hasOne(Admin::class, 'id', 'teacher_id')->select('id', 'name');
+   }
+
+   public function students()
+   {
+      return $this->belongsToMany(User::class, 'studentsregistrations', 'cours_id', 'user_id', 'id', 'id');
+   }
+
+   public function register_students()
+   {
+      return $this->belongsTo(StudentsRegistration::class, 'id', 'cours_id');
+   }
+
+   public function fee()
+   {
+      return $this->hasMany(CoursFee::class, 'cours_id', 'id');
+   }
+
+   public function fee_with_type()
+   {
+      return $this->hasMany(CoursFee::class, 'cours_id', 'id')
+         ->with('fee_type');
+   }
+
+   public function fee_with_type_currency()
+   {
+      return $this->hasMany(CoursFee::class, 'cours_id', 'id')
+         ->with('fee_type', 'currency');
+   }
+
+   public function cours_currency()
+   {
+      return $this->hasone(Currency::class, 'id', 'currencies_id', );
+
+   }
+   public function institue_information()
+   {
+      return $this->hasMany(InstitueInformation::class, 'id', 'institue_information_id', );
+
+   }
+
+   public function category()
+   {
+      return $this->hasOne(Categorie::class, 'id', 'categorie_id');
+
+   }
+   public function category_grade_level()
+   {
+      return $this->hasOne(Categorie::class, 'id', 'categorie_id')->
+      with('grade')->with('level');
+   }
+
 }

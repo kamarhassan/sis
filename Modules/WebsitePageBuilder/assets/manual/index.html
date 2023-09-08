@@ -1,0 +1,886 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>BuilderJS API Reference</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-b12a2749.js"></script>
+
+    <style type="text/css">
+      .logo {
+        width:40px;
+        height:40px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body class="index" data-languages="[&quot;html&quot;,&quot;php&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <div style="color:#ccc;padding-left:15px;padding-top:15px;display: flex;">
+        <img src="images/logo-dcf64486.png" class="logo" alt="" />
+        <div style="margin-top:5px;margin-left:12px"><p style="margin:0">BUILDERJS</p><p style="margin:0">Version: 5.0</p></div>
+      </div>
+        <div class="lang-selector">
+              <a href="#" data-language-name="html">html</a>
+              <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#installation" class="toc-h1 toc-link" data-title="Installation">Installation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#quick-start" class="toc-h2 toc-link" data-title="Quick start">Quick start</a>
+                  </li>
+                  <li>
+                    <a href="#important" class="toc-h2 toc-link" data-title="Important">Important</a>
+                  </li>
+                  <li>
+                    <a href="#examples" class="toc-h2 toc-link" data-title="Examples">Examples</a>
+                  </li>
+                  <li>
+                    <a href="#advanced" class="toc-h2 toc-link" data-title="Advanced">Advanced</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#configuration" class="toc-h1 toc-link" data-title="Configuration">Configuration</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#load-a-template" class="toc-h2 toc-link" data-title="Load a Template">Load a Template</a>
+                  </li>
+                  <li>
+                    <a href="#tags" class="toc-h2 toc-link" data-title="Tags">Tags</a>
+                  </li>
+                  <li>
+                    <a href="#other-settings" class="toc-h2 toc-link" data-title="Other Settings">Other Settings</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#key-features" class="toc-h1 toc-link" data-title="Key Features">Key Features</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#visual-drag-amp-drop-editor" class="toc-h2 toc-link" data-title="Visual Drag &amp; Drop Editor">Visual Drag &amp; Drop Editor</a>
+                  </li>
+                  <li>
+                    <a href="#source-editor" class="toc-h2 toc-link" data-title="Source Editor">Source Editor</a>
+                  </li>
+                  <li>
+                    <a href="#template" class="toc-h2 toc-link" data-title="Template">Template</a>
+                  </li>
+                  <li>
+                    <a href="#responsive" class="toc-h2 toc-link" data-title="Responsive">Responsive</a>
+                  </li>
+                  <li>
+                    <a href="#html-widgets" class="toc-h2 toc-link" data-title="HTML Widgets">HTML Widgets</a>
+                  </li>
+                  <li>
+                    <a href="#custom-widgets" class="toc-h2 toc-link" data-title="Custom Widgets">Custom Widgets</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#storage" class="toc-h1 toc-link" data-title="Storage">Storage</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sample-post-request" class="toc-h2 toc-link" data-title="Sample POST request">Sample POST request</a>
+                  </li>
+                  <li>
+                    <a href="#request-header" class="toc-h2 toc-link" data-title="Request header">Request header</a>
+                  </li>
+                  <li>
+                    <a href="#request-parameters" class="toc-h2 toc-link" data-title="Request parameters">Request parameters</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#integration" class="toc-h1 toc-link" data-title="Integration">Integration</a>
+          </li>
+          <li>
+            <a href="#customization" class="toc-h1 toc-link" data-title="Customization">Customization</a>
+          </li>
+          <li>
+            <a href="#saas-support" class="toc-h1 toc-link" data-title="SaaS Support">SaaS Support</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Download BuilderJS 5.0 Now</a></li>
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to <strong>BuilderJS 5.0</strong>, the most powerful HTML Email or Page builder tool. BuilderJS is the easiest, quickest way to design elegant, mobile responsive emails or landing pages for your business.</p>
+
+<p>BuilderJS is made in pure Javascript and HTML, making it easy to integrate with any web application no matter what the server-side programming language is (Java, .Net, PHP, Ruby on Rails, Python, etc.)</p>
+
+<p>BuilderJS is made fully customizable and open to any integration scenario: you can make it a standalone web page or embed it into your own site. For example, when it comes to save user work, BuilderJS allows you to configure a Save URL, to which it will make a POST request, passing the latest updates to the server-side scripting for handling. The request is triggered when user clicks on Save button in the builder. And there are lots of other configuration settings allowing you to customize how it works and interacts with the other components.</p>
+
+<p>This API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to help contribute to the our documentation.</p>
+<h1 id='installation'>Installation</h1><h2 id='quick-start'>Quick start</h2>
+<blockquote>
+<p>Put the following HTML / JavaScript code snippet to your HTML page. Make sure you update the reference paths <code>href</code> and <code>root</code> values accordingly to your setup:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/builderjs/dist/builder.css"</span><span class="nt">&gt;&lt;/link&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span> <span class="na">src=</span><span class="s">"/builderjs/dist/builder.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">language=</span><span class="s">"Javascript"</span><span class="nt">&gt;</span>
+            <span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Editor</span><span class="p">({</span> <span class="na">root</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/builderjs/dist/</span><span class="dl">"</span> <span class="p">});</span>
+            <span class="nx">builder</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+        <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>It&#39;s that simple! The builder&#39;s <code>init()</code> function will do the magic of rendering the entire builder view with its default settings and append it to your page&#39;s <code>body</code>.</p>
+</blockquote>
+
+<p>BuilderJS comes with <code>init()</code> helper function allowing you to quickly initiate the builder and append it to your current web page.</p>
+
+<p>Simply include the BuilderJS JavaScript and CSS files to your HTML page and initiate it on page load. See sample code in the right panel, <code>javascript</code> tab, to see how easy it is to load a fully-functioning builder to your webpage. With minimum configuration like that, the builder loads with a default blank design page like below</p>
+
+<p><img src="https://builderjs.s3.amazonaws.com/BuilderJS-00303.png" title="Default Blank Page" alt="Default Blank Page" /></p>
+<h2 id='important'>Important</h2>
+<p>Notice the <code>&quot;root&quot;</code> parameter which is important for BuilderJS to find the related resources. For example, if your BuilderJS distributable <code>dist/</code> folder is available at <code>http://example.com/builderjs/dist/</code>, then you need to set your <code>&quot;root&quot;</code> value to an <strong>absolute path</strong> of <code>&quot;/builderjs/dist/&quot;</code>. Remember to <strong>add both leading and trailing slashes</strong></p>
+
+<aside class="notice">
+Instantiate the <code>builder</code> object and use <code>init()</code> helper function is the easiest way to get started with the builder. See more advanced configuration options in the next sections of this document.
+</aside>
+<h2 id='examples'>Examples</h2>
+<p>BuilderJS also comes with a sample package so that you can quickly explore the builder features. Just put the <code>sample</code> folder to your document root and open it in a web browser to see it in action</p>
+
+<p><code>http://example.com/sample/</code></p>
+<h2 id='advanced'>Advanced</h2><div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+    <span class="c1">// A more complicated setup</span>
+    <span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Editor</span><span class="p">({</span>
+        <span class="na">root</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/builderjs/dist/</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/02093403</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">saveUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/save?id=02093403</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">saveMethod</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">backUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">tags</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">First Name</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">},</span>
+            <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Last Name</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">},</span>
+            <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Current Year</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">},</span>
+            <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Current Date</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Notice the <code>&quot;root&quot;</code> parameter which is important for BuilderJS to find the related resources. For example, if your builderjs distributable (<code>dist</code>) is available at <code>http://example.com/builderjs/dist/</code>, then you need to set your <code>&quot;root&quot;</code> value to <code>&quot;/builderjs/dist/&quot;</code>. Remember to keep both leading and trailing slashes.</p>
+</blockquote>
+
+<p>See the right panel for a more complicated setup. See the <strong>Configuration</strong> section for advanced installation options which provide you more control over how the builder functions.</p>
+
+<p>By default, BuilderJS renders its HTML content to the <code>document.body</code> element of the page. i.e. the builder view will occupy the whole page. You can also configure it to render to a child element of your page.</p>
+<h1 id='configuration'>Configuration</h1><h2 id='load-a-template'>Load a Template</h2>
+<p>By default BuilderJS loads with a blank design for you to start making your own HTML email or page. You can also start working with an existing email or page template by loading it into the design view. There are 2 ways of loading an existing template:</p>
+<h3 id='from-an-html-string'>From an HTML string</h3><div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Editor</span><span class="p">({</span> <span class="na">root</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/builderjs/dist/</span><span class="dl">'</span> <span class="p">});</span>
+    <span class="nx">builder</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;div&gt; &lt;h1&gt;Awesome title&lt;/h1&gt; &lt;p&gt; Page content... &lt;/p&gt; &lt;/div&gt;</span><span class="dl">'</span><span class="p">)</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<p>Use the <code>load(html)</code> function, passing an HTML string. See code example in the right panel</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>html</td>
+<td>[empty]</td>
+<td>HTML content for loading to the viewer</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Loading a template from an HTML string is not a good practice and is, in general, not recommended. The preferred way is to load it from a public URL. See section below for details
+</aside>
+<h3 id='from-a-public-url'>From a public URL</h3>
+<p>Very often, your template is also available as a public URL. Then you can pass it to the <code>url</code> parameter to your builder initialization code. See example in the right panel</p>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Editor</span><span class="p">({</span>
+        <span class="na">root</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/builderjs/dist/</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/2001990</span><span class="dl">'</span>
+    <span class="p">});</span>
+
+    <span class="nx">builder</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>null</td>
+<td>URL to the template page which will be fetched and loaded to the builder</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+You can try passing with any URL to the `url` parameter of the builder initialization function for experiment. BuilderJS can load also every website with HTML content to its design view
+</aside>
+<h3 id='upload-a-template'>Upload a template</h3>
+<p>Remember that BuildJS is a pure front-end application. Uploading a template to the server requires server scripting language like Ruby on Rails, PHP, Java... to handle file upload and pass the URL of the newly uploaded template as <code>url</code> parameter of the builder construction function.</p>
+<h2 id='tags'>Tags</h2><div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+    <span class="c1">// Initialize BuilderJS with tags</span>
+
+    <span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Editor</span><span class="p">({</span>
+        <span class="na">root</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/builderjs/dist/</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">tags</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">First Name</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">},</span>
+          <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Last Name</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">},</span>
+          <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Current Year</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">},</span>
+          <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Current Date</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">},</span>
+        <span class="p">]</span>
+    <span class="p">});</span>
+    <span class="nx">builder</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<p>Tag is a powerful feature of BuildJS, allowing users to inject dynamic content to page or email content. For example, very often user wants to inject a dynamic contact first name or last name to an email template. Dynamic content can be achieved by inserting a place holder, or, in other word, a tag to your email or page content. When it comes to load your page or send your email, tags will be translated to appropriate values. Example of tags are:</p>
+
+<ul>
+<li>{CONTACT_FIRST_NAME}</li>
+<li>{CONTACT_LAST_NAME}</li>
+<li>{PRODUC_TITLE}</li>
+<li>{PRODUC_PRICE}</li>
+<li>{PRODUC_DESCRIPTION}</li>
+<li>{ORDER_NUMBER}</li>
+<li>{ORDER_VOLUME}</li>
+<li>{ORDER_AMOUNT}</li>
+</ul>
+
+<p>Other examples of constant tags</p>
+
+<ul>
+<li>{CURRENT_DATE}</li>
+<li>{CURRENT_TIME}</li>
+</ul>
+
+<p>You can define your own list of tags and pass those to the <code>tags</code> parameter of BuilderJS construction. BuilderJS has a very powerful feature allowing you to drag and drop a tag to your template content page, without you having to manually type in the tag. Even more, you can benefit from tag autocomplete feature. That is, just type an open bracket and BuilderJS will render a autocomplete dropdown list of all available tags for you</p>
+
+<p>That&#39;s how BuilderJS helps with tag editing, making it easy for user to add tags to email or page content.</p>
+<h2 id='other-settings'>Other Settings</h2>
+<p>Below is the complete list of configuration settings (optional) that can be passed to the Builder construction</p>
+<h3 id='construction-parameters'>Construction Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>URL of the template to be loaded. If not provided, BuildJS will load a blank design page</td>
+</tr>
+<tr>
+<td>backUrl</td>
+<td>URL of the page that builder redirects to when Exit or Back button is clicked</td>
+</tr>
+<tr>
+<td>templates</td>
+<td>List of templates available for user to choose from. See Templates section for details</td>
+</tr>
+<tr>
+<td>title</td>
+<td>Title to set for the current HTML page, overwriting the <code>&lt;title&gt;</code> tag value</td>
+</tr>
+<tr>
+<td>saveUrl</td>
+<td>The URL to which BuilderJS submits its latest content for storing (handled by server script). See Storage section for details</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>Tags used by the BuilderJS to represent a dynamic value. See Tags section for the details</td>
+</tr>
+<tr>
+<td>view</td>
+<td>Possible values include <code>design</code> and <code>preview</code>. Tell the builder to open in design or preview mode</td>
+</tr>
+<tr>
+<td>renderTo</td>
+<td>The parent element to which BuilderJS renders its content. It is <code>document.root</code> by default</td>
+</tr>
+</tbody></table>
+<h1 id='key-features'>Key Features</h1><h2 id='visual-drag-amp-drop-editor'>Visual Drag &amp; Drop Editor</h2>
+<p>BuilderJS comes as a fully-functioned visual Drag &amp; Drop editor, allowing you to quickly build your page or email templates without any hassle</p>
+<h2 id='source-editor'>Source Editor</h2>
+<p>Beside the visual Drag &amp; Drop editor, BuilderJS also supports a Source Editor which allows you to completely customize your page or email design by updating HTML / CSS directly. This is for advanced users who are familiar with HTML / CSS markup language</p>
+
+<p><img src="https://builderjs.s3.amazonaws.com/BuilderJS-Source-View.png" title="Source Editor" alt="Source Editor" /></p>
+<h2 id='template'>Template</h2><div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+<span class="c1">// Pass a list of available templates to the builder</span>
+<span class="c1">// which will be available for user to choose from</span>
+<span class="c1">// by going to Design &gt; New From A Template</span>
+
+<span class="c1">// List of available templates</span>
+<span class="kd">var</span> <span class="nx">templates</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">My Awesome Template 1</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/030331</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">thumbnail</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/030331/thumb.png</span><span class="dl">'</span>
+  <span class="p">},</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">My Awesome Template 2</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/030332</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">thumbnail</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/030332/thumb.png</span><span class="dl">'</span>
+  <span class="p">},</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">My Awesome Template 3</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/030333</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">thumbnail</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/030333/thumb.png</span><span class="dl">'</span>
+  <span class="p">},</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">My Awesome Template 4</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/030334</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">thumbnail</span><span class="p">:</span> <span class="dl">'</span><span class="s1">templates/030334/thumb.png</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// Pass to the builder</span>
+<span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Editor</span><span class="p">({</span>
+    <span class="na">root</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/builderjs/dist/</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">templates</span><span class="p">:</span> <span class="nx">templates</span>
+<span class="p">});</span>
+
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Notice that <code>templates</code> parameter expects an array of templates, each with <code>name</code>, <code>url</code> and <code>thumbnail</code></p>
+</blockquote>
+
+<p>BuilderJS allows you to create new blank workspace and build your design from scratch.
+However, most of the time, you may want to start making your own email or page design from an existing template, then taylor it to your own needs.</p>
+
+<p>You can also pass a list of available templates to BuilderJS, and it will in turn show up to user for choosing from, by going to <code>Design &gt; New From Template</code></p>
+
+<p><img src="https://builderjs.s3.amazonaws.com/BuilderJS-Template-Selection.png" title="Available Templates selection" alt="Available Templates selection" /></p>
+
+<p>See example on the right to find out how to pass a list of available templates to your builder.</p>
+<h2 id='responsive'>Responsive</h2>
+<p>BuilderJS supports making email or pages that are fully responsive. You can preview your design with a PC, tablet or mobile phone simulator supported by BuilderJS. It is to make sure your email or page will show up correctly in reality</p>
+<h2 id='html-widgets'>HTML Widgets</h2>
+<p>BuilderJS comes with lots of pre-defined HTML widgets (or block or common HTML content) like image box, text box, divider, page footer, email signature, banner, etc. providing you everything you need to build an email or page</p>
+<h2 id='custom-widgets'>Custom Widgets</h2>
+<p>You can also add your own widget to the list for using later on. BuilderJS supports &quot;Add to widget library&quot; feature, allowing you to select an element or group of elements to become a widget.</p>
+
+<p><img src="https://builderjs.s3.amazonaws.com/BuilderJS-Add-To-Widget.png" title="Add to widget" alt="Add to widget" /></p>
+<h1 id='storage'>Storage</h1><div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+    <span class="c1">// Initiate builder with `saveUrl`</span>
+    <span class="c1">// See `php` or `ruby` tab to see how to</span>
+    <span class="c1">// handle save request sent from builder in PHP and Ruby respectively</span>
+    <span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Editor</span><span class="p">({</span>
+        <span class="na">root</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/builderjs/dist/</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/template/02093403</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">saveUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://example.com/save?id=02093403</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">saveMethod</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span>
+    <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="c1"># Sample controller code for handling the save request
+# sent from BuilderJS
+</span>
+<span class="c1"># Python code sample is not yet available
+# comming soon!
+</span></code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="c1"># Sample controller code for handling the save request</span>
+<span class="c1"># sent from BuilderJS</span>
+
+<span class="nb">require</span> <span class="s1">'activerecord'</span>
+<span class="nb">require</span> <span class="s1">'mysql'</span>
+
+<span class="c1"># Set up MySQL connection</span>
+<span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">establish_connection</span><span class="p">(</span>
+  <span class="ss">adapter: </span><span class="s1">'mysql2'</span><span class="p">,</span>
+  <span class="ss">database: </span><span class="s1">'myDB'</span><span class="p">,</span>
+  <span class="ss">username: </span><span class="s1">'user'</span><span class="p">,</span>
+  <span class="ss">password: </span><span class="s1">'password'</span>
+<span class="p">)</span>
+
+<span class="c1"># Associate Template class with the `templates` data table</span>
+<span class="k">class</span> <span class="nc">Template</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># associated with `templates` table</span>
+<span class="k">end</span>
+
+<span class="c1"># Retrieve parameters passed to the server script</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:content</span><span class="p">]</span>
+<span class="n">template_id</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]</span>
+
+<span class="c1"># Actually update the MySQL database</span>
+<span class="n">template</span> <span class="o">=</span> <span class="no">Template</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">template_id</span><span class="p">)</span>
+<span class="n">template</span><span class="p">.</span><span class="nf">content</span> <span class="o">=</span> <span class="n">content</span>
+
+<span class="n">template</span><span class="p">.</span><span class="nf">save</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// Sample controller code for handling the save request</span>
+<span class="c1">// sent from BuilderJS</span>
+
+<span class="c1">// MySQL credentials</span>
+<span class="nv">$servername</span> <span class="o">=</span> <span class="s2">"localhost"</span><span class="p">;</span>
+<span class="nv">$username</span> <span class="o">=</span> <span class="s2">"user"</span><span class="p">;</span>
+<span class="nv">$password</span> <span class="o">=</span> <span class="s2">"password"</span><span class="p">;</span>
+<span class="nv">$dbname</span> <span class="o">=</span> <span class="s2">"myDB"</span><span class="p">;</span>
+
+<span class="c1">// Create connection</span>
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">mysqli</span><span class="p">(</span><span class="nv">$servername</span><span class="p">,</span> <span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">,</span> <span class="nv">$dbname</span><span class="p">);</span>
+
+<span class="c1">// Retrieve parameters passed to the server script</span>
+<span class="nv">$html</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'content'</span><span class="p">];</span>
+<span class="nv">$html</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="nf">real_escape_string</span><span class="p">(</span><span class="nv">$html</span><span class="p">);</span>
+<span class="nv">$templateId</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">];</span>
+
+<span class="c1">// Actually update the MySQL database</span>
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">"UPDATE templates SET content = '</span><span class="si">{</span><span class="nv">$html</span><span class="si">}</span><span class="s2">'
+        WHERE id = '</span><span class="si">{</span><span class="nv">$templateId</span><span class="si">}</span><span class="s2">'"</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">)</span> <span class="o">===</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Template updated successfully"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="nf">close</span><span class="p">();</span>
+</code></pre></div>
+<p>When it comes to save, <strong>BuilderJS</strong> allows you to specify a Save URI, to which it will make a POST request, passing the latest updates to the server side scripting for handling. The request is triggered when user clicks on Save button in the builder.</p>
+
+<p>Actual job of storing the submitted content is handled by a server-side scripting language like PHP, Ruby, Python, Java, .Net, etc.</p>
+
+<p>Below is an example of how BuilderJS sends its content to the server. By default, when user clicks Save button, BuilderJS makes a <code>POST</code> request to the URL specified by <code>saveUrl</code> parameter passed to the builder construction method.</p>
+
+<p>See sample code on the right panel, <code>javascript</code> tab to see how to specify a save URL mentioned above. See <code>php</code> or <code>ruby</code> or <code>python</code> tabs for sample code snippet that handles such request.</p>
+<h3 id='sample-post-request'>Sample POST request</h3>
+<p><code>POST http://example.com/template/save?id=02093403</code></p>
+<h3 id='request-header'>Request header</h3>
+<p>Below are request headers added by BuilderJS. Note that it is an Ajax request (specified by the <code>X-Requested-With: XMLHttpRequest</code> header) that accepts a JSON response from your server</p>
+
+<ul>
+<li><strong>Accept</strong>: application/json</li>
+<li><strong>Content-Type</strong>: application/x-www-form-urlencoded; charset=UTF-8</li>
+<li><strong>X-Requested-With</strong>: XMLHttpRequest</li>
+</ul>
+<h3 id='request-parameters'>Request parameters</h3>
+<p>Below are POST parameter passed to the server along with the request</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>content</td>
+<td>HTML content of the design, including any update made to the design. Simply store its value to a server&#39;s database like MySQL, PostgreSQL, Oracle or any other database management system</td>
+</tr>
+<tr>
+<td>token</td>
+<td>CSRF token just in case your server requires it</td>
+</tr>
+</tbody></table>
+<h1 id='integration'>Integration</h1>
+<p>Since BuilderJS is a pure JavaScript library, accepting parameters passed to its initialization, it is open to any kind of integration no matter what your programming language or database system is.</p>
+
+<p>All its job is to load a template in HTML, allow user to make changes using its visual drag &amp; drop or source edit then submit the changes to the server for storing. You can use PHP, Ruby, Python, Java, .NET or any other server side scripting language to handle BuilderJS requests. In the distributable package, we also include sample PHP scripts for saving, exporting, etc.</p>
+<h1 id='customization'>Customization</h1><div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+    <span class="kd">class</span> <span class="nx">MySampleWidget</span> <span class="kd">extends</span> <span class="nx">Widget</span> <span class="p">{</span>
+        <span class="c1">// get HTML to insert into content</span>
+        <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">super</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nx">title</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="dl">'</span><span class="s1">My Sample Widget</span><span class="dl">'</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">renderHtml</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="dl">'</span><span class="s1">&lt;div&gt; A Simple Widget with 1 line of text &lt;/div&gt;</span><span class="dl">'</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// custom behavior goes here...</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<p>BuilderJS is written in a well designed structure, allowing easy and straightforward customization. For example, you can add your own widget to the library beside the default ones like Text, Image, Video, Social Network Icons, etc. See the right panel, <code>javascript</code> tab to find out how to write a custom widget.</p>
+
+<p>By extending the Widget base class, your <code>MySampleWidget</code> will automatically inherit all behaviors of a common widget like drag &amp; drop enabled, move/duplicate/delete support. You can specify its own characteristics like title, thumbnail, etc. by overwriting the corresponding methods.</p>
+
+<p>Documentation is being updated. In the mean time, please contact us for more details on this topic.</p>
+<h1 id='saas-support'>SaaS Support</h1>
+<p>BuilderJS is also suitable for SAAS (Software as a Service). That is, you have control of how BuilderJS features are available to your users. For example, you can always turn a feature ON or OFF for different classes of users.</p>
+
+<p>Documentation is being updated. In the mean time, please contact us for more details on this topic.</p>
+<h1 id='errors'>Errors</h1>
+<p>For reference, the following error codes should be used by the server side scripting to better communicate with BuilderJS</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+As of version 4.0, there are two cases when BuilderJS makes an Ajax request to the server end. The first is for saving latest changes of the design view (see Storage section for more details), and the second is when it sends an asset (image or video). Server script should return <code>HTTP 200</code> for successful job and one of the error code above for failure
+</aside>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="html">html</a>
+                <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -30,7 +30,7 @@ class AdminNotificationRepository implements AdminNotificationInterface
         
         $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
         if ($selected->count() > 0) {
-            $updated = NotificationAdmin::whereIn('id', $array_of_id)->update(['delete' => 0]);
+            $updated = NotificationAdmin::whereIn('id', $array_of_id)->delete();
             if ($updated)
                 return true;
             return false;

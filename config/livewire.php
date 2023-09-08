@@ -54,8 +54,9 @@ return [
     |
     */
 
-    'asset_url' => 'http://localhost/sis/public' ,
+    'asset_url' =>env('APP_URL'). '/public' ,
     // 'app_url' => 'http://localhost/sis',
+   
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +70,7 @@ return [
     |
     */
 
-    'app_url' => 'http://localhost/sis',
+    'app_url' => env('APP_URL'),
 
     // 'asset_url' => 'http://192.168.0.107/sis/public' ,
     // 'app_url' => 'http://192.168.0.107/sis',

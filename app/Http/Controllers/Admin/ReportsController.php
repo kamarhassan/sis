@@ -101,7 +101,7 @@ class ReportsController extends Controller
 
         try {
             $mode = "unpaid_account_summary";
-            $unpaid_account = $this->reportrepository->unpaid_account_summary_and_details($request);
+             $unpaid_account = $this->reportrepository->unpaid_account_summary_and_details($request);
             //   $this->reportrepository->dataset_unpaid_account($unpaid_account);
 
             if (!empty($unpaid_account)) {

@@ -404,8 +404,8 @@ class ClientPaymentController extends Controller
                 ->get($array_of_data);
             return view('admin.services.payment.remainig', compact('data'));
         } catch (\Throwable $th) {
-            toastr()->error(__('site.you have error'));
-           return redirect()->back();
+        //     toastr()->error(__('site.you have error'));
+        //    return redirect()->back();
             throw $th;
         }
     }

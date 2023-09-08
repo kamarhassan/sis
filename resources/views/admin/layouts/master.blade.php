@@ -13,10 +13,13 @@
     <title>@yield('title')</title>
 
 
+
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}">
-  
+    <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/custome_style.css') }}">
+
+
 
     @yield('css')
 
@@ -25,103 +28,37 @@
     @toastr_css()
 
 
-
-    <style>
-        .pulse {
-            position: absolute;
-            top: -10px;
-            right: -9px;
-            height: 20px;
-            width: 20px;
-            z-index: 10;
-            font-size: medium;
-            font-weight: bold;
-            color: rgb(255, 255, 255);
-            border: rgb(255, 255, 255);
-            border-radius: 70px;
-            /* animation: pulse 1s ease-out infinite; */
-        }
-
-
-        /* .pulse {
-            position: absolute;
-            top: -10px;
-            right: -9px;
-            height: 20px;
-            width: 20px;
-            z-index: 10;
-            border: 5px solid #fbff00;
-            border-radius: 70px;
-            animation: pulse 1s ease-out infinite;
-        } */
-
-        .marker {
-            position: absolute;
-            top: -0px;
-            right: 10px;
-            height: 20px;
-            width: 20px;
-            border-radius: 70px;
-            background: rgb(255, 0, 0);
-        }
-
-
-        /* @keyframes pulse {
-            0% {
-                -webkit-transform: scale(0);
-                opacity: 0.0;
-            }
-
-            25% {
-                -webkit-transform: scale(0.1);
-                opacity: 0.1;
-            }
-
-            50% {
-                -webkit-transform: scale(0.5);
-                opacity: 0.3;
-            }
-
-            75% {
-                -webkit-transform: scale(0.8);
-                opacity: 0.5;
-            }
-
-            100% {
-                -webkit-transform: scale(1);
-                opacity: 0.0;
-            }
-        } */
-    </style>
 </head>
-{{-- {{   get_Default_language() }} --}}
 
-{{-- @if (get_Default_language() == 'ar') --}}
 
-<body id="body_master" {{-- oncontextmenu="return false;" --}}
+<body id="body_master"
     class="hold-transition 
-        {{-- @if (Session::has('mode')) {{ Session::get('mode') . '-skin' }}
-        @else
-        dark-skin 
-        @endif --}}
-        light -skin 
+    
+   {{ Session::get('mode') }}
+      {{-- light-skin --}}
+           {{-- dark-skin  --}}
          sidebar-mini theme-primary fixed @if (get_Default_language() == 'ar') rtl @endif">
-    {{-- @else
 
-        <body id="body_master"
-            class="hold-transition  {{ Session::get('mode') . '-skin' }} sidebar-mini theme-primary fixed "> --}}
-    {{-- @endif --}}
+
+
+
     <div class="wrapper">
         @include('admin.layouts.header')
         @include('admin.layouts.navbar_container')
+
         <div class="content-wrapper">
             <div class="container-full">
                 <section class="content">
+                    @include('admin.layouts.spinner-loader.spinner')
 
-                    @yield('content')
+                    <div id="content" hidden>
 
-                    {{-- @include('admin.layouts.footer'); --}}
+                        @yield('content')
+                    </div>
+
+                    @include('admin.layouts.spinner-loader.loader')
                 </section>
+
             </div>
 
         </div>
@@ -130,41 +67,41 @@
 
     <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/icons/feather-icons/feather.min.js') }}"></script>
-    {{-- <script src="{{URL::asset('assets/assets/vendor_components/easypiechart/dist/jquery.easypiechart.js')}}"></script> --}}
-    {{-- <script src="{{URL::asset('assets/assets/vendor_components/apexcharts-bundle/irregular-data-series.js')}}"></script> --}}
-    {{-- <script src="{{URL::asset('assets/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script> --}}
-    <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+    <script src="{{ URL::asset('assets/assets/toastr/toastr.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/sweetalert2/sweetalert.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">
     </script>
-    {{-- <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script> --}}
-    {{-- <script src="{{ URL::asset('assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}"> --}}
-    {{-- </script> --}}
-    {{-- C:\xampp\htdocs\sis/assets/app-assets/js/jquery-3.6.0.min.js --}}
     <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ URL::asset('assets/custome_js/open_new_tab.js') }}"></script>
-    {{-- <script src="{{ URL::asset('assets/assets/vendor_components/dropzone/dropzone.js') }}"></script> --}}
+    <script src="{{ URL::asset('assets/custome_js/genralfunction.js') }}"></script>
+    <script src="{{ URL::asset('assets/custome_js/save_and_redirect.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}">
+    </script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">
+    </script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/notification.js') }}"></script>
 
-    <script src="{{ URL::asset('assets/custome_js/chanethememode.js') }}"></script>
-
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    
-    {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
-    {{-- @jquery --}}
+    <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
-   
-    <script src="{{ URL::asset('assets/app-assets/js/pages/dashboard.js') }}"></script>
+
     @toastr_js
     @toastr_render
 
-    {{-- @method('scripts') --}}
-    @yield('script')
     <script>
         $(document).ready(function() {
+            $('#spinner_loading').css("display", "none");
+
+            $('#content').removeAttr('hidden');
             // console.log( "ready!" );
             // console.clear();
         });
+
         // Enable pusher logging - don't include this in production
         // Pusher.logToConsole = true;
 
@@ -185,6 +122,8 @@
         //   },
         // });
     </script>
+    @yield('script')
+
 </body>
 
 </html>

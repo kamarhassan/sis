@@ -19,7 +19,8 @@
     'delete roles',
     'fee type',
     'edit fee type',
-    'create fee type',
+    'create fee
+    type',
     'delete fee type',
     'edit supervisor',
     'delete supervisor',
@@ -124,6 +125,18 @@
                     </a>
                 </li>
             @endcan
+            @canany(['edit certificate', 'create certificate', 'delete certificate'])
+
+                <li>
+                    <a class="menu-item" href="{{ route('admin.certificate.all') }}"> <i class="ti-more"></i>@lang('site.certificate')</a>
+                </li>
+
+            @endcan
+
+            <li>
+                <a class="menu-item" href="{{ route('admin.categories.all') }}"> <i class="ti-more"></i>@lang('site.categories')</a>
+            </li>
+
             @canany(['edit sponsor', 'delete sponsor', 'add sponsor'])
                 <li><a href="{{ route('admin.sponsor.all') }}">
                         <i class="ti-more"></i>
@@ -131,6 +144,30 @@
                     </a>
                 </li>
             @endcan
+            @canany(['edit slider', 'delete slider', 'add slider'])
+                <li><a href="{{route('admin.slider.all')}}">
+                        <i class="ti-more"></i>
+                        @lang('site.slider')
+                    </a>
+                </li>
+            @endcan
+
+            @canany(['edit institue information', 'delete institue information', 'add institue information'])
+                <li><a href="{{route('admin.institue.all')}}">
+                        <i class="ti-more"></i>
+                        @lang('site.institue information')
+                    </a>
+                </li>
+            @endcan
+
+            @canany(['add school year','edit school year','delete school year'])
+                <li><a href="{{route('admin.schoolyear.all')}}">
+                        <i class="ti-more"></i>
+                        @lang('site.school year')
+                    </a>
+                </li>
+            @endcan
+
             {{-- @canany(['fee type', 'edit fee type', 'create fee type', 'delete fee type']) --}}
             @if (Auth::user()->email == 'sadmin@gmail.com')
                 <li><a href="{{ route('admin.setting.artisan') }}">

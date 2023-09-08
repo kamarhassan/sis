@@ -20,6 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('nav-bar', require('./components/layouts/NavBar.vue').default);
+Vue.component('banner-slider', require('./components/HomePage/BannerSlider.vue').default);
+Vue.component('new-cours', require('./components/HomePage/NewCours.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

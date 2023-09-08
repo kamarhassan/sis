@@ -1,12 +1,12 @@
-<div class="box" id="spinner_loading">
-    <div class="d-flex justify-content-center text-primary">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-</div>
+{{--<div class="box" id="spinner_loading">--}}
+{{--    <div class="d-flex justify-content-center text-primary">--}}
+{{--        <div class="spinner-border" role="status">--}}
+{{--            <span class="sr-only">Loading...</span>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
-<div class="box" id="services-table-" hidden>
+<div class="box" id="services-table-" >
     {{-- @if ((new \Jenssegers\Agent\Agent())->isDesktop()) --}}
     <div class="box-body">
         <div class="table-responsive ">

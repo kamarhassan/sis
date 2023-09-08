@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+   @lang('site.level')
+@endsection
 @section('css')
     @livewireStyles()
 @endsection

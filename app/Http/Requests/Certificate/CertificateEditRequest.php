@@ -27,9 +27,10 @@ class CertificateEditRequest extends FormRequest
        
         return [
             'certificate' => 'required|max:255|unique:certificates,name,'. $this->certificate_id,
-            'grade'  => 'required|exists:grades,id',
-            'level' => 'required|array',
-            'level.*' => 'exists:levels,id',
+           'categories'  => 'required|array',
+           'categories.*'  => 'required|exists:categories,id',
+            // 'level' => 'required|array',
+            // 'level.*' => 'exists:levels,id',
         ];
     }
     public  function messages()

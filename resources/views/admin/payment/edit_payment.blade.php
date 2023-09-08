@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.payment')
 @endsection
 @section('css')
 @endsection
@@ -21,13 +22,22 @@
                 </div>
                 <div class="col-md-6">
                     <span>
-                        @lang('site.cours info') : <span class="bb-1 border-success">
-                            @isset($cours)
-                                {{ $cours['cours']['grade']['grade'] }} - {{ $cours['cours']['level']['level'] }} -
-                                {{ $cours['cours']['teacher_name']['name'] }}
-                            @endisset
+                        
+                       
+
+                               @lang('site.cours info') :  
+                                           @if ($cours['cours']['category_grade_level']['grade']['grade'] != '' && $cours['cours']['category_grade_level']['level']['level'] != '' && $cours['cours']['teacher']['name'] != '')
+                                  <span
+                                     class="bb-3  bb-double text-warning"> @lang('site.teacher name') :   {{ $cours['cours']['teacher']['name'] }}</span>
+
+                                  <span class="bb-3  bb-double text-warning"> @lang('site.categorie info') : {{ $cours['cours']['category_grade_level']['name'] }} 
+                                    
+                                       [ {{ $cours['cours']['category_grade_level']['grade']['grade'] }} \ {{ $cours['cours']['category_grade_level']['level']['level'] }} ]
+                                    </span>
+
+                               @endif
                         </span>
-                    </span>
+                    
                 </div>
             </div> <!-- End of row show-grid cours info and std name -->
         </div>
@@ -57,13 +67,13 @@
                         <input type="hidden" name="cours_currency_id" id="cours_currency_abbr"
                             value="{{ $cours_currency['id'] }}">
                         @csrf
-                        <div class="col-md-6" id="normal_pament">
+                        <div class="col-md-6" id="normal_pament" @if( $receipt['other_amount']!=0) hidden @endif>
                             <input type="number" id="amount_to_paid" step="any" class='form-control'
                                 placeholder="@lang('site.paid fee here')" name="amount_to_paid" value="{{ $receipt['amount'] }}">
                             <span class="text-danger" id="amount_to_paid_"> </span>
                         </div>
 
-                        <div class="col-md-6" id="Other_payment" hidden>
+                        <div class="col-md-6" id="Other_payment" @if( $receipt['other_amount']==0) hidden @endif >
                             <div class="col-md-6" id="normal_pament">
                                 @lang('site.paid fee here')
                                 <input type="number" id="other_amount_to_paid" step="any" class='form-control'
@@ -101,7 +111,7 @@
                         <div class="col-md-2">
                             <div class="demo-checkbox">
                                 <input type="checkbox" name="payment_methode" id="payment_methode" class="chk-col-success"
-                                    onchange='change_payment_methode();' value="1" />
+                                    onchange='change_payment_methode();' value="1" @if( $receipt['other_amount']!=0) checked @endif />
                                 <label for="payment_methode">@lang('site.other payment')</label>
                             </div>
                         </div>

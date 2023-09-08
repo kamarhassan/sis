@@ -1,0 +1,11 @@
+{
+    "name": "WebsitePageBuilder",
+    "alias": "websitepagebuilder",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WebsitePageBuilder\\Providers\\WebsitePageBuilderServiceProvider"
+    ],
+    "files": []
+}

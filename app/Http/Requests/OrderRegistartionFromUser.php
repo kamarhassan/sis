@@ -27,12 +27,17 @@ class OrderRegistartionFromUser extends FormRequest
         return [
             'user_id' => 'required|exists:users,id',
             'order_id' => $this->orderid(),
+            'teach_type' => $this->teach_type(),
         ];
     }
 
 
 
 
+    private function  teach_type()
+    {
+      return "required|min:1";
+    }
     private function  orderid()
     {
         $order_type = Crypt::decryptString($this->order_type);
@@ -46,5 +51,15 @@ class OrderRegistartionFromUser extends FormRequest
                 return '';
                 break;
         }
+    }
+
+
+    public  function messages()
+    {
+        return [
+            '*.required' => __('site.its_require'),
+            
+
+        ];
     }
 }

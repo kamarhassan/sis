@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::Verifiedemail;
 
     /**
      * Create a new controller instance.
@@ -59,13 +59,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-// private function phone_pattern($phonenumber){
-//     $ph_prefix = substr($phonenumber, 0, 2);
-  
 
-//     if($ph_prefix =='04' || $ph_prefix =='05'|| $ph_prefix =='01'|| 
-//     $ph_prefix =='08'|| $ph_prefix =='09'|| $ph_prefix =='08'|| $ph_prefix =='06')
-// }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -75,7 +69,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-
             'name' => $data['firstname'].' '.$data['midname'].' '.$data['lastname'],
             'firstname' => $data['firstname'],
             'midname' => $data['midname'],

@@ -1,0 +1,575 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+<div class="loading-page-overlay" style="position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #eee;
+        z-index: 1000;">
+    <div>
+        <div><img width="60px" src="image/page-loading.gif" /></div>
+        <label style="margin-bottom: 0; margin-top: -5px;font-size: 95%">Starting....</label>
+    </div>
+</div>
+
+<div class="beepro-view-source view-source">
+    <div class="source-code-header">
+        <span class="close-button">
+            <i>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path class="clr-i-outline clr-i-outline-path-1" d="M19.41 18l8.29-8.29a1 1 0 0 0-1.41-1.41L18 16.59l-8.29-8.3a1 1 0 0 0-1.42 1.42l8.3 8.29l-8.3 8.29A1 1 0 1 0 9.7 27.7l8.3-8.29l8.29 8.29a1 1 0 0 0 1.41-1.41z" fill="#626262"/></svg>
+            </i>
+        </span>
+    </div>
+    <div id="editor">
+        <!--content template-->
+    </div>
+</div>
+
+<div class="beepro-wrapper">
+    <div class="beepro-sidebar is-main-page">
+        <div class="beepro-header p-2">
+            <span class="menu-button left-menu">
+                <i>
+                    
+                </i>
+            </span>
+            <div class="title">
+                <strong class="font-weight-bold">Bee</strong> Builder PRO
+            </div>
+            <span class="menu-button right-menu">
+                <i>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M4 4h4v4H4V4z" fill="#626262"/><path d="M4 10h4v4H4v-4z" fill="#626262"/><path d="M8 16H4v4h4v-4z" fill="#626262"/><path d="M10 4h4v4h-4V4z" fill="#626262"/><path d="M14 10h-4v4h4v-4z" fill="#626262"/><path d="M10 16h4v4h-4v-4z" fill="#626262"/><path d="M20 4h-4v4h4V4z" fill="#626262"/><path d="M16 10h4v4h-4v-4z" fill="#626262"/><path d="M20 16h-4v4h4v-4z" fill="#626262"/></g></svg>
+                </i>
+            </span>
+        </div>
+        <div class="header-dropdown header-menu hide">
+            <div class="full-width">
+                <div class="menu-actions full-width">
+                    <div class="menu-action menu-device menu-device-laptop active" onclick="showDevicesDropdown('laptop')">
+                        <div class="inner">
+                            <span>
+                                <i class="d-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M26 24.005H6a2.002 2.002 0 0 1-2-2v-14a2.002 2.002 0 0 1 2-2h20a2.002 2.002 0 0 1 2 2v14a2.003 2.003 0 0 1-2 2zm-20-16v14h20v-14z" fill="#626262"/><path d="M2 26.005h28v2H2z" fill="#626262"/></svg>
+                                </i>
+                                <label>Laptop</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="menu-action menu-device menu-device-tablet" onclick="showDevicesDropdown('tablet')">
+                        <div class="inner">
+                            <span>
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="#626262"><path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/><path fill-rule="evenodd" d="M8 14a1 1 0 1 0 0-2a1 1 0 0 0 0 2z"/></g></svg>
+                                </i>
+                                <label>Tablet</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="menu-action menu-device menu-device-mobile" onclick="showDevicesDropdown('mobile')">
+                        <div class="inner">
+                            <span>
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M744 62H280c-35.3 0-64 28.7-64 64v768c0 35.3 28.7 64 64 64h464c35.3 0 64-28.7 64-64V126c0-35.3-28.7-64-64-64zm-8 824H288V134h448v752zM472 784a40 40 0 1 0 80 0a40 40 0 1 0-80 0z" fill="#626262"/></svg>
+                                </i>
+                                <label>Mobile</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="menu-action bp-view-source">
+                        <div class="inner">
+                            <span>
+                                <i class="d-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="#626262"><path fill-rule="evenodd" d="M4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0zm-.999-3.124a.5.5 0 0 1 .33.625l-4 13a.5.5 0 0 1-.955-.294l4-13a.5.5 0 0 1 .625-.33z"/></g></svg>
+                                </i>
+                                <label>Source Code</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="menu-action" onclick="goToSwitchTemplatePage();hideMainMenuDropdown();">
+                        <div class="inner">
+                            <span>
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 3v6h18V3H3zm16 2H5v2h14V5z" fill="#626262"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 11v10h8V11H3zm6 2H5v6h4v-6z" fill="#626262"/><path d="M21 11h-8v2h8v-2z" fill="#626262"/><path d="M13 15h8v2h-8v-2z" fill="#626262"/><path d="M21 19h-8v2h8v-2z" fill="#626262"/></g></svg>
+                                </i>
+                                <label>Templates</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="menu-action bp-template-clear">
+                        <div class="inner">
+                            <span>
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="#626262"><path d="M10 12.6l.7.7l1.6-1.6l1.6 1.6l.8-.7L13 11l1.7-1.6l-.8-.8l-1.6 1.7l-1.6-1.7l-.7.8l1.6 1.6l-1.6 1.6zM1 4h14V3H1v1zm0 3h14V6H1v1zm8 2.5V9H1v1h8v-.5zM9 13v-1H1v1h8z"/></g></svg>
+                                </i>
+                                <label>Clear</label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-dropdown devices-menu hide">
+            <div class="full-width">
+                <a class="back-link" onclick="hideDevicesDropdown()">Back to main menu</a>
+
+                <div class="devices-list laptop">
+                    <div class="device-button" data-value="default-size" data-device="laptop">
+                        Reset to default
+                    </div>
+
+                    <div class="device-button" data-value="laptop-1920-1080" data-device="laptop">
+                        1920 x 1080  Full HD screen
+                    </div>
+                    <div class="device-button" data-value="laptop-1024-768" data-device="laptop">
+                        1024 x 768  HD screen Laptop
+                    </div>
+                    <div class="device-button" data-value="laptop-4096-2304" data-device="laptop">
+                        4096 x 2304 Macbook Pro 13" screen
+                    </div>
+                    <div class="device-button" data-value="laptop-3072-1920" data-device="laptop">
+                        3072 x 1920 Macbook Pro 16" screen
+                    </div>
+                </div>
+
+                <div class="devices-list tablet">
+                    <div class="device-button" data-value="default-size" data-device="laptop">
+                        Reset to default
+                    </div>
+                    <div class="device-button" data-value="tablet-768" data-device="tablet">
+                        768 <span>iPad</span>
+                    </div>
+                    <div class="device-button" data-value="tablet-1024" data-device="tablet">
+                        1024 <span>iPad Pro</span>
+                    </div>
+                    <div class="device-button" data-value="tablet-960" data-device="tablet">
+                        960 <span>Galaxy tab</span>
+                    </div>
+                </div>
+
+                <div class="devices-list mobile">
+                    <div class="device-button" data-value="default-size" data-device="laptop">
+                        Reset to default
+                    </div>
+                    <div class="device-button" data-value="mobile-320" data-device="mobile">
+                        320 <span>iPhone 5</span>
+                    </div>
+                    <div class="device-button" data-value="mobile-360" data-device="mobile">
+                        360 <span>Galaxy S10</span>
+                    </div>
+                    <div class="device-button" data-value="mobile-375" data-device="mobile">
+                        375 <span>iPhone X</span>
+                    </div>
+                    <div class="device-button" data-value="mobile-414" data-device="mobile">
+                        414 <span>iPhone 8<sup>+</sup></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-container">
+                <div class="sidebar-page main-page">
+                    <div class="page-content">
+                        <div class="p-3">
+                            <div class="main-search-group">
+                                <input type="text" name="keyword" class="main-search form-control" />
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50"><path d="M23 36c-7.2 0-13-5.8-13-13s5.8-13 13-13s13 5.8 13 13s-5.8 13-13 13zm0-24c-6.1 0-11 4.9-11 11s4.9 11 11 11s11-4.9 11-11s-4.9-11-11-11z" fill="#626262"/><path d="M32.682 31.267l8.98 8.98l-1.414 1.414l-8.98-8.98z" fill="#626262"/></svg>
+                                </i>
+                                <p class="my-2 not-item-search hide">No items found!</p>
+                            </div>
+                        </div>
+                        <div class="main-menus py-3">
+                            <div class="main-menu px-3 py-2" onclick="goToListFieldsPage();">
+                                <div class="pr-4 mr-auto">
+                                    <label>List Fields</label>
+                                    <p>Contact attributes fields available for the selected contact</p>
+                                </div>
+                                <i class="caret-right">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                </i>
+                            </div>
+                            <div class="main-menu px-3 py-3" onclick="goToGlobalTagsPage();">
+                                <div class="pr-4 mr-auto">
+                                    <label>Global Tags</label>
+                                    <p>Tags are variable piece of content that can be transformed to actual values</p>
+                                </div>
+                                <i class="caret-right">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                </i>                            
+                            </div>
+                            <div class="main-menu px-3 py-3" onclick="goToHtmlWidgetsPage();">
+                                <div class="pr-4 mr-auto">
+                                    <label>HTML Widgets</label>
+                                    <p>HTML elements that are essential to your email or page design</p>
+                                </div>
+                                <i class="caret-right">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                </i>                            
+                            </div>
+                            <div class="main-menu px-3 py-3 bp-setting">
+                                <div class="pr-4 mr-auto">
+                                    <label>Settings</label>
+                                    <p>Make global CSS settings to all HTML elements in this form / email / page</p>
+                                </div>
+                                <i class="caret-right">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                </i>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-dropup history hide">
+                        <div class="history-container"></div>
+                    </div>
+                    <div class="footer-dropup bee-alert hide">
+                        <div class="bee-alert-container p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="alert-icon mr-3">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><circle class="clr-i-outline clr-i-outline-path-1" cx="18" cy="26.06" r="1.33" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-2" d="M18 22.61a1 1 0 0 1-1-1v-12a1 1 0 1 1 2 0v12a1 1 0 0 1-1 1z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-3" d="M18 34a16 16 0 1 1 16-16a16 16 0 0 1-16 16zm0-30a14 14 0 1 0 14 14A14 14 0 0 0 18 4z" fill="#626262"/></svg>
+                                    </i>
+                                </div>
+                                <div class="message">
+                                    <label class="mb-1">title</label>
+                                    <p>content</p>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="footer-bar px-2">
+                        <div class="footer-left mr-auto">
+                            <button class="btn btn-primary mr-1 bp-save">Save</button>
+                            <button class="btn btn-primary bp-exit">Exit</button>
+                        </div>
+                        <div class="footer-right">
+                            <span class="action undo">
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C12 3 8.4 4.8 6 7.7V4H4v8h8v-2H6.8c2-3 5.3-5 9.2-5c6.1 0 11 4.9 11 11s-4.9 11-11 11S5 22.1 5 16H3c0 7.2 5.8 13 13 13s13-5.8 13-13S23.2 3 16 3z" fill="#626262"/></svg>
+                                </i>
+                            </span>
+                            <span class="action redo">
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13h-2c0 6.086-4.914 11-11 11S5 22.086 5 16S9.914 5 16 5c3.875 0 7.262 1.984 9.219 5H20v2h8V4h-2v3.719C23.617 4.844 20.02 3 16 3z" fill="#626262"/></svg>
+                                </i>
+                            </span>
+                            <span class="action show-history dropup-button">
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="#626262"><path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/><path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/><path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/></g></svg>
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-page">
+                    <div class="second-page list-fields">
+                        <div class="page-content">
+                            <div class="sidebar-page-header">
+                                <div class="back-button" onclick="goToMainPage();">
+                                    <i class="caret-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                    </i>
+                                </div>
+                                <div class="py-2 px-3 d-flex align-item-center">
+                                    <div>
+                                        <label>List Fields</label>
+                                        <p>Contact attributes fields available for the selected contact</p>
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class="p-3">
+                                <h4 class="mb-2">Available list fields</h4>
+                                <p>The following fields are available for the <red>My Awesome</red> mail list. Drag and drop onto
+                                your form on the right hand</p>
+
+                                <div class="fields-container mt-4" style="margin-left: -0.5rem; margin-right: -1rem;">
+                                                        
+                                </div>
+                                <br style="clear: both;" />
+
+                                <p class="mt-4 mb-2">Or search for other field name if you can not find it in the list above</p>
+                                <div class="main-search-group">
+                                    <input type="text" name="keyword" class="main-search form-control" />
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50"><path d="M23 36c-7.2 0-13-5.8-13-13s5.8-13 13-13s13 5.8 13 13s-5.8 13-13 13zm0-24c-6.1 0-11 4.9-11 11s4.9 11 11 11s11-4.9 11-11s-4.9-11-11-11z" fill="#626262"/><path d="M32.682 31.267l8.98 8.98l-1.414 1.414l-8.98-8.98z" fill="#626262"/></svg>
+                                    </i>
+                                    <p class="my-2 not-item-search hide">No items found!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-bar px-2">
+                            <div class="footer-left mr-auto">
+                                <button class="btn btn-primary mr-1 bp-save">Save</button>                            
+                            </div>
+                            <div class="footer-right">
+                                <span class="action undo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C12 3 8.4 4.8 6 7.7V4H4v8h8v-2H6.8c2-3 5.3-5 9.2-5c6.1 0 11 4.9 11 11s-4.9 11-11 11S5 22.1 5 16H3c0 7.2 5.8 13 13 13s13-5.8 13-13S23.2 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action redo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13h-2c0 6.086-4.914 11-11 11S5 22.086 5 16S9.914 5 16 5c3.875 0 7.262 1.984 9.219 5H20v2h8V4h-2v3.719C23.617 4.844 20.02 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-delete">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path class="clr-i-outline clr-i-outline-path-1" d="M27.14 34H8.86A2.93 2.93 0 0 1 6 31V11.23h2V31a.93.93 0 0 0 .86 1h18.28a.93.93 0 0 0 .86-1V11.23h2V31a2.93 2.93 0 0 1-2.86 3z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-2" d="M30.78 9H5a1 1 0 0 1 0-2h25.78a1 1 0 0 1 0 2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-3" d="M21 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-4" d="M13 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-5" d="M23 5.86h-1.9V4h-6.2v1.86H13V4a2 2 0 0 1 1.9-2h6.2A2 2 0 0 1 23 4z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-duplicate">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M9 6h8a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1h1v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5H6V9a3 3 0 0 1 3-3zM5 2h10v1H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7.25L10 13.75l.664-.75l3.5 3.5l-3.5 3.5l-.664-.75L12.25 17H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="second-page global-tags">
+                        <div class="page-content">
+                            <div class="sidebar-page-header">
+                                <div class="back-button" onclick="goToMainPage();">
+                                    <i class="caret-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                    </i>
+                                </div>
+                                <div class="py-2 px-3">
+                                    <label>Global Tags</label>
+                                    <p>Tags are variable piece of content that can be transformed to actual values</p>
+                                </div>                            
+                            </div>
+                            <div class="p-3">
+                                <h4 class="mb-2">Available Tags</h4>
+                                <p>The following fields are available for your page content, click on a tag to copy it to the clipboard and paste it to your HTML content</p>
+
+                                <div class="tags-container mt-4" style="margin-left: -0.5rem; margin-right: -1rem;">
+                                    
+                                </div>
+                                <br style="clear: both;" />
+
+                                <p class="mt-4 mb-2">Or search for a tag name if you cannot find it in the list above</p>
+                                <div class="main-search-group">
+                                    <input type="text" name="keyword" class="main-search form-control" />
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50"><path d="M23 36c-7.2 0-13-5.8-13-13s5.8-13 13-13s13 5.8 13 13s-5.8 13-13 13zm0-24c-6.1 0-11 4.9-11 11s4.9 11 11 11s11-4.9 11-11s-4.9-11-11-11z" fill="#626262"/><path d="M32.682 31.267l8.98 8.98l-1.414 1.414l-8.98-8.98z" fill="#626262"/></svg>
+                                    </i>
+                                    <p class="my-2 not-item-search hide">No items found!</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="footer-bar px-2">
+                            <div class="footer-left mr-auto">
+                                <button class="btn btn-primary mr-1 bp-save">Save</button>                            
+                            </div>
+                            <div class="footer-right">
+                                <span class="action undo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C12 3 8.4 4.8 6 7.7V4H4v8h8v-2H6.8c2-3 5.3-5 9.2-5c6.1 0 11 4.9 11 11s-4.9 11-11 11S5 22.1 5 16H3c0 7.2 5.8 13 13 13s13-5.8 13-13S23.2 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action redo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13h-2c0 6.086-4.914 11-11 11S5 22.086 5 16S9.914 5 16 5c3.875 0 7.262 1.984 9.219 5H20v2h8V4h-2v3.719C23.617 4.844 20.02 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-delete">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path class="clr-i-outline clr-i-outline-path-1" d="M27.14 34H8.86A2.93 2.93 0 0 1 6 31V11.23h2V31a.93.93 0 0 0 .86 1h18.28a.93.93 0 0 0 .86-1V11.23h2V31a2.93 2.93 0 0 1-2.86 3z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-2" d="M30.78 9H5a1 1 0 0 1 0-2h25.78a1 1 0 0 1 0 2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-3" d="M21 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-4" d="M13 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-5" d="M23 5.86h-1.9V4h-6.2v1.86H13V4a2 2 0 0 1 1.9-2h6.2A2 2 0 0 1 23 4z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-duplicate">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M9 6h8a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1h1v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5H6V9a3 3 0 0 1 3-3zM5 2h10v1H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7.25L10 13.75l.664-.75l3.5 3.5l-3.5 3.5l-.664-.75L12.25 17H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="second-page html-widgets">
+                        <div class="page-content">
+                            <div class="sidebar-page-header">
+                                <div class="back-button" onclick="goToMainPage();">
+                                    <i class="caret-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                    </i>
+                                </div>
+                                <div class="py-2 px-3 d-flex align-items-center">
+                                    <div>
+                                        <label>HTML Widgets</label>
+                                        <p>HTML elements that are essential to your email or page design</p>
+                                    </div>
+                                </div>                       
+                            </div>
+                            <div class="p-3">
+                                <p>Choose an HTML widget below or search for your desired ones</p>
+
+                                <div class="main-search-group mt-2">
+                                    <input type="text" name="keyword" class="main-search widget-search form-control" />
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50"><path d="M23 36c-7.2 0-13-5.8-13-13s5.8-13 13-13s13 5.8 13 13s-5.8 13-13 13zm0-24c-6.1 0-11 4.9-11 11s4.9 11 11 11s11-4.9 11-11s-4.9-11-11-11z" fill="#626262"/><path d="M32.682 31.267l8.98 8.98l-1.414 1.414l-8.98-8.98z" fill="#626262"/></svg>
+                                    </i>                                    
+                                </div>
+
+                                <div class="widgets-container mt-4" style="margin-right: -1rem;">
+                                    
+                                </div>
+                                <br style="clear: both;" />                                
+                            </div>
+                        </div>
+                        <div class="footer-bar px-2">
+                            <div class="footer-left mr-auto">
+                                <button class="btn btn-primary mr-1 bp-save">Save</button>                            
+                            </div>
+                            <div class="footer-right">
+                                <span class="action undo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C12 3 8.4 4.8 6 7.7V4H4v8h8v-2H6.8c2-3 5.3-5 9.2-5c6.1 0 11 4.9 11 11s-4.9 11-11 11S5 22.1 5 16H3c0 7.2 5.8 13 13 13s13-5.8 13-13S23.2 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action redo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13h-2c0 6.086-4.914 11-11 11S5 22.086 5 16S9.914 5 16 5c3.875 0 7.262 1.984 9.219 5H20v2h8V4h-2v3.719C23.617 4.844 20.02 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-delete">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path class="clr-i-outline clr-i-outline-path-1" d="M27.14 34H8.86A2.93 2.93 0 0 1 6 31V11.23h2V31a.93.93 0 0 0 .86 1h18.28a.93.93 0 0 0 .86-1V11.23h2V31a2.93 2.93 0 0 1-2.86 3z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-2" d="M30.78 9H5a1 1 0 0 1 0-2h25.78a1 1 0 0 1 0 2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-3" d="M21 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-4" d="M13 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-5" d="M23 5.86h-1.9V4h-6.2v1.86H13V4a2 2 0 0 1 1.9-2h6.2A2 2 0 0 1 23 4z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-duplicate">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M9 6h8a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1h1v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5H6V9a3 3 0 0 1 3-3zM5 2h10v1H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7.25L10 13.75l.664-.75l3.5 3.5l-3.5 3.5l-.664-.75L12.25 17H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="second-page switch-template">
+                        <div class="page-content">
+                            <div class="sidebar-page-header">
+                                <div class="back-button" onclick="goToMainPage();">
+                                    <i class="caret-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                    </i>
+                                </div>
+                                <div class="py-2 px-3 d-flex align-items-center">
+                                    <div>
+                                        <label>Switch Template</label>
+                                        <p>Choose a template to design upon</p>
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class="p-3">
+                                <h4 class="mb-2">Available templates</h4>
+                                <p>The following fields are available templates you can choose from</p>
+
+                                <div class="main-search-group mt-2">
+                                    <input type="text" name="keyword" class="main-search form-control" />
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50"><path d="M23 36c-7.2 0-13-5.8-13-13s5.8-13 13-13s13 5.8 13 13s-5.8 13-13 13zm0-24c-6.1 0-11 4.9-11 11s4.9 11 11 11s11-4.9 11-11s-4.9-11-11-11z" fill="#626262"/><path d="M32.682 31.267l8.98 8.98l-1.414 1.414l-8.98-8.98z" fill="#626262"/></svg>
+                                    </i>
+                                    <p class="my-2 not-item-search hide">No items found!</p>
+                                </div>
+
+                                <ul class="templates-container mt-4" style="margin-left: 0;
+                                margin-right: -1.7rem;">
+                                    
+                                </ul>                                
+                            </div>
+                        </div>
+                        <div class="footer-bar px-2">
+                            <div class="footer-left mr-auto">
+                                <button class="btn btn-primary mr-1 bp-save">Save</button>                            
+                            </div>
+                            <div class="footer-right">
+                                <span class="action undo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C12 3 8.4 4.8 6 7.7V4H4v8h8v-2H6.8c2-3 5.3-5 9.2-5c6.1 0 11 4.9 11 11s-4.9 11-11 11S5 22.1 5 16H3c0 7.2 5.8 13 13 13s13-5.8 13-13S23.2 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action redo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13h-2c0 6.086-4.914 11-11 11S5 22.086 5 16S9.914 5 16 5c3.875 0 7.262 1.984 9.219 5H20v2h8V4h-2v3.719C23.617 4.844 20.02 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-delete">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path class="clr-i-outline clr-i-outline-path-1" d="M27.14 34H8.86A2.93 2.93 0 0 1 6 31V11.23h2V31a.93.93 0 0 0 .86 1h18.28a.93.93 0 0 0 .86-1V11.23h2V31a2.93 2.93 0 0 1-2.86 3z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-2" d="M30.78 9H5a1 1 0 0 1 0-2h25.78a1 1 0 0 1 0 2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-3" d="M21 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-4" d="M13 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-5" d="M23 5.86h-1.9V4h-6.2v1.86H13V4a2 2 0 0 1 1.9-2h6.2A2 2 0 0 1 23 4z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-duplicate">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M9 6h8a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1h1v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5H6V9a3 3 0 0 1 3-3zM5 2h10v1H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7.25L10 13.75l.664-.75l3.5 3.5l-3.5 3.5l-.664-.75L12.25 17H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-page">
+                    <div class="third-page element-attributes">
+                        <div class="page-content">
+                            <div class="sidebar-page-header">
+                                <div class="back-button" onclick="goToSecondPage()">
+                                    <i class="caret-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="0.3em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 210 700"><path d="M23 44q10 0 16 6l163 162q7 8 7 17t-7 16L39 407q-7 7-16 7t-16-7t-7-16t7-16l146-146L7 83q-7-7-7-17t6.5-16T23 44z" fill="#626262"/></svg>
+                                    </i>
+                                </div>
+                                <div class="py-2 px-3 d-flex align-items-center">
+                                    <div>
+                                        <label class="element-name">Element</label>
+                                        <p>Selected element from your builder</p>
+                                    </div>
+                                </div>                         
+                            </div>
+                            <div class="">
+                                <div class="attributes-container pt-2">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-bar px-2">
+                            <div class="footer-left mr-auto">
+                                <button class="btn btn-primary mr-1 bp-save">Save</button>                            
+                            </div>
+                            <div class="footer-right">
+                                <span class="action undo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C12 3 8.4 4.8 6 7.7V4H4v8h8v-2H6.8c2-3 5.3-5 9.2-5c6.1 0 11 4.9 11 11s-4.9 11-11 11S5 22.1 5 16H3c0 7.2 5.8 13 13 13s13-5.8 13-13S23.2 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action redo">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13h-2c0 6.086-4.914 11-11 11S5 22.086 5 16S9.914 5 16 5c3.875 0 7.262 1.984 9.219 5H20v2h8V4h-2v3.719C23.617 4.844 20.02 3 16 3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-delete">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path class="clr-i-outline clr-i-outline-path-1" d="M27.14 34H8.86A2.93 2.93 0 0 1 6 31V11.23h2V31a.93.93 0 0 0 .86 1h18.28a.93.93 0 0 0 .86-1V11.23h2V31a2.93 2.93 0 0 1-2.86 3z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-2" d="M30.78 9H5a1 1 0 0 1 0-2h25.78a1 1 0 0 1 0 2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-3" d="M21 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-4" d="M13 13h2v15h-2z" fill="#626262"/><path class="clr-i-outline clr-i-outline-path-5" d="M23 5.86h-1.9V4h-6.2v1.86H13V4a2 2 0 0 1 1.9-2h6.2A2 2 0 0 1 23 4z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                                <span class="action bp-duplicate">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M9 6h8a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1h1v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5H6V9a3 3 0 0 1 3-3zM5 2h10v1H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7.25L10 13.75l.664-.75l3.5 3.5l-3.5 3.5l-.664-.75L12.25 17H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z" fill="#626262"/></svg>
+                                    </i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="beepro-content p-4">
+        <iframe id="builder_iframe"
+            class="col-lg-12 col-md-12 col-sm-12"
+            width="100%" height="100%"
+            onload="this.style.height=this.contentDocument.body.scrollHeight +'px';"
+            scrolling="no" style=""></iframe>
+    </div>
+</div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
 use App\Http\Requests\SponsorRequest;
+use App\Models\Sponsorship;
 use Carbon\Carbon;
 
 class SponsorController extends Controller
@@ -21,8 +22,8 @@ class SponsorController extends Controller
         try {
             //code...
 
-            $count = StudentsRegistration::where('sponsor_id', $request->id)->count();
             $sponsor =     Sponsor::find($request->id);
+            $count = Sponsorship::where('sponsor_id', $request->id)->count();
             if ($sponsor->count() > 0) {
                 if ($count > 0) {
                     $message = __('site.you can\'t delete this sponsore it have students');
@@ -48,7 +49,7 @@ class SponsorController extends Controller
                 'route' => $route
             ]);
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
             $message = __('site.you have error');
             $status = 'error';
             $route = "#";

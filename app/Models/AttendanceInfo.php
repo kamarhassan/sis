@@ -15,5 +15,6 @@ class AttendanceInfo extends Model
         return $this->hasMany(AttendanceDetail::class, 'attendance_info_id', 'id')
         ->with('users:id,name');
     }
+    
     // return $this->belongsTo('App\Models\Level', 'level_id', 'id');
 }

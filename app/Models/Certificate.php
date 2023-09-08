@@ -11,15 +11,14 @@ class Certificate extends Model
         protected  $guarded = [];
         protected  $table = 'certificates';
 
-    protected $casts = [
-        'levels' => 'array',
-    ];
-    public function grade()
+   protected $casts = [
+      'categorie_id' => 'array',
+     
+      
+   ];
+
+    public function categories()
     {
-        return $this->belongsTo(Grade::class, 'grade_id', 'id');
-    }
-    public function levels()
-    {
-        return $this->belongsTo(Level::class, 'levels', 'id');
+        return $this->belongsToMany(Categorie::class, 'categorie_id', 'id');
     }
 }

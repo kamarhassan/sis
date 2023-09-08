@@ -16,6 +16,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
     protected $adminnamespace = 'App\Http\Controllers\Admin';
+   //  protected $verifieemail = 'App\Http\Controllers\Admin';
+
     /**
      * The path to the "home" route for your application.
      *
@@ -23,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
     public const ADMIN = '/admin';
+    public const Verifiedemail = '/email/verify';
     /**
      * Define your route model bindings, pattern filters, etc.
      *

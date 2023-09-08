@@ -80,16 +80,16 @@ function customize_data_table(columns, dataSet, first_column_data) {
     table = $('#custome_data_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            'copy',  'excel', 'print'
         ],
 
         "paging": false,
         "autoWidth": false,
-        "lengthChange": true,
-        "scrollY": "600px",
-        "processing": true,
+        "lengthChange": false,
+        "scrollY": 600,
+        "processing": false,
         // "responsive": true,
-        "retrieve": true,
+        "retrieve": false,
         "scrollCollapse": false,
         "ordering": false,
         "scrollX": false,
@@ -103,20 +103,16 @@ function customize_data_table(columns, dataSet, first_column_data) {
             if (data[first_column_data] == '' /* and not contain  data['id'] it is abbr */) {
                 // Add COLSPAN attribute
                 // console.log(columns.length);
-
                 // $('td:eq(1)', row).attr('colspan', columns.length);
                 for (var i = 0; i < columns.length; i++) {
                     // if(data[i] !='') 
                     // console.log($('td:eq(' + i + ')', row));
-
                     // $('td:eq(0)', row).css('color', '#f89406')
                     $('td:eq(' + i + ')', row).css('color', '#f89406')
                 }
             }
             //  this.api().cell($('td:eq(0)', row)).data(data['id']);
         }
-
-
     });
 
     // });
@@ -134,11 +130,11 @@ function loading_showing_table() {
 
 function columns_daily_reports() {
     return [
-        { data: 'id', title: 'id', "defaultContent": "", "width": "5%" },
-        { data: 'Name', title: 'Name', "defaultContent": "", "width": "30%" },
-        { data: 'Amount', title: 'Amount', "defaultContent": "", "width": "20" },
-        { data: 'Payment date', title: 'Payment date', "defaultContent": "", "width": "20" },
-        { data: 'Description', title: 'Description', "defaultContent": "", "width": "20" },
+        { data: 'id', title: 'id', "defaultContent": "", "width": "5%", class: "text-wrap text-small" },
+        { data: 'Name', title: 'Name', "defaultContent": "", "width": "30%", class: "text-wrap text-small" },
+        { data: 'Amount', title: 'Amount', "defaultContent": "", "width": "20", class: "text-wrap text-small" },
+        { data: 'Payment date', title: 'Payment date', "defaultContent": "", "width": "20", class: "text-wrap text-small" },
+        { data: 'Description', title: 'Description', "defaultContent": "", "width": "20", class: "text-wrap text-small" },
     ];
 }
 

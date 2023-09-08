@@ -1,0 +1,319 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+<div class="loading-page-overlay" style="position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #eee;
+        z-index: 1000;">
+    <div>
+        <div><img width="60px" src="image/page-loading.gif" /></div>
+        <label style="margin-bottom: 0; margin-top: -5px;font-size: 95%">Starting....</label>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="top container-fluid">
+        <div class="row">
+            <div class="col-md-6 top-left float-left">
+                <ul class="menu-bar">
+                    <li>
+                        <div class="logo">
+                            <img class="logo-img" src="image/builderjs_color_logo.png">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="action-menu design-menu">
+                            <span class="action-design">{language.menubar.items.design}</span>
+                            <span class="material-icons">expand_more</span>
+                            <ul class="design display">
+                                <li><a class="design-new" href="#"> {language.menubar.items.designs.new} </a></li>
+                                <li><a class="design-clear" href="#"> {language.menubar.items.designs.clear} </a></li>
+                                <!-- <li><a class="design-from-template" href="#"> {language.menubar.items.designs.new_template} </a></li>
+                                <li><a class="design-upload-template" href="#"> {language.menubar.items.designs.upload_template} </a></li>
+                                <li><a class="save-design" href="#"> {language.menubar.items.designs.save} </a></li>
+                                <li><a class="design-exit back" href="#" data-method="POST"> {language.menubar.items.designs.exit} </a></li> -->
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="choose-template-menu">
+                        <div class="action-menu action-choose-template">
+                            <span class="choose">{language.menubar.items.change_template}</span>
+                            <span class="material-icons">expand_more</span>
+                            <div class="show-list-template">
+                                <ul class="display-template display">
+
+                                </ul>
+                            </div>
+                            <!--show thumbnail image template-->
+                            <div class="template-thumbnail">
+                                <img class="img-template" src="/" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="action-menu action action-preview preview-page">
+                            <span class="ac">{language.menubar.items.preview}</span>
+                            <span class="material-icons">expand_more</span>
+                            <ul class="display">
+                                <li><a class="preview-design-desktop" href="#"> {language.menubar.items.previews.desktop} </a></li>
+                                <li><a class="preview-design-mobile" href="#"> {language.menubar.items.previews.mobile} </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="action-menu view-mode">
+                            <span class="ac" id="show-mode">{language.menubar.items.mode_design}</span>
+                            <span class="material-icons">expand_more</span>
+                            <ul class="display-view-mode">
+                                <li><a class="view-mode-design" href="#"> {language.menubar.items.mode_designs.design} </a></li>
+                                <li><a class="view-mode-source" href="#"> {language.menubar.items.mode_designs.source} </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6 top-right float-right">
+                <div class="mode-device ml-auto" style="">
+                    <li class="device mode-mobile" data-mode="mode-mobile" title="{language.menubar.items.devices.mobile}">
+                        <span class="material-icons-outlined icon-mode" style="color: rgb(150, 150, 150);">smartphone</span>
+                    </li>
+                    <li class="device mode-tablet" data-mode="mode-tablet" title="{language.menubar.items.devices.tablet}">
+                        <span class="material-icons-outlined icon-mode" style="color: rgb(150, 150, 150);">tablet_android</span>
+                    </li>
+                    <li class="device mode-desktop" data-mode="mode-desktop" title="{language.menubar.items.devices.desktop}">
+                        <span class="material-icons-outlined icon-mode">computer</span>
+                    </li>
+                </div>
+                <ul class="icons">
+                    <li class="ask-help">
+                        <span class="material-icons-outlined icon mr-1">help_outline</span>
+                        <span class="help">{language.menubar.items.help}</span>
+                    </li>
+                </ul>
+                <!--<div class="sync">
+                    <button class="btn btn-primary btn-sync"><i class="fab fa-google"></i> {language.menubar.items.sync} </button>
+                    <span class="choose-sync"><i class="{builder-icon-angle-down}"></span>
+                    <ul class="action-sync">
+                        <li class="synchronization google-driver" data-sync="google-driver" data-title="{language.menubar.items.syncs.google_driver.title}" disable="disable">
+                            {language.menubar.items.syncs.google_driver}
+                        </li>
+                        <li class="synchronization dropbox" data-sync="dropbox" data-title="{language.menubar.items.syncs.dropbox}">
+                            {language.menubar.items.syncs.dropbox}
+                        </li>
+                        <li class="synchronization one-driver" data-sync="one-driver" data-title="{language.menubar.items.syncs.one_driver}">
+                            {language.menubar.items.syncs.one_driver}
+                        </li>
+                        <li class="setting">
+                            {language.menubar.items.syncs.setting}
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="lang">
+                    <button class="btn btn-primary btn-sync"><i class="fab fa-google"></i> {language.menubar.items.lang} </button>
+                    <span class="choose-lang"><i class="{builder-icon-angle-down}"></span>
+                    <ul class="action-lang">
+                        <li class="change-language lang-en" data-lang="english" data-title="{language.menubar.items.lang.eng}" disable="disable">
+                            {language.menubar.items.lang.eng}
+                        </li>
+                        <li class="change-language lang-vi" data-lang="vietname" data-title="{language.menubar.items.lang.vie}">
+                            {language.menubar.items.lang.vie}
+                        </li>
+                        <li class="change-language lang-jp" data-lang="japan" data-title="{language.menubar.items.lang.jpa}">
+                            {language.menubar.items.lang.jpa}
+                        </li>
+                        <li class="setting">
+                            {language.menubar.items.lang.setting}
+                        </li>
+                    </ul>
+                </div>-->
+                <div class="d-flex align-items-center">
+                    <a class="save-design" href="#">
+                        <button class="btn btn-primary btn-save menu-bar-action">{language.menubar.items.save}</button>
+                    </a>                    
+                    <a class="save-and-close" href="#">
+                        <button class="btn btn-primary btn-save-and-close menu-bar-action">{language.menubar.items.save_and_close}</button>
+                    </a>
+                    <a class="export-button" href="#">
+                        <button class="btn btn-primary btn-export menu-bar-action">{language.export}</button>
+                    </a>
+                    <a class="builder-close" href="#">
+                        <button class="btn btn-primary btn-close menu-bar-action"><i class="{builder-icon-cross}"></i></button>
+                    </a>
+                </div>                
+            </div>
+        </div>
+    </div><!-- end top-->
+    <div class="content container-fluid">
+        <div class="">
+            <div class="content-container">
+                <div class="content-left" name="editable" id="editable" contenteditable="true">
+                    <div class="content-background">
+                        <iframe class="col-lg-12 col-md-12 col-sm-12" id="builder_iframe" width="100%" height="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" scrolling="no" style=""></iframe>
+                    </div>
+                </div><!-- end content-left -->
+            </div>
+            
+            <div class="side-panel-container">
+                <div id="builder_sidebar" class="content-right">
+                    <nav class="" style="">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-content" aria-selected="true">
+                                <span class="flex align-items-center">
+                                    <span class="material-icons-outlined mr-2">developer_board</span>
+                                    <span>{language.navbar.contents.widgets}</span>
+                                </span>
+                            </a>
+                            <a style="display: none" class="nav-item nav-link" id="nav-layouts-tab" data-toggle="tab" href="#nav-layouts" role="tab" aria-controls="nav-row" aria-selected="false">
+                                <span class="flex align-items-center">
+                                    <span class="material-icons-outlined mr-2">local_offer</span>
+                                    <span>{language.navbar.contents.layouts}</span>
+                                </span>
+                            </a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-setting" aria-selected="false">
+                                <span class="flex align-items-center">
+                                    <span class="material-icons-outlined mr-2">local_offer</span>
+                                    <span>{language.navbar.contents.tags}</span>
+                                </span>
+                            </a>
+                            <a href="javascript:;" class="nav-item nav-link" id="nav-profile-tab">
+                                <span class="flex align-items-center">
+                                    <span class="material-icons-outlined mr-2">settings</span>
+                                    <span>{language.navbar.contents.setting}</span>
+                                </span>
+                            </a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="container modules widgets-sections">
+                                <div class="widgets-section widgets-form">
+                                    <label class="block-title">{language.section.form_elements}</label>
+                                    <div class="widgets-form-container fields-container">
+                                    <div class="text-center full-width">
+                                        {language.navbar.contents.loading}
+                                        </div>
+                                        <!--load khoi xoay -->
+                                    </div>
+                                </div>                            
+                                <div class="widgets-section widgets-other mb-4">
+                                    <label class="block-title">{language.section.general}</label>
+                                    <div class="content_widget_container">
+                                        {language.navbar.contents.loading}
+                                        <!--load khoi xoay -->
+                                        
+                                    </div>
+                                    <div class="load-show_more" style="display: flex; justify-content: center;">
+                                        <a class="link-widget link-show_more" title="Show more widget" style="cursor: pointer;padding: 5px 20px;background: #e5e5e5;border-radius: 2px;">{language.navbar.contents.show_more.loading}</a>
+                                        <a class="link-widget link-hide_less" title="Show less widget" style="cursor: pointer;padding: 5px 20px;background: #e5e5e5;border-radius: 2px;display: none">{language.navbar.contents.show_less.loading}</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="container detail-content">
+                                <div class="properties-pannel-title">
+                                    <h4>{language.navbar.contents.content_property}</h4>
+                                    <div class="action">
+                                        <a class="delete builder-remove-selected-button" href="javascript:;" data-toggle="tooltip" title="{language.navbar.items.actions.delete}">
+                                            <span class="material-icons-outlined">delete</span>
+                                        </a>
+                                        <a class="duplicate builder-duplicate-selected-button" href="javascript:;" title="{language.navbar.items.actions.duplicate}">
+                                            <span class="material-icons-outlined" style="font-size: 20px;">filter_none</span>
+                                        </a>
+                                        <a class="move" href="javascript:;" title="{language.navbar.items.actions.down}">
+                                            <span class="material-icons-outlined">keyboard_arrow_down</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="properties-pannel-content attributes-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <!-- <div class="container rows-module" style="">
+                                <div class="row row_widget_container">
+                                    {language.navbar.contents.loading}
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="tab-pane fade" id="nav-layouts" role="tabpanel" aria-labelledby="nav-layouts-tab">
+                            <div class="container rows-module" style="">
+                                <div class="row row_widget_container">
+                                    {language.navbar.contents.loading}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="container setting-module">
+                                <ul class="tags-value">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 view-source">
+                <div id="editor">
+                    <!--content template-->
+                </div>
+            </div>
+        </div>
+    </div><!-- end container-fluid-->
+
+    <div class="undo-redo">
+        <div class="undo-redo-actions">
+            <button class="undo-redo-action-history" data-toggle="tooltip" title="{language.bottombar.items.history}" style="border-radius: 2px;">
+                <i class="{builder-icon-history} history" ></i>
+            </button>
+            <button class="undo-redo-action-undo" data-toggle="tooltip" title="{language.bottombar.items.undo}">
+                <i class="{builder-icon-reply} history"></i>
+            </button>
+            <button class="undo-redo-action-redo disable-redo" data-toggle="tooltip" title="{language.bottombar.items.redo}">
+                <i class="{builder-icon-reply} history" style="transform: rotateY(165deg);"></i>
+            </button>
+        </div>
+
+        <!--history-->
+        <div ng-if="historyOpen" class="undo-redo__history--wrapper ng-scope" style="display: none">
+            <div ng-transclude="" mailup-common-scrollbar="" class="ng-isolate-scope" style="height: 100%; position: relative;">
+                <div class="undo-redo__history undo-redo__history--open ng-scope mailup-common-scrollable-container ps-container ps-theme-default ps-active-y" data-ps-id="3934d02e-7a69-b8f0-1c88-d7d2783b123d">
+                    <ul id="undo-redo__history" class="">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ui-pnotify bg-warning bg-as notification-area" style="background-color: #d8eacc !important; width: auto; right: 10px; top: auto; bottom: 39px; opacity: 1; display: none; overflow: visible; cursor: auto;">
+        <div class="alert ui-pnotify-container ui-pnotify-shadow" style="min-height: 16px; overflow: hidden;position: relative;padding-left: 20px;padding-right: 41px;padding-top: 20px;padding-bottom: 20px;">
+            <div class="ui-pnotify-text" style="font-size: 14px;">
+
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="col-md-6 footer-left">
+                <a href="#" class="back footer-exit-without-save">
+                    <i class="{builder-icon-angle-left}"></i><p>{language.bottombar.items.exit}</p>
+                </a>
+            </div>
+            <div class="col-md-6 footer-right">
+                <span style="font-size: 13px;height: 100%;display: flex;align-items: center;justify-content: flex-end;">{language.bottombar.items.last_save}</span>
+                
+            </div>
+        </div>
+    </footer><!-- end footer-->
+    <div class="box-popup-right" title="Show apps">
+        <span class="material-icons-outlined icon">chevron_left</span>
+    </div>
+</div><!-- end wrapper-->

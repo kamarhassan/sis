@@ -11,7 +11,7 @@ namespace App\Repository\Fee_Type;
 
 use App\Models\CoursFee;
 use Carbon\Carbon;
-use App\Models\Fee_type;
+use App\Models\Fee_Type;
 use Illuminate\Support\Facades\DB;
 
 class Fee_typeRepository implements Fee_TypeInterface
@@ -20,13 +20,13 @@ class Fee_typeRepository implements Fee_TypeInterface
     public function get_all()
     {
         // TODO: Implement get_all() method.
-        return Fee_type::select()->get();
+        return Fee_Type::select()->get();
     }
 
 
     public function fee_type_id()
     {
-        return Fee_type::select('id')->get();
+        return Fee_Type::select('id')->get();
     }
 
     public function store_fee_type($request)
@@ -49,7 +49,7 @@ class Fee_typeRepository implements Fee_TypeInterface
                     'updated_at' => Carbon::now(),
                 ];
             }
-            $inserted = Fee_type::insert($temp);
+            $inserted = Fee_Type::insert($temp);
             DB::commit();
             if ($inserted) {
                 return true;
@@ -71,7 +71,7 @@ class Fee_typeRepository implements Fee_TypeInterface
     public function delete_fee_type($fee_types_id)
     {
         try {
-            $fee_type = Fee_type::find($fee_types_id);
+            $fee_type = Fee_Type::find($fee_types_id);
             $is_deleted = $fee_type->delete();
             if ($is_deleted ==1)
                 return true;

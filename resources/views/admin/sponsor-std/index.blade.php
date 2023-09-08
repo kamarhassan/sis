@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.sponsor')
 @endsection
 @section('css')
 @endsection

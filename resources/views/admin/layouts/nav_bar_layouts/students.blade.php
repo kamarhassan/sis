@@ -25,7 +25,7 @@
                 </li>
             @endcan
 
-            @can('edit students sponsore')
+            {{-- @can('edit students sponsore')
                 <li class="treeview ">
                     <a href="#">
                         <i class=""></i>
@@ -35,13 +35,13 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.cours.sponsore.index') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                        <li><a href="{{ route('admin.cours.sponsore.index') }}">
                                 <i class="ti-more">
                                 </i>
                                 @lang('site.sponsored')
                             </a>
                         </li>
-                        <li><a href="{{ route('admin.edit.sponsor.fee.for.students') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
+                        <li><a href="{{ route('admin.edit.sponsor.fee.for.students') }}">
                                 <i class="ti-more">
                                 </i>
                                 @lang('site.update sponsore fee')
@@ -49,7 +49,7 @@
                         </li>
                     </ul>
                 </li>
-            @endcan
+            @endcan --}}
 
 
             @can('show all students')
@@ -70,14 +70,7 @@
                     </a>
                 </li>
             @endcan
-            @can('payment students')
-                <li><a href="{{ route('admin.students.get_std_to_payment') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
-                        <i class="ti-more">
-                        </i>
-                        @lang('site.register Student pay fee')
-                    </a>
-                </li>
-            @endcan
+           
             @canany(['edit old payment students', 'delete old payment students', 'print old payment students'])
                 <li><a href="{{ route('admin.all-receipt') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
                         <i class="ti-more">
@@ -88,7 +81,7 @@
             @endcan
 
             @canany(['register order delete all', 'register order deny all', 'register order aprrove', 'register order
-                delete', 'register order deny'])
+                delete', 'register order deny','teacher'])
                 <li><a href="{{ route('admin.new.register.order') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
                         <i class="ti-more">
                         </i>
@@ -96,11 +89,11 @@
                     </a>
                 </li>
             @endcan
-            @canany(['attendance students', 'attendance students', 'report attendance', 'reset', 'enable or disable'])
+            @canany(['attendance students', 'attendance students', 'report attendance', 'reset', 'enable or disable','teacher'])
                 <li><a href="{{ route('admin.take.attendance.students') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
                         <i class="ti-more">
                         </i>
-                        @lang('site.attendance students')
+                        @lang('site.my classes') 
                     </a>
                 </li>
             @endcan

@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.create role and permission')
 @endsection
 @section('css')
     <style>

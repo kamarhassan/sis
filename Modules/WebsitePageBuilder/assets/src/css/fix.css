@@ -1,0 +1,114 @@
+div .widget.align div.thongso ul li {
+    border: solid 1px #aaa;
+    width: 35px;
+    border-radius: 0;
+    margin-left: 0;
+    border-right: none;
+    background: #fff;
+}
+div .widget.align div.thongso ul li:last-child {
+    border-right: solid 1px #aaa;
+    border-radius: 0 3px 3px 0;
+}
+div .widget.align div.thongso ul li:first-child {
+    border-radius: 3px 0 0 3px;
+}
+div .widget.align div.thongso ul li i {
+    font-size: 18px;
+    padding: 7px;
+}
+div .widget.image-name {
+    width: 100%;
+    height: auto;
+    border-bottom: none;
+}
+div .widget.image-name .image-selected {
+    height: auto;
+}
+div .widget .row {
+    height: 30px;
+}
+div .widget.alternate-text {
+    height: auto;
+}
+div .widget.alternate-text .row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+div .widget.image-name .image-selected img {
+    cursor: pointer;
+}
+div .widget-section.hide-mobile {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.tab-content .section-option .widget .row {
+    height: 50px;
+}
+div .widget.align {
+    height: 50px;
+}
+div .widget.range {
+    height: auto;
+}
+div .widget-section.link-image .wg-info .tren {
+    height: auto;
+    padding: 4px 1rem;
+}
+div .widget-section.link-image .wg-info .duoi a {
+    margin-top: 0;
+}
+div .widget-section.link-image .wg-info .duoi {
+    height: auto;
+    padding: 5px 1rem;
+}
+div .widget-section.link-image .wg-info .giua {
+    height: auto;
+}
+select.form-control {
+    font-size: 12px;
+}
+select.image-sizes {
+    width: 165px!important;
+}
+.form-control, input[type="number"] {
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 0 8px;
+    font-weight: 600;
+    border-color: #ccc;
+    border-style: solid;
+    background: #fff;
+}
+.control-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+}
+.image-size.custom-size input {
+    width: 107px;
+}
+div .widget-section.link-image .wg-info .giua {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+div .widget-section.link-image .wg-info .duoi a {
+    font-size: 12px;
+}
+div .widget-section.link-image .wg-info .duoi {
+    text-align: right;
+    display: block;
+}
+.w-url-container {
+    padding: 7px 0;
+}
+.w-url-container .url {
+    width: 30px!important;
+}
+.w-url-container .link {
+    width: 230px!important;
+}
+div .widget-section.link-image .wg-info .tren .trai {
+    width: 100%;
+}

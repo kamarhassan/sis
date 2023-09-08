@@ -1,4 +1,7 @@
 @extends('admin.layouts.master')
+ @section('title')
+    @lang('site.profile')
+ @endsection
 @section('css')
     <style>
              /* .dz-max-files-reached {

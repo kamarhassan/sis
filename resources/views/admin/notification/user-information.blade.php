@@ -33,6 +33,8 @@
                                 </div>
                                 <div> <i class="ti ti-calendar"></i> @lang('site.days') : <span id="days"></span>
                                 </div>
+                                <div> <i class="ti ti-calendar"></i> @lang('site.teach type') : <span id="teach_type"></span>
+                                </div>
 
                                 <div> <i class="ti ti-user"></i>@lang('site.teacher name') : <span id="teacher_name"></span>
                                     <div class="box-bordered border-warning"> <i class="fa fa-money"></i>
@@ -54,6 +56,7 @@
                     <input hidden name="order_id[]" id="order_id">
                     <input hidden name="user_id" id="user_id">
                     <input hidden name="cours_id" id="cours_id">
+                  
 
 
                     <div class="mailbox-controls ">
@@ -96,4 +99,4 @@
         </div>
     </div>
 </div>
-</div>
+

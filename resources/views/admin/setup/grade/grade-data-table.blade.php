@@ -1,7 +1,7 @@
 
-    <div class="box">
+     <div class="box" id="grade_box">
         <div class="box-header with-border">
-            <h4 class="box-title">@lang('site.add new grade')</h4>
+            <h4 class="box-title">@lang('site.grades')</h4>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -14,8 +14,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>@lang('site.grade') </th>
-                                        <th>@lang('site.nb of hours total for cours') </th>
-                                        <th>@lang('site.duration') </th>
+                                        <th>@lang('site.image') </th>
+                                        <th>@lang('site.receipt description') </th>
                                         <th>@lang('site.options') </th>
                                     </tr>
                                 </thead>
@@ -31,23 +31,21 @@
                                                     </label>
                                                 </td>
                                                 <td>
-                                                    
                                                     <label id="label_hours{{ $grades->id }}">
-                                                        <span> {{ $grades->total_hours }}</span>
+                                                       <img src="{{ asset($grades->image)}}" alt="" width="165">
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label id="label_duration{{ $grades->id }}">
-                                                        <span> {{ $grades->duration }}</span>
+                                                        <span> {{ $grades->description }}</span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     @can('edit grades')
                                                         <a token="{{ csrf_token() }}"
-                                                            onclick="change_to_update({{ $grades->id }},'{{ $grades->grade }}','{{ route('admin.grades.update') }}', '{{ csrf_token() }}');"
+                                                            onclick="category_to_update('{{ route('admin.get.category.information',$grades->id) }}', '{{ csrf_token() }}');"
                                                             class="btn fa fa-edit" title="@lang('site.edit')"
                                                             id="btn_editable_{{ $grades->id }}">
-                                                            {{-- @lang('site.edit') --}}
                                                         </a>
                                                     @endcan
 
@@ -57,14 +55,7 @@
                                                             onclick="delete_by_id('{{ route('admin.grades.delete') }}',{{ $grades->id }},'{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
                                                         </a>
                                                     @endcan
-                                                    {{-- <a token="{{ csrf_token() }}" lang_id="{{ $grades->id }}"
-                                                      class="delete_btn btn btn-close btn-danger btn-round fa fa-times"
-                                                      title="@lang('site.delete')"
-                                                      onclick=" delete_by_id_test('{{ json_encode(swal_fire_msg()) }}');">
-  
-  
-                                                  </a> --}}
-
+                                            
                                                 </td>
 
                                             </tr>

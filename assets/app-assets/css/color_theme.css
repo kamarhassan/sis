@@ -426,7 +426,7 @@ Theme Primary Color
   .theme-primary.light-skin .sidebar-menu > li.active.treeview > a:after {
     border-color: transparent #fafafa transparent transparent !important; }
 .theme-primary.light-skin .sidebar-menu > li.treeview .treeview-menu li a {
-  color: #475f7b; }
+  color: #ffffff; }
 .theme-primary.light-skin.sidebar-mini.sidebar-collapse .sidebar-menu > li.active > a > span {
   background: linear-gradient(45deg, #0F5EF7, #7a15f7) !important;
   color: #ffffff !important; }

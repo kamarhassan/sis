@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+@lang('site.superviser edit')
+@endsection
 @section('content')
     {{-- <div class="wrapper"></div>z --}}
 

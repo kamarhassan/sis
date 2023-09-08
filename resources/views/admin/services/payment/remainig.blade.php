@@ -1,6 +1,7 @@
 
  @extends('admin.layouts.master')
 @section('title')
+@lang('site.remaining')
 @endsection
 @section('css')
     <style>
@@ -14,13 +15,13 @@
 
 @section('content')
 
-    <div class="box" id="spinner_loading">
+    {{-- <div class="box" id="spinner_loading">
         <div class="d-flex justify-content-center text-primary">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="box" id="admin_table" hidden>
 

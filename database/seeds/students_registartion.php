@@ -10,25 +10,28 @@ use Carbon\Carbon;
 
 class students_registartion extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        for ($i = 0; $i < 90; $i++) {
+   /**
+    * Run the database seeds.
+    *
+    * @return void
+    */
+   public function run()
+   {
+      for ($i = 0; $i < 9000; $i++) {
 
-            DB::table('studentsRegistrations')->insert([
-                'cours_id' => Cours::inRandomOrder()->first()->id,
-                'user_id' => User::inRandomOrder()->first()->id,
-                'notes' => '',
-                'feesRequired' => '',
-                // 'sponsorshipID'=>-1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
+         $rand = rand(1, 9);
 
-        }
-    }
+         $date = Carbon::now()->subMonths($rand);
+
+         DB::table('studentsRegistrations')->insert([
+            'cours_id' => Cours::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'notes' => '',
+            'feesRequired' => '',
+            // 'sponsorshipID'=>-1,
+            'created_at' =>  $date,
+            'updated_at' =>  $date,
+         ]);
+      }
+   }
 }

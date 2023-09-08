@@ -28,7 +28,7 @@ class RoleAndPermissionController extends Controller
             },
         ], $preserveKeys = true);
         $tab_name = Permission::distinct('tab_name')->get('tab_name');
-        return view('admin.role-and-permission.create', compact('roles', 'permission', 'tab_name'));
+        return view('admin.role-and-permission.index', compact('roles', 'permission', 'tab_name','all_permisssion'));
     }
 
 

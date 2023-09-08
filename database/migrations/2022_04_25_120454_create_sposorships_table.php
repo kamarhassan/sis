@@ -21,7 +21,7 @@ class CreateSposorshipsTable extends Migration
             $table->integer('type');
             $table->double('discount')->comment('cours fee total')->nullable();
             $table->double('percent')->nullable();
-            $table->int('is_updated')->comment('null is new ')->nullable();
+            $table->integer('is_updated')->comment('null is new ')->nullable();
             $table->string('fee_sponsored')->comment('fee sponsored exam,....')->nullable();
             $table->string('note');
 

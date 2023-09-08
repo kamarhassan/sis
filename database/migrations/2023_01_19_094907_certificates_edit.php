@@ -15,10 +15,12 @@ class CertificatesEdit extends Migration
     {
         Schema::table('certificates', function (Blueprint $table) {
             $table->json('levels')->change();
+            $table->json('grade_id')->nullable()->change();
         });
     }
 
     /**
+     * 
      * Reverse the migrations.
      *
      * @return void

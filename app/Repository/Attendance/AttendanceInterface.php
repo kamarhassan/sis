@@ -20,4 +20,5 @@ interface AttendanceInterface
     public function reset($cours_id, $attendance_date);
     public function attendance_info_has_attendance_details($cours_id, $attendance_date);
     public function cours_status_attendance($cours_id);
+    
 }

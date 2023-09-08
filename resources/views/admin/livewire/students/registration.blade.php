@@ -62,8 +62,8 @@
                                 <option value="">@lang('site.chosse the cours')</option>
                                 @foreach ($cours as $cours_)
                                     <option value="{{ $cours_->id }}">{{ $cours_->id }} -
-                                        {{ $cours_->grade['grade'] }} -
-                                        {{ $cours_->level['level'] }} - {{ $cours_->teacher['name'] }} </option>
+                                        {{ $cours_['category_grade_level']['grade']['grade'] }} -
+                                        {{ $cours_['category_grade_level']['level']['level'] }} - {{ $cours_->teacher['name'] }} </option>
                                 @endforeach
                             @endisset
                         </select>

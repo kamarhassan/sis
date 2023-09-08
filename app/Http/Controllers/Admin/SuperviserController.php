@@ -121,6 +121,7 @@ class SuperviserController extends Controller
         $admin_logged =  Admin::find(Auth::id());
         return view('admin.superviser.change-password', compact('admin_logged'));
     }
+    
     public function edit_password_first_logged(ChanePasswordFirstLoggedRequest $request)
     {
         try {
@@ -182,8 +183,11 @@ class SuperviserController extends Controller
                     $admin_logged->photo = $this->saveImage($request->photo, 'public/files/images/admin');
                 }
 
-                if ($request->has('password'))
+                if ($request->password!=null){
+                   
                     $admin_logged->password = bcrypt($request->password);
+                    $admin_logged->passwordischanged = 0;
+                }
 
                 $admin_logged->name =  $request->first_name . ' ' . $request->middle_name . ' ' . $request->last_name;
                 $admin_logged->first_name =  $request->first_name;
@@ -208,9 +212,7 @@ class SuperviserController extends Controller
             throw $th;
         }
 
-        $roles = Role::all();
-        $admin_info = Admin::find($request->admin_id);
-        return view('admin.superviser.edit', compact('roles', 'admin_info'));
+       
     }
 
     public function acount_inactive()

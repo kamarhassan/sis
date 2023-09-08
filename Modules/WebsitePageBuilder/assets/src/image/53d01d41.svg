@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="43px" height="11px" viewBox="0 0 43 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 1 + Oval 1 + Oval 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-204.000000, -149.000000)">
+            <g id="Oval-1-+-Oval-1-+-Oval-1" sketch:type="MSLayerGroup" transform="translate(204.000000, 149.000000)">
+                <g id="Oval-1-+-Path" transform="translate(32.000000, 0.000000)" sketch:type="MSShapeGroup">
+                    <path d="M11,5.5 C11,2.46243388 8.53756612,0 5.5,0 C2.46243388,0 0,2.46243388 0,5.5 C0,8.53756612 2.46243388,11 5.5,11 C8.53756612,11 11,8.53756612 11,5.5 Z" id="Oval-1" fill="#C1C1C1"></path>
+                    <path d="M1,5.5 C1,3.02219881 3.00749191,1 5.5,1 C7.99250809,1 10,3.02219881 10,5.5 C10,7.97780119 7.99250809,10 5.5,10 C3.00749191,10 1,7.97780119 1,5.5 Z" id="Path" fill="#F2F2F2"></path>
+                </g>
+                <g id="Oval-1-+-Path" sketch:type="MSShapeGroup">
+                    <path d="M11,5.5 C11,2.46243388 8.53756612,0 5.5,0 C2.46243388,0 0,2.46243388 0,5.5 C0,8.53756612 2.46243388,11 5.5,11 C8.53756612,11 11,8.53756612 11,5.5 Z" id="Oval-1" fill="#C1C1C1"></path>
+                    <path d="M1,5.5 C1,3.02219881 3.00749191,1 5.5,1 C7.99250809,1 10,3.02219881 10,5.5 C10,7.97780119 7.99250809,10 5.5,10 C3.00749191,10 1,7.97780119 1,5.5 Z" id="Path" fill="#F2F2F2"></path>
+                </g>
+                <g id="Oval-1-+-Path" transform="translate(16.000000, 0.000000)" sketch:type="MSShapeGroup">
+                    <path d="M11,5.5 C11,2.46243388 8.53756612,0 5.5,0 C2.46243388,0 0,2.46243388 0,5.5 C0,8.53756612 2.46243388,11 5.5,11 C8.53756612,11 11,8.53756612 11,5.5 Z" id="Oval-1" fill="#C1C1C1"></path>
+                    <path d="M1,5.5 C1,3.02219881 3.00749191,1 5.5,1 C7.99250809,1 10,3.02219881 10,5.5 C10,7.97780119 7.99250809,10 5.5,10 C3.00749191,10 1,7.97780119 1,5.5 Z" id="Path" fill="#F2F2F2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

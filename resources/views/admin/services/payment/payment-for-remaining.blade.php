@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.payment for remaining')
 @endsection
 @section('css')
 @endsection

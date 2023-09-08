@@ -17,7 +17,7 @@ class CreateAttendanceDetailsTable extends Migration
             $table->id();
             $table->foreignId('attendance_info_id')->constrained('attendance_infos');
             $table->foreignId('user_id')->constrained('users');
-            $table->integer('total_hours')->default(0);
+            $table->integer('total_hours')->nullable()->default(0);
             $table->timestamps();
         });
     }

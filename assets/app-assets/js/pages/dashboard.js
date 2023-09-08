@@ -7,10 +7,6 @@
 $(function () {
 
   'use strict';
-	
-	
-	
-	
 	var options = {
           series: [44, 55],
           chart: {

@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.supervisor')
 @endsection
 @section('css')
     <style>
@@ -13,21 +14,21 @@
 
 @section('content')
 
-    <div class="box" id="spinner_loading">
-        <div class="d-flex justify-content-center text-primary">
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-    </div>
+{{--    <div class="box" id="spinner_loading">--}}
+{{--        <div class="d-flex justify-content-center text-primary">--}}
+{{--            <div class="spinner-border" role="status">--}}
+{{--                <span class="sr-only">Loading...</span>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
-    <div class="box" id="admin_table" hidden>
+    <div class="box" id="admin_table" >
 
         {{-- @if ((new \Jenssegers\Agent\Agent())->isDesktop()) --}}
         <div class="box-body">
 
             <div class="table-responsive">
-                <table id="example1" class="table table-hover">
+                <table id="example1" class="table table-striped table-bordered">
                     <thead>
 
                         <tr>
@@ -67,7 +68,8 @@
                                     </td>
                                     <td>
                                         @can('edit supervisor')
-                                            <a href="{{ route('admin.supervisor.edit', $admin_info['id']) }}" class="btn fa fa-edit"
+                                            <a href="{{ route('admin.supervisor.edit', $admin_info['id']) }}" class="hover hover-warning btn fa fa-edit"
+                                            
                                                 title="@lang('site.edit')">
                                             </a>
                                         @endcan

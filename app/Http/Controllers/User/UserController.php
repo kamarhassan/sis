@@ -21,8 +21,8 @@ class UserController extends Controller
 
     public function index()
     {
-        // $users = User"""
-        // ModelsUser
+      dd(1);
+        return view('frontend.layouts.user-dashboard');
 
     }
 
@@ -30,4 +30,10 @@ class UserController extends Controller
     {
         return view('admin.Users.create');
     }
+    
+    public function profile()
+    {
+        return view('frontend.user.edit');
+    }
+
 }

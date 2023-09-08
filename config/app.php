@@ -162,14 +162,14 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-
+        
         /*
-         * Package Service Providers...
-         */
-
+        * Package Service Providers...
+        */
+        
         /*
-         * Application Service Providers...
-         */
+        * Application Service Providers...
+        */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
@@ -178,9 +178,10 @@ return [
         /* for toastr   */
         Yoeunes\Toastr\ToastrServiceProvider::class,   /* for toastr   */
         App\Providers\RepositoryProvider::class,
-       /* for export and import excel */
+        /* for export and import excel */
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        /** package to generate barcode  */
+        Milon\Barcode\BarcodeServiceProvider::class,
 
     ],
 
@@ -236,6 +237,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+    'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
     ],
 

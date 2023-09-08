@@ -1,25 +1,17 @@
 @extends('admin.layouts.master')
 @section('title')
+@lang('site.categories create')
 @endsection
 @section('css')
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL::asset('assets/app-assets/vendors/css/forms/selects/selectize.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL::asset('assets/app-assets/vendors/css/forms/selects/selectize.default.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL::asset('assets/app-assets/css/plugins/forms/selectize/selectize.css') }}">
-    {{-- <link rel="stylesheet" type="text/css"
-        href="{{ URL::asset('assets/app-assets/vendors/css/file-uploaders/dropzone.min.css') }}"> --}}
-
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL::asset('assets/app-assets/vendors/css/editors/tinymce/tinymce.min.css') }}">
+<link rel="stylesheet" type="text/css"
+href="{{ URL::asset('assets/tinymce/tinymce.min.css') }}">
 
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL::asset('assets/app-assets/vendors/css/forms/toggle/bootstrap-switch.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL::asset('assets/app-assets/vendors/css/forms/toggle/switchery.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/selectize/css/selects/selectize.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/selectize/css/selects/selectize.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/selectize/css/selectize/selectize.css')}}">
 
+ 
     <style>
         .img_cont {
             position: relative;
@@ -58,26 +50,13 @@
         }
     </style>
 
-    {{-- <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/toggle/bootstrap-switch.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/toggle/switchery.min.css"> --}}
 @endsection
 @section('content')
     <section id="form-repeater">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title" id="repeat-form"></h4>
-                        <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
-                        <div class="heading-elements">
-                            <ul class="list-inline mb-0">
-                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                {{-- <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li> --}}
-                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                {{-- <li><a data-action="close"><i class="ft-x"></i></a></li> --}}
-                            </ul>
-                        </div>
-                    </div>
+                    
 
                     <div class="card-content collapse show">
                         <div class="card-body">
@@ -87,20 +66,20 @@
                                         <form id="categorie" class="form row">
                                             @csrf
                                             <div class="col-md-12">
-                                                <h4 class="form-section"><i class="la la-envelope"></i>@lang('site.general information of cours')
+                                                <h4 class="form-section"><i class="fa fa-info"></i> @lang('site.general information of cours')
                                                 </h4>
                                             </div>
 
                                             @include('admin.setup.categories.create.name-duration-cetrificate')
 
                                             <div class="col-md-12">
-                                                <h4 class="form-section"><i class="la la-envelope"></i> @lang('site.file and attache')
+                                                <h4 class="form-section"><i class="fa fa-file"></i> @lang('site.file and attache')
                                                 </h4>
                                             </div>
                                             @include('admin.setup.categories.create.attache-global_image-url_vid_imbeded')
 
                                             <div class="col-md-12">
-                                                <h4 class="form-section"><i class="la la-envelope"></i> @lang('site.file and attache')
+                                                <h4 class="form-section">
                                                 </h4>
                                             </div>
                                             @include('admin.setup.categories.create.description-require_knowldge-detail-prerequest')
@@ -109,7 +88,7 @@
 
                                         <a onclick="submit_categories('{{ route('admin.categories.store.categories') }}', 'categorie') "
                                             class="btn btn-outline-success no-border"><i
-                                                class="la la-check">@lang('site.save')</i></a>
+                                                class="fa fa-check">@lang('site.save')</i></a>
 
 
                                     </div>
@@ -129,30 +108,12 @@
 @endsection
 
 
-@section('script')
-    <script src="{{ URL::asset('assets/app-assets/vendors/js/forms/toggle/bootstrap-switch.min.js') }}"
-        type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/app-assets/vendors/js/forms/toggle/bootstrap-checkbox.min.js') }}"
-        type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/app-assets/vendors/js/forms/toggle/switchery.min.js') }}" type="text/javascript">
-    </script>
-    <script src="{{ URL::asset('assets/app-assets/js/scripts/forms/switch.js') }}" type="text/javascript"></script>
+@section('script')<script src="{{ URL::asset('assets/selectize/js/vendor/select/selectize.min.js') }}"></script>
+<script src="{{ URL::asset('assets/selectize/js/select/form-selectize.min.js') }}"></script>
 
 
-
-
-    <script src="{{ URL::asset('assets/app-assets/vendors/js/editors/tinymce/tinymce.js') }}" type="text/javascript">
-    </script>
-    <script src="{{ URL::asset('assets/app-assets/js/scripts/editors/editor-tinymce.js') }}" type="text/javascript">
-    </script>
-
-
-    <script src="{{ URL::asset('assets/app-assets/vendors/js/forms/select/selectize.min.js') }}" type="text/javascript">
-    </script>
-    <script src="{{ URL::asset('assets/app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js') }}"
-        type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/app-assets/js/scripts/forms/select/form-selectize.js') }}" type="text/javascript">
-    </script>
+<script src="{{ URL::asset('assets/tinymce/tinymce/tinymce.js') }}"></script>
+<script src="{{ URL::asset('assets/tinymce/editor-tinymce.js') }}"></script>
 
 
     <script src="{{ URL::asset('assets/custome_js/categories.js') }}"></script>

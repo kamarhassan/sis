@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Years;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
@@ -25,9 +26,14 @@ class loginController extends Controller
                 // return $request;
                 toastr()->success(__('site.login succes'));
                 $request->session()->put('admin_name', Auth::guard('admin')->user()->name);
-    
-                Session::put('mode', 'dark');
-                
+               $year = last_school_year();
+               // dd( $year);
+               Session::put('schoolyear', $year['year']);
+               Session::put('start schoolyear', $year['start']);
+               Session::put('end schoolyear', $year['end']);
+             
+                Session::put('mode', 'dark-skin');
+
                 return redirect()->route('admin.dashborad');
             }
             return redirect()->route('get.admin.login')->with(['error_login'=>__('site.error login')]);

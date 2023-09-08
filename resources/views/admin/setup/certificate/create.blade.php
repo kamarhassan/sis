@@ -1,11 +1,20 @@
 @extends('admin.layouts.master')
 @section('title')
-
+@lang('site.certificate create')
 @endsection
 @section('css')
-<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/app-assets/vendors/css/forms/selects/selectize.css')}}">
-<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/app-assets/vendors/css/forms/selects/selectize.default.css')}}">
-<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/app-assets/css/plugins/forms/selectize/selectize.css')}}">
+{{-- <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/app-assets/css/selectize.css')}}"> --}}
+
+{{-- <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/selects/selectize.css">
+
+<link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/selects/selectize.default.css">
+
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/plugins/forms/selectize/selectize.css"> --}}
+
+
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/selectize/css/selects/selectize.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/selectize/css/selects/selectize.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/selectize/css/selectize/selectize.css')}}">
 
 @endsection
 @section('content')
@@ -17,7 +26,7 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title" id="repeat-form"></h4>
-            <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-h font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
@@ -44,42 +53,22 @@
                       </div>
                                          
                       <div class="form-group  col-md-4">
-                        <label for="profession">@lang('site.grade')</label>
+                        <label for="profession">@lang('site.categorie')</label>
                         <br>
-                        @isset ($grades) 
-                          <select name="grade" class="selectize-multiple" value="{{old('grade')}}" >
+                        @isset ($categories) 
+                          <select name="categories[]" class="selectize-multiple" value="{{old('grade')}}" multiple >
                             <option value="" selected>------------------</option>
-                          @foreach ( $grades as $grade )
-                              <option value="{{$grade['id']}}" >{{$grade['grade']}}</option>
+                          @foreach ( $categories as $category )
+                              <option value="{{$category['id']}}" >{{$category['name']}} [ {{$category['grade']['grade']}} # {{$category['level']['level']}}]</option>
                           @endforeach
                           </select>
                         @endisset
                     
                    
-                   <span id="grade_" class="text-danger"></span>
+                   <span id="categories_" class="text-danger"></span>
                    
                       </div>
-                      <div class="form-group  col-md-3">
-                        <label for="profession">@lang('site.level')</label>
-                        <br>
-                        @isset ($levels) 
-                          <select  name="level[]" class="selectize-multiple" multiple>
-                            <option value="" selected>------------------</option>
-                           
-                          @foreach ($levels as $level)
-                              <option value="{{$level['id']}}" >{{$level['level']}}</option>
-                          @endforeach
-                                 
-                          </select>
-                        @endisset
-                       
-                        <span id="level_" class="text-danger"></span>
-                     
-                      </div>
-                      
-                      {{-- <div class="form-group col-sm-12 col-md-2 text-center mt-2">
-                        <button type="button" class="btn btn-danger" data-repeater-delete> <i class="ft-x"></i> Delete</button>
-                      </div> --}}
+         
                      
                     </form>
                     <hr>
@@ -95,21 +84,16 @@
   </section>
  
  {{-- <a href="{{route('admin.certificate.store.certificate')}}" class="la-check">sdc</a> --}}
- <a onclick="submit('{{route('admin.certificate.store.certificate')}}', 'certificate') " class="btn btn-outline-success no-border"><i class="la la-check">@lang('site.save')</i></a>
+ <a onclick="submit('{{route('admin.certificate.store.certificate')}}', 'certificate') " class="btn btn-outline-success no-border"><i class="fa fa-check">@lang('site.save')</i></a>
 
  @endsection
 
 
 @section('script')
-{{-- <script src="../../../app-assets/vendors/js/forms/select/selectize.min.js" type="text/javascript"></script>
-<script src="../../../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js" type="text/javascript"></script> --}}
+<script src="{{ URL::asset('assets/selectize/js/vendor/select/selectize.min.js') }}"></script>
+<script src="{{ URL::asset('assets/selectize/js/select/form-selectize.min.js') }}"></script>
 
-<script src="{{ URL::asset('assets/app-assets/vendors/js/forms/select/selectize.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/app-assets/js/scripts/forms/select/form-selectize.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/custome_js/save_and_redirect.js') }}"></script>
-{{-- <script src="{{ URL::asset('assets/app-assets/js/scripts/forms/select/form-selectize.js')}}" type="text/javascript"></script> --}}
+{{-- <script src="{{ URL::asset('assets/app-assets/js/selectize.min.js')}}" type="text/javascript"></script> --}}
 
-{{-- <script src="{{ URL::asset('assets/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/app-assets/js/scripts/forms/form-repeater.js')}}" type="text/javascript"></script> --}}
 @endsection

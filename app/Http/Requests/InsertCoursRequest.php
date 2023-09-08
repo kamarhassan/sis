@@ -33,16 +33,16 @@ class InsertCoursRequest extends FormRequest
     public function rules()
     {
         return [
-            'description'  => 'required',
-            'grade'  => 'required|exists:grades,grade',
-            'level' => 'required|exists:levels,level',
+            // 'description'  => 'required',
+//            'grade'  => 'required|exists:grades,grade',
+//            'level' => 'required|exists:levels,level',
             'start_date' => 'required|date',
             'end_date'    => 'required|date',
             'ac_start_date' => 'required|date|after_or_equal:start_date',
             'ac_end_date' =>   'required|date|after_or_equal:end_date',
             'status' => 'required|exists:statusofcours,name',
             'teacher_name' => 'required|exists:admins,name',
-            'teacher_fee' => 'required|numeric',
+            // 'teacher_fee' => 'required|numeric',
             'days' => 'required|array|min:1',
             'days.*' => 'numeric',
             'cours_currency' => 'required|exists:currencies,id',

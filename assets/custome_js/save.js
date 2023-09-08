@@ -8,7 +8,8 @@ function submit(route_,form_id) {
         data: formdata,
         success: function (data) {
             if (data.status == 'success') {
-                toastr.success(data.message) 
+                toastr.success(data.message)
+               $('#btn_register').replaceWith(data.btn);
             } else {
                 if (data.status == 'error') {
                     toastr.error(data.message);
@@ -24,4 +25,5 @@ function submit(route_,form_id) {
         }
     });
 }
+
 

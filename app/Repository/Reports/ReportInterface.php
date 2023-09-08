@@ -10,7 +10,7 @@ interface ReportInterface
     public function dataset_service_sold_by_type_reports($array_of_data_by_type);
     public function get_receipt_service_sold_by_type_bteween_date($Model,  $request);
 
-    // public function dataset_distrubion_reports();
+    public function dataset_distrubion_reports();
     
     public function unpaid_account_summary_and_details($request);
     public function dataset_unpaid_account_summary($array_of_data_by_unpaid_account);

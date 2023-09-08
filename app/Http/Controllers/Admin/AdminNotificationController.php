@@ -43,10 +43,10 @@ class AdminNotificationController extends Controller
     public  function new_register()
     {
         try {
-            $new_order_registeration =   $this->adminnotification->get_register_notification();
+                $new_order_registeration =   $this->adminnotification->get_register_notification();
             return view('admin.notification.new-registration', compact('new_order_registeration'));
         } catch (\Throwable $th) {
-            // throw $th;
+            throw $th;
             toastr()->error(__('site.you have error'));
             return redirect()->back();
         }
@@ -74,8 +74,8 @@ class AdminNotificationController extends Controller
                     'end_date' => $cours_info['act_EndDa'],
                     'days' => $cours_info['days'],
                     'teacher_name' => $cours_info->teacher_name['name'],
-                    'grade' => $cours_info->grade,
-                    'level' => $cours_info->level,
+                    'grade' => $cours_info->category_grade_level['grade']['grade'],
+                    'level' => $cours_info->category_grade_level['level']['level'],
                    
                 ];
 
@@ -92,6 +92,7 @@ class AdminNotificationController extends Controller
                     'cours_fee' => $cours_fee,
                     'total_cours_fee' => $total_cours_fee,
                     'order_id' =>  $order_id,
+                    'teach_type' =>  $order->getTeachType(),
                 ]);
             }
         } catch (\Throwable $th) {
@@ -109,7 +110,7 @@ class AdminNotificationController extends Controller
 
     public  function delete_marked(Request $request)
     {
-        //   return $request;
+      
 
         try {
             DB::beginTransaction();

@@ -6,8 +6,8 @@ $(document).ready(function () {
             position: 'top-right',
             loaderBg: '#ff6849',
             icon: 'info',
-            // hideAfter: 3000,
-            // stack: 6
+            hideAfter: 3000,
+            stack: 6
         });
 
     });

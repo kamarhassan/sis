@@ -27,9 +27,9 @@ class GradesRequest extends FormRequest
     public function rules()
     {
         return [
-            'grades.*' => 'required',
-            'total_hours.*' => 'required|numeric',
-            'period_by_mounth.*' => 'required|numeric',
+            'grades.*' => 'required|max:255',
+//            'total_hours.*' => 'required|numeric',
+//            'period_by_mounth.*' => 'required|numeric',
 
             //   'grade' => 'required',
             //   'grade.*' => 'required'

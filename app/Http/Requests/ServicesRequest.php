@@ -48,6 +48,6 @@ class ServicesRequest extends FormRequest
             if ($fee != null)
                 return ['fee_err'=>"numeric",'id'=>$key];
         }
-        return "";
+          return ['fee_err'=>"numeric",'id'=>''];
     }
 }

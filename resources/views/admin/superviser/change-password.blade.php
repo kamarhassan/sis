@@ -1,5 +1,8 @@
 @extends('admin.layouts.master')
-
+@section('title')
+   
+@lang('site.change password')
+@endsection
 @section('content')
     {{-- <div class="wrapper"></div>z --}}
 
@@ -15,7 +18,7 @@
                     <input type="hidden" id="id" name="id" value="{{ $admin_logged['id'] }}">
                     <div class="box-body">
                         <h4 class="box-title text-info"><i class="ti-user mr-15"></i>
-                            @lang('site.personal information')</h4>
+                            @lang('site.personal information') - @lang('site.need change password')</h4>
                         <hr class="my-15">
                         <div class="row">
                             <div class="col-md-4">

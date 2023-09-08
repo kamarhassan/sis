@@ -97,8 +97,8 @@ return [
     #################################### end of delet by swal fire translator ###################################
     #################################### begin gradetranslator ###################################
     ' grade note defined' => 'This course does not exist',
-    'grade' =>  'session',
-    'add new grade' =>  'Add a new course',
+    'grade' =>  'Category',
+    'add new grade' =>  'add new category',
     'grade succefuly update' =>  'Course updated successfully',
     'grade faild to update' =>  'Update failed, please try again.',
 

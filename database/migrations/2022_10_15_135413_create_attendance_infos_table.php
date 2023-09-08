@@ -17,7 +17,7 @@ class CreateAttendanceInfosTable extends Migration
             $table->id();
             $table->foreignId('cours_id')->constrained('courss');
             $table->foreignId('teacher_id')->constrained('admins')->comment('for teacher name');
-            $table->integer('total_hours');
+            $table->integer('total_hours')->nullable();
             $table->date('date');
             $table->enum('status', [1, 0])->comment('1=>  active can edit attenance  ,   0=>  active can\'t edit attenance  ');
             $table->timestamps();
