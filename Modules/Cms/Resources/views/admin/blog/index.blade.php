@@ -39,7 +39,7 @@
             <thead>
             <tr>
                <th>@lang('site.blog title')</th>
-               <th>@lang('site.blog categori')</th>
+               <th>@lang('site.blog categorie')</th>
                <th>@lang('site.blog tags')</th>
                <th>@lang('site.blog viewed')</th>
                <th>@lang('site.blog status')</th>

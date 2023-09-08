@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>@lang('site.shool year')</label><br>
+                            <label>@lang('site.school year')</label><br>
 
                             <span class="text-danger" id="finally_school_year"></span>
                         </div>
@@ -60,8 +60,8 @@
 
                             <th>#</th>
                             <th>@lang('site.school year')</th>
-                            <th>@lang('site.start')</th>
-                            <th>@lang('site.end')</th>
+                            <th>@lang('site.school year start')</th>
+                            <th>@lang('site.school year end')</th>
                             <th>@lang('site.options')</th>
                         </tr>
 

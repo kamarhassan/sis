@@ -31,13 +31,12 @@
 
         @php
             $years = App\Models\Years::orderBy('year', 'desc')->get();
-            
         @endphp
        
         <div class="nav">
             <form id="changeyear">
                 @csrf
-                <label for="year">@lang('site.year: ') </label>
+                <label for="year">@lang('site.school year') </label>
                 <select class="form-control select2" id="year" name="year"
                     onchange="changeyear('{{ route('admin.change.years') }}','changeyear');">
 
