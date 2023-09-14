@@ -63,7 +63,8 @@
 
         </div>
         {{-- @include('admin.layouts.asside') --}}
-    </div>
+      </div>
+      @include('admin.layouts.footer')
 
     <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/icons/feather-icons/feather.min.js') }}"></script>

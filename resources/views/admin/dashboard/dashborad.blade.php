@@ -45,7 +45,9 @@
             data: {{ json_encode($count_std_registration_by_month) }}
         })
 
-        setdatacharts_line(std_registration, 'students_registration', 'line', ['#0F5EF7']) // set students count by month
+        setdatacharts_(std_registration, 'students_registration', 'line', ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+            'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ], ['#0F5EF7']) // set students count by month
 
 
         var user_services = [];
@@ -56,14 +58,13 @@
         })
 
 
-        setdatacharts_line(user_services, 'services_paid', 'line', ['#0F5EF7']) // set students count by month
+        setdatacharts_(user_services, 'services_paid', 'line', ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+            'Sep', 'Oct', 'Nov', 'Dec'
+        ], ['#0F5EF7']) // set students count by month
 
 
 
-        setdatacharts_bar('array_of_data', 'xmlns', 'text_hover_number', 'bar')
-
-
-        function setdatacharts_line(array_of_data, chart_id, type, color_is_an_array) {
+        function setdatacharts_(array_of_data, chart_id, type, categories, color_is_an_array) {
 
 
             var options = {
@@ -121,7 +122,7 @@
                     },
                 },
                 xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    categories: categories,
                     labels: {
                         show: true,
                     },
@@ -150,74 +151,5 @@
 
         }
 
-
-
-
-        function setdatacharts_bar(array_of_data, chart_id, text_hover_number, type) {
-
-            var options = {
-                series: [{
-                    name: 'Net Profit',
-                    data: [44, 55, 57, 56, 61, 58, 63]
-                }, {
-                    name: 'Revenue',
-                    data: [76, 85, 101, 98, 87, 105, 91]
-                }],
-                chart: {
-                    type: 'bar',
-                    foreColor: "#bac0c7",
-                    height: 290,
-                    toolbar: {
-                        show: false,
-                    }
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '30%',
-                        endingShape: 'rounded'
-                    },
-                },
-                dataLabels: {
-                    enabled: false,
-                },
-                grid: {
-                    show: true,
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                colors: ['#EF3737', '#0F5EF7'],
-                xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-
-                },
-                yaxis: {
-
-                },
-                legend: {
-                    show: false,
-                },
-                fill: {
-                    opacity: 1
-                },
-                tooltip: {
-                    y: {
-                        formatter: function(val) {
-                            return val + text_hover_number
-                        }
-                    },
-                    marker: {
-                        show: false,
-                    },
-                }
-            };
-
-            var chart = new ApexCharts(document.querySelector("#" + chart_id), options);
-            chart.render();
-
-        }
     </script>
 @endsection

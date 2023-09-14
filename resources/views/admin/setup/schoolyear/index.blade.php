@@ -50,21 +50,17 @@
         </div>
     @endcan
     <div class="box" id="table_std">
-
         <div class="box-body">
             <div class="table-responsive ">
                 <table id="example1" class="table table-hover">
                     <thead>
-
                         <tr>
-
                             <th>#</th>
                             <th>@lang('site.school year')</th>
                             <th>@lang('site.school year start')</th>
                             <th>@lang('site.school year end')</th>
                             <th>@lang('site.options')</th>
                         </tr>
-
                     </thead>
                     <tbody>
                         @isset($years)

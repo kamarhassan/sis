@@ -5,7 +5,7 @@
       </div>
       <div>
          <p class="text-mute mt-20 mb-0 font-size-16">@lang('site.cours count')</p>
-         <h3 class="text-white mb-0 font-weight-500">{{ $cours_count}} <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
+         <h3 class="text-white mb-0 font-weight-500">{{ $cours_count}} <small class="text-success"><i class="fa fa-caret-up"></i>{{-- +2.5%--}}</small></h3>
       </div>
    </div>
 </div>

@@ -129,7 +129,7 @@ class CoursRepository implements CoursInterface
 
    public function open_and_postopen_cours($limit = null)
    {
-      $cours = Cours::wherehas('fee')->where('year', last_school_year())->where('status', '1')->orWhere('status', '2')
+      $cours = Cours::wherehas('fee')->where('year', last_school_year()['year'])->where('status', '1')->orWhere('status', '2')
          ->with('category_grade_level', 'teacher_name')->get();
       if ($limit != null)
           $cours->take($limit) ;

@@ -4,7 +4,7 @@ namespace App\Repository\Categorie;
 
 use App\Models\Categorie;
 use App\Models\Grade;
-use App\Models\level;
+use App\Models\Level;
 
 class CategorieRepository implements CategorieInterface
 {
@@ -41,7 +41,7 @@ class CategorieRepository implements CategorieInterface
 
       $categories->each(function ($categorie) {
          $categorie->grade = Grade::find($categorie->grade_id)['grade'];
-         $categorie->level = level::find($categorie->level_id)['level'];
+         $categorie->level = Level::find($categorie->level_id)['level'];
          $categorie->route = route('show.categorie.details_by_id', $categorie['id']);
          $categorie->global_image = asset($categorie['global_image']);
          return $categorie;

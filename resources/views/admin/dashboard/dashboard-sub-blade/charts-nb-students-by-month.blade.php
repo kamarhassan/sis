@@ -28,7 +28,7 @@
 
         </div>
     </div>
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <div class="box">
             <div class="box-header">
                 <h4 class="box-title">
@@ -36,11 +36,11 @@
                 </h4>
             </div>
             <div class="box-body">
-                <div id="xmlns">
+                <div id="count_students_by_cours">
                 </div>
             </div>
 
-        </div>
+        </div> --}}
     </div>
 
 

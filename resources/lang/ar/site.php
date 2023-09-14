@@ -531,6 +531,7 @@ return [
    'related categories' => 'فئات ذات صلة',
    'you must be login to write comment' => 'عليك تسجيل الدخول او انشاء حساب لتتمكن من كتابة تعليق',
    'can\'t delete this year beecause is already used in class' => 'لا يمكن حذف السنة الدراسية لانها مستخدمة مسبقا',
+
    'school year' => 'العام الدراسي',
    'school year start' => 'بداية العام الدراسي',
    'school year end' => 'نهاية العام الدراسي',
@@ -544,6 +545,9 @@ return [
    'blog tags' => 'blog tags',
    'blog viewed' => 'blog viewed',
    'blog status' =>  'blog status',
+   'studetns registartion count by month' => 'عدد الطلاب المسجلين  حسب الشهر',
+   'Sold services by month' => 'عدد الخدمات المباعة حسب الشهر',
+   '' => '',
    '' => '',
    '' => '',
 
