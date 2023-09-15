@@ -1,7 +1,14 @@
 <div>
-    {{-- <button type="button" wire:click="callFunction" class="btn btn-danger">Click Me</button> --}}
-    {{-- <button type="button" wire:click="callFunctionArg({{$user_id}})" class="btn btn-danger">Click Me!</button> --}}
-    @if ($current_step == 1)
+   @if (current_school_year()['year'] != last_school_year()['year']) 
+      
+     
+      <div class="callout callout-danger">
+        
+
+         <p>{{__('site.not are not in current school year please choose the correct year and try again later')}}</p>
+        </div>
+   
+    @elseif ($current_step == 1)
 
 
         <div class="text-center text-capitalize ">

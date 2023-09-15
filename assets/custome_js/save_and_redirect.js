@@ -316,3 +316,88 @@ function submit_certeficate(route_, form_id) {
    });
 }
 
+function chnage_school_years(route_, form_id, array_of_msg) {
+   var msg = JSON.parse(array_of_msg);
+   var formdata = new FormData($("#" + form_id)[0]);
+ 
+   Swal.fire({
+       title: msg['title'] + "?",
+       text: msg['text_of_confirmation_change'] + "?",
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: msg['confirmButtonTextof'] + "!",
+       cancelButtonText: msg['cancelButton'],
+   }).then((result) => {
+       if (result.isConfirmed) {
+         spinner_show();
+           $.ajax({
+            type: 'POST',
+            url: route_,
+            data: formdata,
+            processData: false,
+            contentType: false,
+            cache: false,
+               success: function(data) {
+                  spinner_hide();
+                  if (data.status == 'success') {
+                     toaster(data.message, data.status)
+                     window.location.href = data.route;
+                  } else {
+                     if (data.status == 'error') {
+                        toaster(data.message, data.status)
+                     }
+                  }
+               },
+               error: function() { // Removed the "reject" function
+                  spinner_hide();
+                   Swal.fire(
+                       msg['failed_delete'],
+                       msg[7],
+                       'error'
+                   )
+               }
+           });
+       }
+   });
+}
+
+
+
+function getschoolyear(route_) {
+   $.ajax({
+       type: 'Get',
+       url: route_,
+
+       success: function(data) {
+
+           if (data.status == 'success') {
+               $('#start_date_edit').val(data.schoolyear['start'])
+               $('#end_date_edit').val(data.schoolyear['end'])
+               $('#schoolyearid').val(data.schoolyear['id'])
+               $('#finally_school_year_edit').text(data.schoolyear['year'])
+
+               $('#modal-center').modal('show');
+           }
+
+
+       },
+       error: function reject(reject) {
+           var response = $.parseJSON(reject.responseText);
+           $.each(response.errors, function(key, val) {
+               let t = key.replace('.0', '_' + id);
+               $('#' + t + '__').text(val[0]).html;
+           })
+       }
+   });
+
+
+
+}
+
+function setschoolyear(finally_school_year_id_label, start_date_id, end_date_id) {
+   $('#' + finally_school_year_id_label).text($('#' + start_date_id).val().split('-')[0] + ' - ' + $('#' +
+       end_date_id).val().split('-')[
+       0]);
+}

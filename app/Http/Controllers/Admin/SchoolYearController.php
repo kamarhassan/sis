@@ -57,9 +57,6 @@ class SchoolYearController extends Controller
       try {
          $schoolyear =  Years::find($request->id);
 
-
-
-
          if (!$schoolyear) {
             $status = 'error';
             $message =  __('site.you have error');
@@ -68,7 +65,7 @@ class SchoolYearController extends Controller
                $schoolyear->delete();
                $status = 'success';
                $message = __('site.deleted_msg_swal_fire');
-            }else {
+            } else {
                $status = 'error';
                $message =  __('site.can\'t delete this year beecause is already used in class');
             }
@@ -99,5 +96,27 @@ class SchoolYearController extends Controller
          $message = __('site.deleted_msg_swal_fire');
       }
       return response()->json(['schoolyear' => $schoolyear, 'status' => $status]);
+   }
+
+   public function change_current_school_years(Request $request)
+   {
+
+      $disable_all =  Years::where('currentyear', 1)->update(['currentyear' => 0]);
+
+
+      $enablelastyears = Years::find($request->year)->update(['currentyear' => 1]);
+      if ($disable_all && $enablelastyears) {
+
+
+         $status = 'success';
+         $message = __('site.deleted_msg_swal_fire');
+         $route = route('admin.schoolyear.all');
+      } else {
+         $status = 'error';
+         $message =  __('site.you have error');
+         $schoolyear = '';
+      }
+
+      return response()->json(['message' => $message, 'status' => $status, 'route' => $route]);
    }
 }

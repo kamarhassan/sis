@@ -54,8 +54,7 @@ class CoursController extends Controller
       AdminInterface $teacher,
       CategorieInterface $categorieinterface,
       UserInterface $userinterface
-   )
-   {
+   ) {
       $this->userrepository = $userinterface;
       $this->cours = $cours;
       $this->feetype = $feetype;
@@ -76,6 +75,9 @@ class CoursController extends Controller
    public
    function create()
    {
+
+
+
       $fee_type = $this->feetype->get_all();
       $fee_type_id = $this->feetype->fee_type_id();
       $teacher = Admin::permission('teacher')->get();
@@ -105,8 +107,17 @@ class CoursController extends Controller
    public
    function store(InsertCoursRequest $request)
    {
-//    return $request;
+
       try {
+
+
+         if (current_school_year()['year'] != last_school_year()['year']) {
+            $status = 'error';
+            $message = __('site.not are not in current school year please choose the correct year and try again later');
+            $route = route('admin.cours.add');
+
+            return response()->json(['message' => $message, 'status' => $status, 'route' => $route]);
+         }
          DB::beginTransaction();
          $teacher_id = Admin::GetIdByName($request->teacher_name);
          // $teacher_id  = $this->teacher->GetTeacherIDbyName($request->teacher_name);
@@ -157,7 +168,7 @@ class CoursController extends Controller
             $coursfee_max = $this->coursfee->is_fee_defined($id)->max('fee_types_id');
             $level_cours = $cours->level;
             $grade_cours = $cours->grade;
-//          cours = Admin::role('teacher')->get(['id', 'name']);
+            //          cours = Admin::role('teacher')->get(['id', 'name']);
             $teacher = Admin::permission('teacher')->get(['id', 'name']);
             $status_od_cours = Statusofcour::select()->get();
             $grade = Grade::select()->get();

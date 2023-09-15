@@ -59,6 +59,7 @@
                             <th>@lang('site.school year')</th>
                             <th>@lang('site.school year start')</th>
                             <th>@lang('site.school year end')</th>
+                            <th>@lang('site.current school year')</th>
                             <th>@lang('site.options')</th>
                         </tr>
                     </thead>
@@ -71,6 +72,36 @@
                                     <td>{{ $year['year'] }}</td>
                                     <td>{{ $year['start'] }}</td>
                                     <td>{{ $year['end'] }}</td>
+                                    <td>
+
+                                        @if ($year['currentyear'] != 0 || is_null($year['currentyear'])) 
+                                            <form action="" id="changecurrentyear{{ $year['id'] }}">
+
+                                                @csrf
+
+                                                <input type="hidden" name="year" value="{{ $year['id'] }}">
+                                                <div class="form-group">
+                                                    <div class="box-controls pull-left">
+                                                        <label
+                                                            class="switch switch-border switch-success">
+                                                            @lang('site.current school year')
+                                                            <input type="checkbox" value="1" name="admin_status"
+                                                                id="active{{ $year['id'] }}"
+                                                                onchange="chnage_school_years('{{ route('admin.schoolyear.change.current.school.years') }}' ,'changecurrentyear{{ $year['id'] }}','{{ json_encode(swal_fire_msg_school_years()) }}');"
+                                                                @if ($year['currentyear'] == 1) checked   @endif />
+                                                            <span class="switch-indicator"></span>
+                                                            <label for="switcheryColor4"
+                                                                class="card-title ml-1">@lang('site.is not last year')</label>
+
+                                                            <span class="text-danger" id="active_{{ $year['id'] }}"> </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        @endif
+
+
+                                    </td>
 
                                     <td>
                                         @can('edit school year')
@@ -123,7 +154,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                          <input type="hidden" name="schoolyearid" id="schoolyearid">
+                                            <input type="hidden" name="schoolyearid" id="schoolyearid">
                                             <label>@lang('site.start date') </label>
                                             <input name="start_date" class="form-control" type="date" id="start_date_edit"
                                                 onchange="Set_Month_ToEndDate('start_date_edit', 'end_date_edit');setschoolyear('finally_school_year_edit','start_date_edit', 'end_date_edit');">
@@ -187,49 +218,17 @@
             });
         });
     </script>
-    <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
+
+    <script src="{{ URL::asset('assets/custome_js/save_and_redirect.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/delete.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/genralfunction.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/moment.min.js') }}"></script>
-    {{-- <script src="{{ URL::asset('assets/custome_js/save_and_redirect.js') }}"></script> --}}
-
-    <script>
-        function getschoolyear(route_) {
-            $.ajax({
-                type: 'Get',
-                url: route_,
-
-                success: function(data) {
-                    // $('#modal-center').replaceWith(data);
-                  
-                    if (data.status == 'success') {
-                        $('#start_date_edit').val(data.schoolyear['start'])
-                        $('#end_date_edit').val(data.schoolyear['end'])
-                        $('#schoolyearid').val(data.schoolyear['id'])
-                        $('#finally_school_year_edit').text(data.schoolyear['year'])
-
-                        $('#modal-center').modal('show');
-                    } 
-                   
-
-                },
-                error: function reject(reject) {
-                    var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function(key, val) {
-                        let t = key.replace('.0', '_' + id);
-                        $('#' + t + '__').text(val[0]).html;
-                    })
-                }
-            });
+    <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
+    <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.min.js') }}"></script>
 
 
-            
-        }
 
-        function setschoolyear(finally_school_year_id_label,start_date_id,end_date_id) {
-            $('#'+finally_school_year_id_label).text($('#'+start_date_id).val().split('-')[0] + ' - ' + $('#'+end_date_id).val().split('-')[
-                0]);
-        }
-    </script>
+    <script></script>
 @endsection

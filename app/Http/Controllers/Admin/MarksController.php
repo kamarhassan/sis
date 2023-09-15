@@ -53,12 +53,12 @@ class MarksController extends Controller
             'percent' => $request->percent[$i],
          ];
       }
-      // return $marksObject;
-      if (array_sum($request->percent) != 100) {
-         $message = __('site.the sum of percent must be equal 100 please edit percent and try');
+     $percentage =  round(array_sum($request->percent), 2);
+      if ($percentage != 100) {
+         $message = __('site.the sum of percent must be equal 100 please edit percent and try your % is ') . $percentage ;
          $status = 'error';
 
-         return response()->json(['status' => $status, 'message' => $message]);
+         return response()->json(['status' => $status, 'message' =>$message ]);
       }
 
 

@@ -302,6 +302,9 @@ Route::group(['prefix' => 'setting'], function () {
          Route::get('schoolyear-to-edit/{school_year_id}', [SchoolYearController::class, 'get_info_to_edit'])
          ->middleware(['permission:add school year|edit school year|delete school year'])->name('admin.schoolyear.get.to.edit');
    
+         Route::post('change-current-school-years', [SchoolYearController::class, 'change_current_school_years'])
+         ->middleware(['permission:edit school year'])->name('admin.schoolyear.change.current.school.years');
+   
    
       });
 

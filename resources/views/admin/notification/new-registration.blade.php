@@ -20,6 +20,17 @@
    </style>
 @endsection
 @section('content')
+
+
+@if (current_school_year()['year'] != last_school_year()['year']) 
+      
+     
+<div class="callout callout-danger">
+  
+
+   <p>{{__('site.not are not in current school year please choose the correct year and try again later')}}</p>
+  </div>
+@else
    <div class="box">
       {{-- <div class="box-header with-border">
           <h4 class="box-title">Mailbox</h4>
@@ -149,6 +160,11 @@
 
    </div>
 @include('admin.notification.user-information')
+@endif
+
+
+
+
 @endsection
 
 

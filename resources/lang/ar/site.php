@@ -547,8 +547,17 @@ return [
    'blog status' =>  'blog status',
    'studetns registartion count by month' => 'عدد الطلاب المسجلين  حسب الشهر',
    'Sold services by month' => 'عدد الخدمات المباعة حسب الشهر',
-   '' => '',
-   '' => '',
+   'the sum of percent must be equal 100 please edit percent and try your % is ' => 'يجب ان لا تكون النسبة المئوية 100% لقد ادخلت',
+   'current school year' => 'العام الدراسي الحالي',
+   'is not last year' => 'ليس العام الدراسي الاخير',
+   'confirme change cant change after this' => 'هل انت متاكد من انك تريد تغيير العام الدراسي الحالي لن تتمكن من تعييره مجددا',
+   'confirmButtonTextof_change_swal_fire' => 'نعم تغيير',
+  
+   'changed_msg_swal_fire' => '',
+   'succes_change_msj_swal_fire' => '',
+   'failed change' => '',
+   'select_at_least_one_to_delete' => '',
+   'not are not in current school year please choose the correct year and try again later' => 'انت لست في العام الدراسي الحالي اختر العام الدراسي الصحيح واعد المحاولة',
    '' => '',
 
 

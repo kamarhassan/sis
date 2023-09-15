@@ -93,7 +93,7 @@ function current_school_year()
 function last_school_year()
 {
    //   $year= App\Models\Years::latest()->first();
-   $year = App\Models\Years::orderBy('year', 'desc')->first();
+   $year = App\Models\Years::where('currentyear',1)->first();
    return $year;
 }
 
@@ -147,6 +147,9 @@ function  swal_fire_msg()
       'not_any_selection' => __('site.select_at_least_one_to_delete'),
    ];
 }
+
+
+
 function  attendance_swal_fire_msg()
 {
    return [
@@ -160,6 +163,25 @@ function  attendance_swal_fire_msg()
       'not_any_selection' => __('site.select_at_least_one_to_delete'),
    ];
 }
+
+
+
+
+function  swal_fire_msg_school_years()
+{
+
+   return [
+      'title' => __('site.school year'),
+      'text_of_confirmation_change' => __('site.confirme change cant change after this'),
+      'confirmButtonTextof' => __('site.confirmButtonTextof_change_swal_fire'),
+      'cancelButton' => __('site.cancelButtonTextof_delet_swal_fire'),
+      'changed_msg' => __('site.changed_msg_swal_fire'),
+      'succes_msj' => __('site.succes_change_msj_swal_fire'),
+      'failed_change' => __('site.failed change'),
+      'not_any_selection' => __('site.select_at_least_one_to_delete'),
+   ];
+}
+
 
 function  photos_dir($photoUrl)
 {
