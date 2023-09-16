@@ -36,8 +36,10 @@ class CertificateController extends Controller
    public function certificate($studentsRegistration_id, $cert_id)
    {
 
-      $final_template = $this->certificaterepository->certificate_templates($studentsRegistration_id, $cert_id, Auth::user()->id);
 
+
+    $final_template = $this->certificaterepository->certificate_templates($studentsRegistration_id, $cert_id, Auth::user()->id);
+ 
       if ($final_template == 'marks not defined') {
 
          Toastr()->error(__('site.marks not found'));
@@ -48,7 +50,7 @@ class CertificateController extends Controller
       $mark = $final_template['mark'];
 
       $certificate_barcode = $this->certificaterepository->get_or_create_barcode_certificate_by_stdid_registration($studentsRegistration_id, $cert_id);
-      // $certificate_barcode= $certificate_barcode['certificate_barcode'];
+
       return  view('frontend.student-certificate.certificate', compact('template', 'mark', 'certificate_barcode'));
    }
 

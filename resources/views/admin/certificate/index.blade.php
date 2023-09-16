@@ -44,7 +44,7 @@
                                 @endforeach
                             @endisset
                         </select>
-
+<span class="text-danger" id="template_id_"></span>
                     </div>
                     <table id="example1" class="table table-striped table-bordered" style="width:100% ">
                         <thead>

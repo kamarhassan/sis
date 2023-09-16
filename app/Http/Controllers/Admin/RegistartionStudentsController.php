@@ -2,28 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\EditRegistrationRequest;
+use App\Http\Requests\NewRegistrationStydentsRequest;
 use App\Models\Admin;
-
+use App\Models\NotificationAdmin;
 use App\Models\Payment;
 use App\Models\Sponsor;
 use App\Models\SponsorType;
-use Illuminate\Http\Request;
-use App\Models\NotificationAdmin;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Models\StudentsRegistration;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
-use App\Repository\User\UserInterface;
-use App\Repository\Cours\CoursInterface;
-use App\Http\Requests\EditRegistrationRequest;
-use App\Repository\Cours_fee\CoursFeeInterface;
-use App\Http\Requests\RegistrationStudentsRequest;
-use App\Http\Requests\NewRegistrationStydentsRequest;
-use App\Repository\SponsoreShip\SponsoreShipsInterface;
-use App\Repository\RegisterCours\RegisterCoursInterface;
+use App\Models\User;
 use App\Repository\AdminNotification\AdminNotificationInterface;
+use App\Repository\Cours\CoursInterface;
+use App\Repository\Cours_fee\CoursFeeInterface;
+use App\Repository\RegisterCours\RegisterCoursInterface;
+use App\Repository\SponsoreShip\SponsoreShipsInterface;
+use App\Repository\User\UserInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class RegistartionStudentsController extends Controller
@@ -112,7 +109,7 @@ class RegistartionStudentsController extends Controller
                return redirect()->route('admin.students.Registration-1');
             }
             $cours_info->category_grade_level;
-              $cours_info;
+            $cours_info;
             $cours_fee = $this->coursfeerepository->cours_fee_with_type($cours_info);
             $teachear_name = $this->coursrepository->cours_theacher_name($cours_info);
             $total_cours_fee = $cours_fee->sum('value');
@@ -296,8 +293,10 @@ class RegistartionStudentsController extends Controller
             toastr()->error(__('site.fee of this cours note defined'));
             return redirect()->route('admin.students.Registration-1');
          }
-         $grade = $cours_info->grade;
-         $level = $cours_info->level;
+         $cours_info->category_grade_level;
+
+//         $grade = $cours_info->category_grade_level['grade'];
+//         $level = $cours_info->category_grade_level['level'];
          $cours_fee = $this->coursfeerepository->cours_fee_with_type($cours_info);
          $teachear_name = $this->coursrepository->cours_theacher_name($cours_info);
          $total_cours_fee = $cours_fee->sum('value');

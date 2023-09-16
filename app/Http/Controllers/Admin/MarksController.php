@@ -45,17 +45,21 @@ class MarksController extends Controller
    public function store_general_info(StoreMarksGeneralInfoRequest $request)
    {
 
+//      return $request;
+      
       for ($i = 0; $i < count($request->marks_name); $i++) {
          $marksObject[] = [
             'id' => 'markid' . $i,
             'marks_name' => $request->marks_name[$i],
             'marks' => $request->marks[$i],
             'percent' => $request->percent[$i],
+            'group' =>  $request->group[$i]
          ];
       }
      $percentage =  round(array_sum($request->percent), 2);
-      if ($percentage != 100) {
-         $message = __('site.the sum of percent must be equal 100 please edit percent and try your % is ') . $percentage ;
+   //   dd(round($percentage));
+      if (round($percentage) != 100) {
+         $message = __('site.the sum of percent must be equal 100 please edit percent and try your % is ') . round($percentage) ;
          $status = 'error';
 
          return response()->json(['status' => $status, 'message' =>$message ]);
@@ -118,7 +122,7 @@ class MarksController extends Controller
 
 
       try {
-
+//return $request;
          DB::beginTransaction();
 
 

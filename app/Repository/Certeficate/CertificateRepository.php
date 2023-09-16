@@ -27,33 +27,27 @@ class CertificateRepository implements CertificateInterface
 
    public function get_all_certificate()
    {
-      $certificates = Certificate::get(); 
-       
-      $certificates->each(function ($certificate) {
-        
+      $certificates = Certificate::get();
 
-        if( $certificate->categorie_id != null){
-     
-           $categoies = Categorie::whereIn('id', $certificate->categorie_id)->get(['id', 'name']);
-           $certificate->categorie = $categoies;
-        }
-        
+      $certificates->each(function ($certificate) {
+
+
+         if ($certificate->categorie_id != null) {
+
+            $categoies = Categorie::whereIn('id', $certificate->categorie_id)->get(['id', 'name']);
+            $certificate->categorie = $categoies;
+         }
+
 
          return $certificate;
       });
       return $certificates;
    }
-   // public function get_all_certificate_templates()
-   // {
-   //    $certificate = CerteficateTemplate::get();
-   //    if ($certificate->count() > 0)
-   //       return $certificate;
-   //    return false;
-   // }
 
 
 
-   public function    certificate_templates($studentsRegistration_id, $cert_id, $user_id)
+
+   public function certificate_templates($studentsRegistration_id, $cert_id, $user_id)
    {
 
       try {
@@ -61,19 +55,14 @@ class CertificateRepository implements CertificateInterface
          $std_user = User::find($user_id);
 
          $studentsregistration = StudentsRegistration::find($studentsRegistration_id);
-         $cours = Cours::find($studentsregistration['cours_id']);
-         if ($studentsregistration['remaining'] > 0) {
+          $cours = Cours::find($studentsregistration['cours_id']);
+         StudentsCertificateBarcode::where('studentsRegistration_id', $studentsregistration->id)->first() == null ? $has_barcode = 0 : $has_barcode = 1;
+
+         if ($studentsregistration['remaining'] > 0 && $has_barcode == 0) {
             toastr()->warning(__('site.your certeficate has blocked because you have an amount'));
             return redirect()->back();
          }
          $cert = CerteficateTemplate::where('isactive', '=', '1')->find($cert_id);
-         //  {{$institute_name}} 
-         //  {{$institute_phone}} 
-         //  {{$institute_email}} 
-         //  {{$institute_city}} 
-         //  {{$institute_building}} 
-         //  {{$institute_class_end_date}}
-
 
 
          $user_id = $std_user['id'];
@@ -81,8 +70,9 @@ class CertificateRepository implements CertificateInterface
          $email = $std_user['email'];
          $birthdate = $std_user['birthday'];
          $place_of_birth = $std_user['birthday_place'];
-         $grade = $cours->grade->grade;
-         $level = $cours->level->level;
+         $cours->category_grade_level;
+         $grade = $cours['category_grade_level']['grade']['grade'];
+         $level = $cours['category_grade_level']['level']['level'];
          $duration = $cours['duration'];
          $year = $cours['year'];
          $class_start_date = $cours['act_StartDa'];
@@ -91,7 +81,7 @@ class CertificateRepository implements CertificateInterface
 
 
          $final_mark_table_th = $final_mark_table_td = '';
-         $mark =  Marks::where(['cours_id' => $cours['id'], 'user_id' => $user_id])->get();
+          $mark =  Marks::where(['cours_id' => $cours['id'], 'user_id' => $user_id])->get();
          if ($mark->count() > 0) {
 
             $mark = $mark[0]; // Marks::where(['cours_id' => $cours['id'], 'user_id' => $user_id])->get()[0];
@@ -110,9 +100,7 @@ class CertificateRepository implements CertificateInterface
             $mark =  '<table class="table table-striped table-bordered sourced-data"><thead><tr>' . $final_mark_table_th . '</tr></thead><tbody><tr>' . $final_mark_table_td . '</tr></tbody></table>';
 
 
-            // $cert_ =   str_replace('{{$mark}}', '<div class="mark_table"></div>', $cert['template']);
-            // return  $cert['template'];
-            // dd( $cert['template']);
+         
             strpos($cert['template'], '{{$mark}}') !== false ? $cert_ =   str_replace('{{$mark}}', '<div class="mark_table"></div>', $cert['template']) : $cert_ = $cert['template'];
 
             $final_template = Blade::render($cert_, [

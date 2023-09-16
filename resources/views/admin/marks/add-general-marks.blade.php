@@ -43,12 +43,21 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="marks_percent">@lang('site.percent') <span
+                                                <label for="marks_percent">@lang('site.percent')<span
                                                         class="text-danger">*</span> </label>
                                                 <br>
                                                 <input name="percent[]" type="number" class="form-control"
                                                     id="marks_percent">
                                                 <span class="text-danger" id="percent_0_"></span>
+                                            </div>
+                                        </div> 
+                                       <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="marks_percent">@lang('site.is group')  </label>
+                                                <br>
+                                                <input name="group[]" type="number" class="form-control"
+                                                    id="group">
+                                                <span class="text-danger" id="group_0_"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-2" style="padding-top: 25px;">
@@ -112,7 +121,15 @@
                             <span class="text-danger" id="marks_percent_number_error"></span>
                         </div>
                     </div>
-                
+                   <div class="col-md-1">
+                      <div class="form-group">
+                         <label for="marks_percent">@lang('site.is group')  </label>
+                         <br>
+                         <input name="group[]" type="number" class="form-control"
+                                id="group_number">
+                         <span class="text-danger" id="group_number_error"></span>
+                      </div>
+                   </div>
                     <div class="col-md-2" style="padding-top: 25px;">
                         <span class="btn btn-success addeventmore"><i class="fa fa-plus"></i> </span>
                         <span class="btn btn-danger removeeventmore"><i class="fa fa-minus"></i> </span>
@@ -143,6 +160,10 @@
 
                 $("#marks_percent_number").attr("id", "percent_" + counter);
                 $("#marks_percent_number_error").attr("id", "percent_" + counter + "_");
+                
+                
+                $("#group_number").attr("id", "percent_" + counter);
+                $("#group_number_error").attr("id", "percent_" + counter + "_");
 
 
 

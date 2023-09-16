@@ -71,10 +71,10 @@
                                                                     @foreach ($certificate as $cert)
                                                                         <div>
 
-                                                                            @if ($student_cours['remaining'] != 0)
+                                                                            @if ($student_cours['remaining'] != 0 && $student_cours['isenable'] == 0)
                                                                                 <a href="#"> <span class="text-danger"><i
                                                                                             class="mdi mdi-certificate"></i>
-                                                                                        @lang('site.The remaining amount must be paid')
+                                                                                        @lang('site.The remaining amount must be paid') 
                                                                                     </span></a>
                                                                             @else
                                                                                 <a

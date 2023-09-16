@@ -48,8 +48,8 @@ Route::group(
 
 
       Route::group(['prefix' => 'certificate'], function () {
-//         Route::get('/{barcode}', [CertificateController::class, 'get_student_cetificate_by_barcode_scan'])->name('web.searche.certificate.by.barcode.scan');
-//         Route::get('/-barcode', [CertificateController::class, 'get_student_cetificate_by_barcode'])->name('web.searche.certificate.by.barcode');
+         Route::get('/{barcode}', [CertificateController::class, 'get_student_cetificate_by_barcode_scan'])->name('web.searche.certificate.by.barcode.scan');
+         Route::get('/-barcode', [CertificateController::class, 'get_student_cetificate_by_barcode'])->name('web.searche.certificate.by.barcode');
          Route::post('/-post-barcode', [CertificateController::class, 'searche_and_get_student_cetificate_by_barcode'])->name('web.get.certificate.by.barcode');
      
          Route::get('/{certificate_name}/{cert_id}', [CertificateController::class, 'certificate_detail'])

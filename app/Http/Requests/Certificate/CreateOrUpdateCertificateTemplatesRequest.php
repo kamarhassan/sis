@@ -30,5 +30,13 @@ class CreateOrUpdateCertificateTemplatesRequest extends FormRequest
     }
 
 
+    public  function messages()
+    {
+        return [
+            '*.required' => __('site.its_require'),
+            '*.exists' => __('site.its_exists'),
+            '*.unique'  =>__('site.unique')
 
+        ];
+    }
 }
