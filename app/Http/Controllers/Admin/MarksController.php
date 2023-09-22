@@ -35,18 +35,26 @@ class MarksController extends Controller
    {
 
       $HeaderMarks = HeaderMarks::where('cours_id', $cours_id)->get();
+      $HeaderMarks_of_teacher_ = HeaderMarks::select('id', 'marks')->where('teacher_id', auth()->user()->id)->groupBy(['marks'])->get()->values();
+      $HeaderMarks_of_teacher = [];
+      foreach ($HeaderMarks_of_teacher_ as $key => $value) {
+
+         $HeaderMarks_of_teacher[$value['id']] = $value['marks'];
+      }
+      $HeaderMarks_of_teacher;
       if ($HeaderMarks->count() > 0) {
          toastr()->warning(__('site.header marks al ready exist to edit call to admin'));
          return redirect()->route('admin.take.attendance.students');
       }
-      return view('admin.marks.add-general-marks', compact('cours_id'));
+
+      return view('admin.marks.add-general-marks', compact('cours_id', 'HeaderMarks_of_teacher'));
    }
 
    public function store_general_info(StoreMarksGeneralInfoRequest $request)
    {
 
-//      return $request;
-      
+      //   return $request;
+
       for ($i = 0; $i < count($request->marks_name); $i++) {
          $marksObject[] = [
             'id' => 'markid' . $i,
@@ -56,13 +64,28 @@ class MarksController extends Controller
             'group' =>  $request->group[$i]
          ];
       }
-     $percentage =  round(array_sum($request->percent), 2);
-   //   dd(round($percentage));
+
+      $to_percent =  collect($marksObject)->groupBy('group');
+
+
+      $percentage = 0;
+      $total_marks = 0;
+
+      foreach ($to_percent as $key => $by_group) {
+         if ($key == "") {
+            $percentage += $by_group->sum('percent');
+            $total_marks += $by_group->sum('marks');
+         } else {
+            $percentage += $by_group->avg('percent');
+            $total_marks += $by_group->avg('marks');
+         }
+      }
+      // return $to_percent;
       if (round($percentage) != 100) {
-         $message = __('site.the sum of percent must be equal 100 please edit percent and try your % is ') . round($percentage) ;
+         $message = __('site.the sum of percent must be equal 100 please edit percent and try your % is ') . round($percentage);
          $status = 'error';
 
-         return response()->json(['status' => $status, 'message' =>$message ]);
+         return response()->json(['status' => $status, 'message' => $message]);
       }
 
 
@@ -70,8 +93,8 @@ class MarksController extends Controller
          'cours_id'    => Crypt::decryptString($request->cours_id),
          'teacher_id'    => Auth::user()->id,
          'marks'    => $marksObject,
-         'total'    =>   array_sum($request->marks),
-         'percent'    =>   array_sum($request->percent),
+         'total'    =>   $total_marks,
+         'percent'    =>   $percentage,
       ]);
 
 
@@ -87,8 +110,7 @@ class MarksController extends Controller
 
    public function get_std_to_add__or_update_marks($cours_id_)
    {
-      // dd(1);
-      //  return $cours_id_   ;
+
       $cours_id = Crypt::decryptString($cours_id_);
       $HeaderMarks = HeaderMarks::where('cours_id', $cours_id)->get();
       if ($HeaderMarks->count() == 0) {
@@ -96,21 +118,25 @@ class MarksController extends Controller
       }
       $status_of_insert_and_update_marks =   $HeaderMarks[0]['status'];
       $students = $this->studentsrepos->students_for_cours_defined($cours_id);
+
       $header_marks = $this->marksrepository->header_marks_table($HeaderMarks);
+
       $columns = $this->marksrepository->columns_marks_data_type($header_marks, $HeaderMarks[0]['total']);
-      $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks);
+      //   $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks);
       $mark_std =  Marks::where('header_mark_id', $HeaderMarks[0]['id'])->where('cours_id', $cours_id)->get();
+
       if ($mark_std->count() > 0) {
          /**
           * if students have marks
           */
+
          $studentsdata =   $this->marksrepository->dataset_old_marks_students_table($students, $header_marks, $cours_id, $HeaderMarks[0]['id']);
       } else {
          /**
           * if students don't have marks
           */
 
-         $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks);
+         $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks, $HeaderMarks[0]['total']);
       }
 
       return view('admin.marks.add-students-marks', compact('header_marks', 'studentsdata', 'columns', 'cours_id', 'status_of_insert_and_update_marks'));
@@ -122,7 +148,7 @@ class MarksController extends Controller
 
 
       try {
-//return $request;
+         // return $request;
          DB::beginTransaction();
 
 
@@ -132,6 +158,7 @@ class MarksController extends Controller
          $message = null;
          $t = [];
          $DataAfterValidate =  $this->marksrepository->validate_marks_befor_insert($request->data, $header_marks, $HeaderMarks[0]);
+
          if ($DataAfterValidate['status'] != 'error') {
             foreach ($DataAfterValidate['data'] as $key => $value) {
 
@@ -176,28 +203,32 @@ class MarksController extends Controller
       $cours_id = Crypt::decryptString($cours_id_);
       $HeaderMarks = HeaderMarks::where('cours_id', $cours_id)->get();
       if ($HeaderMarks->count() == 0) {
+
          return redirect()->route('admin.add.marks.cours', $cours_id_);
       }
       $header_marks_id = $HeaderMarks[0]['id'];
 
       $students = $this->studentsrepos->students_for_cours_defined($cours_id);
-      $header_marks = $this->marksrepository->header_marks_table($HeaderMarks);
-      $columns = $this->marksrepository->columns_marks_data_type($header_marks, $HeaderMarks[0]['total']);
-      $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks);
+      $header_marks = $this->marksrepository->header_marks_table_only_show_data($HeaderMarks);
+      $columns = $this->marksrepository->columns_marks_data_type_only_show_data($header_marks, $HeaderMarks[0]['total']);
+
       $mark_std =  Marks::where('header_mark_id', $HeaderMarks[0]['id'])->where('cours_id', $cours_id)->get();
       if ($mark_std->count() > 0) {
          /**
           * if students have marks
           */
-         $studentsdata =   $this->marksrepository->dataset_old_marks_students_table($students, $header_marks, $cours_id, $HeaderMarks[0]['id']);
+         //   return  ['marks'=>$students_marks,'columnsToColor'=>$columnsToColor];
+         $dataset_old_marks_students_table_show_only_data =   $this->marksrepository->dataset_old_marks_students_table_show_only_data($students, $header_marks, $cours_id, $HeaderMarks[0]['id']);
+         $studentsdata =  $dataset_old_marks_students_table_show_only_data['marks'];
+         $columnsToColor =  $dataset_old_marks_students_table_show_only_data['columnsToColor'];
       } else {
          /**
           * if students don't have marks
           */
 
-         $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks);
+         $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks, $HeaderMarks[0]['total']);
       }
-      return view('admin.marks.admin-report-action', compact('header_marks', 'studentsdata', 'columns', 'cours_id', 'header_marks_id'));
+      return view('admin.marks.admin-report-action', compact('header_marks', 'studentsdata', 'columns', 'cours_id', 'header_marks_id', 'columnsToColor'));
    }
 
 
@@ -253,6 +284,12 @@ class MarksController extends Controller
       }
    }
    public function export_marks(MarksActionFromAdminRequest $request)
+   {
+      return $request;
+   }
+
+
+   public  function store_general_info_marks_from_old(Request $request)
    {
       return $request;
    }

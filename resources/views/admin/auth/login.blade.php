@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
+    <link rel="icon" href="{{ logo()  }}">
 
     <title>Sunny Admin - Log in </title>
 

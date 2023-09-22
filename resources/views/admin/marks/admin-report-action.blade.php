@@ -3,7 +3,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('title')
-   @lang('site.admin report action')
+    @lang('site.admin report action')
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('assets/handsontable/handsontable.full.min.css') }}">
@@ -18,24 +18,30 @@
                     <div class="card-content collpase show">
 
                         <div class="row">
-                            <div class="col-md-2"><a href="#"
-                                    onclick="submit('{{ route('disable.enable.take.marks') }}','admin_action_to_marks');"
-                                    class="hover hover-primary">disble edit or insrt <i class="ti ti-reload"></i></a></div>
-                            <div class="col-md-2"><a href="#"
-                                    {{-- onclick="delete('{{ route('reset.marks') }}','admin_action_to_marks');" --}}
-                                      onclick="reset_marks_by_id('{{ route('reset.marks') }}','{{ Crypt::encryptString($header_marks_id) }}','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');"
-                                    class="hover hover-primary">reset</a></div>
-                            {{-- <div class="col-md-2"><a onclick="submit('{{ route('admin.store.marks.cours') }}','admin_action_to_marks');">print</a></div> --}}
-                            {{-- <div class="col-md-2"><a href="#"
-                                    onclick="submit('{{ route('export.marks') }}','admin_action_to_marks');"
-                                    class="hover hover-primary">export</a></div> --}}
+                            @can('enable or disable marks')
+                                <div class="col-md-2">
+
+                                    <a href="#"
+                                        onclick="submit('{{ route('disable.enable.take.marks') }}','admin_action_to_marks');"
+                                        class="hover hover-primary">@lang('site.disable or enable take marks')<i class="ti ti-reload">
+                                        </i>
+                                    </a>
+                                </div>
+                            @endcan
+                            @can('reset marks')
+                                <div class="col-md-2"><a href="#"
+                                        onclick="reset_marks_by_id('{{ route('reset.marks') }}','{{ Crypt::encryptString($header_marks_id) }}','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');"
+                                        class="hover hover-primary">@lang('site.reset marks') <i class="ti ti-reload">
+                                        </i>
+                                    </a>
+                                </div>
+                            @endcan
+
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
+
             <div class="col-12">
                 <div class="card">
 
@@ -51,12 +57,7 @@
 
                             <div id="handsontable" class="hot handsontable htColumnHeaders"></div>
 
-                            {{-- <button  class="button button--primary button--blue">Save data</button> --}}
-
-                            {{-- <a id="save" type="submit" class="btn btn-close btn-success btn-round fa fa-save">
-                                <i class="ft-check"></i> @lang('site.save')
-                                
-                            </a> --}}
+                           
                             <br>
                             <span id="error_marks" class="text-danger">
                                 <div id="erro_show"></div>
@@ -78,9 +79,7 @@
         var dataset = @json($studentsdata);
         var columns = @json($columns);
 
-
-
-
+        var columnsToColor = @json($columnsToColor);
 
 
         $(document).ready(function() {
@@ -109,7 +108,7 @@
                 )
             });
 
-            console.table(columnsdata);
+            console.table(columnsToColor);
 
 
             const save = document.querySelector('#save');
@@ -126,7 +125,21 @@
                 renderAllRows: true,
                 height: 'auto',
                 columns: columnsdata,
-                fixedColumnsStart: 1,
+                fixedColumnsStart: 2,
+                cells: function(row, col, prop) {
+                    var cellProperties = {};
+
+                    if (columnsToColor.indexOf(col) !== -
+                        1) { // Check if the column should have background color
+                        cellProperties.renderer = function(instance, td, row, col, prop, value,
+                            cellProperties) {
+                            Handsontable.renderers.TextRenderer.apply(this, arguments);
+                            td.style.backgroundColor = 'lightblue'; // Set the background color
+                        };
+                    }
+
+                    return cellProperties;
+                },
                 formulas: {
                     engine: hyperformulaInstance,
                     sheetName: 'Sheet1'

@@ -107,7 +107,8 @@ class DashboardController extends Controller
       try {
 
 
-         Artisan::call('migrate');
+//         Artisan::call('migrate');
+         Artisan::call('db:seed');
 
          $t = Artisan::call('cache:clear');
          $t = Artisan::call('optimize:clear');

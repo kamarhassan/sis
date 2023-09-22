@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-   @lang('site.add general marks')
+    @lang('site.add general marks')
 @endsection
 @section('css')
     @livewireStyles()
@@ -50,13 +50,12 @@
                                                     id="marks_percent">
                                                 <span class="text-danger" id="percent_0_"></span>
                                             </div>
-                                        </div> 
-                                       <div class="col-md-1">
+                                        </div>
+                                        <div class="col-md-1">
                                             <div class="form-group">
-                                                <label for="marks_percent">@lang('site.is group')  </label>
+                                                <label for="marks_percent">@lang('site.is group') </label>
                                                 <br>
-                                                <input name="group[]" type="number" class="form-control"
-                                                    id="group">
+                                                <input name="group[]" type="number" class="form-control" id="group">
                                                 <span class="text-danger" id="group_0_"></span>
                                             </div>
                                         </div>
@@ -82,7 +81,44 @@
             </div>
         </div>
     </section>
-
+  @isset ($HeaderMarks_of_teacher) 
+     <section id="html">
+         <div class="row">
+            <div class="col-12">
+               <div class="card">
+                    <div class="row"><h2>or choose from old marks</h2></div>
+                     <table class="table-responsive-sm">
+ 
+                         @foreach ($HeaderMarks_of_teacher as $key_id =>$item)
+                             <tr>
+                               <td>
+                                 <form id="new_marks_from_old{{ $key_id}}">
+                                    @csrf
+                                 <input type="hidden" name="id_old" value="{{Crypt::encryptString($key_id)}}">
+                                 <input type="hidden" name="cours_id" value="{{Crypt::encryptString($cours_id)}}">
+                                 </form>
+                                  <a class="btn btn-float bbt btn-square btn-outline-success fa fa-plus-circle"
+                                      title="@lang('site.save')"
+                                      onclick="submit('{{ route('admin.store.marks.cours.from.old') }}','new_marks_from_old{{ $key_id}}');">
+                                      <span class=""> @lang('site.save')</span>
+                                  </a>
+                              </td>
+                                 @foreach ($item as $marks)
+                                     <td>
+ 
+                                         {{ $marks['marks_name'] }}
+                                     </td>
+                                 @endforeach
+                              
+                             </tr>
+                             {{-- <br> --}}
+                         @endforeach
+                     </table>
+                 </div>
+             </div>
+         </div>
+     </section>
+  @endisset
 
 
 
@@ -121,20 +157,19 @@
                             <span class="text-danger" id="marks_percent_number_error"></span>
                         </div>
                     </div>
-                   <div class="col-md-1">
-                      <div class="form-group">
-                         <label for="marks_percent">@lang('site.is group')  </label>
-                         <br>
-                         <input name="group[]" type="number" class="form-control"
-                                id="group_number">
-                         <span class="text-danger" id="group_number_error"></span>
-                      </div>
-                   </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for="marks_percent">@lang('site.is group') </label>
+                            <br>
+                            <input name="group[]" type="number" class="form-control" id="group_number">
+                            <span class="text-danger" id="group_number_error"></span>
+                        </div>
+                    </div>
                     <div class="col-md-2" style="padding-top: 25px;">
                         <span class="btn btn-success addeventmore"><i class="fa fa-plus"></i> </span>
                         <span class="btn btn-danger removeeventmore"><i class="fa fa-minus"></i> </span>
                     </div>
-                
+
                 </div>
             </div>
         </div>
@@ -156,12 +191,12 @@
                 $("#marks_number").attr("id", "marks_" + counter);
                 $("#marks_number_error").attr("id", "marks_" + counter + "_");
 
-           
+
 
                 $("#marks_percent_number").attr("id", "percent_" + counter);
                 $("#marks_percent_number_error").attr("id", "percent_" + counter + "_");
-                
-                
+
+
                 $("#group_number").attr("id", "percent_" + counter);
                 $("#group_number_error").attr("id", "percent_" + counter + "_");
 

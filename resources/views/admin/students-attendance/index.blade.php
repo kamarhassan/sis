@@ -58,9 +58,11 @@
                                                             if ($is_teacher == false) {
                                                                 $attendance_route = route('admin.enable.disable.take.attendance', $cour['id']);
                                                                 $marks_route = route('admin.marks.report.and.action', Crypt::encryptString($cour['id']));
+                                                                $report_marks_route = "#";
                                                             } else {
                                                                 $attendance_route = route('admin.attendance.general.info', $cour['id']);
                                                                 $marks_route = route('admin.get.students.to.add.marks', Crypt::encryptString($cour['id']));
+                                                                $report_marks_route = route('admin.get.report.students.to.add.marks', Crypt::encryptString($cour['id']));
                                                             }
                                                             
                                                             $generate_certfifcate = route('admin.generate.certificate.with.barcode',Crypt::encryptString($cour['id']));
@@ -95,6 +97,12 @@
                                                                                     title="@lang('site.add students marks')">
                                                                                     @lang('site.add students marks')
                                                                                 </a>
+                                                                                <a href="{{ $report_marks_route }}"
+                                                                                class="btn fa fa-plus-circle"
+                                                                                title="@lang('site.report students marks')">
+                                                                                @lang('site.report students marks')
+                                                                            </a>
+
                                                                             @endcan
 
                                                                             @can('generate certificate')

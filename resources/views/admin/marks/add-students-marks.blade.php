@@ -3,7 +3,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('title')
-   @lang('site.add students marks')
+    @lang('site.add students marks')
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('assets/handsontable/handsontable.full.min.css') }}">
@@ -43,30 +43,16 @@
         </div>
 
     </section>
-@endsection
+   @endsection
 
 @section('script')
     <script src="{{ URL::asset('assets/handsontable/handsontable.full.min.js') }}"></script>
-
-
-    {{-- <script src="{{ URL::asset('assets/app-assets/vendors/js/tables/handsontable/handsontable.full.js') }}"
-        type="text/javascript"></script>
-
-    <script src="{{ URL::asset('assets/app-assets/js/scripts/tables/handsontable/handsontable-cell-types.js') }}"
-        type="text/javascript"></script> --}}
-
-
 
     <script>
         var head = @json($header_marks);
         var dataset = @json($studentsdata);
         var columns = @json($columns);
-
-
-
-
-
-
+        console.table(dataset);
         $(document).ready(function() {
             var columnsdata = [];
             var datatype = null;
@@ -110,7 +96,7 @@
                 renderAllRows: true,
                 height: 'auto',
                 columns: columnsdata,
-                fixedColumnsStart: 1,
+                fixedColumnsStart: 2,
                 formulas: {
                     engine: hyperformulaInstance,
                     sheetName: 'Sheet1'
@@ -131,36 +117,11 @@
             });
 
 
-
-
         });
 
 
-        function columns_marks_data_type(headmarks) {
-
-            var columnsdata = [];
-            var datatype = null;
-            var isreadonly = null;
-            var key = 0;
-            headmarks.forEach((element) => {
-                console.log(element.data); // 100, 200, 300
-                columnsdata[key++] = [
-                    data => element.data,
-                    type => element.type,
-                    readOnly => element.readOnly,
-                    validator => (value, callback, max = element.marks) => {
-                        if (value > max || value < 0) {
-                            callback(false);
-
-                        } else {
-                            callback(true);
-                        }
-                    }
-                ]
-            });
-
-            return columnsdata;
-        }
     </script>
+
+   
     <script src="{{ URL::asset('assets/custome_js/save_and_redirect.js') }}"></script>
 @endsection

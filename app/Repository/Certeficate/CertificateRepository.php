@@ -55,7 +55,7 @@ class CertificateRepository implements CertificateInterface
          $std_user = User::find($user_id);
 
          $studentsregistration = StudentsRegistration::find($studentsRegistration_id);
-          $cours = Cours::find($studentsregistration['cours_id']);
+         $cours = Cours::find($studentsregistration['cours_id']);
          StudentsCertificateBarcode::where('studentsRegistration_id', $studentsregistration->id)->first() == null ? $has_barcode = 0 : $has_barcode = 1;
 
          if ($studentsregistration['remaining'] > 0 && $has_barcode == 0) {
@@ -81,7 +81,7 @@ class CertificateRepository implements CertificateInterface
 
 
          $final_mark_table_th = $final_mark_table_td = '';
-          $mark =  Marks::where(['cours_id' => $cours['id'], 'user_id' => $user_id])->get();
+         $mark =  Marks::where(['cours_id' => $cours['id'], 'user_id' => $user_id])->get();
          if ($mark->count() > 0) {
 
             $mark = $mark[0]; // Marks::where(['cours_id' => $cours['id'], 'user_id' => $user_id])->get()[0];
@@ -90,18 +90,24 @@ class CertificateRepository implements CertificateInterface
             foreach ($head_marks['marks'] as $key => $value) {
                $final_mark_table_th .= '<th>' . $value['marks_name'] . '/' . $value['marks'] . '</th>';
             }
+
             $final_mark_table_th .= '<th>' . __('site.total marks') . '/' . $head_marks['total'] . '</th>';
             $final_mark_table_th .= '<th>' . __('site.percent') . ' %</th>';
+
             foreach ($mark['std_marks'] as $key => $value) {
                $final_mark_table_td .= '<td>' . $value . '</td>';
             }
+
             $final_mark_table_td .= '<td>' . $mark['total'] . '</td>';
             $final_mark_table_td .= '<td>' . $mark['percent'] . '</td>';
-            $mark =  '<table class="table table-striped table-bordered sourced-data"><thead><tr>' . $final_mark_table_th . '</tr></thead><tbody><tr>' . $final_mark_table_td . '</tr></tbody></table>';
 
 
-         
+            $mark = '<div class="table-responsive"><table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">';
+            $mark .=  '<thead><tr>' . $final_mark_table_th . '</tr></thead><tbody><tr>' . $final_mark_table_td . '</tr></tbody>';
+            $mark .= '</table></div>';
+
             strpos($cert['template'], '{{$mark}}') !== false ? $cert_ =   str_replace('{{$mark}}', '<div class="mark_table"></div>', $cert['template']) : $cert_ = $cert['template'];
+
 
             $final_template = Blade::render($cert_, [
                'name' => $name, 'user_id' => $user_id, 'email' => $email, 'birthdate' => $birthdate,
@@ -171,14 +177,15 @@ class CertificateRepository implements CertificateInterface
 
    public function   get_certificate_by_barcode($barcode)
    {
-      $barcode =  StudentsCertificateBarcode::where("code_number", "=", $barcode)->get();
+      $barcode =  StudentsCertificateBarcode::where("code_number",  $barcode)->first();
       //   dd($barcode);
       if ($barcode->count() == 0)
          return false;
-      $std = StudentsRegistration::find($barcode[0]['studentsRegistration_id']);
-      if ($std->count() == 0 || $std->remaining > 0)
-         return false;
+      $std = StudentsRegistration::find($barcode['studentsRegistration_id']);
 
-      return   $this->certificate_templates($std['id'],  $barcode[0]['certificate_id'], $std['user_id']);
+      // if ($std->count() == 0 || $std->remaining > 0)
+      //    return false;
+
+      return   $this->certificate_templates($std['id'],  $barcode['certificate_id'], $std['user_id']);
    }
 }

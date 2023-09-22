@@ -261,64 +261,13 @@ if (!function_exists('assetVersion')) {
    }
 }
 
-//
-//if (!function_exists('Settings')) {
-//   function Settings($value = null)
-//   {
-//      try {
-//         if (isModuleActive('LmsSaas')) {
-//            $domain = 'main';
-//         } else {
-//            $domain = 'main';
-//         }
-//         if ($value == "frontend_active_theme") {
-//            return Cache::rememberForever('frontend_active_theme_' . $domain, function () {
-//               $setting = GeneralSetting::where('key', 'frontend_active_theme')->first();
-//               return $setting->value;
-//            });
-//         } elseif ($value == "active_time_zone") {
-//            if (!isValidTimeZone(app('getSetting')[$value])) {
-//               return 'Asia/Dhaka';
-//            }
-//         } elseif ($value == "start_site") {
-//            if (!isset(app('getSetting')[$value])) {
-//               if (isModuleActive('Org')) {
-//                  return 'loginpage';
-//               } else {
-//                  return 'homepage';
-//               }
-//            }
-//         }
-//         return app('getSetting')[$value];
-//      } catch (Exception $exception) {
-//         return false;
-//      }
-//   }
-//}
-//if (!function_exists('isModuleActive')) {
-//   function isModuleActive($module)
-//   {
-//
-//      try {
-//         
-//         return true;
-//      } catch (\Throwable $th) {
-//
-//
-//         return false;
-//      }
-//
-//   }
-//}
-//if (!function_exists('currentTheme')) {
-//   function currentTheme()
-//   {
-//   
-//         return 'infixlmstheme';
-//    
-//
-//
-//   }
-//}
- 
- // faker filler password        Pa$$w0rd!
+
+if (!function_exists('logo')) {
+   function logo()
+   {
+      
+      return URL::asset('assets/images/favicon.ico');
+   }
+}
+
+

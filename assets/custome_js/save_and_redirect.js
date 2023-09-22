@@ -184,7 +184,7 @@ function SubmitHandsonTable(url, data_, token_, cours_id) {
                hideAfter: 5000,
                stack: 6
             });
-
+          
          } else {
             if (data.status == 'error') {
                show_error(data.error_index);

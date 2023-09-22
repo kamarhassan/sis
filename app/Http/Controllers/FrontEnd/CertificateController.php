@@ -100,8 +100,9 @@ class CertificateController extends Controller
 
       try {
          //code...
-         $certificate_by_barcode =  $this->certificaterepository->get_certificate_by_barcode($barcode); //;view('frontend.student-certificate.get-certificate-by-barcode');
-         if ($certificate_by_barcode == false) {
+          $certificate_by_barcode =  $this->certificaterepository->get_certificate_by_barcode($barcode); //;view('frontend.student-certificate.get-certificate-by-barcode');
+     
+          if ($certificate_by_barcode == false) {
             $status = 'error';
             $message = __('site.barcode is not defined or the student has any issue');
             $route = '#';
@@ -114,6 +115,9 @@ class CertificateController extends Controller
             $template = $certificate_by_barcode['final_template'];
             $mark = $certificate_by_barcode['mark'];
          }
+
+
+         // return $mark;
          return view('frontend.student-certificate.scan-qrcode', compact(
             'status',
             'message',

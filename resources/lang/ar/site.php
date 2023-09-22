@@ -558,6 +558,9 @@ return [
    'failed change' => '',
    'select_at_least_one_to_delete' => '',
    'not are not in current school year please choose the correct year and try again later' => 'انت لست في العام الدراسي الحالي اختر العام الدراسي الصحيح واعد المحاولة',
+   'disable or enable take marks' => 'disable or enable take marks',
+   'reset marks' => 'reset marks',
+   '' => '',
    '' => '',
 
 
