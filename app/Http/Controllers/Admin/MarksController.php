@@ -225,7 +225,7 @@ class MarksController extends Controller
          /**
           * if students don't have marks
           */
-
+         $columnsToColor=null;
          $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks, $HeaderMarks[0]['total']);
       }
       return view('admin.marks.admin-report-action', compact('header_marks', 'studentsdata', 'columns', 'cours_id', 'header_marks_id', 'columnsToColor'));
@@ -289,8 +289,29 @@ class MarksController extends Controller
    }
 
 
+
    public  function store_general_info_marks_from_old(Request $request)
    {
-      return $request;
+      // return Crypt::decryptString($request->cours_id);
+
+      $old_head_marks_to_copy = HeaderMarks::find(Crypt::decryptString($request->id_old));
+
+      $iscopied =   HeaderMarks::create(
+         [
+            'cours_id' => Crypt::decryptString($request->cours_id),
+            'teacher_id'    => Auth::user()->id,
+            'marks'    => $old_head_marks_to_copy['marks'],
+            'total'    => $old_head_marks_to_copy['total'],
+            'percent'    => $old_head_marks_to_copy['percent'],
+         ]
+      );
+
+
+
+      return response()->json([
+         'status' => 'success',
+         'message' => __('site.marks save successfully'),
+         'route' => route('admin.get.students.to.add.marks',$request->cours_id),
+      ]);
    }
 }

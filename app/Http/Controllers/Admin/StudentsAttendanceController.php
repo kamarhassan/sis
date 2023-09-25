@@ -67,8 +67,8 @@ class StudentsAttendanceController extends Controller
             // return $cour;
          });
       }
-      $cours= $cours->where('count_std','>', 0);
-    
+      $cours = $cours->where('count_std', '>', 0);
+
       return view('admin.students-attendance.index', compact('cours', 'is_teacher'));
    }
 
@@ -81,7 +81,7 @@ class StudentsAttendanceController extends Controller
          toastr()->error(__('site.this cours is not for you'));
          return redirect()->route('admin.students.all');
       }
-    
+
       $teacher_id = $teacher_id['id'];
       return view('admin.students-attendance.students-for-cours', compact('cours', 'teacher_id'));
    }
@@ -203,7 +203,7 @@ class StudentsAttendanceController extends Controller
 
    public function report_attendance($cours_id)
    {
-
+      $dataset = [];
       try {
          $array_of_selection = [
             'users.name as name', 'users.id as id',
@@ -219,8 +219,15 @@ class StudentsAttendanceController extends Controller
             $header_name = null;
             toastr()->error(__('site.attendance for this cours not defined'));
          } else {
-            $dataset =  $this->attendancerepos->dataset_attendance($data_for_attendance_report);
-            $header =  $this->attendancerepos->header_column($cours_id);
+         $header =  $this->attendancerepos->header_column($cours_id);
+           
+           
+         // max_attendance_hours_per_days
+
+            $dataset = $this->attendancerepos->dataset_attendance($data_for_attendance_report);
+        array_unshift( $dataset, $header['max_attendance_hours_per_days']);
+            // return $dataset;
+             
             $header_column = $header['data'];
             $header_name = $header['header_name'];
          }

@@ -95,7 +95,7 @@
                                  <form id="new_marks_from_old{{ $key_id}}">
                                     @csrf
                                  <input type="hidden" name="id_old" value="{{Crypt::encryptString($key_id)}}">
-                                 <input type="hidden" name="cours_id" value="{{Crypt::encryptString($cours_id)}}">
+                                 <input type="hidden" name="cours_id" value="{{$cours_id}}">
                                  </form>
                                   <a class="btn btn-float bbt btn-square btn-outline-success fa fa-plus-circle"
                                       title="@lang('site.save')"
@@ -105,7 +105,6 @@
                               </td>
                                  @foreach ($item as $marks)
                                      <td>
- 
                                          {{ $marks['marks_name'] }}
                                      </td>
                                  @endforeach

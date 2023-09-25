@@ -552,7 +552,7 @@ return [
    'is not last year' => 'ليس العام الدراسي الاخير',
    'confirme change cant change after this' => 'هل انت متاكد من انك تريد تغيير العام الدراسي الحالي لن تتمكن من تعييره مجددا',
    'confirmButtonTextof_change_swal_fire' => 'نعم تغيير',
-  
+
    'changed_msg_swal_fire' => '',
    'succes_change_msj_swal_fire' => '',
    'failed change' => '',
@@ -560,6 +560,11 @@ return [
    'not are not in current school year please choose the correct year and try again later' => 'انت لست في العام الدراسي الحالي اختر العام الدراسي الصحيح واعد المحاولة',
    'disable or enable take marks' => 'disable or enable take marks',
    'reset marks' => 'reset marks',
+   'successefully reset attendance for this date' => 'تم حذف الحضور بنجاح',
+   'max attendance hours per days' => 'عدد ساعات الحضور القصوى باليوم',
+   '' => '',
+   '' => '',
+   '' => '',
    '' => '',
    '' => '',
 

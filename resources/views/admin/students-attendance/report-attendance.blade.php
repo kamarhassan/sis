@@ -26,10 +26,36 @@
 <script src="{{ URL::asset('assets/custome_js/attendance.js') }}"></script>
     <script>
         var dataset = @json($dataset);
-        var header = @json($header_column);
-        var header_name = @json($header_name);   
+    
+        var header_name = @json($header_name)
+        
         $(document).ready(function() {
-            attendance_report(dataset,header,header_name)
+            // attendance_report(dataset,header,header_name)
+
+
+            const container = document.getElementById('example');
+            const hyperformulaInstance = HyperFormula.buildEmpty({
+                // to use an external HyperFormula instance,
+                // initialize it with the `'internal-use-in-handsontable'` license key
+                licenseKey: 'internal-use-in-handsontable',
+            });
+            const hot = new Handsontable(container, {
+                data: dataset,
+                rowHeaders: true,
+              
+                colHeaders: header_name,
+                height: 'auto',
+                fixedColumnsStart: 1,
+                formulas: {
+                    engine: hyperformulaInstance,
+                    sheetName: 'Sheet1'
+                },
+                readOnly: true,
+                licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
+            });
+        
+        
+        
         });
     </script>
 @endsection

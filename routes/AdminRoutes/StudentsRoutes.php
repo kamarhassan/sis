@@ -74,7 +74,6 @@ Route::group(['prefix' => 'students'], function () {
 
    Route::get('marks/{cours_id}', [MarksController::class, 'get_std_to_add__or_update_marks'])->name('admin.get.students.to.add.marks');
    Route::post('post-or-update-marks-std', [MarksController::class, 'post_or_update_marks_std'])->name('admin.post.students.and.marks');
-   
    Route::get('report-marks/{cours_id}', [MarksController::class, 'admin_report_and_action'])->name('admin.get.report.students.to.add.marks');
 
 

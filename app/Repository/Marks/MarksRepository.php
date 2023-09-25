@@ -169,13 +169,13 @@ class MarksRepository implements MarksInterface
                break;
             case ($key == $secondLastIndex_headmarks):
                $datatype =  'numeric';
-               $isreadonly = false;
+               $isreadonly = true;
                $data = $value;
                $max_marks = $total;
                break;
             case ($key == $lastIndex_headmarks):
                $datatype =  'numeric';
-               $isreadonly = false;
+               $isreadonly = true;
                $data = $value;
                $max_marks = 100;
                break;

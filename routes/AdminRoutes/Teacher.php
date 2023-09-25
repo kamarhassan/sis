@@ -24,5 +24,5 @@ Route::group(['prefix' => 'classes', 'middleware' => 'permission:teacher'], func
    Route::post('store-general-info', [MarksController::class, 'store_general_info'])
       ->name('admin.store.marks.cours');
    Route::post('store-general-info-marks-from-old', [MarksController::class, 'store_general_info_marks_from_old'])
-   ->name('admin.store.marks.cours.from.old');
+      ->name('admin.store.marks.cours.from.old');
 });

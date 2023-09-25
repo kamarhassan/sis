@@ -152,8 +152,8 @@ class PermissionTableSeeder extends Seeder
       //   Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'add school year']);
       //   Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'edit school year']);
     
-        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'marks', 'name' => 'enable or disable marks']);
-        Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'marks', 'name' => 'reset marks']);
+      //   Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'marks', 'name' => 'enable or disable marks']);
+      //   Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'marks', 'name' => 'reset marks']);
        
       
 
