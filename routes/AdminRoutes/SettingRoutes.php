@@ -3,20 +3,21 @@
 
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\LevelController;
+use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\FeetypeController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\SchoolYearController;
 use App\Http\Controllers\Admin\SuperviserController;
 use App\Http\Controllers\Admin\CertificateController;
-use App\Http\Controllers\Admin\CertificatetemplatesController;
 use App\Http\Controllers\Admin\SponsoreTypeController;
 use App\Http\Controllers\Admin\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Services\ServicesController;
 use App\Http\Controllers\Admin\InstitueInformationController;
-use App\Http\Controllers\Admin\SchoolYearController;
+use App\Http\Controllers\Admin\CertificatetemplatesController;
 
 Route::group(['prefix' => 'setting'], function () {
    Route::group(['prefix' => 'supervisor'], function () {
@@ -310,4 +311,5 @@ Route::group(['prefix' => 'setting'], function () {
 
 
 
+      
 });

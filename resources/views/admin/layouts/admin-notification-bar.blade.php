@@ -39,7 +39,7 @@
                     </ul>
                 </li>
                 <li class="footer">
-                    <a href="{{ route('admin.new.register.order') }}">View all</a>
+                    <a href="{{ route('admin.all.notification') }}">View all</a>
                 </li>
             </ul>
         @else

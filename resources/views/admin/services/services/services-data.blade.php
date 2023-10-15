@@ -1,12 +1,12 @@
-{{--<div class="box" id="spinner_loading">--}}
-{{--    <div class="d-flex justify-content-center text-primary">--}}
-{{--        <div class="spinner-border" role="status">--}}
-{{--            <span class="sr-only">Loading...</span>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+{{-- <div class="box" id="spinner_loading"> --}}
+{{--    <div class="d-flex justify-content-center text-primary"> --}}
+{{--        <div class="spinner-border" role="status"> --}}
+{{--            <span class="sr-only">Loading...</span> --}}
+{{--        </div> --}}
+{{--    </div> --}}
+{{-- </div> --}}
 
-<div class="box" id="services-table-" >
+<div class="box" id="services-table-">
     {{-- @if ((new \Jenssegers\Agent\Agent())->isDesktop()) --}}
     <div class="box-body">
         <div class="table-responsive ">
@@ -17,7 +17,7 @@
                         <th>@lang('site.services')</th>
                         <th>@lang('site.fee amount')</th>
                         <th>@lang('site.currency name')</th>
-                        {{-- <th>@lang('site.status')</th> --}}
+                        <th>@lang('site.quantity')</th>
                         <th>@lang('site.options')</th>
                     </tr>
                 </thead>
@@ -46,6 +46,7 @@
                                 <td>{{ $servicess['fee'] }}</td>
                                 <td>{{ $servicess['currency']['currency'] }} - {{ $servicess['currency']['abbr'] }} -
                                     {{ $servicess['currency']['symbol'] }}</td>
+                                <td>{{ $servicess['quantity'] }}</td>
                                 <td>
                                     <div class="row">
 

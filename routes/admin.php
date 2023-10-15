@@ -70,14 +70,16 @@ Route::group([
    include('AdminRoutes/SettingRoutes.php');
    include('AdminRoutes/StudentsRoutes.php');
    include('AdminRoutes/MarksRoutes.php');
-   include('AdminRoutes/Notification.php');
    include('AdminRoutes/Payment.php');
    include('AdminRoutes/Teacher.php');
    include('AdminRoutes/Reports.php');
    include('AdminRoutes/Services.php');
    include('AdminRoutes/Profile.php');
    include('AdminRoutes/Users.php');
+   include('AdminRoutes/NotificationRoutes.php');
+   
 
+  
 
 
 

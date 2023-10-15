@@ -29,7 +29,7 @@ function get_permission(route_, token_) {
 function update_permission_for_role(route_, formdata_id,all_permisssion) {
     // alert(1);
     var formdata = $('#' + formdata_id).serializeArray();
-    console.log(formdata);
+   //  console.log(formdata);
 
     $.ajax({
         type: 'POST',
@@ -38,12 +38,13 @@ function update_permission_for_role(route_, formdata_id,all_permisssion) {
         success: function (data) {
             console.table(data);
             if (data.status == 'success') {
-                toastr.success(data.message)
-                reset_permission($all_permisssion)
+               //  toastr.success(data.message)
+                toaster(data.message, data.status);
                 $('#modal-center').modal('hide')
+                reset_permission(all_permisssion);
             } else {
                 if (data.status == 'error') {
-                    toastr.error(data.message);
+                  toaster(data.message, data.status)
                 }
             }
         }, error: function reject(reject) {
@@ -92,3 +93,14 @@ function reset_permission(all_permissions_id) {
     })
 }
 
+function toaster(message, status) {
+   $.toast({
+      // heading: 'Welcome to my Sunny Admin',
+      text: message,
+      position: 'top-right',
+      loaderBg: '#ff6849',
+      icon: status,
+      hideAfter: 5000,
+      stack: 6
+   });
+}

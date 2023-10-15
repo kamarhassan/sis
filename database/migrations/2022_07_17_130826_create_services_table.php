@@ -17,6 +17,9 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('service');
             $table->double('fee');
+            $table->double('quantity');
+            $table->integer('low_stock_notifiy');
+            
             $table->foreignId('currencies_id')->constrained('currencies');
             $table->boolean('active')->default(1)->comment = '1 is active 0 is inactive'; //
 

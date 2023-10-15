@@ -30,7 +30,7 @@
                                 @csrf
                                 <div class="add_item">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <h5>@lang('site.services') <span class="text-danger">*</span></h5>
                                                 <div class="controls">
@@ -40,12 +40,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <h5>@lang('site.fee value') </h5>
                                                 <div class="controls">
                                                     <input type="text" id="fee_0" name="fee[]" class="form-control">
                                                     <span class="text-danger" id="fee_0_"> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <h5>@lang('site.quantity') </h5>
+                                                <div class="controls">
+                                                    <input type="text" id="quantity_0" name="quantity[]" class="form-control">
+                                                    <span class="text-danger" id="quantity_0_"> </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -68,7 +77,15 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <div class="col-md-2">
+                                          <div class="form-group">
+                                              <h5>@lang('site.low stock notify') </h5>
+                                              <div class="controls">
+                                                  <input type="text" id="low_stock_0" name="low_stock[]" class="form-control">
+                                                  <span class="text-danger" id="low_stock_0_"> </span>
+                                              </div>
+                                          </div>
+                                      </div>
                                         <div class="col-md-2" style="padding-top: 25px;">
                                             <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
                                             </span>
@@ -104,7 +121,7 @@
             <div class="whole_extra_item_add" id="whole_extra_item_add">
                 <div class="delete_whole_extra_item_add" id="delete_whole_extra_item_add">
                     <div class="form-row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
 
                             <div class="form-group">
                                 <h5>@lang('site.services') <span class="text-danger">*</span></h5>
@@ -115,7 +132,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <h5>@lang('site.fee value') </h5>
                                 <div class="controls">
@@ -124,6 +141,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                           <div class="form-group">
+                               <h5>@lang('site.quantity') </h5>
+                               <div class="controls">
+                                   <input type="text" id="quantity_number" name="quantity[]" class="form-control">
+                                   <span class="text-danger" id="quantity_number_error"> </span>
+                               </div>
+                           </div>
+                       </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <h5>@lang('site.currency name') <span class="text-danger">*</span></h5>
@@ -142,7 +168,15 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-md-2">
+                           <div class="form-group">
+                               <h5>@lang('site.low stock notify') </h5>
+                               <div class="controls">
+                                   <input type="text" id="low_stock_number" name="low_stock[]" class="form-control">
+                                   <span class="text-danger" id="low_stock_number_"> </span>
+                               </div>
+                           </div>
+                       </div>
 
                         <div class="col-md-2" style="padding-top: 25px;">
                             <span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> </span>
@@ -167,12 +201,23 @@
 
                 $("#fee_number").attr("id", "fee_" + counter);
                 $("#fee_number_error").attr("id", "fee_" + counter + "_");
+               
+                $("#quantity_number").attr("id", "quantity_" + counter);
+                $("#quantity_number_error").attr("id", "quantity_" + counter + "_");
 
                 $("#currency_number").attr("id", "currency_" + counter);
+                $("#currency_" + counter).select2();
                 $("#currency_number_error").attr("id", "currency_" + counter + "_");
 
                 $("#status_number").attr("id", "status_" + counter);
                 $("#status_number_error").attr("id", "status_" + counter + "_");
+               
+               
+                $("#low_stock_number").attr("id", "low_stock_" + counter);
+                $("#low_stock_number_error").attr("id", "low_stock_" + counter + "_");
+               
+               
+               
                 // $(this).closest(".add_item").attr("id","whole_extra_item_add_"+counter);;
 
                 counter++;

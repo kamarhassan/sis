@@ -1,5 +1,5 @@
 
-function get_user_info(route_, token_) {
+function get_notification_details(route_, token_) {
     // $('.content').css('webkit-filter', 'blur(50px)'); 
     // $('#cours_fee').empty();
     $.ajax({
@@ -11,9 +11,11 @@ function get_user_info(route_, token_) {
         },
 
         success: function (data) {
-            // console.table(data)
-            if (data.status == 'success')
-                set_user_and_cours_info_into_modal(data.user_info, data.cours_details, data.cours_fee, data.total_cours_fee, data.order_id,data.teach_type)
+         $('#modal-center').replaceWith(data);
+         $('#modal-center').modal('show');
+            // if (data.status == 'success')
+               
+            //  set_user_and_cours_info_into_modal(data.user_info, data.cours_details, data.cours_fee, data.total_cours_fee, data.order_id,data.teach_type)
 
         }, error: function reject() {
 

@@ -38,8 +38,10 @@ function get_service(route_, token_) {
         },
         success: function (data) {
             if (data) {
-
-                set_services_info_into_modal(data)
+               $('#modal-center').replaceWith(data);
+               $("#currency").select2();
+               // $('#modal-center').modal('show')
+               //  set_services_info_into_modal(data)
                 $('#modal-center').modal('show')
             }
         }, error: function reject() {

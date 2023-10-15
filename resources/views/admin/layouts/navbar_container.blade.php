@@ -10,33 +10,33 @@
         <div class="user-profile">
             <div class="ulogo">
                 <a href="{{ route('admin.dashborad') }}">
-                    <!-- logo for regular state and mobile devices -->
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{ URL::asset('assets/images/logo-dark.png') }}" alt="">
-                        <h3><b>@lang('site.site name')</h3>
-                    </div>
-                </a>
+                  <!-- logo for regular state and mobile devices -->
+                  <div class="d-flex align-items-center justify-content-center">
+                     <img src="{{ URL::asset('assets/images/logo-dark.png') }}" alt="">
+                     <h3><b>@lang('site.site name')</h3>
+                     </div>
+                  </a>
+               </div>
             </div>
-        </div>
-
-        <!-- sidebar menu-->
-        <ul class="sidebar-menu" data-widget="tree">
-
-            <li>
-                <a href="{{ route('admin.dashborad') }}">
-                    <i data-feather="pie-chart"></i>
-                    <span>@lang('site.Dashboard')</span>
-                </a>
-            </li>
-
-
-            @include('cms::admin.layouts.cms-nav-bar')
-            {{-- @can('setting') --}}
-
-            @include('admin.layouts.nav_bar_layouts.setting')
-            {{-- @endcan --}}
-
-
+            
+            <!-- sidebar menu-->
+            <ul class="sidebar-menu" data-widget="tree">
+               
+               <li>
+                  <a href="{{ route('admin.dashborad') }}">
+                     <i data-feather="pie-chart"></i>
+                     <span>@lang('site.Dashboard')</span>
+                  </a>
+               </li>
+               
+               
+               @include('cms::admin.layouts.cms-nav-bar')
+               {{-- @can('setting') --}}
+               
+               @include('admin.layouts.nav_bar_layouts.setting')
+               {{-- @endcan --}}
+          
+               
             {{-- @can('cours') --}}
             @include('admin.layouts.nav_bar_layouts.cours')
 
@@ -55,10 +55,11 @@
             {{-- @can('reports') --}}
 
             @include('admin.layouts.nav_bar_layouts.reports')
+           
 
             {{-- @endcan --}}
 
-
+            {{--  --}}
 
 
 

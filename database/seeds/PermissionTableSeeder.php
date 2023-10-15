@@ -153,16 +153,18 @@ class PermissionTableSeeder extends Seeder
       //   Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'popular class', 'name' => 'edit school year']);
     
       //   Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'marks', 'name' => 'enable or disable marks']);
+     
       //   Permission::create(['guard_name' => 'admin', 'tab_name' => 'students', 'parent' => 'marks', 'name' => 'reset marks']);
-       
       
-
+      
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'notification', 'name' => 'low_stock']);
+        Permission::create(['guard_name' => 'admin', 'tab_name' => 'other', 'parent' => 'notification', 'name' => 'registration']);
+ 
         
-        
 
 
-      $role = Role::find(29);  //online 
-      // $role = Role::find(7); // local server
+       $role = Role::find(29);  //online 
+//      $role = Role::find(7); // local server
         $role->syncPermissions(Permission::all());
       }
 }

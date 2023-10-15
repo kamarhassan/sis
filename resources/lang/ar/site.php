@@ -562,12 +562,14 @@ return [
    'reset marks' => 'reset marks',
    'successefully reset attendance for this date' => 'تم حذف الحضور بنجاح',
    'max attendance hours per days' => 'عدد ساعات الحضور القصوى باليوم',
+   'product'=>'المنتج/الكتاب',
+   'quantite'=>'الكمية',   
+   'serial'=>'الرقم التسلسلي',
+   'price' => 'السعر',
+   'low stock notify' => 'إشعار انخفاض المخزون',
    '' => '',
    '' => '',
    '' => '',
-   '' => '',
-   '' => '',
-
 
 
 ];

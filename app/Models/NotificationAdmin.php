@@ -36,5 +36,9 @@ class NotificationAdmin extends Model
    {
       return $this->hasOne(User::class, 'id', 'user_id');
    }
+   public function service()
+   {
+      return $this->hasOne(Service::class, 'id', 'order_id');
+   }
 
 }

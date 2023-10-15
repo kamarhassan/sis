@@ -13,6 +13,13 @@ class AdminNotificationRepository implements AdminNotificationInterface
         return NotificationAdmin::where(['delete' => 1, 'is_read' => 1])->get();
     }
 
+    public  function low_stock()
+    {
+       return NotificationAdmin::where(['delete' => 1, 'order_type' => 'low_stock'])
+          ->with('service')
+          ->get();
+    }
+
     public  function get_register_notification()
     {
         return NotificationAdmin::where(['delete' => 1, 'order_type' => 'registration'])
@@ -39,7 +46,7 @@ class AdminNotificationRepository implements AdminNotificationInterface
     }
 
     public  function reading_notification($array_of_id){
-          $array_of_id;
+        
         $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
         if ($selected->count() > 0) {
             $updated = NotificationAdmin::whereIn('id', $array_of_id)->update(['is_read' => 0]);

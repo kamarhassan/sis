@@ -26,10 +26,12 @@ class ClientPaymentController extends Controller
 
         try {
             // return $service_id;
+           
             $client_services = UserService::find($service_id);
             $service_currency = Currency::active()->get();
             $user = User::find($client_services['user_id']);
             $service = Service::with('currency')->find($client_services['service_id']);
+
             return view('admin.services.payment.payment', compact('service_currency', 'user', 'service', 'client_services'));
         } catch (\Throwable $th) {
             // throw $th;
@@ -39,7 +41,8 @@ class ClientPaymentController extends Controller
     public  function user_paid_for_services_for_remaining($service_id)
     {
         try {
-            // return $service_id;  '
+       
+           
             $client_services = UserService::find($service_id);
             $service_currency = Currency::active()->get();
             $user = User::find($client_services['user_id']);
@@ -53,7 +56,7 @@ class ClientPaymentController extends Controller
     public function savepaymentCient(ClientPaymentRequest $request)
     {
         try {
-
+         // return $request;  
             $client_services_id = decrypt($request->client_services_id);
             DB::beginTransaction();
             $client_services = UserService::find($client_services_id);

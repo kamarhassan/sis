@@ -128,13 +128,15 @@
             @canany(['edit certificate', 'create certificate', 'delete certificate'])
 
                 <li>
-                    <a class="menu-item" href="{{ route('admin.certificate.all') }}"> <i class="ti-more"></i>@lang('site.certificate')</a>
+                    <a class="menu-item" href="{{ route('admin.certificate.all') }}"> <i
+                            class="ti-more"></i>@lang('site.certificate')</a>
                 </li>
 
             @endcan
 
             <li>
-                <a class="menu-item" href="{{ route('admin.categories.all') }}"> <i class="ti-more"></i>@lang('site.categories')</a>
+                <a class="menu-item" href="{{ route('admin.categories.all') }}"> <i
+                        class="ti-more"></i>@lang('site.categories')</a>
             </li>
 
             @canany(['edit sponsor', 'delete sponsor', 'add sponsor'])
@@ -145,7 +147,7 @@
                 </li>
             @endcan
             @canany(['edit slider', 'delete slider', 'add slider'])
-                <li><a href="{{route('admin.slider.all')}}">
+                <li><a href="{{ route('admin.slider.all') }}">
                         <i class="ti-more"></i>
                         @lang('site.slider')
                     </a>
@@ -153,15 +155,15 @@
             @endcan
 
             @canany(['edit institue information', 'delete institue information', 'add institue information'])
-                <li><a href="{{route('admin.institue.all')}}">
+                <li><a href="{{ route('admin.institue.all') }}">
                         <i class="ti-more"></i>
                         @lang('site.institue information')
                     </a>
                 </li>
             @endcan
 
-            @canany(['add school year','edit school year','delete school year'])
-                <li><a href="{{route('admin.schoolyear.all')}}">
+            @canany(['add school year', 'edit school year', 'delete school year'])
+                <li><a href="{{ route('admin.schoolyear.all') }}">
                         <i class="ti-more"></i>
                         @lang('site.school year')
                     </a>

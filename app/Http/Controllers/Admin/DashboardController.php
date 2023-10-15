@@ -43,7 +43,7 @@ class DashboardController extends Controller
 
    public function index()
    {
-
+     
 
       $prapared_data_for_registration_students = $this->prepaire_collection($this->all_std_regsister);
       $prapared_data_for_services = $this->prepaire_collection($this->user_services);
@@ -53,7 +53,7 @@ class DashboardController extends Controller
 
 
 
-   //   return $count_students_by_cours_and_cours_name = $this->charts_by_students_registartion_by_cours($prapared_data_for_registration_students);
+      //   return $count_students_by_cours_and_cours_name = $this->charts_by_students_registartion_by_cours($prapared_data_for_registration_students);
 
 
 
@@ -62,7 +62,7 @@ class DashboardController extends Controller
       $categries_count = $this->categories->count();
       $services_count = $this->services->count();
 
-      return view('admin.dashboard.dashborad', compact( 'students_count', 'cours_count', 'categries_count', 'services_count', 'count_std_registration_by_month', 'count_services_paid_by_month'));
+      return view('admin.dashboard.dashborad', compact('students_count', 'cours_count', 'categries_count', 'services_count', 'count_std_registration_by_month', 'count_services_paid_by_month'));
    }
 
    public function change_mode()
@@ -107,8 +107,14 @@ class DashboardController extends Controller
       try {
 
 
-//         Artisan::call('migrate');
-         Artisan::call('db:seed');
+         //         Artisan::call('migrate');
+
+
+//         Artisan::call('migrate --path=/database/migrations/2023_09_26_132313_create_sellers_table.php');
+         //   Artisan::call('migrate --path=/database/migrations/2023_09_26_132205_create_stocks_table.php');
+
+          Artisan::call('db:seed');
+
 
          $t = Artisan::call('cache:clear');
          $t = Artisan::call('optimize:clear');

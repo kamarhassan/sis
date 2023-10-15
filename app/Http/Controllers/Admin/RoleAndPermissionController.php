@@ -61,7 +61,17 @@ class RoleAndPermissionController extends Controller
         try {
             $permissions_for_role =  $this->get_permission_from_request($permision);
             $role = Role::findByName($request->role_name);
-            return $role->syncPermissions($permision);
+              $role->syncPermissions($permision);
+              if (!$role) {
+               $message = __('site.Post created unsuccessfully!');
+               $status = 'error';
+               // $route ='#';
+           } else {
+               $message = __('site.Post created successfully!');
+               $status = 'success';
+               // $route = route('admin.setting.role');
+           }
+           return response()->json(['status' => $status, 'message' => $message]);
             //  $role = Role::find($request->role_id);
             //  $role->givePermissionTo($permissions_for_role);
             //  $permission->syncRoles($roles);

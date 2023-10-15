@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Livewire\Services;
 
 use App\Models\User;
 use App\Models\Service;
+use App\Models\Stock;
 use App\Models\UserService;
 use Livewire\Component;
 use PhpParser\Node\Stmt\TryCatch;
@@ -14,6 +15,7 @@ class Servicesclient extends Component
     public $client_name;
     public $all_client_name;
     public $service_id;
+    public $validatedData_client_services;
 
     public function render()
     {
@@ -55,7 +57,9 @@ class Servicesclient extends Component
             if ($this->validatedData_client_services) {
                 $user_id = User::GetIdByName($this->client_name);
                 $services = Service::find($this->service_id);
-                // dd($services);
+             
+          
+             
                 $register_services_to_client = UserService::create([
                     'service_id' => $this->service_id,
                     'user_id' => $user_id,
