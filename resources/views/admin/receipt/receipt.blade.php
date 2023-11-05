@@ -87,7 +87,7 @@
                   <tr>
                      <th scope="col">@lang('site.fee type')</th>
                      <th scope="col">@lang('site.fee value')</th>
-                     <th scope="col">@lang('site.registration date')</th>
+                  
                      <th scope="col">@lang('site.paid')</th>
                      {{-- <th scope="col">@lang('site.paid date')</th> --}}
                      <th scope="col">@lang('site.remaining')</th>
@@ -101,7 +101,7 @@
                               {{-- <td scope="row"> feestopaid['id']</td> -- --}}
                               <td scope="row"> {{ $feestopaid['cours_fee']['fee_type']['fee'] }} </td>
                               <td scope="row"> {{ $feestopaid['cours_fee']['value'] }} </td>
-                              <td scope="row"> {{ $std['created_at']->format('d-m-Y') }} </td>
+                            
                               <td scope="row"> {{ $feestopaid['paid_amount'] }} </td>
                               <td scope="row"> {{ $feestopaid['remaining'] }} </td>
 

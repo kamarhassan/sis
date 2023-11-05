@@ -486,7 +486,7 @@ return [
    'add general marks' => 'اضافة العلامات الرئيسية',
    'new registration' => 'تسجيل جديد',
    'payment' => 'دفع المستحقات',
-   'receipt' => 'الفواتير',
+   'receipt' => 'ايصال',
    'create role and permission' => 'اضافة صلاحيات',
    'role and permission' => 'الصلاحيات',
    'edit payment' => 'تعديل الدفعات',
@@ -567,7 +567,7 @@ return [
    'serial'=>'الرقم التسلسلي',
    'price' => 'السعر',
    'low stock notify' => 'إشعار انخفاض المخزون',
-   '' => '',
+   'you have reached the limit' => 'لقد وصلت إلى الحد الأقصى وهو',
    '' => '',
    '' => '',
 

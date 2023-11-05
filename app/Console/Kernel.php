@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      $schedule->command('check:low-stock')->everyFourHours($minutes = 0);
+      $schedule->command('check:low-stock')->everyMinute($minutes = 0);
         // $schedule->command('inspire')->hourly();
     }
 
