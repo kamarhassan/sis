@@ -16,8 +16,8 @@ class CreateCertificatesTable extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('name of certificate');
-            $table->foreignId('grade_id')->constrained('grades');
-            $table->string('levels')->comment('contents array of level ids');
+            $table->json('grade_id')->nullable();
+            // $table->json('levels')->change()->comment('contents array of level ids');
             $table->timestamps();
         });
     }

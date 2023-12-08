@@ -36,10 +36,10 @@
                            <thead>
                            <tr>
                               <th>@lang('site.categorie name')</th>
-                              <th>@lang('site.ralated')</th>
+                              <th>@lang('site.related')</th>
                               <th>@lang('site.nb of hours total for cours')</th>
                               <th>@lang('site.duration')</th>
-                              <th>@lang('site.global_image')</th>
+                              <th>@lang('site.global image')</th>
                               <th>@lang('site.options')</th>
                            </tr>
                            </thead>

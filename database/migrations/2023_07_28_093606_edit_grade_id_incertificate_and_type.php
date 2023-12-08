@@ -15,7 +15,7 @@ return new class extends Migration
     {
        Schema::table('certificates', function (Blueprint $table) {
           $table->renameColumn('grade_id', 'categorie_id');
-          $table->dropColumn('levels');
+         //  $table->dropColumn('levels');
 //          $table->foreignId('categorie_id')->after('id')->constrained('categories');
        });
     }

@@ -18,19 +18,20 @@ class DatabaseSeeder extends Seeder
     
         
         $this->call(PermissionTableSeeder::class);
-      //   $this->call(\Lwwcas\LaravelCountries\Database\Seeders\LcDatabaseSeeder::class); 
+        $this->call(\Lwwcas\LaravelCountries\Database\Seeders\LcDatabaseSeeder::class); 
         /**
          * $this->call(\Lwwcas\LaravelCountries\Database\Seeders\LcDatabaseSeeder::class); 
          * to add the call country list 
          */
-      //   $this->call(AdminSeeder::class);
-      //   $this->call(languageSeeder::class);
-      //   $this->call(CurrencySeeder::class);
-      //    $this->call(\Status_of_coursSeed::class);
+        $this->call(AdminSeeder::class);
+        $this->call(languageSeeder::class);
+        $this->call(CurrencySeeder::class);
+         $this->call(\Status_of_coursSeed::class);
+         // $this->call(YearSedeer::class);
         
          // $this->call(GradeSeeder::class);
         // $this->call(levelseeder::class);
-        //       $this->call(NationalitieSeeder::class);
+            //   $this->call(NationalitieSeeder::class);
       //   $this->call(UserSeeder::class);
         // //   $this->call(\CoursSedeer::class);
         // $this->call(\FeeTypeSeeder::class);

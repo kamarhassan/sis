@@ -562,14 +562,18 @@ return [
    'reset marks' => 'reset marks',
    'successefully reset attendance for this date' => 'تم حذف الحضور بنجاح',
    'max attendance hours per days' => 'عدد ساعات الحضور القصوى باليوم',
-   'product'=>'المنتج/الكتاب',
-   'quantite'=>'الكمية',   
-   'serial'=>'الرقم التسلسلي',
+   'product' => 'المنتج/الكتاب',
+   'quantite' => 'الكمية',
+   'serial' => 'الرقم التسلسلي',
    'price' => 'السعر',
    'low stock notify' => 'إشعار انخفاض المخزون',
    'you have reached the limit' => 'لقد وصلت إلى الحد الأقصى وهو',
-   '' => '',
-   '' => '',
+   'Most Popular Classes' => 'الأكثر شعبية',
+   'add category' => 'اضافة دورة',
 
+   'categorie name' => 'الاسم',
 
+   'related' => 'related',
+   'global image' => 'الصورة العامة',
+   'time and duration' => 'الوقت والمدة'
 ];

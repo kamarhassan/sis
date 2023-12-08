@@ -29,8 +29,10 @@
                   </a>
                </li>
                
-               
+               {{-- @canany(['create menu', 'edit menu', 'delete menu', 'create page', 'edit page', 'edit design page', 'delete page']) --}}
+
                @include('cms::admin.layouts.cms-nav-bar')
+               {{-- @endcan --}}
                {{-- @can('setting') --}}
                
                @include('admin.layouts.nav_bar_layouts.setting')

@@ -23,7 +23,7 @@ return new class extends Migration
          $table->string('year');
          $table->date('start');
          $table->date('end');
-         $table->boolean('currentyear')->default(0);
+         $table->boolean('currentyear')->nullable();
          $table->timestamps();
      });
     }

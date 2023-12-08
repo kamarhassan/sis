@@ -34,8 +34,8 @@ class CreateCoursTable extends Migration
             $table->foreignId('currencies_id')->constrained('currencies');
             $table->string('deleted')->enum('deleted', [0, 1])->default(1)->comment("0=>delete  1=>is active");
             $table->foreignId('teacher_id')->constrained('admins')->comment('for teacher name');
-            $table->foreignId('grade_id')->constrained('grades');
-            $table->foreignId('level_id')->constrained('levels');
+            // $table->foreignId('grade_id')->constrained('grades');
+            // $table->foreignId('level_id')->constrained('levels');
 
 
 

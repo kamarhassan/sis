@@ -15,7 +15,7 @@ return new class extends Migration
     {
        Schema::table('courss', function (Blueprint $table) {
           $table->renameColumn('categories_id', 'related_categories');
-          $table->dropForeign(['grade_id', 'level_id']);
+         //  $table->dropForeign(['grade_id', 'level_id']);
           $table->foreignId('categorie_id')->after('id')->constrained('categories');
        });
     }

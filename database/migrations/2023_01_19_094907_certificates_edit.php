@@ -14,8 +14,8 @@ class CertificatesEdit extends Migration
     public function up()
     {
         Schema::table('certificates', function (Blueprint $table) {
-            $table->json('levels')->change();
-            $table->json('grade_id')->nullable()->change();
+            // $table->json('levels')->change();
+            // $table->json('grade_id')->nullable()->change();
         });
     }
 
