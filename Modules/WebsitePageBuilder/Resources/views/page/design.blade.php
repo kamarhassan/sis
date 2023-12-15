@@ -160,7 +160,7 @@ if (file_exists($theme)) {
                 strict: strict, // default == true
                 showInlineToolbar: true, // default == true
                 root: '<?php echo $distUrl; ?>',
-                load: '<?php  ?>',
+                url: '<?php echo $templateUrl; ?>',
                 // urlBack: window.location.origin,
                 uploadAssetUrl: '{{ route('pages.design.upload.image') }}',
                 uploadAssetMethod: 'POST',

@@ -28,16 +28,51 @@ class PageBuilderRepository
 
       if (File::exists(($base_path_of_style . 'custom.css')) && File::exists($base_path_of_style . '/bootstrap.min.css')) {
 
-         Storage::put( $storage_destination_base_url .  $page->id . '.html', $data['content'], 'public');
+         // //   Storage::put( $storage_destination_base_url .  $page->id . '.html', $data['content'], 'public');
+         if (!is_dir(dirname(public_path( $storage_destination_base_url . $page->id . '.html')))) {
+            mkdir(dirname(public_path( $storage_destination_base_url . $page->id . '.html')), 0755, true);
+         }
+
+         File::put(public_path( $storage_destination_base_url . $page->id . '.html'), $data['content']);
 
 
-         $t1 = File::files($base_path_of_style);
-         // dd($t1);
-         // dd(file_get_contents($base_path_of_style . 'custom.css'));
+         // $t1 = File::files($base_path_of_style);
 
-         Storage::put($storage_destination_base_url . 'css/custom.css', file_get_contents($base_path_of_style . 'custom.css'));
-         //  File::moveDirectory($base_path_of_style . 'custom.css',    $storage_destination_base_url.'css/custom.css');
-         Storage::put( $storage_destination_base_url . 'css/bootstrap.min.css', file_get_contents($base_path_of_style . 'bootstrap.min.css'));
+         //   Storage::put($storage_destination_base_url . 'css/custom.css', file_get_contents($base_path_of_style . 'custom.css'));
+         // if (!is_dir(dirname('/public/' . $storage_destination_base_url . 'css/custom.css'))) {
+         //    mkdir(dirname('/public/' . $storage_destination_base_url . 'css/custom.css'), 0755, true);
+         // }
+         // file_put_contents('/public/' . $storage_destination_base_url . 'css/custom.css', file_get_contents($base_path_of_style . 'custom.css'));
+
+
+         if (!is_dir(dirname(public_path( $storage_destination_base_url . 'css/custom.css')))) {
+            mkdir(dirname(public_path( $storage_destination_base_url . 'css/custom.css')), 0755, true);
+         }
+
+         File::put(public_path( $storage_destination_base_url . 'css/custom.css'), file_get_contents($base_path_of_style . 'custom.css'));
+
+
+
+
+
+
+
+         //   Storage::put( $storage_destination_base_url . 'css/bootstrap.min.css', file_get_contents($base_path_of_style . 'bootstrap.min.css'));
+         // if (!is_dir(dirname('/public/' . $storage_destination_base_url . 'css/bootstrap.min.css'))) {
+         //    mkdir(dirname('/public/' . $storage_destination_base_url . 'css/bootstrap.min.css'), 0755, true);
+         // }
+         // file_put_contents('/public/' . $storage_destination_base_url . 'css/bootstrap.min.css', file_get_contents($base_path_of_style . 'bootstrap.min.css'));
+     
+
+         if (!is_dir(dirname(public_path( $storage_destination_base_url . 'css/bootstrap.min.css')))) {
+            mkdir(dirname(public_path( $storage_destination_base_url . 'css/bootstrap.min.css')), 0755, true);
+         }
+
+         File::put(public_path( $storage_destination_base_url . 'css/bootstrap.min.css'),file_get_contents($base_path_of_style . 'bootstrap.min.css'));
+
+
+     
+     
       } else {
          // $t = File::copy($base_path_of_style . '/custom.css', 'WebsitePageBuilder/' . $page->slug . '/css/custom.css');
          // dd($t);
@@ -47,9 +82,9 @@ class PageBuilderRepository
       // dd(Storage::url($storage_destination_base_url .  $page->id . '.html'));
       // $file = Str::of(Storage::url($storage_destination_base_url .  $page->id . '.html'))->replace("storage", "storage/app");
 
-       $page->url_storage = Str::of(Storage::url($storage_destination_base_url .  $page->id . '.html'));//->replace("storage", "storage/app"); // Storage::url($page->slug.'.html');
-//      $page->url_storage = '/public/storage' . $storage_destination_base_url .  $page->id . '.html'; //Str::of(Storage::url($storage_destination_base_url .  $page->id . '.html'))->replace("storage", "storage/app"); // Storage::url($page->slug.'.html');
-      //   return $page->setTranslation('details', $data['content'], $data['body'])
+      $page->url_storage = Str::of('public/'.$storage_destination_base_url . $page->id . '.html');//->replace("storage", "storage/app"); // Storage::url($page->slug.'.html');
+      //      $page->url_storage = 'public/'.$storage_destination_base_url . $page->id . '.html';//->replace("storage", "storage/app"); // Storage::url($page->slug.'.html');
+
       $page->save();
    }
 }

@@ -109,21 +109,22 @@ class DashboardController extends Controller
          switch ($index) {
             case 'db-seed':
                $command_run_status = Artisan::call('db:seed');
-               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+               print_r (['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
                break;
             case 'clc':
                $command_run_status = Artisan::call('cache:clear');
                $command_run_status = Artisan::call('optimize:clear');
-               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+               print_r(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
                break;
             
             case 'migrate':
                $command_run_status = Artisan::call('migarte');
-               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+               print_r(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
                break;
             case 'storage-link':
-               $command_run_status = Artisan::call('storage:link', []);
-               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+                Artisan::call('config:clear');
+               $command_run_status = Artisan::call('storage:link');
+               print_r(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
                break;
 
             default:
