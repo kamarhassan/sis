@@ -4,18 +4,19 @@ namespace Modules\Cms\Http\Controllers\Admin;
 
 //use App\Traits\ImageStore;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Modules\Cms\Traits\Image;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Modules\Cms\Entities\FooterWidget;
+use Modules\Cms\Traits\ImageStore;
 use Modules\Cms\Entities\FrontPage;
 use Modules\Cms\Entities\HeaderMenu;
+use Illuminate\Support\Facades\Route;
+use Modules\Cms\Entities\FooterWidget;
+use Illuminate\Support\Facades\Storage;
 use Modules\Cms\Http\Requests\Page\CreatePageRequest;
-use Modules\Cms\Traits\Image;
-use Modules\Cms\Traits\ImageStore;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class FrontPageController extends Controller
 {
@@ -141,11 +142,12 @@ class FrontPageController extends Controller
 
    public function show($id)
    {
-      $row = FrontPage::find($id);
+       $row = FrontPage::find($id);
       if (!$row) {
          abort(404);
       }
       // dd(1);
+    
 //      return route('laravelpwa.manifest');
       $active = request('lang', LaravelLocalization::getCurrentLocale());
       app()->setLocale($active);

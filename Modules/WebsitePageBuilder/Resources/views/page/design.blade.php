@@ -160,15 +160,15 @@ if (file_exists($theme)) {
                 strict: strict, // default == true
                 showInlineToolbar: true, // default == true
                 root: '<?php echo $distUrl; ?>',
-                url: '<?php echo $templateUrl; ?>',
-                urlBack: window.location.origin,
+                load: '<?php  ?>',
+                // urlBack: window.location.origin,
                 uploadAssetUrl: '{{ route('pages.design.upload.image') }}',
                 uploadAssetMethod: 'POST',
                 uploadTemplateUrl: '{{ URL::asset('Modules/WebsitePageBuilder/Traits/upload.php') }}',
                 uploadTemplateCallback: function(response) {
                     window.location = response.url;
                 },
-
+               
                 saveUrl: '{{ route('pages.design.update', $data['row']['id']) }}',
                 saveMethod: 'POST',
                 data: {
@@ -211,6 +211,7 @@ if (file_exists($theme)) {
                     ' {{ URL::asset('Modules/WebsitePageBuilder/assets/image/backgrounds/images16.jpg') }}',
                     ' {{ URL::asset('Modules/WebsitePageBuilder/assets/image/backgrounds/images17.png') }}'
                 ],
+                
                 loaded: function() {
                     var thisEditor = this;
 
@@ -223,7 +224,8 @@ if (file_exists($theme)) {
                     }
                 }
             });
-
+            // editor.load('<div> <h1>Awesome title</h1> <p> Page content... </p> </div>'),
+                
             editor.init();
         });
     </script>

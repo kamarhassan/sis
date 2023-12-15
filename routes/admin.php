@@ -61,7 +61,7 @@ Route::group([
    ################################### Begin Settings Routes #################################################
 
    Route::get('changemode', [DashboardController::class, 'change_mode'])->name('admin.dashborad.changemode');
-   Route::get('/artisan', [DashboardController::class, 'artisan'])->name('admin.setting.artisan');
+   Route::get('/artisan/{index}', [DashboardController::class, 'artisan'])->name('admin.setting.artisan');
    Route::get('/clearcache', [DashboardController::class, 'clearcache']);
    Route::post('changeyear', [DashboardController::class, 'changeyear'])->name('admin.change.years');
    

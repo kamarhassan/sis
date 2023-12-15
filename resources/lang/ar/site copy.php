@@ -575,18 +575,5 @@ return [
 
    'related' => 'related',
    'global image' => 'الصورة العامة',
-   'time and duration' => 'الوقت والمدة',
- 
-  
-   'menu' => 'القائمة',
-   'static page' =>' الصفحة الثابتة',
-   'dynamique page' =>' الصفحة الديناميكية',
-   'all days ' =>' كل الأيام',
-   'institue branch' =>' فرع المعهد',
-   'slider image' =>' صورة الشريحة',
-   'url link' =>' رابط URL',
-   'link label' =>' ملصق الرابط',
-
-
-   
+   'time and duration' => 'الوقت والمدة'
 ];

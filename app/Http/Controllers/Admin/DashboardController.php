@@ -28,6 +28,7 @@ class DashboardController extends Controller
    protected $startDate;
    protected $endDate;
    protected $request;
+
    public function __construct(Request $request, CoursInterface $cours)
    {
 
@@ -43,7 +44,7 @@ class DashboardController extends Controller
 
    public function index()
    {
-     
+
 
       $prapared_data_for_registration_students = $this->prepaire_collection($this->all_std_regsister);
       $prapared_data_for_services = $this->prepaire_collection($this->user_services);
@@ -52,9 +53,7 @@ class DashboardController extends Controller
       $count_services_paid_by_month = $this->charts_by_month_for_defined_year($prapared_data_for_services);
 
 
-
       //   return $count_students_by_cours_and_cours_name = $this->charts_by_students_registartion_by_cours($prapared_data_for_registration_students);
-
 
 
       $students_count = $this->all_std_regsister->groupBy(['user_id'])->count(); //
@@ -102,23 +101,35 @@ class DashboardController extends Controller
    }
 
 
-   public function artisan()
+   public function artisan($index)
    {
       try {
 
 
-         //         Artisan::call('migrate');
+         switch ($index) {
+            case 'db-seed':
+               $command_run_status = Artisan::call('db:seed');
+               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+               break;
+            case 'clc':
+               $command_run_status = Artisan::call('cache:clear');
+               $command_run_status = Artisan::call('optimize:clear');
+               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+               break;
+            
+            case 'migrate':
+               $command_run_status = Artisan::call('migarte');
+               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+               break;
+            case 'storage-link':
+               $command_run_status = Artisan::call('storage:link', []);
+               dd(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
+               break;
 
+            default:
 
-//         Artisan::call('migrate --path=/database/migrations/2023_09_26_132313_create_sellers_table.php');
-         //   Artisan::call('migrate --path=/database/migrations/2023_09_26_132205_create_stocks_table.php');
-
-          Artisan::call('db:seed');
-
-
-         $t = Artisan::call('cache:clear');
-         $t = Artisan::call('optimize:clear');
-         dd(Carbon::now());
+               break;
+         }
       } catch (\Throwable $th) {
          throw $th;
       }
@@ -179,7 +190,7 @@ class DashboardController extends Controller
          // echo $value->count();
          $count_std_registration_by_mount[] = $value->count();
       }
-      return  $count_std_registration_by_mount;
+      return $count_std_registration_by_mount;
    }
 
    private function charts_by_students_registartion_by_cours($collection_data) //current_school_year()
@@ -194,7 +205,7 @@ class DashboardController extends Controller
             //    return  $cours_id = $all_cours_by_id->first()->cours_id;
             //   $count = $all_cours_by_id->count();
             //   return  $this->cours->where('id',$all_cours_by_id->first()->cours_id)->first();
-            $temp[] =  ['cours_id' => $all_cours_by_id->first()->cours_id, 'data' => $all_cours_by_id->count()];
+            $temp[] = ['cours_id' => $all_cours_by_id->first()->cours_id, 'data' => $all_cours_by_id->count()];
          }
 
          // var_dump(1);
@@ -211,8 +222,6 @@ class DashboardController extends Controller
    }
 
 
-
-
    private function prepaire_collection($collection_data)
    {
       for ($month = 1; $month <= 12; $month++) {
@@ -223,10 +232,8 @@ class DashboardController extends Controller
          $data[$month] = $count_by_month->values();
       }
 
-      return   $data;
+      return $data;
    }
-
-
 
 
    private function max_min_($dataArray)
@@ -263,6 +270,6 @@ class DashboardController extends Controller
          $minDataObj = null;
       }
 
-      return ['max' => $maxDataObj,   'min' => $minDataObj];
+      return ['max' => $maxDataObj, 'min' => $minDataObj];
    }
 }

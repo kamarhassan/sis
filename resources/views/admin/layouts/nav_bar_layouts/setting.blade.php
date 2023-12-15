@@ -171,13 +171,13 @@
             @endcan
 
             {{-- @canany(['fee type', 'edit fee type', 'create fee type', 'delete fee type']) --}}
-            @if (Auth::user()->email == 'sadmin@gmail.com')
-                <li><a href="{{ route('admin.setting.artisan') }}">
+            {{-- @if (Auth::user()->email == 'sadmin@gmail.com')
+                <li><a href="{{ route('admin.setting.artisan','$index') }}">
                         <i class="ti-more"></i>
                         @lang('site.artisan')
                     </a>
                 </li>
-            @endif
+            @endif --}}
             {{-- @endcan --}}
         </ul>
     </li>

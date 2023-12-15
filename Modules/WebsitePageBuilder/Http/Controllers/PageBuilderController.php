@@ -74,7 +74,7 @@ class PageBuilderController extends Controller
    public function designUpdate(Request $request, $id)
    {
       try {
-         // return $request;
+        // return $request;
          $this->pageBuilderRepo->designUpdate($request->all(), $id);
          return response()->json(['status' => 200]);
       } catch (\Throwable $e) {

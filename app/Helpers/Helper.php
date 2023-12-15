@@ -43,13 +43,13 @@ function encript_custome($id)
 
 function slider_width()
 {
-   return;
-   return 1250;
+   // return;
+   return ['max'=>1250,'min'=>1200];
 }
 function slider_height()
 {
-   return;
-   return 384;
+   // return;
+   return ['max' =>384,'min' =>384 ] ;
 }
 function days_of_week()
 {

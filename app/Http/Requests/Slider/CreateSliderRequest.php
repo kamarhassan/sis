@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Slider;
 
+use App\Rules\ImageSizeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateSliderRequest extends FormRequest
@@ -26,7 +27,7 @@ class CreateSliderRequest extends FormRequest
         $width = slider_width();
         $height = slider_height();
         return [
-            // 'image' => 'required|mimes:png,jpg|dimensions:width=' . $width . ',height=' . $height,
+           'image' => ['required','mimes:png,jpg',new ImageSizeRule($width['min'],$width['max'], $height['max'],$height['min'])/*'dimensions:width=' . $width . ',height=' . $height*/],
             'image' => 'required|mimes:png,jpg',
             'link_label' => $this->link_label(),
             'link' => $this->ImageLink(),
