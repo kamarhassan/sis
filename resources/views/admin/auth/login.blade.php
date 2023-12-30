@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ logo()  }}">
+    <link rel="icon" href="{{ logo() }}">
 
     <title>Sunny Admin - Log in </title>
 
@@ -32,15 +32,17 @@
                             <h2 class="text-white">Get started with Us</h2>
                             <p class="text-white-50">Sign in to start your session</p>
                         </div>
-                        <div>
+                        {{-- <div> --}}
                             {{-- @include('admin.alerts.error')
                     @include('admin.alerts.success') --}}
-                    @if(Session::has('error_login'))
-                        <div class="alert alert-danger text-center">
-                            {{Session::get('error_login')}}
-                        </div>
-                    @endif
-                        </div>
+                            @if (session('error_login'))
+                                <div class="alert alert-danger text-center">
+                                    {{ session('error_login')}}
+                                </div>
+                                {{Session::flash('error_login')}}
+                            @endif
+                        {{-- </div> --}}
+
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
                             <form method="POST" action="{{ route('admin.login') }}">
                                 @csrf
@@ -51,8 +53,8 @@
                                                 class="ti-user"></i></span>
                                     </div>
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror"
-                                        name="email"value="{{ old('email') }}" autocomplete="email" autofocus>
+                                        class="form-control @error('email') is-invalid @enderror" required
+                                        name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -67,9 +69,10 @@
                                         </div>
                                         <input id="password" type="password"
                                             class="form-control @error('password')
-                                        is-invalid @enderror"
+                                        is-invalid @enderror" required
                                             name="password" autocomplete="current-password"
-                                            placeholder="{{ __('schoolms.Enter Your Password') }}">
+                                            {{-- placeholder="{{ __('schoolms.Enter Your Password') }}" --}}
+                                            >
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">

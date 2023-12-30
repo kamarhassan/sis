@@ -40,7 +40,7 @@ return [
    'Sunday ' => 'Sunday',
    #######################end of general ####################################'=>'#######################end of general ####################################'
    'its_require ' => 'required',
-   'personal information ' => 'user spersonal information',
+   'personal information ' => 'user\'s spersonal information',
    'personal information for student ' => 'personal information for student',
    'First Name ' => 'First Name',
    'Middle Name ' => 'Middle Name',
