@@ -39,7 +39,7 @@ class IndexController extends Controller
         $certificate  =Certificate::get();
          if ($slider->count() == 0)
             $slider = null;
-         return view('frontend.index', compact('cours', 'categories_cours', 'slider','certificate'));
+         return view('frontend.homepage.index', compact('cours', 'categories_cours', 'slider','certificate'));
       } catch (\Throwable $th) {
          throw  $th;
       }

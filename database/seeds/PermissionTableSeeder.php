@@ -173,8 +173,10 @@ class PermissionTableSeeder extends Seeder
       $role = Role::create(['guard_name' => 'admin', 'name' => 'super admin']);
       $role->givePermissionTo(Permission::all());
 
-
-      $role = Role::find(1);  //online 
-      $role->syncPermissions(Permission::all());
+      Admin::find(1)->assignRole('super admin');
+//      $role = Role::find(1);  //online 
+//      $role = Role::find(2);  //online 
+//      $role = Role::find(3);  //online 
+//      $role->syncPermissions(Permission::all());
    }
 }

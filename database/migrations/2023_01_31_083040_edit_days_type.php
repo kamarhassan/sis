@@ -14,7 +14,7 @@ class EditDaysType extends Migration
     public function up()
     {
         Schema::table('courss', function (Blueprint $table) {
-            $table->json('days')->change();
+//            $table->json('days')->change();
         });
     }
 

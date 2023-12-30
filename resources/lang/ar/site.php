@@ -4,6 +4,7 @@
 return [
    ################# general ##################
    'site name' => 'AIMS',
+   'dashboard' => 'لوحة التحكم',
    'Dashboard' => 'لوحة التحكم',
    'cancel' => 'الغاء',
    'edit' => 'تعديل',
@@ -576,17 +577,18 @@ return [
    'related' => 'related',
    'global image' => 'الصورة العامة',
    'time and duration' => 'الوقت والمدة',
- 
-  
+
+
    'menu' => 'القائمة',
-   'static page' =>' الصفحة الثابتة',
-   'dynamique page' =>' الصفحة الديناميكية',
-   'all days ' =>' كل الأيام',
-   'institue branch' =>' فرع المعهد',
-   'slider image' =>' صورة الشريحة',
-   'url link' =>' رابط URL',
-   'link label' =>' ملصق الرابط',
+   'static page' => ' الصفحة الثابتة',
+   'dynamique page' => ' الصفحة الديناميكية',
+   'all days ' => ' كل الأيام',
+   'institue branch' => ' فرع المعهد',
+   'slider image' => ' صورة الشريحة',
+   'url link' => ' رابط URL',
+   'link label' => ' ملصق الرابط',
+   'classes' => 'الصفوف',
+   'available class' => 'الصفوف المتاحة',
+   'cours prerequests' => 'متطلبات الدورة'
 
-
-   
 ];

@@ -25,7 +25,7 @@ Route::group(['prefix' => 'cours'], function () {
 
 
    Route::get('info/{id}', [CoursController::class, 'info'])
-      ->middleware(['permission:cours info'])->name('admin.cours.info');
+      ->middleware(['permission:info cours'])->name('admin.cours.info');
    
 
 

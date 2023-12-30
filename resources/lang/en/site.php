@@ -4,6 +4,7 @@
 return [
    'site name' => 'AIMS',
    'site name ' => 'site name',
+   'dashboard ' => 'Dashboard',
    'Dashboard ' => 'Dashboard',
    'cancel ' => 'cancel',
    'edit ' => 'edit',
@@ -553,15 +554,17 @@ return [
    'categorie name' => ' Category Nmae',
    'related' => 'Related',
    'global image' => 'General Image',
-   'time and duration' =>'Time and Duration',
+   'time and duration' => 'Time and Duration',
 
-   'menu' =>'Menu',
-   'static page' =>'Static Page',
-   'dynamique page' =>'Dynamic Page',
-   'all days ' =>'All Days',
-   'institue branch' =>'Institue Branch',
-   'slider image' =>'Slider Image',
-   'url link' =>'Url Link',
-   'link label' =>'Link Label',
-
+   'menu' => 'Menu',
+   'static page' => 'Static Page',
+   'dynamique page' => 'Dynamic Page',
+   'all days ' => 'All Days',
+   'institue branch' => 'Institue Branch',
+   'slider image' => 'Slider Image',
+   'url link' => 'Url Link',
+   'link label' => 'Link Label',
+   'classes' => 'classes',
+   'available class' => 'available class',
+   'cours prerequests' =>'course prerequisites'
 ];

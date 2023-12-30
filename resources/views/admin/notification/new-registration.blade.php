@@ -119,8 +119,10 @@
                                  </a>
                               </td>
                               <td class="mailbox-subject">
-                                 {{ $new_order['cours_reserved']['category_grade_level']['grade']['grade'] }} #
-                                 {{ $new_order['cours_reserved']['category_grade_level']['level']['level'] }}
+                              @isset ($new_order['cours_reserved']['category_grade_level']) 
+                                    {{ $new_order['cours_reserved']['category_grade_level']['grade']['grade'] }} #
+                                    {{ $new_order['cours_reserved']['category_grade_level']['level']['level'] }}
+                              @endisset
                               </td>
                               <td>
                                  <div class="box-body ribbon-box">
@@ -159,7 +161,7 @@
       </div>
 
    </div>
-@include('admin.notification.user-information')
+@include('admin.notification.sub-blade.user-information')
 @endif
 
 
