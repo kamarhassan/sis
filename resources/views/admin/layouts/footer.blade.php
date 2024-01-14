@@ -9,5 +9,5 @@
             </li>
         </ul>
     </div>
-    &copy; 2023 <a href="#">Aims Act</a>. All Rights Reserved.
+    &copy; 2024 <a href="#">Act College</a>. All Rights Reserved.
 </footer>

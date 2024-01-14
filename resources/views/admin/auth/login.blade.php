@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ logo() }}">
 
-    <title>Sunny Admin - Log in </title>
+   <title>@lang('site.site name')</title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}">

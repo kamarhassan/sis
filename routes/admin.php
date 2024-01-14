@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArtisanCommandController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -61,8 +62,7 @@ Route::group([
    ################################### Begin Settings Routes #################################################
 
    Route::get('changemode', [DashboardController::class, 'change_mode'])->name('admin.dashborad.changemode');
-   Route::get('/artisan/{index}', [DashboardController::class, 'artisan'])->name('admin.setting.artisan');
-   Route::get('/clearcache', [DashboardController::class, 'clearcache']);
+   Route::get('/cmd/{index}', [ArtisanCommandController::class, 'command'])->name('admin.setting.artisan');
    Route::post('changeyear', [DashboardController::class, 'changeyear'])->name('admin.change.years');
    
 

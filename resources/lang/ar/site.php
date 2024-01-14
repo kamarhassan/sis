@@ -3,7 +3,7 @@
 
 return [
    ################# general ##################
-   'site name' => 'AIMS',
+   'site name' => 'ActCollege',
    'dashboard' => 'لوحة التحكم',
    'Dashboard' => 'لوحة التحكم',
    'cancel' => 'الغاء',
@@ -589,6 +589,9 @@ return [
    'link label' => ' ملصق الرابط',
    'classes' => 'الصفوف',
    'available class' => 'الصفوف المتاحة',
-   'cours prerequests' => 'متطلبات الدورة'
-
+   'cours prerequests' => 'متطلبات الدورة',
+   'cours count' =>'عدد الصفوف',
+   'categories count' =>'عدد الدورات',
+   'services count' =>'عدد الخدمات',
 ];
+ 

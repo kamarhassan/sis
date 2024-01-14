@@ -101,56 +101,8 @@ class DashboardController extends Controller
    }
 
 
-   public function artisan($index)
-   {
-      try {
 
 
-         switch ($index) {
-            case 'db-seed':
-               $command_run_status = Artisan::call('db:seed');
-               print_r (['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
-               break;
-            case 'clc':
-               $command_run_status = Artisan::call('cache:clear');
-               $command_run_status = Artisan::call('optimize:clear');
-               print_r(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
-               break;
-            
-            case 'migrate':
-               $command_run_status = Artisan::call('migarte');
-               print_r(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
-               break;
-            case 'storage-link':
-                Artisan::call('config:clear');
-               $command_run_status = Artisan::call('storage:link');
-               print_r(['command run status' => $command_run_status, 'command' => $index, 'Now' => Carbon::now()]);
-               break;
-
-            default:
-
-               break;
-         }
-      } catch (\Throwable $th) {
-         throw $th;
-      }
-   }
-
-   public function clearcache()
-   {
-      try {
-         //         Artisan::call('storage:link');
-         //         $t = Artisan::call('up');
-
-         $t = Artisan::call('cache:clear');
-         $t = Artisan::call('optimize:clear');
-         dd('done \t' . Carbon::now());
-         //         $t = Artisan::call('optimize:clear');
-         //         return redirect()->back();
-      } catch (\Throwable $th) {
-         throw $th;
-      }
-   }
 
 
    public function changeyear(Request $request)

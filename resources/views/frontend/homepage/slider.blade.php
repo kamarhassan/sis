@@ -1,7 +1,7 @@
 
 
-@endisset
-{{-- @isset($slider)
+
+@isset($slider)
     <div id="jssor_1"
         style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:490px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
@@ -102,4 +102,4 @@
         </div>
     </div>
 
-@endisset --}}
+@endisset

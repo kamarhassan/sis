@@ -37,6 +37,7 @@
         href="{{ URL::asset('assets/Canvas/include/rs-plugin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
     <link rel="stylesheet"
         href="{{ URL::asset('assets/Canvas/include/rs-plugin/fonts/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet"         href="{{ URL::asset('assets/slider/slider_css.css') }}">
 
 
 
@@ -45,59 +46,12 @@
 
 @section('content')
 
-
+<div class="wave-bottom"
+style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);">
+</div>
     @include('frontend.homepage.slider')
 
 
-{{--    <div class="section mt-6 parallax" style="padding: 80px 0 60px;">--}}
-{{--        <div class="parallax-bg" style="background: url('assets/Canvas/demos/course/images/icon-pattern.jpg') repeat;">--}}
-{{--        </div>--}}
-
-{{--        <!-- Wave Shape Divider--}}
-{{--                                        ============================================= -->--}}
-{{--        <div class="wave-top"--}}
-{{--            style="position: absolute; top: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x;">--}}
-{{--        </div>--}}
-{{--        <div class="container">--}}
-{{--            <div class="heading-block border-bottom-0 mb-5 text-center">--}}
-{{--                <h3>@lang('site.Most Popular Classes')</h3>--}}
-{{--            </div>--}}
-{{--            <div class="clear"></div>--}}
-{{--            <div class="row mt-2">--}}
-{{--                @isset($cours)--}}
-{{--                    @foreach ($cours as $item)--}}
-{{--                        <div class="col-md-4 mb-5 ">--}}
-{{--                            <div class="card course-card hover-effect  border-box">--}}
-
-{{--                                <div class="card-body">--}}
-{{--                                    <h4 class="card-title fw-bold mb-2">--}}
-{{--                                        <a--}}
-{{--                                            href="{{ route('web.cours-details', [$item['category_grade_level']['name'], $item['category_grade_level']['grade']['grade'] . '-' . $item['category_grade_level']['level']['level'], $item['id']]) }}">--}}
-{{--                                            {{ $item['category_grade_level']['name'] }}--}}
-{{--                                            [ {{ $item['category_grade_level']['grade']['grade'] }}--}}
-{{--                                            - {{ $item['category_grade_level']['level']['level'] }} ]</a>--}}
-{{--                                    </h4>--}}
-{{--                                    <div class="rating-stars mb-2"><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i--}}
-{{--                                            class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-half"></i>--}}
-{{--                                        <span>4.7</span>--}}
-{{--                                    </div>--}}
-{{--                                    <p class="card-text text-black-50 mb-1"> @isset($item['description'])--}}
-{{--                                        <p> {{ $item['description'] }}</p>--}}
-{{--                                    @endisset--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                @endisset--}}
-{{--            </div>--}}
-{{--            <div class="wave-bottom"--}}
-{{--                style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);">--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="wave-bottom"--}}
-{{--            style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);">--}}
-{{--        </div>--}}
-{{--    </div>--}}
 
 
 
@@ -186,7 +140,8 @@
     <script src="{{ URL::asset('assets/slider/jssor-slider.min.js') }}"></script>
     <script src="{{ URL::asset('assets/slider/sliderjs.js') }}"></script>
 
-
+    <script type="text/javascript">jssor_1_slider_init();
+    </script>
     <script src="{{ URL::asset('assets/Canvas/js/jquery.js') }}"></script>
     <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
     <script src="{{ URL::asset('assets/Canvas/include/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>

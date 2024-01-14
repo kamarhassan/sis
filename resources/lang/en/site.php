@@ -2,7 +2,7 @@
 
 
 return [
-   'site name' => 'AIMS',
+   'site name' => 'ActCollege',
    'site name ' => 'site name',
    'dashboard ' => 'Dashboard',
    'Dashboard ' => 'Dashboard',
@@ -551,7 +551,7 @@ return [
    'you have reached the limit' => 'You have reached the limit, which is',
    'Most Popular Classes' => 'Most popular',
    'add category' => 'Add Category',
-   'categorie name' => ' Category Nmae',
+   'categorie name' => ' Category Name',
    'related' => 'Related',
    'global image' => 'General Image',
    'time and duration' => 'Time and Duration',
@@ -566,5 +566,9 @@ return [
    'link label' => 'Link Label',
    'classes' => 'classes',
    'available class' => 'available class',
-   'cours prerequests' =>'course prerequisites'
+   'cours prerequests' =>'course prerequisites',
+   
+   'cours count' =>'عدد الصفوف',
+   'categories count' =>'عدد الدورات',
+   'services count' =>'عدد الخدمات',
 ];
