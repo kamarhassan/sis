@@ -6,10 +6,10 @@
            
                 <div id="logo" class="me-lg-5">
                     <a href="{{ route('web.index') }}">
-                        Aims
-                        {{-- <img class="logo-default" srcset="images/logo.png, images/logo@2x.png 2x" src="images/logo@2x.png"
-                            alt="Canvas Logo">
-                        <img class="logo-dark" srcset="images/logo-dark.png, images/logo-dark@2x.png 2x"
+                         
+                         <img class="logo-default" srcset="{{URL::asset('public/files/logo.jfif')}}" src="{{URL::asset('public/files/logo.jfif')}}"
+                            title="advanced computer technology center" alt="advanced computer technology center" style="border-radius: 50%;">
+                       {{-- <img class="logo-dark" srcset="images/logo-dark.png, images/logo-dark@2x.png 2x"
                             src="images/logo-dark@2x.png" alt="Canvas Logo"> --}}
                     </a>
                 </div><!-- #logo end -->
@@ -22,7 +22,7 @@
                                 href="{{ route('login') }}">{{ __('Login') }}</a>
 
                             @if (Route::has('register'))
-                                <a class="button button-rounded button-small m-0 ms-2"
+                                <a class="button button-rounded button-border button-small m-0"
                                     href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @else
