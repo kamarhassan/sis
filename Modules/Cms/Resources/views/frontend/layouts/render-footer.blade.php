@@ -24,7 +24,7 @@
                         City : {{ $institueInformation->city }}<br>
                      @endisset
                      @isset($institueInformation->building)
-                        Building : {{ $institueInformation->building }}<br>>
+                        Building : {{ $institueInformation->building }}<br>
                      @endisset
                   </address>
                @endisset
