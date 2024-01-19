@@ -571,4 +571,5 @@ return [
    'cours count' =>'عدد الصفوف',
    'categories count' =>'عدد الدورات',
    'services count' =>'عدد الخدمات',
+   'dimension of image slider width 1920 heigth 600'=>'Recommended size for slider images is 1920px (width) x 600px (height)',
 ];

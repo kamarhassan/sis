@@ -45,7 +45,7 @@
    
    
    
-      <title>Course Demo | Canvas</title>
+      <title>act college</title>
        @toastr_css()
        @yield('css')
    </head>

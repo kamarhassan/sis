@@ -36,15 +36,13 @@ class ArtisanCommandController extends Controller
 
                $this->enable_disable_debug_mode('false');
                Artisan::call('config:clear');
-
-
                break;
 
             default:
 
                break;
          }
-         return back();
+         return redirect()->route('admin.dashborad');
       } catch (\Throwable $th) {
          throw $th;
       }

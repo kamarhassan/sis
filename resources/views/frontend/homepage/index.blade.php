@@ -37,7 +37,7 @@
         href="{{ URL::asset('assets/Canvas/include/rs-plugin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
     <link rel="stylesheet"
         href="{{ URL::asset('assets/Canvas/include/rs-plugin/fonts/font-awesome/css/font-awesome.css') }}">
-    <link rel="stylesheet"         href="{{ URL::asset('assets/slider/slider_css.css') }}">
+{{--    <link rel="stylesheet"         href="{{ URL::asset('assets/slider/slider_css.css') }}">--}}
 
 
 
@@ -46,9 +46,7 @@
 
 @section('content')
 
-<div class="wave-bottom"
-style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);">
-</div>
+
     @include('frontend.homepage.slider')
 
 
@@ -63,7 +61,7 @@ style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; backgroun
         </div>
         <div class="container">
             <div class="heading-block border-bottom-0 mb-5 text-center">
-                <h3>@lang('site.classes')</h3>
+                <h3>@lang('site.categories')</h3>
             </div>
             <div class="clear"></div>
             <div class="row mt-2">
@@ -137,11 +135,11 @@ style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; backgroun
 
 
 @section('script')
-    <script src="{{ URL::asset('assets/slider/jssor-slider.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/slider/sliderjs.js') }}"></script>
+{{--    <script src="{{ URL::asset('assets/slider/jssor-slider.min.js') }}"></script>--}}
+{{--    <script src="{{ URL::asset('assets/slider/sliderjs.js') }}"></script>--}}
 
-    <script type="text/javascript">jssor_1_slider_init();
-    </script>
+    {{-- <script type="text/javascript">jssor_1_slider_init();
+    </script> --}}
     <script src="{{ URL::asset('assets/Canvas/js/jquery.js') }}"></script>
     <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
     <script src="{{ URL::asset('assets/Canvas/include/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>

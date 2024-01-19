@@ -44,12 +44,12 @@ function encript_custome($id)
 function slider_width()
 {
    // return;
-   return ['max'=>1250,'min'=>1200];
+   return 1920;
 }
 function slider_height()
 {
    // return;
-   return ['max' =>384,'min' =>384 ] ;
+   return 600 ;
 }
 function days_of_week()
 {

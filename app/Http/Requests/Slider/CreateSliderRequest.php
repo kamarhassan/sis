@@ -27,8 +27,8 @@ class CreateSliderRequest extends FormRequest
         $width = slider_width();
         $height = slider_height();
         return [
-           'image' => ['required','mimes:png,jpg',new ImageSizeRule($width['min'],$width['max'], $height['max'],$height['min'])/*'dimensions:width=' . $width . ',height=' . $height*/],
-            'image' => 'required|mimes:png,jpg',
+            // 'image' => ['required','mimes:png,jpg','dimensions:width=' . $width . ',height=' . $height/*'dimensions:width=' . $width . ',height=' . $height*/],
+            'image' => 'required|mimes:png,jpg|dimensions:width=' . $width . ',height=' . $height,
             'link_label' => $this->link_label(),
             'link' => $this->ImageLink(),
             'description' => $this->description(),
@@ -53,4 +53,15 @@ class CreateSliderRequest extends FormRequest
             return 'max:255';
         return '';
     }
+
+    public  function messages()
+    {
+        return [
+            '*.required' => __('site.its_require'),
+            '*.dimensions' => __('site.dimension of image slider width 1920 heigth 600'),
+           
+
+        ];
+    }
+
 }

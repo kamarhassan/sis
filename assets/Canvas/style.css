@@ -705,7 +705,7 @@ progress {
   color: #6c757d;
 }
 .blockquote-footer::before {
-  content: "— ";
+  content: "— ";
 }
 
 .img-fluid {
@@ -15780,12 +15780,17 @@ img.lazy:not([src]) {
   --cnvs-mobile-menu-off-canvas-width: 280px;
   position: relative;
 }
+
+
+
+/*for menu back. color */
 #header-wrap {
   position: fixed;
   height: auto;
   z-index: 299;
   width: 100%;
-  background-color: var(--cnvs-header-bg);
+   /*background-color: var(--cnvs-header-bg);*/
+   background-color: #F1C405;
   border-bottom: 1px solid var(--cnvs-header-border-color);
   transition: height 0.2s ease 0s, background-color 0.3s ease 0s;
   -webkit-backface-visibility: hidden;
@@ -15909,11 +15914,14 @@ body:not(.is-expanded-menu) #header:not([data-mobile-sticky=true]) .header-wrap-
     transition: none;
   }
 }
+
+/*when screen down */
 .is-expanded-menu .sticky-header #header-wrap {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--cnvs-header-sticky-bg);
+  /*background-color: var(--cnvs-header-sticky-bg);*/
+   background-color: #F1C405;
 }
 .is-expanded-menu .sticky-header.semi-transparent {
   --cnvs-header-sticky-bg: rgba(var(--cnvs-invert-contrast-rgb),0.7);
@@ -16307,11 +16315,14 @@ body:not(.top-search-open) .top-search-parent .primary-menu-trigger {
   list-style: none;
   margin-bottom: 0;
 }
+
+/*for sub menu color*/
 .is-expanded-menu .sub-menu-container,
 .is-expanded-menu .mega-menu-content {
   position: absolute;
   visibility: hidden;
-  background-color: var(--cnvs-primary-menu-submenu-bg);
+  /*background-color: var(--cnvs-primary-menu-submenu-bg);*/
+   background-color: #E5E7E9;
   box-shadow: 0px 13px 42px 11px rgba(0, 0, 0, 0.05);
   border: var(--cnvs-primary-menu-submenu-border);
   border-top: var(--cnvs-primary-menu-submenu-top-border);
@@ -16451,7 +16462,7 @@ body:not(.is-expanded-menu) #header:not(.sticky-header) .mobile-menu-off-canvas 
   left: 0 !important;
   top: 0 !important;
   padding: 35px 25px 60px !important;
-  background-color: var(--cnvs-header-bg);
+  background-color: #E5E7E9;
   border-right: 1px solid var(--cnvs-header-border-color) !important;
   overflow-y: scroll;
   transform: translate(calc(-1 * var(--cnvs-mobile-menu-off-canvas-width)), 0);
@@ -34202,4 +34213,3 @@ body.dark {
   color: rgba(255, 255, 255, 0.4);
   background-color: rgba(0, 0, 0, 0.2);
 }
-
