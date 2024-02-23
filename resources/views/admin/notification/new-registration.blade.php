@@ -110,11 +110,10 @@
                               <td>
                                  {{-- admin.notification.get.user.info --}}
                                  <a href="#" @can('read only register order')
-                                 onclick="get_user_info('{{ route('admin.notification.get.user.info', $new_order['id']) }}','{{ csrf_token() }}');"
+                                 onclick="get_notification_details('{{ route('admin.notification.get.user.info', $new_order['id']) }}','{{ csrf_token() }}');"
 
                                     @endcan
-                                    class="mailbox-name hover-primary" data-toggle="modal"
-                                    data-target="#modal-center">
+                                    class="mailbox-name hover-primary" >
                                     {{ $new_order['user']['id'] }} # {{ $new_order['user']['name'] }}
                                  </a>
                               </td>
@@ -187,6 +186,7 @@
    </script>
    <script src="{{ URL::asset('assets/custome_js/save.js') }}"></script>
    <script src="{{ URL::asset('assets/custome_js/delete.js') }}"></script>
+   <script src="{{ URL::asset('assets/custome_js/get_info_user.js') }}"></script>
    <script src="{{ URL::asset('assets/assets/vendor_plugins/iCheck/icheck.js') }}"></script>
    <script
       src="{{ URL::asset('assets/assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
@@ -196,6 +196,6 @@
    <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
    {{-- <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script> --}}
    <script src="{{ URL::asset('assets/app-assets/js/pages/mailbox.js') }}"></script>
-   <script src="{{ URL::asset('assets/custome_js/get_info_user.js') }}"></script>
+   
 
 @endsection

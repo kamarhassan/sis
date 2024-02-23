@@ -27,7 +27,7 @@ class CreateSliderRequest extends FormRequest
         $width = slider_width();
         $height = slider_height();
         return [
-            // 'image' => ['required','mimes:png,jpg','dimensions:width=' . $width . ',height=' . $height/*'dimensions:width=' . $width . ',height=' . $height*/],
+      
             'image' => 'required|mimes:png,jpg|dimensions:width=' . $width . ',height=' . $height,
             'link_label' => $this->link_label(),
             'link' => $this->ImageLink(),

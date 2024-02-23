@@ -130,13 +130,14 @@ class RegistartionStudentsController extends Controller
    {
 
       try {
-         // return $request;
+        //  return $request;
 
          $user_info = $this->userrepository->get_user_by_id($request->user_id);
          // $t = $user_info['teams_info']['password'];
          // dd(Crypt::decryptString($t));
          //   $user_info['teams_info']['password'] = Crypt::decryptString($user_info['teams_info']['password']);
          $notification = NotificationAdmin::find($request->cours_id);
+         
          $teach_type = ['key' => $notification->teach_type, 'type' => $notification->getTeachType()];
          $cours_info = $this->coursrepository->is_defined($notification->order_id);
 

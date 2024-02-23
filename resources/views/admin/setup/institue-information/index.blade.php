@@ -96,6 +96,14 @@
 @endsection
 
 @section('script')
+<script src="{{ URL::asset('assets\custome_js\delete.js') }}"></script>
+<script src="{{ URL::asset('assets/app-assets/vendors/js/tables/datatable/dataTables.fixedHeader.min.js') }}"
+type="text/javascript"></script>
+<script src="{{ URL::asset('assets/app-assets/vendors/js/tables/datatable/dataTables.keyTable.min.js') }}"
+type="text/javascript"></script>
+<script src="{{ URL::asset('assets/app-assets/js/scripts/tables/datatables-extensions/datatable-keytable.js') }}"
+type="text/javascript"></script>
+<script src="{{ URL::asset('assets/datatable/datatables.min.js') }}" type="text/javascript"></script>
     <script>
         var table = $('#example1').DataTable({
             scrollY: 400,
@@ -109,12 +117,4 @@
 
         });
     </script>
-<script src="{{ URL::asset('assets\custome_js\delete.js') }}"></script>
-<script src="{{ URL::asset('assets/app-assets/vendors/js/tables/datatable/dataTables.fixedHeader.min.js') }}"
-type="text/javascript"></script>
-<script src="{{ URL::asset('assets/app-assets/vendors/js/tables/datatable/dataTables.keyTable.min.js') }}"
-type="text/javascript"></script>
-<script src="{{ URL::asset('assets/app-assets/js/scripts/tables/datatables-extensions/datatable-keytable.js') }}"
-type="text/javascript"></script>
-<script src="{{ URL::asset('assets/datatable/datatables.min.js') }}" type="text/javascript"></script>
 @endsection

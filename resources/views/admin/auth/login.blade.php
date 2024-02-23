@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ logo() }}">
 
-   <title>@lang('site.site name')</title>
+    <title>@lang('site.site name')</title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}">
@@ -53,7 +53,7 @@
                                                 class="ti-user"></i></span>
                                     </div>
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" required
+                                        class="form-control @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                                         </div>
                                         <input id="password" type="password"
                                             class="form-control @error('password')
-                                        is-invalid @enderror" required
+                                        is-invalid @enderror"
                                             name="password" autocomplete="current-password"
                                             {{-- placeholder="{{ __('schoolms.Enter Your Password') }}" --}}
                                             >

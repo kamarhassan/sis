@@ -107,15 +107,15 @@
 
                     <input hidden name="order_id[]" id="order_id"
                         @isset($order_id)
-                       {{ $order_id }}
+                     value="  {{ $order_id }}"
                     @endisset>
                     <input hidden name="user_id" id="user_id"
                         @isset($user_info['id'])
-                       {{ $user_info['id'] }}
+                      value=" {{ $user_info['id'] }}"
                     @endisset>
                     <input hidden name="cours_id" id="cours_id"
                         @isset($order_id)
-                       {{ $order_id }}
+                      value=" {{ $order_id }}"
                     @endisset>
 
 
