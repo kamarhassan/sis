@@ -86,14 +86,15 @@
                         </form>														
 
                         <div class="text-center text-black">
-                          {{-- <p class="mt-20">- Sign With -</p>
+                          <p class="mt-20">- Sign With -</p>
                           <p class="gap-items-2 mb-20">
-                              <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-facebook"></i></a>
-                              <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-twitter"></i></a>
-                              <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-google-plus"></i></a>
-                              <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-instagram"></i></a>
+                              <a class="btn btn-danger" href="{{route('user.login.by.google')}}"><i class="bi-google"></i></a>
+                              <a class="btn btn-primary" href="#"><i class="bi-facebook"></i></a>
+                              {{-- <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-twitter"></i></a>
+                              <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-google"></i></a>
+                              <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-instagram"></i></a> --}}
                             </p>	
-                        </div> --}}
+                        </div>
                         
                         <div class="text-center">
                             <p class="mt-15 mb-0 text-black">Don't have an account? <a href="{{ route('register') }}" class="text-info ml-5">Sign Up</a></p>

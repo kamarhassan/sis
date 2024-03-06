@@ -80,8 +80,7 @@
                 </li>
             @endcan
 
-            @canany(['register order delete all', 'register order deny all', 'register order aprrove', 'register order
-                delete', 'register order deny','teacher'])
+            @canany(['register order delete all','register order deny all','register order aprrove','register order deny','see notification','read only register order','register order read all','register order aprrove all'])
                 <li><a href="{{ route('admin.new.register.order') }}" {{-- onclick='open_link("{{route("admin.students.register")}}");' --}}>
                         <i class="ti-more">
                         </i>

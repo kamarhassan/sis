@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\FrontEnd\IndexController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\FrontEnd\Api\SocialLoginController;
 use App\Http\Controllers\FrontEnd\CategoriesController;
 use App\Http\Controllers\FrontEnd\CoursDetailController;
 use App\Http\Controllers\FrontEnd\CertificateController;
@@ -67,10 +68,12 @@ Route::group(
       }); 
       
       
+      Auth::routes(['verify' => true]);
+      
+      Route::get('auth/google', [SocialLoginController::class,'redirecttogoogle'])->name('user.login.by.google');
+      Route::get('auth/google/callback', [SocialLoginController::class,'handleGooglecallback'])->name('user.login.by.fb');
       
 
-
-      Auth::routes(['verify' => true]);
 
       Route::middleware(['auth', 'verified'])->group(function () {
        

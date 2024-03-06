@@ -25,7 +25,7 @@ Route::group(
       Route::post('/headermenu-reordering', [MenuBuilderController::class, 'reordering'])->name('cms.headermenu.reordering')->middleware(['permission:edit menu']); //->middleware('RoutePermissionCheck:cms.headermenu.reordering');
       Route::post('/headermenu-delete', [MenuBuilderController::class, 'deleteElement'])->name('cms.headermenu.delete')->middleware(['permission:delete menu']); //->middleware('RoutePermissionCheck:frontend.headermenu.delete');
 
-      Route::get('/mani', [LaravelPWAController::class, 'manifestJson'])->name('manifestJson');
+      // Route::get('/mani', [LaravelPWAController::class, 'manifestJson'])->name('manifestJson');
 
       Route::group(['prefix' => 'page'], function () {
          Route::get('/', [FrontPageController::class, 'index'])->name('cms.admin.page')

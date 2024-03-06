@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+   /*
     |--------------------------------------------------------------------------
     | Third Party Services
     |--------------------------------------------------------------------------
@@ -14,20 +14,30 @@ return [
     |
     */
 
-    'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
-        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
-    ],
+   'mailgun' => [
+      'domain' => env('MAILGUN_DOMAIN'),
+      'secret' => env('MAILGUN_SECRET'),
+      'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+   ],
 
-    'postmark' => [
-        'token' => env('POSTMARK_TOKEN'),
-    ],
+   'postmark' => [
+      'token' => env('POSTMARK_TOKEN'),
+   ],
 
-    'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
-        'secret' => env('AWS_SECRET_ACCESS_KEY'),
-        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-    ],
+   'ses' => [
+      'key' => env('AWS_ACCESS_KEY_ID'),
+      'secret' => env('AWS_SECRET_ACCESS_KEY'),
+      'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+   ],
+   'facebook' => [
+      'client_id' => env('FB_CLIENT_ID'),
+      'client_secret' => env('FB_CLIENT_SECRET'),
+      'redirect' => env('FB_REDIRECT')
+   ],
+   'google' => [
+      'client_id' => '28837063398-5s95inqrncmao7pumseu8rkkjcd0b4ck.apps.googleusercontent.com',
+      'client_secret' => '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',
+      'redirect' => 'http://localhost/sis/auth/google/callback'
+   ],
 
 ];
