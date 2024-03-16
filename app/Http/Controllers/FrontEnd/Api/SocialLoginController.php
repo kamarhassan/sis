@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
-
+use Redirect;
 class SocialLoginController extends Controller
 {
    public function redirecttogoogle()
@@ -23,12 +23,13 @@ class SocialLoginController extends Controller
    public function handleGooglecallback()
    {
       try {
+        
          $user = Socialite::driver('google')->user();
          $finduser = User::where('social_id', $user->id)->first();
 
          if ($finduser) {
             Auth::login($finduser);
-            return response()->json($finduser);
+            return redirect()->route('web.index'); // response()->json($finduser);
          } else {
 
             $newusers = User::create([
@@ -45,7 +46,7 @@ class SocialLoginController extends Controller
 
             ]);
             Auth::login($newusers);
-            return redirect()->route('web.dashboard');
+            return redirect()->route('web.index'); //redirect()->route('web.home');
          }
       } catch (\Throwable $th) {
          throw $th;

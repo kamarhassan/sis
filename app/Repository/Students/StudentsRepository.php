@@ -259,7 +259,9 @@ class StudentsRepository implements StudentsInterface
       
       
       // dd(  $mark);
-      return $mark['percent'];
+        $mark  ?   $t =$mark['percent'] : $t =null   ;
+          
+      return  $t ;
          }
       return;
    }

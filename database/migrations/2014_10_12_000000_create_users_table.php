@@ -36,8 +36,8 @@ class CreateUsersTable extends Migration
             $table->string('photo')->nullable();
             $table->string('work_type')->nullable()->comment('type of job for worker');
             $table->string('work_address_id')->nullable()->comment('address of job for worker');
-            $table->Integer('profile_complete')->default(1)->enum('user_status', ['0','1'])->comment('0 => no     2 =>yes');
-             $table->Integer('user_status')->default(1)->enum('user_status', ['0','1','2'])->comment('0 => inaproved   1=>approved   2 =>blocked');
+            $table->Integer('profile_complete')->default(1)->enum('user_status', ['0','1'])->comment('0 => no  1 =>yes');
+            $table->Integer('user_status')->default(1)->enum('user_status', ['0','1','2'])->comment('0 => inaproved   1=>approved   2 =>blocked');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

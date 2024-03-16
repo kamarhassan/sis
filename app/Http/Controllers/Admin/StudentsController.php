@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\User\EditUserProfileRequest;
 use App\Repository\User\UserInterface;
+use Lwwcas\LaravelCountries\Models\Country;
 use Validator;
 use Carbon\Carbon;
 use App\Models\User;
@@ -342,7 +344,7 @@ class StudentsController extends Controller
 
             foreach ($std->cours as $key => $cours) {
                $cours_category = $cours->category_grade_level;
-               
+
                $cours->categorty_name = $cours_category['name'];
                $cours->grade_ = $cours_category['grade']['grade'];
                $cours->level_ = $cours_category['level']['level'];
@@ -376,4 +378,50 @@ class StudentsController extends Controller
 
    }
 
+
+   public function edit_student_information($user_id)
+   {
+      $user = $this->userrepo->get_user_by_id($user_id);
+      $countries = Country::withTranslation()->get(['id','emoji','iso_alpha_2']);
+      if ($user)
+         return view('admin.students.profile-and-cours.std-edit-info', compact('user','countries'));
+      else {
+      
+         toastr()->error(__('site.students not found'));
+         return view('admin.students.profile-and-cours.std-edit-info', compact('user','countries'));
+
+      }
+//      return view ();
+   }
+
+   public function save_edit_student_information(Request $request)
+   {
+       $is_updated= $this->userrepo->update_user_information($request->id,$request);
+      if($is_updated == 1){
+         $status = 'success';
+         $message = __('site.Post edit successfully!');
+         $route = '#';
+      }else {
+         $status = 'error';
+         $message = __('site.fail created successfully!');
+         $route = "#";
+      }
+      return response()->json(['status' => $status, 'message' => $message, 'route' => $route]);
+   }
+
+   public function save_edit_password_student_information(EditUserProfileRequest $request)
+   {
+      //  return $request;
+      $is_updated= $this->userrepo->update_user_password($request->id,$request);
+      if($is_updated == 1){
+         $status = 'success';
+         $message = __('site.Post edit successfully!');
+         $route = '#';
+      }else {
+         $status = 'error';
+         $message = __('site.fail created successfully!');
+         $route = "#";
+      }
+      return response()->json(['status' => $status, 'message' => $message, 'route' => $route]);
+   }
 }

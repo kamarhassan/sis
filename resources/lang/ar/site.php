@@ -594,6 +594,7 @@ return [
    'categories count' =>'عدد الدورات',
    'services count' =>'عدد الخدمات',
    'dimension of image slider width 1920 heigth 600'=>'الحجم الموصى به للصور  هو 1920 بكسل (عرض) × 600 بكسل (ارتفاع)',
+   'students not found' =>'الطالب غير موجود',
 
 ];
  

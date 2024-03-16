@@ -20,6 +20,19 @@ Route::group(['prefix' => 'students'], function () {
    
    Route::get('add-students', [StudentsController::class, 'add_students'])
    ->middleware(['permission:add students'])->name('admin.students.add');
+    
+      Route::get('edit-student-information/{id}', [StudentsController::class, 'edit_student_information'])
+   ->middleware(['permission:add students'])->name('admin.students.edit.information');
+      
+       Route::post('post-edit-student-information', [StudentsController::class, 'save_edit_student_information'])
+   ->middleware(['permission:add students'])->name('admin.students.post-edit.information');
+      
+       Route::post('post-edit-student-password-information', [StudentsController::class, 'save_edit_password_student_information'])
+   ->middleware(['permission:add students'])->name('admin.students.post-edit.password.information');
+   
+   
+   
+   
    
    Route::Post('export-file-to-import', [StudentsController::class, 'export_file_to_import'])
    ->middleware(['permission:add students'])->name('admin.export.file.to.import.students');
