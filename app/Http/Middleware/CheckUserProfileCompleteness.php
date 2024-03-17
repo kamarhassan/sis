@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckUserProfileCompleteness
 {
@@ -16,17 +17,19 @@ class CheckUserProfileCompleteness
     */
    public function handle(Request $request, Closure $next)
    {
-      $user = auth()->user();
 
-      if (auth()->check() && $user->firstname != "" &&
-         $user->midname != "" &&
-         $user->lastname != "" &&
-         $user->email != "" &&
-         $user->phonenumber != "") {
-         return $next($request);
-      }
+      $user = Auth::user();
 
-      // Redirect the user to complete their profile
-      return redirect()->route('web.profile.edit');
+      // Define required fields for a complete profile
+
+
+      if (empty($user->firstname) || empty($user->lastname) || empty($user->email) || empty($user->phonenumber)) {
+         // Redirect to the profile completion page if any required field is missing
+         return redirect()->route('web.profile.must.complete');
+      } 
+     
+
+      // If profile is complete and user status is approved, allow the request to proceed
+      return $next($request);
    }
 }

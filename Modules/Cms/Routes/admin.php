@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use LaravelPWA\Http\Controllers\LaravelPWAController;
+
 use Modules\Cms\Http\Controllers\Admin\BlogController;
 use Modules\Cms\Http\Controllers\Admin\FrontPageController;
 use Modules\Cms\Http\Controllers\Admin\MenuBuilderController;

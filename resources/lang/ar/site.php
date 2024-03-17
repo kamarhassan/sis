@@ -590,11 +590,15 @@ return [
    'classes' => 'الصفوف',
    'available class' => 'الصفوف المتاحة',
    'cours prerequests' => 'متطلبات الدورة',
-   'cours count' =>'عدد الصفوف',
-   'categories count' =>'عدد الدورات',
-   'services count' =>'عدد الخدمات',
-   'dimension of image slider width 1920 heigth 600'=>'الحجم الموصى به للصور  هو 1920 بكسل (عرض) × 600 بكسل (ارتفاع)',
-   'students not found' =>'الطالب غير موجود',
+   'cours count' => 'عدد الصفوف',
+   'categories count' => 'عدد الدورات',
+   'services count' => 'عدد الخدمات',
+   'dimension of image slider width 1920 heigth 600' => 'الحجم الموصى به للصور  هو 1920 بكسل (عرض) × 600 بكسل (ارتفاع)',
+   'students not found' => 'الطالب غير موجود',
+   'your profile is not complete' => 'ملفك الشخصي غير مكتمل',
+   'compelete your profile' => 'عليك ادخال كافة المعلومات المطلوبة',
+
+   'online'=>'اونلاين',
+   'on class'=>'حضوري',
 
 ];
- 

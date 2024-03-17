@@ -222,6 +222,14 @@ function submit(route_, form_id) {
                toastr.error(data.message);
             }
          }
+         
+         if (data.hasOwnProperty('route')) {
+            // Redirect to the route specified in data
+            window.location.href = data.route;
+         console.log(data.route);
+           // Prevent further execution of code after redirection
+        }
+    
       }, error: function reject(reject) {
          var response = $.parseJSON(reject.responseText);
          $.each(response.errors, function (key, val) {
