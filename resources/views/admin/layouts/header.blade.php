@@ -63,15 +63,24 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown-flag">
                     <ul class="menu">
-                        @php   $lang=get_active_Language() @endphp
-                        @foreach ($lang as $localeCode => $properties)
-                            <li style="list-style-type: none;">
-                                <a rel="alternate" hreflang="{{ $localeCode }}"
-                                    href="{{ LaravelLocalization::getLocalizedURL($properties->code, null, [], true) }}">
-                                    {{ $properties->code }}
+{{--                        @php   $lang=get_active_Language() @endphp--}}
+{{--                        @foreach ($lang as $localeCode => $properties)--}}
+{{--                            <li style="list-style-type: none;">--}}
+{{--                                <a rel="alternate" hreflang="{{ $localeCode }}"--}}
+{{--                                    href="{{ LaravelLocalization::getLocalizedURL($properties->code, null, [], true) }}">--}}
+{{--                                    {{ $properties->code }}--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endforeach--}}
+                       <ul>
+                          @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                             <li>
+                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                   {{ $properties['native'] }}
                                 </a>
-                            </li>
-                        @endforeach
+                             </li>
+                          @endforeach
+                       </ul>
                     </ul>
                 </div>
             </li>

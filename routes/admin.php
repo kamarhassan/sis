@@ -15,7 +15,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(
    [
       'namespace' => 'Admin',
-      'prefix' => LaravelLocalization::setLocale('ar') . '/admin',
+      'prefix' => LaravelLocalization::setLocale() . '/admin',
       'middleware' => ['guest:admin', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
    ],
    function () {

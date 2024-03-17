@@ -33,7 +33,7 @@ public function children()
    
    public static function menu($parent_id =null)
    {
-      $menuItems = HeaderMenu::where('parent_id',$parent_id)->get();
+      $menuItems = HeaderMenu::where('parent_id',$parent_id)->orderBy('position')->get();
       $menu = [];
 
       foreach ($menuItems as $menuItem) {
