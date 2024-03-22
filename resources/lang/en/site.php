@@ -573,5 +573,16 @@ return [
    'services count' =>'عدد الخدمات',
    'dimension of image slider width 1920 heigth 600'=>'Recommended size for slider images is 1920px (width) x 600px (height)',
    'students not found' =>'students not found',
+
+   'your profile is not complete' => 'your profile is not complete',
+   'compelete your profile' => 'compelete your profile',
+
+   'online'=>'online',
+   'on class'=>'on class',
+   'receipt id' =>'receipt id',
+   'user ID' =>'user ID',
+
+
+
 ];
 

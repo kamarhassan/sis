@@ -600,5 +600,7 @@ return [
 
    'online'=>'اونلاين',
    'on class'=>'حضوري',
+   'receipt id' =>'رقم الايصال ',
+   'user ID' =>'user ID',
 
 ];
