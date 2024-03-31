@@ -36,15 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-
-  
- 
-   
-   
-   
-   
-   
+    <link rel="icon" href="{{URL::asset('public/files/logo.jfif')}}" type="image/x-icon">
       <title>act college</title>
        @toastr_css()
        @yield('css')
@@ -73,42 +65,7 @@
             
             </div>
    
-            
-   {{--         <div class="section m-0" style="padding: 120px 0; background: #FFF url('demos/course/images/instructor.jpg') no-repeat left top / cover">--}}
-{{--            <div class="container">--}}
-{{--               <div class="row">--}}
-
-{{--                  <div class="col-md-7"></div>--}}
-
-{{--                  <div class="col-md-5">--}}
-{{--                     <div class="heading-block border-bottom-0 mb-4 mt-5">--}}
-{{--                        <h3>Become an Instructor!</h3>--}}
-{{--                        <span>Teach What You Love.</span>--}}
-{{--                     </div>--}}
-{{--                     <p class="mb-2">Monotonectally conceptualize covalent strategic theme areas and cross-unit deliverables.</p>--}}
-{{--                     <p>Consectetur adipisicing elit. Voluptate incidunt dolorum perferendis accusamus nesciunt et est consequuntur placeat, dolor quia.</p>--}}
-{{--                     <a href="#" class="button button-rounded button-xlarge ls-0 text-transform-none fw-normal m-0">Start Teaching</a>--}}
-{{--                  </div>--}}
-
-{{--               </div>--}}
-{{--            </div>--}}
-{{--         </div>--}}
-
-{{--         <div class="promo promo-light promo-full p-5 footer-stick" style="padding: 60px 0 !important;">--}}
-{{--            <div class="container">--}}
-{{--               <div class="row align-items-center">--}}
-{{--                  <div class="col-12 col-lg">--}}
-{{--                     <h3 class="ls-1">Call us today at <span>+1.22.57412541</span> or Email us at <span>support@canvas.com</span></h3>--}}
-{{--                     <span class="text-black-50">We strive to provide Our Customers with Top Notch Support to make their Theme Experience Wonderful.</span>--}}
-{{--                  </div>--}}
-{{--                  <div class="col-12 col-lg-auto mt-4 mt-lg-0">--}}
-{{--                     <a href="#" class="button button-xlarge button-rounded text-transform-none ls-0 fw-normal m-0">Start Now</a>--}}
-{{--                  </div>--}}
-{{--               </div>--}}
-{{--            </div>--}}
-{{--         </div>--}}
-
-      
+   
    </section>
 
    

@@ -19,7 +19,8 @@ function  logo()
    // if ($photoUrl != "")
    //    return  URL::asset($photoUrl);
    // else   return URL::asset('assets\images\avatar\avatar-1.png');
-   return URL::asset('assets\images\avatar\avatar-1.png');
+   
+   return URL::asset('public/files/logo.jfif');
 }
 
 function show_real_pass($hash_password)

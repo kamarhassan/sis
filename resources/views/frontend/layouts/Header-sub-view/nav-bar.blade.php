@@ -1,15 +1,15 @@
 <nav class="primary-menu mobile-menu-off-canvas flex-xl-fill me-auto">
    <ul class="menu-container">
    
-      <li class="menu-item">
+      {{-- <li class="menu-item">
          <a class="menu-link" href="{{ route('web.index') }}">
-            <div>Home</div>
+            <div><strong>Home</strong> </div>
          </a>
       </li>   <li class="menu-item">
          <a class="menu-link" href="{{ route('cms.web.blog.index') }}">
-            <div>news</div>
+            <div><strong>news</strong> </div>
          </a>
-      </li>
+      </li> --}}
       <li class="menu-item">
 
          @include('cms::frontend.layouts.render-menu')

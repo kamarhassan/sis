@@ -598,9 +598,14 @@ return [
    'your profile is not complete' => 'ملفك الشخصي غير مكتمل',
    'compelete your profile' => 'عليك ادخال كافة المعلومات المطلوبة',
 
-   'online'=>'اونلاين',
-   'on class'=>'حضوري',
-   'receipt id' =>'رقم الايصال ',
-   'user ID' =>'user ID',
+   'online' => 'اونلاين',
+   'on class' => 'حضوري',
+   'receipt id' => 'رقم الايصال ',
+   'user ID' => 'user ID',
+   'add institue information' => 'اضافة معلومات المعهد',
 
+   'email'=>'البريد الالكتروني',
+   'city'=>'المدينة',
+   'building'=>'البناء',
+   'branch name' =>'الفرع',
 ];

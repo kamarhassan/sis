@@ -34,7 +34,7 @@ class FrontPageController extends Controller
       } else {
          $query->where('is_static', 0)->orWhere(function ($q) {
             $slugs = [
-               '/',
+               
                '/courses',
                '/classes',
                '/quizzes',

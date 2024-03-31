@@ -1,23 +1,27 @@
 <?php
 
 
-function render_menu_front_website($menuItems)
+function render_menu_front_website($menuItems,$i)
 {
 
 
    foreach ($menuItems as $item) {
-      echo '<li class="menu-item">';
+      (!empty($item['children']) && $i==0) ? $class = '&#9660' : $class = '';    /**$i for check is only first head of tree */
+
+      echo '<li class="menu-item ">';
       echo '<a class="menu-link" href="' . $item['link'] . '">';
-      echo '<div>' . $item['title'] . '</div>';
+       
+      echo '<div><strong>' . $item['title'] . ''.$class.'</strong></div>';
       echo '</a>';
 
       if (!empty($item['children'])) {
          echo '<ul class="sub-menu-container">';
-         echo render_menu_front_website($item['children']);
+         $i++;
+         echo render_menu_front_website($item['children'],$i);
 
          echo '</ul>';
       }
-
+$i=0;
       echo '</li>';
    }
 
@@ -102,8 +106,8 @@ function render_comment($comment)
 
       $item['parent_id'] == null ?  $parent_id = $item['id'] :  $parent_id = $item['parent_id'];
       // $item['comment_id'] == null ?  $comment_id = $item['id'] :  $comment_id =  $item['comment_id'];
-     $comment_id = $item['id'] ;
-   // $comment_id = $item['comment_id'];
+      $comment_id = $item['id'];
+      // $comment_id = $item['comment_id'];
       $data = 1; //["parent_id" => $item['comment_id'], "comment_id" => $item['id']];
 
       echo view('cms::frontend.blog.post-details-and-comment.comment', compact('item', 'parent_id', 'comment_id'));
