@@ -610,8 +610,9 @@ return [
    'branch name' => 'الفرع',
 
 
-   'add team' => 'add team',
+   'add team' => 'اضافة موظف للفريق',
    'instructor' => 'instructor',
-   'role' => 'role',
-   'admin photo'=>'admin photo',
+   'role' => 'الدور',
+   'employee photo'=>'صورة الموظف',
+   'employee'=>'موظف',
 ];

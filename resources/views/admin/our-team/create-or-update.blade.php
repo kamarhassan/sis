@@ -15,10 +15,10 @@
                   <!-- /.box-header -->
                   <form class="form" id="add_or_update_team">
                      @csrf
-                     <input type="hidden" id="id" name="id" value="">
+                    
                      <div class="box-body">
                         <h4 class="box-title text-info"><i class="ti-user mr-15"></i>
-                           @lang('site.personal information')</h4>
+                          {{-- @lang('site.information')--}}</h4>
                         <hr class="my-15">
 
                         <div class="row">
@@ -26,7 +26,7 @@
 
                            <div class="col-md-4">
                               <div class="form-group">
-                                 <label>@lang('site.instructor')<span class="text-danger">*</span></label>
+                                 <label>@lang('site.employee')<span class="text-danger">*</span></label>
                                  <select class="form-control select2" name="instructor" id="instructor"
                                          class="form-control select2" style="width: 100%;">
                                     <option>----------</option>
@@ -39,6 +39,7 @@
                                     @endisset
 
                                  </select>
+                                 <span class="text-danger" id="instructor_"></span>
                               </div>
                            </div>
                            <div class="col-md-4">
@@ -48,6 +49,7 @@
                                           style="width: 100%;">
                                     
                               </div>
+                              <span class="text-danger" id="role_"></span>
                            </div>
 
                            <div class="col-md-9">
@@ -56,14 +58,14 @@
                                  <div class="controls">
                                                 <textarea name="shortdescription" id="shortdescription"
                                                           class="form-control" required="" placeholder="Textarea text"
-                                                          aria-invalid="false" style="height: 69px;">  
-                                                    @isset($team)
+                                                          aria-invalid="false" style="height: 69px;">@isset($team)
                                                       {{ $team['shortdescription'] }}
                                                    @endisset </textarea>
 
                                     <div class="help-block"></div>
                                  </div>
                               </div>
+                              <span class="text-danger" id="shortdescription_"></span>
                            </div>
 
 
@@ -72,7 +74,7 @@
                         <div class="row">
                            <div class="col-md-4">
                               <div class="form-group">
-                                 <label>@lang('site.admin photo') </label>
+                                 <label>@lang('site.employee photo') </label>
                                  <input type='file' name="photo" onchange="readURL(this);"/>
                               </div>
                            </div>

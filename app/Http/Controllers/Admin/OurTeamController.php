@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OurTeam\OurTeamRequest;
 use App\Models\OurTeam;
 use App\Traits\Image;
 
@@ -29,7 +30,7 @@ class OurTeamController extends Controller
       return view('admin.our-team.create-or-update', compact('team', 'admin'));
    }
 
-   public function save_or_update_team(Request $request)
+   public function save_or_update_team(OurTeamRequest $request)
    {
       $userId = $request->input('instructor');
       $photo = $request->file('photo');

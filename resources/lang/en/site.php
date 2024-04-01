@@ -586,4 +586,11 @@ return [
    'building'=>'building',
    'branch name' =>'branch name',
 
+
+
+   'add team' => 'add employee to team',
+   'instructor' => 'instructor',
+   'role' => 'role',
+   'employee photo'=>'employee photo',
+   'employee'=>'employee',
 ];
