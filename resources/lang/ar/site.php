@@ -604,8 +604,14 @@ return [
    'user ID' => 'user ID',
    'add institue information' => 'اضافة معلومات المعهد',
 
-   'email'=>'البريد الالكتروني',
-   'city'=>'المدينة',
-   'building'=>'البناء',
-   'branch name' =>'الفرع',
+   'email' => 'البريد الالكتروني',
+   'city' => 'المدينة',
+   'building' => 'البناء',
+   'branch name' => 'الفرع',
+
+
+   'add team' => 'add team',
+   'instructor' => 'instructor',
+   'role' => 'role',
+   'admin photo'=>'admin photo',
 ];

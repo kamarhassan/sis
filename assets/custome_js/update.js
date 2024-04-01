@@ -1,6 +1,6 @@
 
 function category_to_update(route_, token_) {
-   
+   checkInternetConnectio()
         $.ajax({
             type: 'Get',
             url: route_,

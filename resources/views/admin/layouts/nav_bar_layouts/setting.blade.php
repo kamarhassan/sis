@@ -169,6 +169,13 @@
                     </a>
                 </li>
             @endcan
+            @canany(['add team','edit team','delete team'])
+                <li><a href="{{ route('admin.manage.team') }}">
+                        <i class="ti-more"></i>
+                        @lang('site.our team')
+                    </a>
+                </li>
+            @endcan
 
             {{-- @canany(['fee type', 'edit fee type', 'create fee type', 'delete fee type']) --}}
             {{-- @if (Auth::user()->email == 'sadmin@gmail.com')

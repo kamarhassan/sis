@@ -1,6 +1,7 @@
 function services(route_, form_id) {
     var formdata = $("#" + form_id).serializeArray();
     // console.table(formdata);
+    checkInternetConnectio()
     $.ajax({
         type: 'POST',
         url: route_,
@@ -29,6 +30,7 @@ function services(route_, form_id) {
 
 
 function get_service(route_, token_) {
+   checkInternetConnectio()
     $.ajax({
         type: 'POST',
         url: route_,

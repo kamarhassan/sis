@@ -2,6 +2,7 @@
 function get_notification_details(route_, token_) {
     // $('.content').css('webkit-filter', 'blur(50px)'); 
     // $('#cours_fee').empty();
+    checkInternetConnectio()
     $.ajax({
         type: 'POST',
         url: route_,
@@ -64,6 +65,7 @@ function set_user_and_cours_info_into_modal(user_info, cours_details, cours_fee,
 
 function userlist(input, route_) {
     // console.log(input.value);
+    checkInternetConnectio()
     $.ajax({
         type: 'POST',
         url: route_,

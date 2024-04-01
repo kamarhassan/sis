@@ -103,3 +103,20 @@ function addMonths(start_date, months) {
    var newDate = moment(start_date, "YYYY-MM-DD").add(months, 'months').format("YYYY-MM-DD");
    return newDate
 }
+
+
+
+
+
+
+
+
+
+
+
+
+function checkInternetConnectio() {
+    !navigator.onLine ? toaster('You don\'t have Internet Connection', 'error') : '';
+
+
+}

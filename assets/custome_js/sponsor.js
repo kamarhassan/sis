@@ -3,6 +3,7 @@ function get_sponsor_shipe(route, form_id) {
     var formdata = $("#" + form_id).serializeArray();
     // console.log(formdata);
     $('#error_and_edit_route').attr("hidden", true);
+    checkInternetConnectio()
     $.ajax({
         type: 'POST',
         url: route,

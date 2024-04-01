@@ -15,7 +15,7 @@ class PermissionTableSeeder extends Seeder
    public function run()
    {
 
-
+/*
       DB::table('permissions')->delete();
       DB::table('role_has_permissions')->delete();
       DB::table('roles')->delete();
@@ -167,13 +167,21 @@ class PermissionTableSeeder extends Seeder
       Permission::create(['guard_name' => 'admin', 'tab_name' => 'Cms', 'parent' => 'Cms', 'name' =>'edit page']);
       Permission::create(['guard_name' => 'admin', 'tab_name' => 'Cms', 'parent' => 'Cms', 'name' => 'delete page']);
       Permission::create(['guard_name' => 'admin', 'tab_name' => 'Cms', 'parent' => 'Cms', 'name' =>'edit design page']);
+      */
+      
+      Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'setting', 'name' =>'add team']);
+      Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'setting', 'name' =>'edit team']);
+      Permission::create(['guard_name' => 'admin', 'tab_name' => 'setting', 'parent' => 'setting', 'name' =>'delete team']);
 
+      // $role = Role::create(['guard_name' => 'admin', 'name' => 'super admin']);
+      // $role->givePermissionTo(Permission::all());
 
+      // Admin::find(1)->assignRole('super admin');
 
-      $role = Role::create(['guard_name' => 'admin', 'name' => 'super admin']);
-      $role->givePermissionTo(Permission::all());
+      $role = Role::where('name', 'super admin')->first();
+      $role->syncPermissions(Permission::all());
+      $role->save();
 
-      Admin::find(1)->assignRole('super admin');
 //      $role = Role::find(1);  //online 
 //      $role = Role::find(2);  //online 
 //      $role = Role::find(3);  //online 

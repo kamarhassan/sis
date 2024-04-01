@@ -3,6 +3,7 @@ function get_report(route_) {
     // $('#data-report').addAttr('hidden');
     $('#data-report').removeAttr('hidden');
     loading_showing_table();
+    checkInternetConnectio()
     // customize_data_table();
     $.ajax({
         type: 'POST',

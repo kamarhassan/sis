@@ -36,6 +36,7 @@
                 </a>
             </li>
         @endcan
+        
         <li><a href="{{ route('cms.blogs.index') }}">
                 <i class="ti-more">
                 </i>

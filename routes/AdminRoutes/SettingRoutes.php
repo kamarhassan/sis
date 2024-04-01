@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Services\ServicesController;
 use App\Http\Controllers\Admin\InstitueInformationController;
 use App\Http\Controllers\Admin\CertificatetemplatesController;
+use App\Http\Controllers\Admin\OurTeamController;
 
 Route::group(['prefix' => 'setting'], function () {
    Route::group(['prefix' => 'supervisor'], function () {
@@ -292,24 +293,35 @@ Route::group(['prefix' => 'setting'], function () {
 
       Route::get('/', [SchoolYearController::class, 'index'])
          ->middleware(['permission:add school year|edit school year|delete school year'])->name('admin.schoolyear.all');
-   
-         
+
+
       Route::post('post-save-edit', [SchoolYearController::class, 'save_edit'])
          ->middleware(['permission:add school year|edit school year|delete school year'])->name('admin.schoolyear.save.edit');
-   
-     Route::post('delete', [SchoolYearController::class, 'delete'])
+
+      Route::post('delete', [SchoolYearController::class, 'delete'])
          ->middleware(['permission:delete school year'])->name('admin.schoolyear.delete');
-   
-         Route::get('schoolyear-to-edit/{school_year_id}', [SchoolYearController::class, 'get_info_to_edit'])
+
+      Route::get('schoolyear-to-edit/{school_year_id}', [SchoolYearController::class, 'get_info_to_edit'])
          ->middleware(['permission:add school year|edit school year|delete school year'])->name('admin.schoolyear.get.to.edit');
-   
-         Route::post('change-current-school-years', [SchoolYearController::class, 'change_current_school_years'])
+
+      Route::post('change-current-school-years', [SchoolYearController::class, 'change_current_school_years'])
          ->middleware(['permission:edit school year'])->name('admin.schoolyear.change.current.school.years');
-   
-   
-      });
+   });
+   Route::group(['prefix' => 'manage-team'], function () {
 
+      Route::get('/', [OurTeamController::class, 'index'])
+         ->middleware(['permission:add team|edit team|delete team'])->name('admin.manage.team');
 
+      Route::get('add', [OurTeamController::class, 'add_team'])
+         ->middleware(['permission:add team'])->name('admin.manage.team.add');
 
-      
+      Route::get('edit/{id}', [OurTeamController::class, 'edit_team'])
+         ->middleware(['permission:edit team'])->name('admin.manage.team.edit');
+
+      Route::post('save-or-update-team', [OurTeamController::class, 'save_or_update_team'])
+         ->middleware(['permission:add team|edit team'])->name('admin.manage.team.save');
+
+      Route::post('delete', [OurTeamController::class, 'delete'])
+         ->middleware(['permission:delete team'])->name('admin.manage.team.delete');
+   });
 });

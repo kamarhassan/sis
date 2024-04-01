@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\FrontEnd\IndexController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\FrontEnd\AboutUsController;
+use App\Http\Controllers\FrontEnd\ContactUsController;
 use App\Http\Controllers\FrontEnd\OurTeamController;
 use LaravelPWA\Http\Controllers\LaravelPWAController;
 use App\Http\Controllers\FrontEnd\CategoriesController;
@@ -45,7 +45,7 @@ Route::group(
       // Route::get('page/{slug}', [IndexController::class, 'show_page_in_front'])->name('web.index.page');
 
       Route::get('/home', [HomeController::class, 'index'])->name('web.home');
-      Route::get('/about-us', [AboutUsController::class, 'index']);
+      Route::get('/about-us', [ContactUsController::class, 'index']);
       Route::get('/our-team', [OurTeamController::class, 'index']);
      
 

@@ -1,6 +1,7 @@
 
 function get_cours_of_std(id, route_, token_) {
     // $('.content').css('webkit-filter', 'blur(50px)');
+    checkInternetConnectio()
     $.ajax({
         type: 'POST',
         url: route_,

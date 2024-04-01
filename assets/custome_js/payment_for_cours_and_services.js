@@ -20,6 +20,7 @@ function savepayment(route_) {
     var formdata = $("#payment_data").serializeArray();
     // console.table(formdata)
     // console.table(formdata);
+    checkInternetConnectio()
     $.ajax({
         type: 'POST',
         url: route_,

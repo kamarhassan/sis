@@ -3,6 +3,7 @@ function submit(route_, form_id, error_id, msg_you_have_error_in_line) {
     var formdata = new FormData($("#" + form_id)[0]);
     spinner_show();
     // console.log(formdata);
+    checkInternetConnectio()
     $.ajax({
         enctype: 'multipart/form-data',
         type: 'POST',
