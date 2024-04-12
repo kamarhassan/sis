@@ -57,7 +57,7 @@
                             <div class="btn-group">
                                 <a type="button" class="text-white btn btn-outline btn-sm hover-danger"
                                     title="@lang('site.delete all')"
-                                    onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','user_registration','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                                    onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','user_registration','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}','modal-center');">
                                     <i class="ion ion-trash-a"></i>
                                 </a>
                             </div>

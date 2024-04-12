@@ -177,6 +177,14 @@
                 </li>
             @endcan
 
+            @can(['social link'])
+            <li><a href="{{ route('admin.edit.social.link') }}">
+                    <i class="ti-more"></i>
+                    @lang('site.social link')
+                </a>
+            </li>
+        @endcan
+
             {{-- @canany(['fee type', 'edit fee type', 'create fee type', 'delete fee type']) --}}
             {{-- @if (Auth::user()->email == 'sadmin@gmail.com')
                 <li><a href="{{ route('admin.setting.artisan','$index') }}">

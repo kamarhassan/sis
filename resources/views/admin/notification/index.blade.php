@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    @lang('site.new registration')
+    @lang('site.notifications')
 @endsection
 @section('css')
     <style>
@@ -21,7 +21,7 @@
 @endsection
 @section('content')
 
-
+    {{-- {{dd($low_stoc)}} --}}
     @if (current_school_year()['year'] != last_school_year()['year'])
         <div class="callout callout-danger">
 
@@ -30,22 +30,16 @@
         </div>
     @else
         <div class="box">
-         
+
 
             <div class="box-body">
-                @canany([
-                    'register order delete all',
-                    'register order deny all',
-                    'register order read all',
-                    'register order
-                    aprrove all',
-                    ])
-                    <div class="mailbox-controls">
 
-                        <a type="button" class="btn btn-sm checkbox-toggle btn-outline" id="action_after_select"><i
+                <div class="mailbox-controls">
+
+                    {{--   <a type="button" class="btn btn-sm checkbox-toggle btn-outline" id="action_after_select"><i
                                 class="ion ion-android-checkbox-outline-blank"></i>
                         </a>
-                        @can('register order delete all')
+                         @can('register order delete all')
                             <div class="btn-group">
                                 <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.delete all')"
                                     onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','new_regitration_order','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
@@ -71,139 +65,132 @@
                                     <i class="ti ti-close"></i>
                                 </a>
                             </div>
-                        @endcan
+                        @endcan --}}
 
-                    </div>
-                @endcan
-                <div class="mailbox-messages">
-                    <div class="table-responsive">
-                        <form id='new_regitration_order'>
-                            @csrf
-                            <table class="table responsive no-border" id="cours_fee_datatable">
+                </div>
+            @endcan
+            <div class="mailbox-messages">
+                <div class="table-responsive">
+                    <form id='new_regitration_order'>
+                        @csrf
+                        <table class="table responsive no-border" id="cours_fee_datatable">
 
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>type</th>
+                                    <th>name</th>
+
+                                    <th>cours/message</th>
+                                    <th>status</th>
+                                    <th>is read</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @can('low_stock')
                                     @isset($low_stoc)
                                         @foreach ($low_stoc as $new_order)
-                                            <tr class="Row{{ $new_order['id'] }}" id="Row{{ $new_order['id'] }}">
-                                                <td><input type="checkbox" name="order_id[]" value="{{ $new_order['id'] }}">
-                                                </td>
-                                                <td class="w-80"><a><img class="avatar" src="../images/avatar/2.jpg"
-                                                            alt="..."></a></td>
-                                                <td>
-
-                                                    <a href="#" class="mailbox-name hover-primary"
-                                                    
-                                                    onclick="get_notification_details('{{ route('admin.low.stock.notification', $new_order['id']) }}','{{ csrf_token() }}');"
-                                                        >
-                                                        {{ $new_order['service']['service'] }}
-                                                    </a>
-                                                </td>
-                                                <td class="mailbox-subject">
-                                                    @lang('site.low stock notify')
-                                                </td>
-                                                <td>
-                                                    <div class="box-body ribbon-box">
-                                                        @if (is_null($new_order['status']))
-                                                            <div class="ribbon ribbon-warning rounded20" id="pending">
-                                                                @lang('site.pending')</div>
-                                                        @elseif ($new_order['status'] == 1)
-                                                            <div class="ribbon ribbon-success rounded20" id="approved">
-                                                                @lang('site.approved')</div>
-                                                        @elseif($new_order['status'] == 0)
-                                                            <div class="ribbon ribbon-danger rounded20" id="deny">
-                                                                @lang('site.deny')</div>
-                                                        @else
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="box-body ribbon-box">
-                                                        @if ($new_order['is_read'] == 0)
-                                                            <div class="ribbon ribbon-success  rounded20" id="read">
-                                                                @lang('site.read')</div>
-                                                        @else
-                                                            <div class="ribbon ribbon-warning  rounded20" id="unread">
-                                                                @lang('site.unread')</div>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @include(
+                                                'admin.notification.sub-blade.tr-of-notificationtable',
+                                                [
+                                                    'id' => $new_order['id'],
+                                                    'type' => __('site.new registration'),
+                                                    'name' =>
+                                                        $new_order['user']['id'] .
+                                                        '#' .
+                                                        $new_order['user']['name'],
+                                                    'route_name' => 'admin.low.stock.notification',
+                                                    'subject' => __('site.low stock notify'),
+                                                    'route' => route(
+                                                        'admin.low.stock.notification',
+                                                        $new_order['id']),
+                                                    'status' => $new_order['status'],
+                                                    'is_read' => $new_order['is_read'],
+                                                ]
+                                            )
                                         @endforeach
                                     @endisset
-
+                                @endcan
+                                @can('show new registration')
                                     @isset($new_order_registeration)
                                         @foreach ($new_order_registeration as $new_order)
-                                            <tr class="Row{{ $new_order['id'] }}" id="Row{{ $new_order['id'] }}">
-                                                <td><input type="checkbox" name="order_id[]" value="{{ $new_order['id'] }}">
-                                                </td>
-                                                <td class="w-80"><a><img class="avatar" src="../images/avatar/2.jpg"
-                                                            alt="..."></a></td>
-                                                <td>
-                                                    {{-- admin.notification.get.user.info --}}
-                                                    <a href="#"
-                                                        @can('read only register order')
-                                             onclick="get_notification_details('{{ route('admin.notification.get.user.info', $new_order['id']) }}','{{ csrf_token() }}');"
-            
-                                                @endcan
-                                                        class="mailbox-name hover-primary" 
-                                                         >
-                                                        {{ $new_order['user']['id'] }} # {{ $new_order['user']['name'] }}
-                                                    </a>
-                                                </td>
-                                                <td class="mailbox-subject">
-                                                    {{ $new_order['cours_reserved']['category_grade_level']['grade']['grade'] }}
-                                                    #
-                                                    {{ $new_order['cours_reserved']['category_grade_level']['level']['level'] }}
-                                                </td>
-                                                <td>
-                                                    <div class="box-body ribbon-box">
-                                                        @if (is_null($new_order['status']))
-                                                            <div class="ribbon ribbon-warning rounded20" id="pending">
-                                                                @lang('site.pending')</div>
-                                                        @elseif ($new_order['status'] == 1)
-                                                            <div class="ribbon ribbon-success rounded20" id="approved">
-                                                                @lang('site.approved')</div>
-                                                        @elseif($new_order['status'] == 0)
-                                                            <div class="ribbon ribbon-danger rounded20" id="deny">
-                                                                @lang('site.deny')</div>
-                                                        @else
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="box-body ribbon-box">
-                                                        @if ($new_order['is_read'] == 0)
-                                                            <div class="ribbon ribbon-success  rounded20" id="read">
-                                                                @lang('site.read')</div>
-                                                        @else
-                                                            <div class="ribbon ribbon-warning  rounded20" id="unread">
-                                                                @lang('site.unread')</div>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @include(
+                                                'admin.notification.sub-blade.tr-of-notificationtable',
+                                                [
+                                                    'id' => $new_order['id'],
+                                                    'type' => __('site.new registration'),
+                                                    'name' =>
+                                                        $new_order['user']['id'] .
+                                                        '#' .
+                                                        $new_order['user']['name'],
+                                                    'route_name' => 'admin.notification.get.user.info',
+                                                    'subject' =>
+                                                        $new_order['cours_reserved']['category_grade_level'][
+                                                            'grade'
+                                                        ]['grade'] .
+                                                        '#' .
+                                                        $new_order['cours_reserved']['category_grade_level'][
+                                                            'level'
+                                                        ]['level'],
+                                                    'route' => route(
+                                                        'admin.notification.get.user.info',
+                                                        $new_order['id']),
+                                                    'status' => $new_order['status'],
+                                                    'is_read' => $new_order['is_read'],
+                                                    'status_message_pending' => __('site.pending'),
+                                                    'status_message_approved' => __('site.approved'),
+                                                    'status_message_deny' => __('site.deny'),
+                                                ]
+                                            )
                                         @endforeach
                                     @endisset
+                                @endcan
 
-                                </tbody>
-                            </table>
-                        </form>
-                    </div>
+
+
+
+                                @can('show contuct us')
+                                    @isset($contact_us)
+                                        @foreach ($contact_us as $contact)
+                                            @include(
+                                                'admin.notification.sub-blade.tr-of-notificationtable',
+                                                [
+                                                    'id' => $contact['id'],
+                                                    'type' => __('site.contact us'),
+                                                    'name' => $contact['name'],
+                                                    'subject' => $contact['subject'],
+                                                    'status' => $contact['status'],
+                                                    'is_read' => $contact['is_read'],
+                                                    'route_name' => 'admin.notification.contact.us',
+                                                    'route' => route(
+                                                        'admin.notification.contact.us',
+                                                        $contact['id']),
+                                                        
+                                                    'status_message_pending' => __('site.pending to response'),
+                                                    'status_message_approved' => __('site.answered'),
+                                                    'status_message_deny' => __('site.not answered'),
+                                                ]
+                                            )
+                                        @endforeach
+                                    @endisset
+                                @endcan
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
-        @include('admin.notification.sub-blade.user-information')
-    @endif
+    </div>
+
+
+    @can('show new registration')
+        @include('admin.notification.contact-us-sub-blade.contact-us')
+    @endcan
+
+    @can('show contuct us')
+        @include('admin.notification.contact-us-sub-blade.contact-us')
+    @endcan
+
 
 @endsection
 
@@ -229,10 +216,7 @@
     <script
         src="{{ URL::asset('assets/assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js') }}">
     </script>
-    {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script> --}}
-
     <script src="{{ URL::asset('assets/assets/vendor_components/datatable/datatables.min.js') }}"></script>
-    {{-- <script src="{{ URL::asset('assets/app-assets/js/pages/data-table.js') }}"></script> --}}
     <script src="{{ URL::asset('assets/app-assets/js/pages/mailbox.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/get_info_user.js') }}"></script>
 @endsection

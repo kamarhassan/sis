@@ -244,3 +244,55 @@ function submit(route_, form_id) {
    });
 }
 
+
+
+
+function submit_redirect(route_, form_id) {
+  
+   var formdata = new FormData($("#" + form_id)[0]);
+
+    
+   spinner_show()
+  
+   $.ajax({
+      enctype: 'multipart/form-data',
+      type: 'POST',
+      url: route_,
+      data: formdata,
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: function (data) {
+         spinner_hide();
+         if (data.status == 'success') {
+            toastr.success(data.message)
+            window.location.href = data.route;
+         } else {
+            if (data.status == 'error') {
+               toastr.error(data.message);
+            }
+         }
+      }, error: function reject(reject) {
+         spinner_hide();
+         var response = $.parseJSON(reject.responseText);
+         $.each(response.errors, function (key, val) {
+
+            let t = key.replace('.', '_');
+            console.log(t + '_');
+            $('#' + t + '_').text(val[0]).html;
+         })
+      }
+   });
+}
+
+function spinner_show() {
+ 
+   $("div.spanner").addClass("show");
+   $("div.overlay").addClass("show");
+}
+
+function spinner_hide() {
+   $("div.spanner").removeClass("show");
+   $("div.overlay").removeClass("show");
+
+}

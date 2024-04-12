@@ -4,7 +4,7 @@ function submit(route_, form_id) {
 
    // console.log(formdata);
    spinner_show()
-   checkInternetConnectio();
+   // checkInternetConnectio();
    $.ajax({
       enctype: 'multipart/form-data',
       type: 'POST',

@@ -3,7 +3,7 @@
 
 return [
    'site name' => 'ActCollege',
-   'site name' => 'site name',
+
    'dashboard' => 'Dashboard',
    'Dashboard' => 'Dashboard',
    'cancel' => 'cancel',
@@ -98,7 +98,7 @@ return [
    'level faild to update' => 'level faild to update',
    #################################### end   Level translator ###################################'=>'#################################### end   Level translator ###################################',
    #################################### begin delet by swal fire translator ###################################'=>'#################################### begin delet by swal fire translator ###################################',
-   
+
    'title_of_delet_swal_fire' => 'Are you Sure To Delete',
    'text_of_delet_swal_fire' => 'Delete Permanently',
    'confirmButtonTextof_delet_swal_fire' => 'Confirm',
@@ -110,7 +110,7 @@ return [
    'select_at_least_one_to_delete' => 'Select At LeastOone To Delete',
 
    'title_of_delet_swal_fire_attendance' => 'title_of_delet_swal_fire_attendance',
-   
+
    'confirmButtonTextof_delet_swal_fire' => 'Confirm',
    'cancelButtonTextof_delet_swal_fire' => 'Cancel',
 
@@ -580,17 +580,31 @@ return [
    'receipt id' => 'receipt id',
    'user ID' => 'user ID',
    'add institue information' => 'dd institue information',
-	
-   'email'=>'e-mail',
-   'city'=>'city',
-   'building'=>'building',
-   'branch name' =>'branch name',
+
+   'email' => 'e-mail',
+   'city' => 'city',
+   'building' => 'building',
+   'branch name' => 'branch name',
 
 
 
    'add team' => 'add employee to team',
    'instructor' => 'instructor',
    'role' => 'role',
-   'employee photo'=>'employee photo',
-   'employee'=>'employee',
+   'employee photo' => 'employee photo',
+   'employee' => 'employee',
+
+   'subject' => 'subject',
+   'message' => 'message',
+   'send message' => 'send message',
+   'notifications' => 'notifications',
+   'contact us' => 'contact us',
+
+
+   'pending to response' => 'pending to response',
+   'not answered' =>   'not answered',
+   'answered' => 'answered',
+   'answer' =>  'answer',
+
+
 ];

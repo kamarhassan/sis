@@ -291,7 +291,7 @@ return [
 
    'failed to delete beacuse it is used' => 'لا يمكن الحذف لانها مستخدمة مسبقا',
    'this cours is not defined' => 'هناك خطأ ما او ربما الدورة غي موجودة',
-   'description cours' => 'الوسف',
+   'description cours' => 'الوصف',
    'you must be login to register in this cours' => 'عليك تسجيل الدخول او انشاء حساب لتتمكن من حجز هذه الدورة',
    'reserve cours' => 'حجز هذه الدورة',
    'you have a new registration' => 'لديك طلب تسجيل جديد',
@@ -613,6 +613,17 @@ return [
    'add team' => 'اضافة موظف للفريق',
    'instructor' => 'instructor',
    'role' => 'الدور',
-   'employee photo'=>'صورة الموظف',
-   'employee'=>'موظف',
+   'employee photo' => 'صورة الموظف',
+   'employee' => 'موظف',
+
+   'subject' => 'موضوع',
+   'message' => 'رسالة',
+   'send message' => 'أرسل رسالة',
+   'notifications' => 'إشعارات',
+   'contact us' => 'اتصل بنا',
+
+   'pending to response' => 'في انتظار الرد',
+   'not answered' => 'لم يتم الرد',
+   'answered' => 'تم الرد',
+   'answer' => 'إجابة',
 ];

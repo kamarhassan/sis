@@ -3,7 +3,7 @@ function delete_notification_admin_selected(route_, form_id, token_, array_of_ms
     var msg = JSON.parse(array_of_msg);
     // console.table(msg);
     var formdata = $("#" + form_id).serializeArray();
-    // console.log(formdata.length)
+   //console.log(formdata.length)
     if (formdata.length > 1) {
 
 

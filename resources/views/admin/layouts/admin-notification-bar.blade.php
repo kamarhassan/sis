@@ -1,4 +1,4 @@
-{{-- {{dd(get_count_notification())}} --}}
+{{-- {{dd(get_type_notification()['contact_us'])}} --}}
 @can ('see notification') 
     
     <li class="dropdown user notifications-menu">
@@ -28,14 +28,30 @@
                 </li>
                 <li>
                     <ul class="menu sm-scrol">
-                        @foreach (get_type_notification() as $notifcation)
+                     
+                     @can ('show new registration') 
+                        @foreach (get_type_notification()['type_id_description'] as $notifcation)
+                               <li>
+                                   <a href="#">
+                                       <i class="fa fa-users"></i> @lang('site.' . $notifcation['description'])
+       
+                                   </a>
+                               </li>
+                           @endforeach
+                     @endcan
+
+
+                     @can ('show contuct us') 
+                    
+                     @foreach (get_type_notification()['contact_us'] as $notifcation)
                             <li>
                                 <a href="#">
-                                    <i class="fa fa-users text-info"></i> @lang('site.' . $notifcation['description'])
+                                    <i class="fa fa-mailbox"> {{$notifcation['subject']}}</i> 
     
                                 </a>
                             </li>
                         @endforeach
+                  @endcan
                     </ul>
                 </li>
                 <li class="footer">

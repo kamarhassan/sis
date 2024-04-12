@@ -8,36 +8,36 @@ use Illuminate\Support\Facades\Request;
 class AdminNotificationRepository implements AdminNotificationInterface
 {
 
-    public  function get_all_unread_notification()
+    public  function get_all_unread_notification($model)
     {
-        return NotificationAdmin::where(['delete' => 1, 'is_read' => 1])->get();
+        return $model::where(['delete' => 1, 'is_read' => 1])->get();
     }
 
-    public  function low_stock()
+    public  function low_stock($model)
     {
-       return NotificationAdmin::where(['delete' => 1, 'order_type' => 'low_stock'])
+       return $model::where(['delete' => 1, 'order_type' => 'low_stock'])
           ->with('service')
           ->get();
     }
 
-    public  function get_register_notification()
+    public  function get_register_notification($model)
     {
-        return NotificationAdmin::where(['delete' => 1, 'order_type' => 'registration'])
+        return $model::where(['delete' => 1, 'order_type' => 'registration'])
             ->with('cours_reserved', 'user')
             ->get();
     }
 
-    public  function get_type_id_description()
+    public  function get_type_id_description( $model)
     {
-        return NotificationAdmin::where(['delete' => 1, 'is_read' => 1])->get(['id', 'description']);
+        return  $model::where(['delete' => 1, 'is_read' => 1])->get(['id', 'description']);
     }
 
-    public  function delete_notification($array_of_id)
+    public  function delete_notification($model,$array_of_id)
     {
         
-        $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
+        $selected = $model::whereIn('id', $array_of_id)->get();
         if ($selected->count() > 0) {
-            $updated = NotificationAdmin::whereIn('id', $array_of_id)->delete();
+            $updated = $model::whereIn('id', $array_of_id)->delete();
             if ($updated)
                 return true;
             return false;
@@ -45,11 +45,11 @@ class AdminNotificationRepository implements AdminNotificationInterface
         return false;
     }
 
-    public  function reading_notification($array_of_id){
+    public  function reading_notification($model,$array_of_id){
         
-        $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
+        $selected = $model::whereIn('id', $array_of_id)->get();
         if ($selected->count() > 0) {
-            $updated = NotificationAdmin::whereIn('id', $array_of_id)->update(['is_read' => 0]);
+            $updated = $model::whereIn('id', $array_of_id)->update(['is_read' => 0]);
             if ($updated)
                 return true;
             return false;
@@ -59,20 +59,20 @@ class AdminNotificationRepository implements AdminNotificationInterface
 
 
 
-    public  function deny_all_notification($array_of_id){
-        $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
+    public  function deny_all_notification($model,$array_of_id){
+        $selected = $model::whereIn('id', $array_of_id)->get();
         if ($selected->count() > 0) {
-            $updated = NotificationAdmin::whereIn('id', $array_of_id)->update(['status' => 0]);
+            $updated = $model::whereIn('id', $array_of_id)->update(['status' => 0]);
             if ($updated)
                 return true;
             return false;
         }
         return false;
     }
-    public  function approve_all_notification($array_of_id){
-        $selected = NotificationAdmin::whereIn('id', $array_of_id)->get();
+    public  function approve_all_notification($model,$array_of_id){
+        $selected = $model::whereIn('id', $array_of_id)->get();
         if ($selected->count() > 0) {
-            $updated = NotificationAdmin::whereIn('id', $array_of_id)->update(['status' => 1]);
+            $updated = $model::whereIn('id', $array_of_id)->update(['status' => 1]);
             if ($updated)
                 return true;
             return false;

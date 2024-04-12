@@ -106,9 +106,51 @@ function addMonths(start_date, months) {
 
 
 
+function spinner_show() {
+   // $("#overlay").fadeIn(300);
+   $("div.spanner").addClass("show");
+   $("div.overlay").addClass("show");
+}
+
+function spinner_hide() {
+   $("div.spanner").removeClass("show");
+   $("div.overlay").removeClass("show");
+
+}
 
 
 
+function checkInternetConnection() {
+   return $.ajax({
+       url: 'https://www.google.com/favicon.ico', // Use any URL that you expect to be accessible when online
+       type: 'GET',
+       timeout: 5000 // Set a timeout to handle cases where the request takes too long
+   });
+}
+
+function checkNetworkConnection() {
+   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+   if (connection && connection.type) {
+       return connection.type !== "none"; // Connection type is not "none"
+   } else {
+       return false; // Cannot determine connection status
+   }
+}
+
+function checkNetworkStatus() {
+   const isConnectedToNetwork = checkNetworkConnection();
+   if (isConnectedToNetwork) {
+       checkInternetConnection()
+           .done(function() {
+               console.log("Connected to both network and internet.");
+           })
+           .fail(function() {
+            toaster('You don\'t have Internet Connection 1', 'error')
+           });
+   } else {
+      toaster('You don\'t have Internet Connection', 'error')
+   }
+}
 
 
 
@@ -116,6 +158,7 @@ function addMonths(start_date, months) {
 
 
 function checkInternetConnectio() {
+   // checkNetworkStatus()
     !navigator.onLine ? toaster('You don\'t have Internet Connection', 'error') : '';
 
 

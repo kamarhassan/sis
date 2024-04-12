@@ -1,9 +1,9 @@
 
-function delete_notification_admin_selected(route_, form_id, token_, array_of_msg) {
+function delete_notification_admin_selected(route_, form_id, token_, array_of_msg,modal_id) {
     var msg = JSON.parse(array_of_msg);
     // console.table(msg);
     var formdata = $("#" + form_id).serializeArray();
-    // console.log(formdata.length)
+     console.log(formdata.length)
     if (formdata.length > 1) {
 
 
@@ -35,7 +35,8 @@ function delete_notification_admin_selected(route_, form_id, token_, array_of_ms
                                 msg['succes_msj'],
                                 'success'
                             );
-                           $('#Row' + id_delet).remove();
+
+                            $('#'+modal_id).modal('hide');
                         } else {
                             Swal.fire(
                                 msg['failed_delete'],

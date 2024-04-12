@@ -35,9 +35,9 @@ return [
       'redirect' => env('FB_REDIRECT')
    ],
    'google' => [
-      'client_id' => '28837063398-5s95inqrncmao7pumseu8rkkjcd0b4ck.apps.googleusercontent.com',
-      'client_secret' => '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',
-      'redirect' => 'http://localhost/sis/auth/google/callback'
+      'client_id' => env('GOOGLE_auth_client_id'),
+      'client_secret' => env('GOOGLE_auth_client_secret'),
+      'redirect' => env('GOOGLE_auth_redirect'),
    ],
 
 ];

@@ -8,7 +8,7 @@ function get_students_by_date(route_, form_id) {
         data: formdata,
         success: function (data) {
             // console.log(data);
-            remove_loading_showing_table();
+            // remove_loading_showing_table();
             if (data['notification'].status == 'success') {
 
                 customize_data_table(attendance_column(), data.dataset)
@@ -21,7 +21,9 @@ function get_students_by_date(route_, form_id) {
                     // toastr.error(data['notification'].message);
                 }
             }
+            remove_loading_showing_table();
         }, error: function reject(reject) {
+         remove_loading_showing_table();
             var response = $.parseJSON(reject.responseText);
             $.each(response.errors, function (key, val) {
                 $('#' + key + '_').text(val[0]).html;
@@ -117,6 +119,7 @@ function customize_data_table(columns, dataSet) {
 
 
 function initialize_() {
+   $('#attendance_date_').text('');
     $('#data_attendance_box').removeAttr('hidden');
     $('#data_attendance').removeAttr('hidden');
     $('#attendance_date_new_or_update').val($("#attendance_date").val());
@@ -129,12 +132,12 @@ function initialize_btn_submit(btn_sumbit_form) {
 
 
 function remove_loading_showing_table() {
-    $('#spinner_loading').attr("hidden", true);
+   spinner_hide()
     $('#data_attendance').removeAttr('hidden');
 }
 
 function loading_showing_table() {
-    $('#spinner_loading').removeAttr('hidden');
+   spinner_show()
     $('#data_attendance').attr("hidden", true);
 }
 

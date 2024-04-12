@@ -45,7 +45,9 @@ Route::group(
       // Route::get('page/{slug}', [IndexController::class, 'show_page_in_front'])->name('web.index.page');
 
       Route::get('/home', [HomeController::class, 'index'])->name('web.home');
-      Route::get('/about-us', [ContactUsController::class, 'index']);
+      Route::get('/contact-us', [ContactUsController::class, 'index']);
+      Route::post('save-contact-us', [ContactUsController::class, 'save'])->name('web.post.contact-us');
+
       Route::get('/our-team', [OurTeamController::class, 'index']);
      
 

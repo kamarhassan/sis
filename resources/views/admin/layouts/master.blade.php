@@ -65,6 +65,7 @@
         {{-- @include('admin.layouts.asside') --}}
       </div>
       @include('admin.layouts.footer')
+      {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
     <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/icons/feather-icons/feather.min.js') }}"></script>
@@ -103,25 +104,7 @@
             // console.clear();
         });
 
-        // Enable pusher logging - don't include this in production
-        // Pusher.logToConsole = true;
-
-        // var pusher = new Pusher('719ad0b49c92300764ea', {
-        //     cluster: 'mt1'
-        // });
-
-        // var channel = pusher.subscribe('my-channel');
-        // channel.bind('my-event', function(data) {
-        //   app.messages.push(JSON.stringify(data));
-        // });
-
-        // Vue application
-        // const app = new Vue({
-        //   el: '#app',
-        //   data: {
-        //     messages: [],
-        //   },
-        // });
+        
     </script>
     @yield('script')
 

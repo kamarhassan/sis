@@ -15,7 +15,7 @@
             <div class="col-6 col-md"
                  {{-- style="background: url('assets/Canvas/images/world-map.png') no-repeat center center; background-size: 100%;" --}}
                  >
-               <p class="d-block mb-4 ">Actcollege</p>
+               <p class="d-block mb-4 ">ِ{{env('app_name')}}</p>
 
                @isset($institueInformation)
                   <address>

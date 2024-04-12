@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Models\ContactUs;
 use App\Models\User;
 use App\Models\Language;
 use Carbon\Carbon;
@@ -19,7 +19,7 @@ function  logo()
    // if ($photoUrl != "")
    //    return  URL::asset($photoUrl);
    // else   return URL::asset('assets\images\avatar\avatar-1.png');
-   
+
    return URL::asset('public/files/logo.jfif');
 }
 
@@ -50,7 +50,7 @@ function slider_width()
 function slider_height()
 {
    // return;
-   return 600 ;
+   return 600;
 }
 function days_of_week()
 {
@@ -78,23 +78,20 @@ function current_school_year()
    //    'end' =>   '2023-09-01',
    //    'year' => '2022-2023'
    // ];
-   
-    
+
+
 
    return  [
       'start' => Session::get('start schoolyear'),
       'end' =>  Session::get('end schoolyear'),
       'year' =>  Session::get('schoolyear')
    ];
-   
-    
-
 }
 
 function last_school_year()
 {
    //   $year= App\Models\Years::latest()->first();
-   $year = App\Models\Years::where('currentyear',1)->first();
+   $year = App\Models\Years::where('currentyear', 1)->first();
    return $year;
 }
 
@@ -206,13 +203,17 @@ function string_to_array($string)
 function get_count_notification()
 {
    $count_notification = new  AdminNotificationRepository();
-   return   $count_notification->get_all_unread_notification()->count();
+   $contact_us = new ContactUs();
+   $notification = new  NotificationAdmin();
+   return   $count_notification->get_all_unread_notification($notification)->count() + $count_notification->get_all_unread_notification($contact_us)->count();
 }
 
 function get_type_notification()
 {
    $type_id_description = new  AdminNotificationRepository();
-   return   $type_id_description->get_type_id_description();
+   $contact_us = \App\Models\ContactUs::get();
+   $notification = new  NotificationAdmin();
+   return   ['type_id_description' => $type_id_description->get_type_id_description($notification), 'contact_us' => $contact_us];
 }
 
 
@@ -266,9 +267,7 @@ if (!function_exists('assetVersion')) {
 if (!function_exists('logo')) {
    function logo()
    {
-      
+
       return URL::asset('assets/images/favicon.ico');
    }
 }
-
-

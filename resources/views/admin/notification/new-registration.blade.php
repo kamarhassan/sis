@@ -55,7 +55,7 @@
                @can('register order delete all')
                   <div class="btn-group">
                      <a type="button" class="btn btn-outline btn-sm hover-danger" title="@lang('site.delete all')"
-                        onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','new_regitration_order','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}');">
+                        onclick="delete_notification_admin_selected('{{ route('admin.notification.delete.marked') }}','new_regitration_order','{{ csrf_token() }}','{{ json_encode(swal_fire_msg()) }}','modal-center');">
                         <i class="ion ion-trash-a"></i>
                      </a>
                   </div>
@@ -110,7 +110,7 @@
                               <td>
                                  {{-- admin.notification.get.user.info --}}
                                  <a href="#" @can('read only register order')
-                                 onclick="get_notification_details('{{ route('admin.notification.get.user.info', $new_order['id']) }}','{{ csrf_token() }}');"
+                                 onclick="get_notification_details('{{ route('admin.notification.get.user.info', $new_order['id']) }}','{{ csrf_token() }}','modal-center');"
 
                                     @endcan
                                     class="mailbox-name hover-primary" >

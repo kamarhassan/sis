@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/demos/course/course.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/css/swiper.css') }}">
     {{-- <link rel="stylesheet" href="{{ URL::asset('assets//Canvas/demos/store/store.css') }}"> --}}
-  
+    <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/custome_style.css') }}">
     
 {{--   <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/include/rs-plugin/css/addons/revolution.addon.beforeafter.css') }}">--}}
 {{--   <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/include/rs-plugin/css/addons/revolution.addon.particles.css') }}"> --}}
@@ -60,7 +60,7 @@
    
             
             <div class="wave-bottom" style="position: absolute; top: -12px; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>
-   
+            @include('admin.layouts.spinner-loader.loader')
             @yield('content')
             
             </div>

@@ -26,9 +26,18 @@ Route::group(['prefix' => 'notification'], function () {
 
 
    Route::get('/', [AdminNotificationController::class, 'index'])
-      // ->middleware('permission:')
       ->name('admin.all.notification');
    Route::post('low-stock-details/{order_id}', [AdminNotificationController::class, 'low_stock_details'])
-      // ->middleware('permission:')
       ->name('admin.low.stock.notification');
+
+
+
+
+      Route::post('contact-us/{contact_us_id}', [AdminNotificationController::class, 'contact_us'])
+      ->name('admin.notification.contact.us');
+      Route::post('delete-contact-us', [AdminNotificationController::class, 'delete_contact_us'])
+      ->name('admin.notification.contact.us.delete');
+    
+      Route::post('contact-us-respond', [AdminNotificationController::class, 'contact_us_respond'])
+      ->name('admin.notification.contact.us.respond');
 });

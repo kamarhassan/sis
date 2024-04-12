@@ -22441,6 +22441,7 @@ td.actions {
   font-style: italic;
   font-family: var(--cnvs-body-font);
 }
+/* team box  */
 .fbox-bg.fbox-center {
   margin-top: 2rem;
   margin-left: 0;
@@ -22448,7 +22449,9 @@ td.actions {
   padding: 0 2rem 2rem;
   border: 1px solid var(--cnvs-featured-box-bg-light);
   border-radius: 5px;
+   
 }
+/*team image*/
 .fbox-bg.fbox-center .fbox-icon {
   margin-top: -2rem;
   background-color: var(--cnvs-body-bg);
