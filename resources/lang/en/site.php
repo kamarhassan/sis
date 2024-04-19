@@ -605,6 +605,8 @@ return [
    'not answered' =>   'not answered',
    'answered' => 'answered',
    'answer' =>  'answer',
-
+   'our team'=>'our team',
+  
+   'social media links' =>'social media links',
 
 ];

@@ -29,7 +29,7 @@ class EditInstitueInformation extends FormRequest
             'city' => 'required|max:255',
             'email' => 'required|email|max:255',
             'name' => 'required|max:255',
-            'phone' => 'required|max:8',
+            'phone' => 'required',
         ];
     }
     public  function messages()
@@ -38,7 +38,7 @@ class EditInstitueInformation extends FormRequest
             '*.required' => __('site.its_require'),
             '*.numeric' => __('site.must be a number'),
             '*.email' => __('site.import email is not valid'),
-            '*.max' => __('site.amount to paid must be under fees Or the rest') . "255",
+            //'*.max' => __('site.') ,
 
 
 

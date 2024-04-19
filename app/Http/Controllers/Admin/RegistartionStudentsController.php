@@ -31,17 +31,20 @@ class RegistartionStudentsController extends Controller
    protected $registerCoursrepository;
    protected $adminnotoficationrepository;
    protected $sponsoreshipsrepository;
-
+  
+   protected $notificationModel;
    public function __construct(
+      NotificationAdmin $notificationModel,
       UserInterface $userinterface,
       CoursInterface $coursinterface,
       CoursFeeInterface $coursfee,
       RegisterCoursInterface $registerCours,
       AdminNotificationInterface $adminnotofication,
       SponsoreShipsInterface $sponsoreships
-   )
-   {
-      $this->userrepository = $userinterface;
+      )
+      {
+         $this->notificationModel = $notificationModel;
+         $this->userrepository = $userinterface;
       $this->coursrepository = $coursinterface;
       $this->coursfeerepository = $coursfee;
       $this->registerCoursrepository = $registerCours;
@@ -154,7 +157,7 @@ class RegistartionStudentsController extends Controller
          $teachear_name = $this->coursrepository->cours_theacher_name($cours_info);
          $total_cours_fee = $cours_fee->sum('value');
 
-         $this->adminnotoficationrepository->approve_all_notification($request->order_id);
+         $this->adminnotoficationrepository->approve_all_notification($this->notificationModel,$request->order_id);
          $sponsor = Sponsor::get(['id', 'name']);
 
          return view(

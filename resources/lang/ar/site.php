@@ -626,4 +626,7 @@ return [
    'not answered' => 'لم يتم الرد',
    'answered' => 'تم الرد',
    'answer' => 'إجابة',
+   'our team'=>'فريقنا',
+  
+   'social media links' =>'روابط وسائل التواصل الاجتماعي',
 ];

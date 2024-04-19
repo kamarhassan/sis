@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
+use App\Models\ContactUs ;
 use Illuminate\Http\Request;
 use App\Models\InstitueInformation;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use App\Http\Requests\FrontEnd\ContactUs\ContactUsRequest;
-use App\Models\ContactUs ;
 
 class ContactUsController extends Controller
 {
    public function index()
    {
       $institueInformation = InstitueInformation::first();
-      return view('frontend.contact-us.contact-us', compact('institueInformation'));
+      $socialMedia = Config::get('social_media');
+      return view('frontend.contact-us.contact-us', compact('institueInformation','socialMedia'));
    }
    public function save(ContactUsRequest $request)
    {

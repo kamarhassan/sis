@@ -180,7 +180,7 @@
             @can(['social link'])
             <li><a href="{{ route('admin.edit.social.link') }}">
                     <i class="ti-more"></i>
-                    @lang('site.social link')
+                    @lang('site.social media links')
                 </a>
             </li>
         @endcan
