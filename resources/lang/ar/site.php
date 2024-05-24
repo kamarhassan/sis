@@ -626,7 +626,14 @@ return [
    'not answered' => 'لم يتم الرد',
    'answered' => 'تم الرد',
    'answer' => 'إجابة',
-   'our team'=>'فريقنا',
-  
-   'social media links' =>'روابط وسائل التواصل الاجتماعي',
+   'our team' => 'فريقنا',
+
+   'social media links' => 'روابط وسائل التواصل الاجتماعي',
+   'report students marks' => 'تقرير  العلامات',
+   'marks name' => 'العلامة',
+   'Marks' => 'العلامة بالارقام',
+   'is group' => 'ضمن مجموعة؟',
+   'admin name' => 'اسم المشرف',
+   'is active for insert marks' => 'مفعل لادخال العلامات من قبل الاستاذ' ,
+   'is not active for insert marks' => 'غير مفعل لادخال العلامات من قبل الاستاذ' ,
 ];

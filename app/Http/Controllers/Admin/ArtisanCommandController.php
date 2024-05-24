@@ -41,20 +41,20 @@ class ArtisanCommandController extends Controller
                break;
             case 'maintenance':
 
-              
+
                Artisan::call('down');
                Artisan::call('config:clear');
 
 
                break;
-case 'stpm':
+            case 'stpm':
 
-              
+
                Artisan::call('up');
                Artisan::call('config:clear');
 
 
-               break; 
+               break;
             default:
 
                break;

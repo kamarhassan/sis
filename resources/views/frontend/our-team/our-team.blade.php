@@ -20,7 +20,7 @@
 {{--                  {{dd($team['info'])}}--}}
                   <div class="col-lg-4 col-sm-6 mb-4">
                      <div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light fbox-lg fbox-effect">
-                        <div class="fbox-icon" style=" width: 200px; height: 200px;">
+                        <div class="fbox-icon" style=" width: 230px; height: 200px;">
                            <i><img src="{{asset($team['photo'])}}" class="border-0 bg-transparent shadow-sm"
                                    style="z-index: 2;" alt="Image"></i>
                         </div>

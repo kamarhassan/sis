@@ -608,5 +608,11 @@ return [
    'our team'=>'our team',
   
    'social media links' =>'social media links',
-
+   'report students marks' =>  'report students marks',
+   'marks name' =>  'marks name',
+   'Marks' =>  'Marks',
+   'is group' => 'is group?',
+   'admin name'=> 'admin name',
+   'is active for insert marks' => 'is active for inserting marks from the teacher',
+   'is not active for insert marks' => 'is not active for inserting marks from the teacher',
 ];

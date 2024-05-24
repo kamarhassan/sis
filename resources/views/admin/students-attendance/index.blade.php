@@ -18,7 +18,7 @@
                                 {{-- <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li> --}}
                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                 {{-- <li><a data-action="close"><i class="ft-x"></i></a></li> --}}
-                            </ul>
+                            </ul> 
                         </div>
                     </div>
                     <div class="box-body">
@@ -53,12 +53,12 @@
                                                 <td> {{ $cour['count_std'] }} </td>
                                                 <td>
                                                     <div class="row">
-
+{{-- {{dd($is_teacher)}} --}}
                                                         @php
-                                                            if ($is_teacher == false) {
-                                                                $attendance_route = route('admin.enable.disable.take.attendance', $cour['id']);
+
+                                                            if ($is_teacher == false) {                                                       $attendance_route = route('admin.enable.disable.take.attendance', $cour['id']);
                                                                 $marks_route = route('admin.marks.report.and.action', Crypt::encryptString($cour['id']));
-                                                                $report_marks_route = "#";
+                                                                $report_marks_route = '#';
                                                             } else {
                                                                 $attendance_route = route('admin.attendance.general.info', $cour['id']);
                                                                 $marks_route = route('admin.get.students.to.add.marks', Crypt::encryptString($cour['id']));

@@ -43,9 +43,10 @@ class StudentsAttendanceController extends Controller
    {
 
       $admin_logged = Admin::find(Auth::id());
+      $is_teacher = $admin_logged->hasPermissionTo('teacher') ;
       if (!$admin_logged->hasrole('super admin')) {
          $cours = $this->coursrepos->cours_of_teacher_with_registartion_students($admin_logged->id);
-         $is_teacher = true;
+        
          $cours->each(function ($cour) {
             $cour->count_std = $this->coursrepos->count_students_in_cours($cour['id']);
             // if ($cour->count_std == 0)
@@ -56,7 +57,7 @@ class StudentsAttendanceController extends Controller
       //   $route=route('admin.attendance.general.info');
       else {
 
-         $is_teacher = false;
+       
 
          $teacher_id = $this->adminrepos->all_teacher_id();
          $cours = $this->coursrepos->cours_of_teacher_super_admin_loged($teacher_id);

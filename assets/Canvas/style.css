@@ -22443,18 +22443,32 @@ td.actions {
 }
 /* team box  */
 .fbox-bg.fbox-center {
-  margin-top: 2rem;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0 2rem 2rem;
-  border: 1px solid var(--cnvs-featured-box-bg-light);
-  border-radius: 5px;
-   
+   margin-top: 2rem;
+   margin-left: 0;
+   margin-right: 0;
+   padding: 0 2rem 2rem;
+   border: 1px solid var(--cnvs-featured-box-bg-light);
+   border-radius: 5px;
+   background-color:#D6EAF8;
 }
 /*team image*/
 .fbox-bg.fbox-center .fbox-icon {
-  margin-top: -2rem;
-  background-color: var(--cnvs-body-bg);
+   margin-top: -2rem;
+// background-color: var(--cnvs-body-bg);
+}/* team box  */
+.fbox-bg.fbox-center {
+   margin-top: 2rem;
+   margin-left: 0;
+   margin-right: 0;
+   padding: 0 2rem 2rem;
+   border: 1px solid var(--cnvs-featured-box-bg-light);
+   border-radius: 5px;
+   background-color:#D6EAF8;
+}
+/*team image*/
+.fbox-bg.fbox-center .fbox-icon {
+   margin-top: -2rem;
+/*// background-color: var(--cnvs-body-bg);*/
 }
 .fbox-bg.fbox-center .fbox-lg {
   margin-top: 3rem;

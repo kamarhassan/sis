@@ -26,6 +26,17 @@
                                         class="hover hover-primary">@lang('site.disable or enable take marks')<i class="ti ti-reload">
                                         </i>
                                     </a>
+ 
+
+                                    @if ($status == 1)
+                                        <div class="box-body ribbon-box">
+                                            <div class="ribbon ribbon-success">@lang('site.is active for insert marks')</div>
+                                        </div>
+                                    @else
+                                        <div class="box-body ribbon-box">
+                                            <div class="ribbon ribbon-success">@lang('site.is not active for insert marks')</div>
+                                        </div>
+                                    @endif
                                 </div>
                             @endcan
                             @can('reset marks')
@@ -57,7 +68,7 @@
 
                             <div id="handsontable" class="hot handsontable htColumnHeaders"></div>
 
-                           
+
                             <br>
                             <span id="error_marks" class="text-danger">
                                 <div id="erro_show"></div>

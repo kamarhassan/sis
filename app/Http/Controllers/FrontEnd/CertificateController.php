@@ -38,8 +38,8 @@ class CertificateController extends Controller
 
 
 
-    $final_template = $this->certificaterepository->certificate_templates($studentsRegistration_id, $cert_id, Auth::user()->id);
- 
+   $final_template = $this->certificaterepository->certificate_templates($studentsRegistration_id, $cert_id, Auth::user()->id);
+//   return  $final_template ['mark'];
       if ($final_template == 'marks not defined') {
 
          Toastr()->error(__('site.marks not found'));

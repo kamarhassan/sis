@@ -22,7 +22,9 @@
                     <div class="card-content collpase show">
                         <div class="card-body card-dashboard">
 
-
+                           <span id="error_marks" class="text-danger">
+                              <div id="erro_show"></div>
+                          </span>
                             <div id="handsontable" class="hot handsontable htColumnHeaders"></div>
 
                             {{-- <button  class="button button--primary button--blue">Save data</button> --}}
@@ -33,9 +35,7 @@
                                 </a>
                             @endif
                             <br>
-                            <span id="error_marks" class="text-danger">
-                                <div id="erro_show"></div>
-                            </span>
+                           
                         </div>
                     </div>
                 </div>

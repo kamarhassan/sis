@@ -11,22 +11,23 @@
     <link rel="icon" href="{{ logo() }}"type="image/x-icon">
     {{-- <link rel="icon" href="{{URL::asset('public/files/logo.jfif')}}" > --}}
     <title>@yield('title')</title>
+    
 
-
-
+    
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/vendors_css.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/skin_color.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/custome_style.css') }}">
-
-
-
-    @yield('css')
-
-
-
+    
+    
     @toastr_css()
+    
+    @yield('css')
+    
+    {{-- @jquery --}}
 
+
+    
 
 </head>
 
@@ -67,13 +68,14 @@
       @include('admin.layouts.footer')
       {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
+
     <script src="{{ URL::asset('assets/app-assets/js/vendors.min.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/icons/feather-icons/feather.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/assets/toastr/toastr.js') }}"></script>
+    {{-- <script src="{{ URL::asset('assets/assets/toastr/toastr.js') }}"></script> --}}
     <script src="{{ URL::asset('assets/assets/sweetalert2/sweetalert.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">
     </script>
-    <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
+    {{-- <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ URL::asset('assets/custome_js/open_new_tab.js') }}"></script>
     <script src="{{ URL::asset('assets/custome_js/genralfunction.js') }}"></script>
@@ -85,15 +87,16 @@
     </script>
     <script src="{{ URL::asset('assets/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}">
     </script>
-    <script src="{{ URL::asset('assets/app-assets/js/pages/toastr.js') }}"></script>
+   
     <script src="{{ URL::asset('assets/app-assets/js/pages/notification.js') }}"></script>
 
     <script src="{{ URL::asset('assets/app-assets/js/pages/advanced-form-element.js') }}"></script>
     <script src="{{ URL::asset('assets/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
     <script src="{{ URL::asset('assets/app-assets/js/template.js') }}"></script>
 
-    @toastr_js
+   @toastr_js
     @toastr_render
+    
 
     <script>
         $(document).ready(function() {

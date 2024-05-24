@@ -42,7 +42,9 @@ class MarksController extends Controller
          $HeaderMarks_of_teacher[$value['id']] = $value['marks'];
       }
       $HeaderMarks_of_teacher;
+     
       if ($HeaderMarks->count() > 0) {
+         // toastr()->info('notification message?');
          toastr()->warning(__('site.header marks al ready exist to edit call to admin'));
          return redirect()->route('admin.take.attendance.students');
       }
@@ -148,11 +150,16 @@ class MarksController extends Controller
 
 
       try {
-         // return $request;
+
          DB::beginTransaction();
 
 
          $HeaderMarks = HeaderMarks::where('cours_id', $request->cours_id)->get();
+         if ($HeaderMarks[0]['status'] == 0) {
+            $status = 'error';
+            $message =  __('site.is not active for insert marks');
+            $DataAfterValidate['error_index']=[];
+         }else{
          $header_marks = $this->marksrepository->header_marks_table($HeaderMarks);
          //  return   $header_marks[2][1];
          $message = null;
@@ -182,6 +189,8 @@ class MarksController extends Controller
             $status = $DataAfterValidate['status'];
             $message =  __('site.insert marks failed please fix the errors');
          }
+      }
+
          DB::commit();
          return response()->json([
             'message' => $message,
@@ -203,9 +212,11 @@ class MarksController extends Controller
       $cours_id = Crypt::decryptString($cours_id_);
       $HeaderMarks = HeaderMarks::where('cours_id', $cours_id)->get();
       if ($HeaderMarks->count() == 0) {
-
+         
+         toastr()->error('jasldjsa', 'error', ['class' => 'toast-error']);
          return redirect()->route('admin.add.marks.cours', $cours_id_);
       }
+      $status = $HeaderMarks[0]['status'];
       $header_marks_id = $HeaderMarks[0]['id'];
 
       $students = $this->studentsrepos->students_for_cours_defined($cours_id);
@@ -225,10 +236,10 @@ class MarksController extends Controller
          /**
           * if students don't have marks
           */
-         $columnsToColor=null;
+         $columnsToColor = null;
          $studentsdata = $this->marksrepository->dataset_marks_table($students, $header_marks, $HeaderMarks[0]['total']);
       }
-      return view('admin.marks.admin-report-action', compact('header_marks', 'studentsdata', 'columns', 'cours_id', 'header_marks_id', 'columnsToColor'));
+      return view('admin.marks.admin-report-action', compact('status', 'header_marks', 'studentsdata', 'columns', 'cours_id', 'header_marks_id', 'columnsToColor'));
    }
 
 
@@ -311,7 +322,7 @@ class MarksController extends Controller
       return response()->json([
          'status' => 'success',
          'message' => __('site.marks save successfully'),
-         'route' => route('admin.get.students.to.add.marks',$request->cours_id),
+         'route' => route('admin.get.students.to.add.marks', $request->cours_id),
       ]);
    }
 }
