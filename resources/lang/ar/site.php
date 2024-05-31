@@ -634,6 +634,10 @@ return [
    'Marks' => 'العلامة بالارقام',
    'is group' => 'ضمن مجموعة؟',
    'admin name' => 'اسم المشرف',
-   'is active for insert marks' => 'مفعل لادخال العلامات من قبل الاستاذ' ,
-   'is not active for insert marks' => 'غير مفعل لادخال العلامات من قبل الاستاذ' ,
+   'is active for insert marks' => 'مفعل لادخال العلامات من قبل الاستاذ',
+   'is not active for insert marks' => 'غير مفعل لادخال العلامات من قبل الاستاذ',
+
+   'Online' => 'Online',
+   'Offline' => 'Offline',
+   'Hybride Course' => 'Hybride Course',
 ];

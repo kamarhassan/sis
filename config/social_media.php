@@ -1,10 +1,12 @@
-<?php return array (
-  'Facebook' => 'Facebook',
-  'Instagram' => 'Instagram',
-  'Tiktok' => 'Tiktok',
-  'Telegram' => 'Telegram',
-  'Twitter' => 'X',
-  'WhatsApp' => 'WhatsApp',
-  'YouTube' => 'YouTube',
-  'LinkedIn' => 'LinkedIn',
+<?php return array(
+   'Facebook' => NULL,
+   'Instagram' => NULL,
+   'Tiktok' => NULL,
+   'Telegram' => NULL,
+   'Twitter' => NULL,
+   'WhatsApp' => NULL,
+   'YouTube' => NULL,
+   'LinkedIn' => NULL,
+   'Google' => NULL,
+
 );

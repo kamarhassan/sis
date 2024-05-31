@@ -615,4 +615,7 @@ return [
    'admin name'=> 'admin name',
    'is active for insert marks' => 'is active for inserting marks from the teacher',
    'is not active for insert marks' => 'is not active for inserting marks from the teacher',
+   'Online'=>'Online',
+   'Offline'=>'Offline',
+   'Hybride Course'=>'Hybride Course',
 ];
