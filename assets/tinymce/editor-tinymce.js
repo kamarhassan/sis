@@ -14,6 +14,7 @@
 	tinymce.init({
 		selector: '.tinymce',
 		height: 350,
+      initialValue: '',
       forced_root_block : 'div',
 		theme: 'modern',
 		plugins: [

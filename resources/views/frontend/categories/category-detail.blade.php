@@ -1,6 +1,19 @@
 @extends('frontend.layouts.master')
 @section('title')
 @endsection
+@section('meta')
+   
+   <meta property="og:image" content="{{ asset($category['global_image']) }}">
+   <meta property="og:description" content="{{--{{ $category['name'] }}--}} 
+   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi commodi optio, perferendis porro quas soluta veniam. Assumenda consequuntur dicta ex incidunt, modi odit quisquam sint ut voluptatem? In natus, quas.
+
+   ">
+
+
+   <meta property="og:title" content="otp jdksf jdksfhd ksjdfhkjshf  kjdhfksdh  ">
+  
+@endsection
+
 @section('css')
    <style>
       .customecenter {
