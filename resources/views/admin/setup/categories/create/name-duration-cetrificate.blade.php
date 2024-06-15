@@ -16,7 +16,7 @@
          <div class="form-group">
 
             <div class="form-group">
-               <label>@lang('site.cours') <span class="text-danger">*</span> </label>
+               <label>@lang('site.grades') <span class="text-danger">*</span> </label>
                <select name="grade" id="garde_select" class="selectize-multiple">
                   <option value="">-------------------------------</option>
                   @foreach ($grade as $grades)

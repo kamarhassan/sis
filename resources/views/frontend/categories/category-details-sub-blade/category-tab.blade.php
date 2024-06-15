@@ -1,6 +1,8 @@
 <div class="row">
    <div class="col-lg-4 text-center">
-      <h3 class="">{{ $category['name'] }}</h3>
+      <h3 class="fw-bold display-5 nocolor">{{ $category['name'] }}</h3>
+   
+      <p>{!!    $category['shorte_description']  !!}</p>
    </div>
    <div class="col-lg-4"><img src="{{ asset($category['global_image']) }}" alt=""></div>
 

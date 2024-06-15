@@ -3,8 +3,7 @@
 @lang('site.categories create')
 @endsection
 @section('css')
-<link rel="stylesheet" type="text/css"
-href="{{ URL::asset('assets/tinymce/tinymce.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/tinymce/tinymce.min.css') }}">
 
 
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/selectize/css/selects/selectize.css')}}">

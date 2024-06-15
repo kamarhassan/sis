@@ -19,7 +19,7 @@ return [
    'Post edit successfully!' => 'Post edit successfully!',
    'wrong try again' => 'error, try again later',
    'show all' => 'show all',
-   'lang name' => 'lang name',
+   'lang name' => 'First Name',
    'abbreviation' => 'abbreviation',
    'direction' => 'direction',
    'status' => 'status',

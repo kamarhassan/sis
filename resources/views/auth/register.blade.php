@@ -25,16 +25,21 @@
                                             <span class="input-group-text bg-transparent text-black"><i
                                                     class="ti-user"></i></span>
                                         </div>
-                                        <input id="name" type="text"
+                                        <input id="firstname" type="text"
                                             class="form-control @error('firstname') is-invalid @enderror" name="firstname"
                                             value="{{ old('firstname') }}" autocomplete="firstname"  placeholder="@lang('site.lang name')" autofocus>
 
-                                        @error('firstname')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                                            
+                                            </div>
+
+                          
+                                            
+                                       @error('firstname')
+                              
+                                           <span class="invalid-feedback" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                           </span>
+                                       @enderror
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group mb-3">
@@ -47,7 +52,7 @@
                                             value="{{ old('midname') }}" autocomplete="midname" autofocus>
 
                                         @error('midname')
-                                            <span class="invalid-feedback" role="alert">
+                                            <span class="invalid-feedback" role="alert" id="hassan_kamar">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -94,7 +99,7 @@
                                                 <i class="ti ti-mobile"></i></span>
                                         </div>
                                         <input id="phonenumber" type="tel"
-                                            class="form-control @error('phonenumber') is-invalid @enderror" name="phonenumber" placeholder="@lang('site.phone ')"
+                                            class="form-control @error('phonenumber') is-invalid @enderror" name="phonenumber" placeholder="@lang('site.phone number')"
                                             
                                             {{-- value="{{ old('phonenumber') }}" --}}
                                             autocomplete="phonenumber"  >
@@ -116,9 +121,9 @@
                                             class="form-control @error('password') is-invalid @enderror" name="password" placeholder="@lang('site.password')"
                                             autocomplete="new-password">
 
-                                        @error('password')
+                                            @error('password')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>{{ $errors->first('password') }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -171,6 +176,9 @@
             </div>
         </div>
 
+       {{-- {{ dd(v)}} --}}
 
+
+{{--       {{var_dump(Session::all())}}--}}
     </div>
 @endsection

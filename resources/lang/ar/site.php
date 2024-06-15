@@ -521,7 +521,7 @@ return [
    'gallery for cours' => 'الصور',
    'short desciprtion' => 'وصف مختصر',
    'cours description' => 'وصف',
-   'cours details' => 'تفاصيل الدورات',
+   'cours details' => 'تفاصيل الدورة',
    'cours require knowledge' => 'المعرفة المطلوبة',
    'course prerequisites' => 'متطلبات الدورة',
    'target students' => 'الفئة المستهدفة من الطلاب',

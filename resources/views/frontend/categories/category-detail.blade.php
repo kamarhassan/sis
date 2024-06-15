@@ -3,15 +3,14 @@
 @endsection
 @section('meta')
    
-   <meta property="og:image" content="{{ asset($category['global_image']) }}">
-   <meta property="og:description" content="{{--{{ $category['name'] }}--}} 
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi commodi optio, perferendis porro quas soluta veniam. Assumenda consequuntur dicta ex incidunt, modi odit quisquam sint ut voluptatem? In natus, quas.
+   
+   <meta property="og:title" content="{{ $category['name'] }}">
+   <meta property="og:image" content="{{ asset($category['global_image']) }}" type="image/x-icon">
+   <meta  property="og:description" content="{{ $category['shorte_description'] }}">
+   <meta property="og:image:width" content="1200"> <!-- Optional, specify the image width in pixels -->
+   <meta property="og:image:height" content="630">
 
-   ">
-
-
-   <meta property="og:title" content="otp jdksf jdksfhd ksjdfhkjshf  kjdhfksdh  ">
-  
+   <link rel="icon" href="{{ $category['name'] }}" type="image/x-icon">
 @endsection
 
 @section('css')
@@ -29,6 +28,7 @@
 @section('content')
    <div class="row justify-content-center">
       <div class="col-md-9">
+{{--         {{dd($category)}}--}}
          @if (Session::has('error'))
 
           

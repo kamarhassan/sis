@@ -97,39 +97,39 @@
         </div>
     </div>
 
-    <div class="section mt-6 parallax" style="padding: 80px 0 60px;">
-        <div class="parallax-bg" style="background: url('assets/Canvas/demos/course/images/icon-pattern.jpg') repeat;">
-        </div>
-        <div class="wave-top"
-            style="position: absolute; top: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x;">
-        </div>
-        <div class="container">
-            <div class="heading-block border-bottom-0 mb-5 text-center">
-                <h3>@lang('site.certificate')</h3>
-            </div>
-            <div class="clear"></div>
-            <div class="row mt-2">
-                @isset($certificate)
-                    @foreach ($certificate as $item)
-                        <div class="col-md-2 mb-5">
-                            <div class="card course-card hover-effect border-0">
+{{--    <div class="section mt-6 parallax" style="padding: 80px 0 60px;">--}}
+{{--        <div class="parallax-bg" style="background: url('assets/Canvas/demos/course/images/icon-pattern.jpg') repeat;">--}}
+{{--        </div>--}}
+{{--        <div class="wave-top"--}}
+{{--            style="position: absolute; top: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x;">--}}
+{{--        </div>--}}
+{{--        <div class="container">--}}
+{{--            <div class="heading-block border-bottom-0 mb-5 text-center">--}}
+{{--                <h3>@lang('site.certificate')</h3>--}}
+{{--            </div>--}}
+{{--            <div class="clear"></div>--}}
+{{--            <div class="row mt-2">--}}
+{{--                @isset($certificate)--}}
+{{--                    @foreach ($certificate as $item)--}}
+{{--                        <div class="col-md-2 mb-5">--}}
+{{--                            <div class="card course-card hover-effect border-0">--}}
 
-                                <a href="{{ route('certificate.detail', [$item['name'], Crypt::encryptString($item['id'])]) }}"
-                                    class="badge bg-color bg h-bg-dark h-text-light all-ts py-2 px-3"
-                                    style="background-color:#83B341 ">{{ $item['name'] }}
-                                </a>
+{{--                                <a href="{{ route('certificate.detail', [$item['name'], Crypt::encryptString($item['id'])]) }}"--}}
+{{--                                    class="badge bg-color bg h-bg-dark h-text-light all-ts py-2 px-3"--}}
+{{--                                    style="background-color:#83B341 ">{{ $item['name'] }}--}}
+{{--                                </a>--}}
 
 
-                            </div>
-                        </div>
-                    @endforeach
-                @endisset
-            </div>
-        </div>
-        <div class="wave-bottom"
-            style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);">
-        </div>
-    </div>
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                @endisset--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="wave-bottom"--}}
+{{--            style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);">--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
 @endsection
 
