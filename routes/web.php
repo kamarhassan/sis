@@ -33,11 +33,11 @@ use App\Http\Controllers\FrontEnd\Api\SocialLoginController;
 // });
 
 // Route::get('/mani', [LaravelPWAController::class, 'manifestJson'])->name('manifestJson');
-
+Auth::routes(['verify' => true]);
 Route::group(
    [
       //      'prefix' => LaravelLocalization::setLocale(),
-      //      'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+            'middleware' => ['web']
    ],
    function () {
 
@@ -76,7 +76,7 @@ Route::group(
       });
 
 
-      Auth::routes(['verify' => true]);
+      
 
       Route::get('auth/google', [SocialLoginController::class, 'redirecttogoogle'])->name('user.login.by.google');
       Route::get('auth/google/callback', [SocialLoginController::class, 'handleGooglecallback'])->name('user.login.by.fb');

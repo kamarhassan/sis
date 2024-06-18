@@ -10,16 +10,26 @@
    "extra": {
       "laravel": {
          "providers": [],
-         "aliases": {}
+         "aliases": {
+
+         }
       }
    },
    "autoload": {
       "psr-4": {
-         "Modules\\Cms\\": "Modules/Cms/",
-       
-      }
+         "Modules\\Cms\\": ""
+
+
+      },
+      "files": [
+         "Modules/Cms/Helpers/Helper.php"
+
+      ]
    },
    "autoload-dev": {
-      "files": []
+
+      "files": [
+
+      ]
    }
 }

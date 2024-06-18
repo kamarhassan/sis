@@ -179,6 +179,6 @@
        {{-- {{ dd(v)}} --}}
 
 
-{{--       {{var_dump(Session::all())}}--}}
+       {{var_dump(Session::all())}}
     </div>
 @endsection
