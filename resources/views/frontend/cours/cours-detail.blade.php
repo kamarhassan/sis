@@ -15,7 +15,8 @@
                             <div class="class-info">
                                 <div class="dlab-post-title ">
                                     <h2 class="post-title m-t0"><a href="#"> @isset($cours)
-                                                {{ $cours['category_grade_level']['grade']['grade'] }} -- {{ $cours['category_grade_level']['level']['level'] }}
+                                                {{ $cours['category_grade_level']['grade']['grade'] }} --
+                                                {{ $cours['category_grade_level']['level']['level'] }}
                                             @endisset
                                         </a>
                                     </h2>
@@ -93,19 +94,19 @@
 
                         <form id="reserve_cours">
                             <div class="col-12 form-group mb-4 ">
-                            <label for="website-cost-type" class="mb-3">@lang('site.teach type')</label><br>
-                            <div class="btn-group flex-wrap">
-                                <input type="radio" class="btn-check required " name="teach_type"
-                                    id="website-cost-type-corporate" autocomplete="off" data-price="200" value="0">
-                                <label for="website-cost-type-corporate"
-                                    class="teach_type btn btn-outline-secondary px-3 fw-semibold ls-0 text-transform-none">@lang('site.online')</label>
-                                <input type="radio" class="btn-check required " name="teach_type"
-                                    id="website-cost-type-ecommerce" autocomplete="off" data-price="400" value="1">
-                                <label for="website-cost-type-ecommerce"
-                                    class="teach_type btn btn-outline-secondary px-3 fw-semibold ls-0 text-transform-none">@lang('site.on class')</label>
+                                <label for="website-cost-type" class="mb-3">@lang('site.teach type')</label><br>
+                                <div class="btn-group flex-wrap">
+                                    <input type="radio" class="btn-check required " name="teach_type"
+                                        id="website-cost-type-corporate" autocomplete="off" data-price="200" value="0">
+                                    <label for="website-cost-type-corporate"
+                                        class="teach_type btn btn-outline-secondary px-3 fw-semibold ls-0 text-transform-none">@lang('site.online')</label>
+                                    <input type="radio" class="btn-check required " name="teach_type"
+                                        id="website-cost-type-ecommerce" autocomplete="off" data-price="400" value="1">
+                                    <label for="website-cost-type-ecommerce"
+                                        class="teach_type btn btn-outline-secondary px-3 fw-semibold ls-0 text-transform-none">@lang('site.on class')</label>
+                                </div>
                             </div>
-                           </div>
-                           <span class="text-danger" id="teach_type_"></span>
+                            <span class="text-danger" id="teach_type_"></span>
                             @guest
                                 <div class="btn btn-primary">
                                     <a href="{{ route('login') }}">
@@ -115,6 +116,13 @@
                                     </span>
 
 
+                                </div>
+                            @elseif (!auth()->user()->hasVerifiedEmail())
+                            <div class="btn btn-primary">
+                                    <a href="{{ route('verification.notice') }}">
+                                        <span class="text-white">
+
+                                            @lang('site.you need verfie  your email') </a>
                                 </div>
                             @else
                                 @auth
@@ -126,7 +134,10 @@
                                     <input type="hidden" name="order_type" id=""
                                         value="{{ Crypt::encryptString('registration') }}">
                                     @php
-                                        \App\Models\NotificationAdmin::where(['user_id' => Auth::user()->id, 'order_id' => $cours['id']])
+                                        \App\Models\NotificationAdmin::where([
+                                            'user_id' => Auth::user()->id,
+                                            'order_id' => $cours['id'],
+                                        ])
                                             ->get()
                                             ->count() > 0
                                             ? ($is_old_register = 1)

@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
-
+{{--<html dir="ltr" lang="en">--}}
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
    <meta http-equiv="content-type" content="text/html; charset=utf-8">
    <meta http-equiv="x-ua-compatible" content="IE=edge">
    <meta name="author" content="HASSAN KAMAR DEV">
-   {{-- <meta name="description"
-       content="Get Canvas to build powerful websites easily with the Highly Customizable &amp; Best Selling Bootstrap Template, today."> --}}
+
    @yield('meta')
-{{--   <meta property="og:title" content="@yield('og:title', '')">--}}
-{{--   <meta property="og:description" content="@yield('og:description', '')">--}}
-{{--   <meta property="og:image" content="@yield('og:image','')">--}}
-{{--   <meta property="og:url" content="{{ url()->current() }}">--}}
-{{--   <meta property="og:type" content="website">--}}
-   <!-- Font Imports -->
+
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap" rel="stylesheet">
 
-
+   @yield('css')
    <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/style.css') }}">
 
    <!-- Font Icons -->
@@ -32,9 +26,7 @@
    {{-- <link rel="stylesheet" href="{{ URL::asset('assets//Canvas/demos/store/store.css') }}"> --}}
    <link rel="stylesheet" href="{{ URL::asset('assets/app-assets/css/custome_style.css') }}">
 
-   {{--   <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/include/rs-plugin/css/addons/revolution.addon.beforeafter.css') }}">--}}
-   {{--   <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/include/rs-plugin/css/addons/revolution.addon.particles.css') }}"> --}}
-   <!-- Custom CSS -->
+
 
    <link rel="stylesheet" href="{{ URL::asset('assets/Canvas/css/custom.css') }}">
 
@@ -43,8 +35,8 @@
 
    <link rel="icon" href="{{URL::asset('public/files/logo.jfif')}}" type="image/x-icon">
    <title>Act College</title>
-   @toastr_css()
-   @yield('css')
+   {{-- @toastr_css() --}}
+
 </head>
 
 <body class="stretched">
@@ -53,17 +45,18 @@
 <div id="wrapper">
 
 
-   {{-- @include('frontend.layouts.Header-sub-view.top-bar') --}}
+
    @include('frontend.layouts.header')
 
 
    <section id="content">
       <div class="content-wrap" style="overflow: visible;">
 
+{{--{{ app()->getLocale()}}--}}
+{{--         <div class="wave-bottom"--}}
+{{--              style="position: absolute; top: -12px; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>--}}
 
-         <div class="wave-bottom"
-              style="position: absolute; top: -12px; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>
-         @include('admin.layouts.spinner-loader.loader')
+{{--         @include('admin.layouts.spinner-loader.loader')--}}
          @yield('content')
 
       </div>

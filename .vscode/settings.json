@@ -1,0 +1,11 @@
+{
+    "intelephense.diagnostics.implementationErrors": false,
+    "phpstormFormatter.ideBinPath": "C:\\Program Files\\JetBrains\\PhpStorm 2019.3.3\\bin",
+    "intelephense.diagnostics.undefinedTypes": false,
+"intelephense.diagnostics.undefinedFunctions": false,
+"intelephense.diagnostics.undefinedConstants": false,
+"intelephense.diagnostics.undefinedClassConstants": false,
+"intelephense.diagnostics.undefinedMethods": false,
+"intelephense.diagnostics.undefinedProperties": false,
+"intelephense.diagnostics.undefinedVariables": false,
+}

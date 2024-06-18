@@ -16,8 +16,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
     protected $adminnamespace = 'App\Http\Controllers\Admin';
-   //  protected $verifieemail = 'App\Http\Controllers\Admin';
-
     /**
      * The path to the "home" route for your application.
      *

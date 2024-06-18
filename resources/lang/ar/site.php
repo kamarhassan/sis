@@ -640,4 +640,5 @@ return [
    'Online' => 'Online',
    'Offline' => 'Offline',
    'Hybride Course' => 'Hybride Course',
+   'Register Now'=>'سجل الان'
 ];

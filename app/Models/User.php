@@ -12,6 +12,7 @@ class User extends Authenticatable  implements MustVerifyEmail
 {
    use Notifiable;
    use HasRoles;
+
    /**
     * The attributes that are mass assignable.
     *
@@ -85,7 +86,7 @@ class User extends Authenticatable  implements MustVerifyEmail
    public function registration_in_cours()
    {
       return  $this->hasOne(StudentsRegistration::class, 'user_id');
-      
+
    }
 
 

@@ -4,8 +4,9 @@
    
       <p>{!!    $category['shorte_description']  !!}</p>
    </div>
-   <div class="col-lg-4"><img src="{{ asset($category['global_image']) }}" alt=""></div>
-
+   <div class="col-lg-4 d-flex img_categorie">
+      <img  src="{{ asset($category['global_image']) }}" alt="">
+   </div>
 </div>
 
 <br><br>

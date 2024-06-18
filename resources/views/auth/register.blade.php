@@ -27,19 +27,16 @@
                                         </div>
                                         <input id="firstname" type="text"
                                             class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                            value="{{ old('firstname') }}" autocomplete="firstname"  placeholder="@lang('site.lang name')" autofocus>
+                                            value="{{ old('firstname') }}" autocomplete="firstname"
+                                            placeholder="@lang('site.lang name')" autofocus>
 
-                                            
-                                            </div>
 
-                          
-                                            
-                                       @error('firstname')
-                              
-                                           <span class="invalid-feedback" role="alert">
-                                               <strong>{{ $message }}</strong>
-                                           </span>
-                                       @enderror
+                                        @error('firstname')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group mb-3">
@@ -48,8 +45,9 @@
                                                     class="ti-user"></i></span>
                                         </div>
                                         <input id="midname" type="text"
-                                            class="form-control @error('midname') is-invalid @enderror" name="midname" placeholder="@lang('site.Middle Name')"
-                                            value="{{ old('midname') }}" autocomplete="midname" autofocus>
+                                            class="form-control @error('midname') is-invalid @enderror" name="midname"
+                                            placeholder="@lang('site.Middle Name')" value="{{ old('midname') }}"
+                                            autocomplete="midname" autofocus>
 
                                         @error('midname')
                                             <span class="invalid-feedback" role="alert" id="hassan_kamar">
@@ -82,8 +80,9 @@
                                                     class="ti-email"></i></span>
                                         </div>
                                         <input id="email" type="email"
-                                            class="form-control @error('email') is-invalid @enderror" name="email" placeholder="@lang('site.E-mail')"
-                                            value="{{ old('email') }}" autocomplete="email">
+                                            class="form-control @error('email') is-invalid @enderror" name="email"
+                                            placeholder="@lang('site.E-mail')" value="{{ old('email') }}"
+                                            autocomplete="email">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -99,10 +98,10 @@
                                                 <i class="ti ti-mobile"></i></span>
                                         </div>
                                         <input id="phonenumber" type="tel"
-                                            class="form-control @error('phonenumber') is-invalid @enderror" name="phonenumber" placeholder="@lang('site.phone number')"
-                                            
-                                            {{-- value="{{ old('phonenumber') }}" --}}
-                                            autocomplete="phonenumber"  >
+                                            class="form-control @error('phonenumber') is-invalid @enderror"
+                                            name="phonenumber" placeholder="@lang('site.phone number')"   value="{{ old('phonenumber') }}"
+                                            autocomplete="phonenumber">
+
 
                                         @error('phonenumber')
                                             <span class="invalid-feedback" role="alert">
@@ -118,10 +117,10 @@
                                                     class="ti-lock"></i></span>
                                         </div>
                                         <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password" placeholder="@lang('site.password')"
-                                            autocomplete="new-password">
+                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                            placeholder="@lang('site.password')" autocomplete="new-password">
 
-                                            @error('password')
+                                        @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password') }}</strong>
                                             </span>
@@ -134,8 +133,9 @@
                                             <span class="input-group-text bg-transparent text-black"><i
                                                     class="ti-lock"></i></span>
                                         </div>
-                                        <input id="password-confirm" type="password" class="form-control" placeholder="@lang('site.retype password')"
-                                            name="password_confirmation" autocomplete="new-password">
+                                        <input id="password-confirm" type="password" class="form-control"
+                                            placeholder="@lang('site.retype password')" name="password_confirmation"
+                                            autocomplete="new-password">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -163,7 +163,7 @@
                               <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-twitter"></i></a>
                               <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-google-plus"></i></a>
                               <a class="btn btn-social-icon btn-round btn-outline btn-black" href="#"><i class="fa fa-instagram"></i></a>
-                            </p>	
+                            </p>
                         </div> --}}
 
                             <div class="text-center">
@@ -176,9 +176,9 @@
             </div>
         </div>
 
-       {{-- {{ dd(v)}} --}}
+        {{-- {{ dd(v)}} --}}
 
 
-       {{var_dump(Session::all())}}
+        {{--       {{var_dump(Session::all())}} --}}
     </div>
 @endsection

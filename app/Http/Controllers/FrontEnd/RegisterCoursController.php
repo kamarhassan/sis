@@ -19,7 +19,7 @@ class RegisterCoursController extends Controller
       CoursFeeInterface $coursfee,
       RegisterCoursInterface $registerCoursInterface
    ) {
-    
+
       $this->coursfee = $coursfee;
       $this->cours = $cours;
       $this->registerCoursInterface = $registerCoursInterface;
@@ -28,13 +28,13 @@ class RegisterCoursController extends Controller
    // public function RegisterCours(Request $request)
    public function RegisterCours(OrderRegistartionFromUser $request)
    {
-      // return $request;
+      
       try {
          $inserted=     $this->registerCoursInterface->register_in_cours($request);
          if ($inserted) {
             return   response()->json(['status' => 'success','message' => __('site.cours successfully registered'),'btn'=>'<a href="#" id="btn_register">'.__('site.you already reserved this cours').'</a>']);
         } else {
-            
+
             return  response()->json(['status' => 'error','message' => __('site.cours failed registered')]);
          }
       } catch (\Throwable $th) {
@@ -46,7 +46,7 @@ class RegisterCoursController extends Controller
    {
       try {
           $delete =  $this->registerCoursInterface->delete_register_in_cours($request->id);
-         if ($delete) 
+         if ($delete)
          {
 
             $notification = [

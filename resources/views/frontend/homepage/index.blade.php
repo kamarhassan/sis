@@ -53,13 +53,13 @@
 
 
 
-    <div class="section mt-6 parallax" style="padding: 80px 0 60px;">
+    <div class="section mt-6 parallax" style="padding: 1px 0 60px;">
         <div class="parallax-bg" style="background: url('assets/Canvas/demos/course/images/icon-pattern.jpg') repeat;">
         </div>
         <div class="wave-top"
             style="position: absolute; top: 0; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x;">
         </div>
-        <div class="container">
+        <div class="container" style="padding-bottom: -5px">
             <div class="heading-block border-bottom-0 mb-5 text-center">
                 <h3>@lang('site.categories')</h3>
             </div>

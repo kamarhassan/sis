@@ -20,6 +20,16 @@
          border: 3px solid green;
          text-align: center;
       }
+      .img_categorie {
+         position: fixed; /* Fix the wrapper to the viewport */
+         top: 0;
+         left: 0;
+         /*width: 100vw;*/
+         /*height: 100vh;*/
+         display: flex; /* Make the wrapper a flex container */
+         justify-content: center; /* Center content horizontally */
+         align-items: center
+      }
    </style>
    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> --}}
@@ -29,20 +39,7 @@
    <div class="row justify-content-center">
       <div class="col-md-9">
 {{--         {{dd($category)}}--}}
-         @if (Session::has('error'))
-
-          
-
-            <div class="style-msg errormsg">
-               <div class="sb-msg"><i class="bi-x-lg"></i><strong>{{ Session::get('error') }}</strong></div>
-            </div>
-
-
-
-
-
-
-         @endif
+      
          @include('frontend.categories.category-details-sub-blade.category-tab')
          @include('frontend.categories.category-details-sub-blade.available-class')
          @include('frontend.categories.category-details-sub-blade.tag')

@@ -64,6 +64,7 @@ class CategoriesInsertRequest extends FormRequest
          '*.required' => __('site.its_require'),
          '*.numeric' => __('site.must be a number'),
          '*.exits' => __('site.its_exists'),
+         ''
                ];
    }
    

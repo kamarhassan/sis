@@ -16,8 +16,7 @@
 
                      <div class="card-body">
                         <h4 class="card-title" style="text-align: center">
-                           <a href="{{ route('web.cours-details',[ $category['name'],$category['grade']['grade'] . '-' . $category['level']['level'], $item['id']]) }}">
-
+                          
 
                               <div class="row">{{ $category['name']}}</div>
                               <div class="row"> [ {{$category['grade']['grade']}}
@@ -27,7 +26,10 @@
                               <div class="row">@lang('site.end date') {{$item['act_EndDa']}}</div>
 
 
-                           </a>
+
+                              <a href="{{ route('web.cours-details',[ $category['name'],$category['grade']['grade'] . '-' . $category['level']['level'], $item['id']]) }}">
+
+                              <span  class="fa-solid fa-hand-point-right"> </span> @lang('site.Register Now')</a>
                         </h4>
 
 
