@@ -39,7 +39,7 @@
                      <form id='registartion_form'>
                         @csrf
 
-                        <input type="hidden" name="teach_type" value="@isset($teach_type['key'] ) {{$teach_type['key']}}@endisset>
+                        <input type="hidden" name="teach_type" value="@isset($teach_type['key'] ){{$teach_type['key']}}@endisset">
                                 <div class=" box-body">
                         <div class="row">
                            <div class="col-md-3 bb-1 border-success">
@@ -63,7 +63,7 @@
                                                               $cours_info['category_grade_level']['level']['level'] != '' &&
                                                               $cours_info['teacher_name']['name'] != '')
                                                          {{$cours_info['category_grade_level']['name']}}
-                                                       
+
                                                        [  {{ $cours_info['category_grade_level']['grade']['grade'] }} - {{ $cours_info['category_grade_level']['level']['level'] }} -
                                                          {{ $cours_info['teacher_name']['name'] }}]
                                                       @endif

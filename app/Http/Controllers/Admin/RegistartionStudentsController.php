@@ -31,7 +31,7 @@ class RegistartionStudentsController extends Controller
    protected $registerCoursrepository;
    protected $adminnotoficationrepository;
    protected $sponsoreshipsrepository;
-  
+
    protected $notificationModel;
    public function __construct(
       NotificationAdmin $notificationModel,
@@ -88,7 +88,7 @@ class RegistartionStudentsController extends Controller
             // 'user_info' => $user_info,
             // 'cours_details' => $cours_info,
             // 'cours_fee' => $cours_fee,
-            // 'total_cours_fee' => $total_cours_fee,         
+            // 'total_cours_fee' => $total_cours_fee,
          ]);
       }
    }
@@ -140,7 +140,7 @@ class RegistartionStudentsController extends Controller
          // dd(Crypt::decryptString($t));
          //   $user_info['teams_info']['password'] = Crypt::decryptString($user_info['teams_info']['password']);
          $notification = NotificationAdmin::find($request->cours_id);
-         
+
          $teach_type = ['key' => $notification->teach_type, 'type' => $notification->getTeachType()];
          $cours_info = $this->coursrepository->is_defined($notification->order_id);
 
@@ -187,7 +187,8 @@ class RegistartionStudentsController extends Controller
          ]);
 
          $feerequired_temp = $this->coursfeerepository->get_fee_required_cours($request->cours_fee);
-         $sponsor_ship_id = '';
+         $sponsor_ship_id = null;
+
          if ($request->it_has_discount == 'with_discount') {
 
             //   return  $sponsor_ship = $this->sponsoreshipsrepository->CreateNewSponsorShip($request->sponsor_id, $request->cours_id, $request->sponsore_fee_type_id, $request->fee_sponsored,$request->fee_sponsored_discount,$request->fee_sponsored_percent, $request->note);
@@ -198,9 +199,9 @@ class RegistartionStudentsController extends Controller
             $request->feerequired = $feerequired = $feerequired_temp;
          }
 
-         $cours_fee_total = array_sum(array_column($feerequired, 'fee_value'));
+          $cours_fee_total = array_sum(array_column($feerequired, 'fee_value'));
 
-         $std_registragtion = $this->registerCoursrepository->registration_user_in_cours($request, $cours_fee_total, $sponsor_ship_id);
+       $std_registragtion = $this->registerCoursrepository->registration_user_in_cours($request, $cours_fee_total, $sponsor_ship_id);
          $route = route(
             'admin.payment.user_paid_for_cours',
             [$std_registragtion->cours_id, $std_registragtion->user_id]

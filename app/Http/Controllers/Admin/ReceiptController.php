@@ -40,8 +40,8 @@ class ReceiptController extends Controller
             $cours = Cours::where('id', decrypt($cours_id))
                ->with('category_grade_level', 'teacher:id,name')
                ->first();
-       
-            
+
+
             $fee_required = $std['feesRequired'];
 
             $fees = $std['feesRequired'];
@@ -71,7 +71,7 @@ class ReceiptController extends Controller
                   return view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
                }
             } else {
-               toastr()->error(__('site.eror in sending email'));
+//               toastr()->error(__('site.eror in sending email'));
                return view('admin.receipt.receipt', compact('std', 'user', 'cours', 'old_payment', 'fees', 'receipt', 'currency'));
             }
          }
@@ -93,7 +93,7 @@ class ReceiptController extends Controller
          $receipt = Receipt::orderBy('id', 'DESC')->where('deleted', 1) // 1 is not delete
          ->with(['StdRegistration:id,user_id,cours_id', 'students:id,name,email', 'cours_currency'])
             ->get();
-        
+
          return view('admin.receipt.index', compact('receipt'));
          //code...
       } catch (\Throwable $th) {

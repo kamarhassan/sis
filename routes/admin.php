@@ -19,6 +19,16 @@ Route::group(
       'middleware' => ['guest:admin', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
    ],
    function () {
+
+
+
+
+
+
+
+
+
+
       Route::get('/builder', function () {
          return view('admin.builder');
       });
@@ -64,7 +74,7 @@ Route::group([
    Route::get('changemode', [DashboardController::class, 'change_mode'])->name('admin.dashborad.changemode');
    Route::get('/cmd/{index}', [ArtisanCommandController::class, 'command'])->name('admin.setting.artisan');
    Route::post('changeyear', [DashboardController::class, 'changeyear'])->name('admin.change.years');
-   
+
 
    include('AdminRoutes/CoursRoutes.php');
    include('AdminRoutes/SettingRoutes.php');
@@ -77,9 +87,10 @@ Route::group([
    include('AdminRoutes/Profile.php');
    include('AdminRoutes/Users.php');
    include('AdminRoutes/NotificationRoutes.php');
-   
 
-  
+
+
+
 
 
 

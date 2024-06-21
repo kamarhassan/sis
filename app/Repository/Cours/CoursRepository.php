@@ -67,7 +67,7 @@ class CoursRepository implements CoursInterface
          'duration' => $request->duration,
          'total_hours' => $request->total_hours,
          'currencies_id' => $request->cours_currency,
-         // 'description' => $request->description,
+        'description' => '',
          'startTime' => $request->start_time,
          'endTime' => $request->end_time,
          'days' => Cours::save_day_of_week($request->days),

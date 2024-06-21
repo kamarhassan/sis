@@ -48,6 +48,7 @@
                 </address>
             </div>
             <div class="col-md-6 invoice-col">
+
                 @isset($cours['institue_information_id'])
                     <strong>@lang('site.to')</strong>
 

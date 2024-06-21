@@ -1,6 +1,6 @@
 <nav class="primary-menu mobile-menu-off-canvas flex-xl-fill me-auto">
    <ul class="menu-container">
-
+   
       {{-- <li class="menu-item">
          <a class="menu-link" href="{{ route('web.index') }}">
             <div><strong>Home</strong> </div>
@@ -17,7 +17,7 @@
    </ul>
 
 
-
+  
 
 
 </nav>

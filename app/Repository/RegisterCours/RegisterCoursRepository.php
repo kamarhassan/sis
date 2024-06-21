@@ -51,7 +51,7 @@ class RegisterCoursRepository implements RegisterCoursInterface
    {
       $teams_info = null;
       $request->teams_user != null ? $teams_info = ['username' => $request->teams_user/*, 'password' => Crypt::encryptString($request->teams_pas)*/] : $teams_info = null;
-      $sponsorship_id = '';
+      $sponsorship_id = null;
       if ($request->it_has_discount == 'with_discount') {
          $sponsorship_id = $sponsorshipid;
       }

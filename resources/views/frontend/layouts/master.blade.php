@@ -35,7 +35,7 @@
 
    <link rel="icon" href="{{URL::asset('public/files/logo.jfif')}}" type="image/x-icon">
    <title>Act College</title>
-   {{-- @toastr_css() --}}
+
 
 </head>
 
@@ -52,11 +52,7 @@
    <section id="content">
       <div class="content-wrap" style="overflow: visible;">
 
-{{--{{ app()->getLocale()}}--}}
-{{--         <div class="wave-bottom"--}}
-{{--              style="position: absolute; top: -12px; left: 0; width: 100%; background-image: url('assets/Canvas/demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>--}}
 
-{{--         @include('admin.layouts.spinner-loader.loader')--}}
          @yield('content')
 
       </div>
@@ -80,6 +76,7 @@
 <script src="{{ URL::asset('assets/Canvas/js/functions.js') }}"></script>
 <script src="{{ URL::asset('assets/assets/sweetalert2/sweetalert.js') }}"></script>
 <script src="{{ URL::asset('assets/assets/toastr/toastr.js') }}"></script>
+
 
 @yield('script')
 </body>

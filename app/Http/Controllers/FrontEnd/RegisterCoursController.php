@@ -28,7 +28,7 @@ class RegisterCoursController extends Controller
    // public function RegisterCours(Request $request)
    public function RegisterCours(OrderRegistartionFromUser $request)
    {
-      
+
       try {
          $inserted=     $this->registerCoursInterface->register_in_cours($request);
          if ($inserted) {

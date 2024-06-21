@@ -95,7 +95,7 @@ return [
     'numeric' => 'The :attribute must be a number.',
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
-   'regex' => "The :attribute format is invalid.\nMinimun 8 Digits.\nAt Least One Uppercase Letter.\nAt Least One Number.\nAt Least One Caracter.\n",
+    'regex' => 'The :attribute format is invalid.',
     'required' => 'The :attribute field is required.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
