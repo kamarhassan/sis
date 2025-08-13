@@ -38,18 +38,31 @@ class StaticPageSeed extends Seeder
 
 
       ]);
-      FrontPage::create([
+      // FrontPage::create([
 
-         'name' => 'Our team',
-         'title' => 'Our team',
+      //    'name' => 'Our team',
+      //    'title' => 'Our team',
+      //    'sub_title' => '',
+      //    'details' => NULL,
+      //    'slug' => 'our-team',
+      //    'status' => 1,
+      //    'url_storage' => NULL,
+      //    'is_static' => 1,
+
+      ]);
+
+  FrontPage::create([
+
+         'name' => 'Contact Us',
+         'title' => 'Contact Us',
          'sub_title' => '',
          'details' => NULL,
-         'slug' => 'our-team',
+         'slug' => '/contact Us',
          'status' => 1,
          'url_storage' => NULL,
          'is_static' => 1,
-
-      ]);
+]);
+       
          FrontPage::create([
          'name' => 'About-us',
          'title' => 'About-us',
