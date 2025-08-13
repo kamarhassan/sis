@@ -31,7 +31,7 @@ class Blog extends Migration
          $table->text('authored_time')->nullable();
          $table->tinyInteger('audience')->default(1)->comment('1=public,2=Specify');
          $table->json('tags')->nullable();
-         $table->integer('category_id')->default(0);
+         $table->integer('category_id')->nullable()->default(0);
      
 
          $table->timestamps();
