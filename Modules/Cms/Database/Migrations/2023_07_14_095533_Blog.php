@@ -22,7 +22,7 @@ class Blog extends Migration
          $table->longText('description')->nullable();
          $table->boolean('status')->default(1);
          $table->json('image')->nullable();
-         $table->json('thumbnail')->nullable();
+        $table->string('thumbnail', 200)->nullable();
          $table->integer('viewed')->default(0);
          $table->string('authored_date')->nullable();
          $table->timestamp('authored_date_time')->nullable();
