@@ -50,5 +50,17 @@ class StaticPageSeed extends Seeder
          'is_static' => 1,
 
       ]);
+         FrontPage::create([
+         'name' => 'About-us',
+         'title' => 'About-us',
+         'sub_title' => '',
+         'details' => NULL,
+         'slug' => '/about-us',
+         'status' => 1,
+         'url_storage' => '',
+         'is_static' => 1,
+
+
+      ]);
    }
 }
