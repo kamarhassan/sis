@@ -24,7 +24,7 @@ class Blog extends Migration
          $table->json('image')->nullable();
          $table->json('thumbnail')->nullable();
          $table->integer('viewed')->default(0);
-         $table->string('authored_date');
+         $table->string('authored_date')->nullable();
          $table->timestamp('authored_date_time')->nullable();
          $table->tinyInteger('position_audience')->default(1)->comment('1=public,2=Specify');
          
